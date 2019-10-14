@@ -2,10 +2,10 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 
-const AdsNavigation = createStackNavigator({
+const InKuwaitNavigation = createStackNavigator({
   Home: {
     screen: InKuwaitScreen,
   },
 });
 
-export default AdsNavigation;
+export default InKuwaitNavigation;
