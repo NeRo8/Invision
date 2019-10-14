@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Dimensions } from 'react-native';
 import ElementList from '../../components/ElementList';
+
+import styles from './styles';
 
 import { colors } from '../../constants/colors';
 
@@ -26,6 +28,13 @@ class HomeScreen extends Component {
       ],
     };
   }
+
+  renderBottomPaginator = () => (
+    <View style={styles.pagination}>
+      <Text style={{ fontWeight: 'bold' }}>1/30</Text>
+    </View>
+  );
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -36,6 +45,7 @@ class HomeScreen extends Component {
           contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
           keyExtractor={(item, index) => item.id}
         />
+        {this.renderBottomPaginator()}
       </View>
     );
   }

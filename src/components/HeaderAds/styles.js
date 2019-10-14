@@ -31,6 +31,7 @@ export default StyleSheet.create({
   },
   btnStyle: {
     backgroundColor: colors.HEADER_BUTTON,
+    borderRadius: 0,
   },
   btnContainer: {
     flex: 1,
