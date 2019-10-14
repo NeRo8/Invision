@@ -14,13 +14,20 @@ const Navigation = createBottomTabNavigator(
   {
     Home: {
       screen: AdsNavigation,
+      navigationOptions: {
+        title: 'Ads',
+      },
     },
     InKuwait: {
       screen: InKuwaitNavigation,
+      navigationOptions: {
+        title: 'In Kuwait',
+      },
     },
     Auth: {
       screen: AuthNavigation,
       navigationOptions: {
+        title: 'Add ad',
         tabBarIcon: ({ focused, horizontal, tintColor }) => (
           <Icon
             name="ios-add-circle"
@@ -34,6 +41,7 @@ const Navigation = createBottomTabNavigator(
     Favorite: {
       screen: FavoriteNavigation,
       navigationOptions: {
+        title: 'Favorites',
         tabBarIcon: ({ focused, horizontal, tintColor }) => (
           <Icon name="ios-heart" type="ionicon" color={tintColor} size={28} />
         ),
@@ -42,6 +50,7 @@ const Navigation = createBottomTabNavigator(
     Profile: {
       screen: ProfileNavigation,
       navigationOptions: {
+        title: 'Profile',
         tabBarIcon: ({ focused, horizontal, tintColor }) => (
           <Icon name="ios-contact" type="ionicon" color={tintColor} size={28} />
         ),
