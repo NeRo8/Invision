@@ -34,6 +34,11 @@ const HeaderAds = () => (
       />
 
       <Button
+        icon={{
+          name: 'filter',
+          type: 'material-community',
+          color: 'white',
+        }}
         title="Add filters"
         titleStyle={styles.btnTitleStyle}
         buttonStyle={styles.btnStyle}

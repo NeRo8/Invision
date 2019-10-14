@@ -3,4 +3,6 @@ export const colors = {
   HEADER_BUTTON: '#3F7FE9',
   UNACTIVE: '#9DA9BC',
   ACTIVE: '#236AE6',
+  BACKGROUND: '#F5F5F5',
+  HEART_ACTIVE: '#EC4550',
 };
