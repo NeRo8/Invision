@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import FiltersScreen from '../screens/FiltersScreen';
 
 import HeaderAds from '../components/HeaderAds';
+import HeaderAdsFilters from '../components/HeaderAdsFilters';
 
 import { colors } from '../constants/colors';
 import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   btnCancel: {
     color: 'white',
     fontSize: 16,
-    marginLeft: 10,
+    marginHorizontal: 10,
   },
 });
 
@@ -24,6 +25,12 @@ const HeaderLeft = ({ onPressCancel }) => (
       onPressCancel();
     }}>
     <Text style={styles.btnCancel}>Cancel</Text>
+  </TouchableOpacity>
+);
+
+const HeaderRight = ({ onPressConfirm }) => (
+  <TouchableOpacity onPress={() => {}}>
+    <Text style={styles.btnCancel}>Done</Text>
   </TouchableOpacity>
 );
 
@@ -37,7 +44,7 @@ const AdsNavigation = createStackNavigator(
           height: 100,
           backgroundColor: colors.HEADER,
         },
-        headerBackTitle: 'Cancel',
+        headerTintColor: 'white',
       },
     },
     Category: {
@@ -55,7 +62,17 @@ const AdsNavigation = createStackNavigator(
     },
     Filters: {
       screen: FiltersScreen,
-      navigationOptions: {},
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: <HeaderAdsFilters />,
+          headerStyle: {
+            height: 110,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
     },
   },
   {

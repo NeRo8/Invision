@@ -32,9 +32,11 @@ export default StyleSheet.create({
   btnStyle: {
     backgroundColor: colors.HEADER_BUTTON,
     borderRadius: 0,
+    height: 43,
   },
   btnContainer: {
     flex: 1,
     paddingHorizontal: '2.5%',
+    height: 43,
   },
 });
