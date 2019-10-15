@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
+import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
 
@@ -18,6 +19,7 @@ class HeaderAdsFilters extends Component {
             type="material-community"
             color="white"
             size={32}
+            onPress={() => this.props.navigation.goBack()}
           />
           <Text style={styles.headerText}>Filters</Text>
           <TouchableOpacity onPress={() => {}}>
@@ -47,4 +49,4 @@ class HeaderAdsFilters extends Component {
   }
 }
 
-export default HeaderAdsFilters;
+export default withNavigation(HeaderAdsFilters);

@@ -64,6 +64,7 @@ const AdsNavigation = createStackNavigator(
       screen: FiltersScreen,
       navigationOptions: ({ navigation }) => {
         return {
+          gesturesEnabled: false,
           headerTitle: <HeaderAdsFilters />,
           headerStyle: {
             height: 110,
