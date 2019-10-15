@@ -14,8 +14,18 @@ const Navigation = createBottomTabNavigator(
   {
     Home: {
       screen: AdsNavigation,
-      navigationOptions: {
-        title: 'Ads',
+      navigationOptions: ({ navigation }) => {
+        //title: 'Ads',
+        let tabBarVisible = true;
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+        if (routeName === 'Filters' || routeName === 'Category') {
+          tabBarVisible = false;
+        }
+        return {
+          tabBarVisible,
+          title: 'Ads',
+        };
       },
     },
     InKuwait: {

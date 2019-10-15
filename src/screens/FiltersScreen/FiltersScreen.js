@@ -20,9 +20,8 @@ class FiltersScreen extends Component {
   enableScroll = () => this.setState({ scrollEnabled: true });
   disableScroll = () => this.setState({ scrollEnabled: false });
 
-  onMultiSliderValueChange = values => {
+  onMultiSliderValueChange = values =>
     this.setState({ multiSliderValue: values });
-  };
 
   render() {
     const { min, max, multiSliderValue } = this.state;
