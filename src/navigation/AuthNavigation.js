@@ -5,6 +5,9 @@ import Auth from '../screens/Auth';
 const AuthNavigation = createStackNavigator({
   Home: {
     screen: Auth,
+    navigationOptions: {
+      header: null,
+    },
   },
 });
 

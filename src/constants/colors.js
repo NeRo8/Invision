@@ -5,4 +5,7 @@ export const colors = {
   ACTIVE: '#236AE6',
   BACKGROUND: '#F5F5F5',
   HEART_ACTIVE: '#EC4550',
+  FACEBOOK: 'rgb(89,111,163)',
+  TWITTER: 'rgb(86, 174,222)',
+  INSTAGRAM: 'rgb(195,74,117)',
 };

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
@@ -14,8 +20,56 @@ class FiltersScreen extends Component {
       min: 0,
       max: 1000000,
       multiSliderValue: [0, 400000],
+
+      typeOfAd: {
+        private: false,
+        buisnes: false,
+        all: false,
+      },
+
+      stateOfProduct: {
+        newProduct: false,
+        bA: false,
+        all: false,
+      },
     };
   }
+
+  componentDidUpdate() {
+    console.log(this.state.typeOfAd);
+  }
+
+  handlePressTypeOfAdd = name => {
+    const { typeOfAd } = this.state;
+
+    const newTypeOfAd = {
+      ...typeOfAd,
+      private: false,
+      all: false,
+      buisnes: false,
+      [name]: true,
+    };
+
+    this.setState({
+      typeOfAd: newTypeOfAd,
+    });
+  };
+
+  handlePressStateOfProduct = name => {
+    const { stateOfProduct } = this.state;
+
+    const newStateOfProduct = {
+      ...stateOfProduct,
+      all: false,
+      bA: false,
+      newProduct: false,
+      [name]: true,
+    };
+
+    this.setState({
+      stateOfProduct: newStateOfProduct,
+    });
+  };
 
   enableScroll = () => this.setState({ scrollEnabled: true });
   disableScroll = () => this.setState({ scrollEnabled: false });
@@ -24,7 +78,7 @@ class FiltersScreen extends Component {
     this.setState({ multiSliderValue: values });
 
   render() {
-    const { min, max, multiSliderValue } = this.state;
+    const { min, max, multiSliderValue, typeOfAd, stateOfProduct } = this.state;
 
     return (
       <ScrollView
@@ -34,29 +88,89 @@ class FiltersScreen extends Component {
           <View style={styles.filterElement}>
             <Text style={styles.textBlock}>TYPE OF AD</Text>
             <View style={styles.selectBlock}>
-              <View style={styles.element}>
-                <Text style={styles.textElement}>Private</Text>
-              </View>
-              <View style={styles.elementActive}>
-                <Text style={styles.textElementActive}>Buisnes</Text>
-              </View>
-              <View style={styles.element}>
-                <Text style={styles.textElement}>All</Text>
-              </View>
+              <TouchableOpacity
+                style={typeOfAd.private ? styles.elementActive : styles.element}
+                onPress={() => this.handlePressTypeOfAdd('private')}>
+                <Text
+                  style={
+                    typeOfAd.private
+                      ? styles.textElementActive
+                      : styles.textElement
+                  }>
+                  Private
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={typeOfAd.buisnes ? styles.elementActive : styles.element}
+                onPress={() => this.handlePressTypeOfAdd('buisnes')}>
+                <Text
+                  style={
+                    typeOfAd.buisnes
+                      ? styles.textElementActive
+                      : styles.textElement
+                  }>
+                  Buisnes
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={typeOfAd.all ? styles.elementActive : styles.element}
+                onPress={() => this.handlePressTypeOfAdd('all')}>
+                <Text
+                  style={
+                    typeOfAd.all ? styles.textElementActive : styles.textElement
+                  }>
+                  All
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.filterElement}>
             <Text style={styles.textBlock}>STATE OF PRODUCT</Text>
             <View style={styles.selectBlock}>
-              <View style={styles.element}>
-                <Text style={styles.textElement}>New</Text>
-              </View>
-              <View style={styles.elementActive}>
-                <Text style={styles.textElementActive}>b/a</Text>
-              </View>
-              <View style={styles.element}>
-                <Text style={styles.textElement}>All</Text>
-              </View>
+              <TouchableOpacity
+                style={
+                  stateOfProduct.newProduct
+                    ? styles.elementActive
+                    : styles.element
+                }
+                onPress={() => this.handlePressStateOfProduct('newProduct')}>
+                <Text
+                  style={
+                    stateOfProduct.newProduct
+                      ? styles.textElementActive
+                      : styles.textElement
+                  }>
+                  New
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={
+                  stateOfProduct.bA ? styles.elementActive : styles.element
+                }
+                onPress={() => this.handlePressStateOfProduct('bA')}>
+                <Text
+                  style={
+                    stateOfProduct.bA
+                      ? styles.textElementActive
+                      : styles.textElement
+                  }>
+                  b/a
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={
+                  stateOfProduct.all ? styles.elementActive : styles.element
+                }
+                onPress={() => this.handlePressStateOfProduct('all')}>
+                <Text
+                  style={
+                    stateOfProduct.all
+                      ? styles.textElementActive
+                      : styles.textElement
+                  }>
+                  All
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.filterElement}>
