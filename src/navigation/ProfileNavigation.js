@@ -5,6 +5,9 @@ import ProfileScreen from '../screens/ProfileScreen';
 const ProfileNavigation = createStackNavigator({
   Home: {
     screen: ProfileScreen,
+    navigationOptions: {
+      header: null,
+    },
   },
 });
 
