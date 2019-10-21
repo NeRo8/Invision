@@ -6,8 +6,8 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    height: 200,
-    margin: 5,
+    height: 250,
+    padding: 10,
   },
   pictureBlock: {
     flex: 1,

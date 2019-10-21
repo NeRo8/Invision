@@ -31,7 +31,7 @@ class HeaderAds extends Component {
                 name="ios-search"
                 type="ionicon"
                 color={colors.UNACTIVE}
-                size={32}
+                size={25}
               />
             )}
             placeholder="Search ad..."
@@ -42,26 +42,30 @@ class HeaderAds extends Component {
           />
         </View>
         <View style={styles.filtersContainer}>
-          <Button
-            title="Choose category"
-            titleStyle={styles.btnTitleStyle}
-            buttonStyle={styles.btnStyle}
-            containerStyle={styles.btnContainer}
-            onPress={this.handlePressCategory}
-          />
-
-          <Button
-            icon={{
-              name: 'filter',
-              type: 'material-community',
-              color: 'white',
-            }}
-            title="Add filters"
-            titleStyle={styles.btnTitleStyle}
-            buttonStyle={styles.btnStyle}
-            containerStyle={styles.btnContainer}
-            onPress={this.handlePressFilters}
-          />
+          <View style={styles.btnContainer}>
+            <Button
+              title="Choose category"
+              titleStyle={styles.btnTitleStyle}
+              buttonStyle={styles.btnStyle}
+              containerStyle={{ marginRight: 5 }}
+              onPress={this.handlePressCategory}
+            />
+          </View>
+          <View style={styles.btnContainer}>
+            <Button
+              style={{ marginLeft: 5 }}
+              icon={{
+                name: 'filter',
+                type: 'material-community',
+                color: 'white',
+              }}
+              title="Add filters"
+              titleStyle={styles.btnTitleStyle}
+              buttonStyle={styles.btnStyle}
+              containerStyle={{ marginLeft: 5 }}
+              onPress={this.handlePressFilters}
+            />
+          </View>
         </View>
       </View>
     );

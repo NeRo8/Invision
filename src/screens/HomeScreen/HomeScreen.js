@@ -37,7 +37,7 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, width: '95%', alignSelf: 'center' }}>
         <FlatList
           numColumns={2}
           data={this.state.data}
