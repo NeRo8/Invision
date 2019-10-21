@@ -5,6 +5,9 @@ import {
   TouchableOpacity,
   FlatList,
   ImageBackground,
+  Modal,
+  Switch,
+  Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
@@ -12,27 +15,14 @@ import { Icon, Button } from 'react-native-elements';
 import { colors } from '../../constants/colors';
 
 import styles from './styles';
+import { whileStatement } from '@babel/types';
 
-const ElementFL = ({ item }) => (
+const ElementFL = ({ item, showOption }) => (
   <ImageBackground
-    style={{
-      width: null,
-      height: 150,
-      flex: 1,
-      margin: 10,
-      borderRadius: 10,
-      overflow: 'hidden',
-      backgroundColor: 'silver',
-    }}
+    style={styles.elementContainer}
     source={require('../../assets/images/background-phone.jpg')}>
     <View style={{ flex: 1 }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: 20,
-          marginHorizontal: 20,
-          justifyContent: 'space-between',
-        }}>
+      <View style={styles.elementBody}>
         <Text style={{ color: 'white', fontWeight: 'bold' }}>
           Whole every miles as tiled at seven or. Wished he entire esteem mr oh
           by.
@@ -48,6 +38,7 @@ const ElementFL = ({ item }) => (
             alignItems: 'center',
             justifyContent: 'center',
           }}
+          onPress={() => showOption(true)}
         />
       </View>
     </View>
@@ -102,8 +93,15 @@ class ProfileScreen extends Component {
           message: '13',
         },
       ],
+      showOption: false,
     };
   }
+
+  showOption = value => {
+    this.setState({
+      showOption: value,
+    });
+  };
 
   handlePressSelectedView = name => {
     this.setState({
@@ -243,9 +241,115 @@ class ProfileScreen extends Component {
           </View>
           <FlatList
             data={this.state.data}
-            renderItem={({ item }) => <ElementFL item={item} />}
+            renderItem={({ item }) => (
+              <ElementFL item={item} showOption={this.showOption} />
+            )}
           />
         </View>
+        <Modal style={{ flex: 1 }} visible={this.state.showOption} transparent>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'rgba(0,0,0, 0.7)',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+            }}>
+            <View
+              style={{
+                height: 300,
+                backgroundColor: 'white',
+                width: '95%',
+              }}>
+              <Image
+                source={require('../../assets/images/element-background.jpg')}
+                style={{ width: null, height: null, flex: 1 }}
+              />
+              <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    marginHorizontal: 30,
+                    marginTop: 20,
+                  }}>
+                  SELECT ONE OF ACTION
+                </Text>
+                <View>
+                  <Button
+                    icon={{
+                      name: 'pencil-outline',
+                      type: 'material-community',
+                      color: 'white',
+                      containerStyle: {
+                        backgroundColor: colors.HEADER,
+                        borderRadius: 20,
+                        padding: 2,
+                        marginHorizontal: 10,
+                      },
+                    }}
+                    title="Edit ad"
+                    titleStyle={{ color: colors.HEADER }}
+                    buttonStyle={{
+                      borderRadius: 0,
+                      backgroundColor: 'white',
+                      borderBottomWidth: 1,
+                      borderColor: 'silver',
+                      height: 50,
+                      justifyContent: 'flex-start',
+                    }}
+                    containerStyle={{ height: 50 }}
+                  />
+                  <Button
+                    icon={{
+                      name: 'trash-can-outline',
+                      type: 'material-community',
+                      color: 'white',
+                      containerStyle: {
+                        backgroundColor: 'red',
+                        borderRadius: 20,
+                        padding: 2,
+                        marginHorizontal: 10,
+                      },
+                    }}
+                    title="Delete ad"
+                    titleStyle={{ color: 'red' }}
+                    buttonStyle={{
+                      borderRadius: 0,
+                      height: 50,
+                      backgroundColor: 'white',
+                      borderColor: 'silver',
+                      justifyContent: 'flex-start',
+                    }}
+                    containerStyle={{ height: 50 }}
+                  />
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                height: 50,
+                width: '95%',
+                backgroundColor: 'white',
+                marginVertical: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+              }}>
+              <Text style={{ fontSize: 16 }}>Active or inactive</Text>
+              <Switch />
+            </View>
+            <Button
+              title="Done"
+              titleStyle={{ fontWeight: 'bold' }}
+              buttonStyle={{
+                backgroundColor: colors.HEADER,
+                height: 50,
+                borderRadius: 0,
+              }}
+              containerStyle={{ width: '95%', marginBottom: 40 }}
+              onPress={() => this.showOption(false)}
+            />
+          </View>
+        </Modal>
       </View>
     );
   }

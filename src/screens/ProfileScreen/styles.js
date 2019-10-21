@@ -6,6 +6,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   headerProfile: {
+    paddingTop: 30,
     height: 150,
     width: '100%',
     alignItems: 'center',
@@ -72,5 +73,20 @@ export default StyleSheet.create({
   blockBody: {
     flex: 1,
     backgroundColor: colors.BACKGROUND,
+  },
+  elementContainer: {
+    width: null,
+    height: 150,
+    flex: 1,
+    margin: 10,
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: 'silver',
+  },
+  elementBody: {
+    flexDirection: 'row',
+    marginTop: 20,
+    marginHorizontal: 20,
+    justifyContent: 'space-between',
   },
 });
