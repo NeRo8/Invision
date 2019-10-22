@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -41,7 +41,7 @@ const AdsNavigation = createStackNavigator(
       navigationOptions: {
         headerTitle: <HeaderAds />,
         headerStyle: {
-          height: 100,
+          height: Platform.OS === 'ios' ? 95 : 110,
           backgroundColor: colors.HEADER,
         },
         headerTintColor: 'white',
@@ -67,7 +67,7 @@ const AdsNavigation = createStackNavigator(
           gesturesEnabled: false,
           headerTitle: <HeaderAdsFilters />,
           headerStyle: {
-            height: 110,
+            height: Platform.OS === 'ios' ? 110 : 130,
             backgroundColor: colors.HEADER,
           },
           headerLeft: null,

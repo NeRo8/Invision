@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Dimensions, StatusBar } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Dimensions,
+  StatusBar,
+  SafeAreaView,
+} from 'react-native';
 import ElementList from '../../components/ElementList';
 
 import styles from './styles';
@@ -37,11 +44,11 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.flatListView}>
+      <SafeAreaView style={styles.flatListView}>
         <StatusBar
           translucent
+          barStyle="light-content"
           backgroundColor="transparent"
-          barStyle="dark-content"
         />
         <FlatList
           numColumns={2}
@@ -51,7 +58,7 @@ class HomeScreen extends Component {
           keyExtractor={(item, index) => item.id}
         />
         {this.renderBottomPaginator()}
-      </View>
+      </SafeAreaView>
     );
   }
 }

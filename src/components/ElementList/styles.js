@@ -5,9 +5,10 @@ import { colors } from '../../constants/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    height: 250,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
+    height: 300,
+    marginHorizontal: 5,
+    marginVertical: 5,
+    backgroundColor: 'white',
   },
   pictureBlock: {
     flex: 1,
