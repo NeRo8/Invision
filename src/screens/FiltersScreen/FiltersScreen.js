@@ -5,6 +5,7 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';

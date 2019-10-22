@@ -14,11 +14,17 @@ const InKuwaitNavigation = createStackNavigator({
     navigationOptions: {
       title: 'Living In Kuwait',
       headerTitleStyle: {
-        fontSize: 16,
+        marginTop: 10,
+        marginLeft: 0,
+        textAlign: 'center',
+        width: '100%',
+        fontSize: 17,
+        fontFamily: 'Gotham-Bold',
         color: 'white',
         fontWeight: 'bold',
       },
       headerStyle: {
+        height: 64,
         backgroundColor: colors.HEADER,
       },
     },

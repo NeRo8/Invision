@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 
 import styles from './styles';
 
@@ -12,6 +18,7 @@ class InKuwaitScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle={'light-content'} translucent />
         <Text style={styles.headerTitle}>CHOOSE ONE OF CATEGORY</Text>
         <View style={{ flex: 1 }}>
           <TouchableOpacity onPress={() => {}}>

@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+
+import globalStyles from '../../constants/globalStyles';
 import { colors } from '../../constants/colors';
 
 export default StyleSheet.create({
@@ -7,9 +9,10 @@ export default StyleSheet.create({
     padding: 10,
   },
   headerTitle: {
-    fontSize: 14,
+    fontFamily: globalStyles.gothamBold.fontFamily,
+    fontSize: 12,
     fontWeight: 'bold',
-    marginVertical: 15,
+    marginVertical: 10,
   },
   elementContainer: {
     //backgroundColor: 'red',
@@ -25,7 +28,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleElement: {
-    fontSize: 16,
+    fontFamily: globalStyles.gothamBold.fontFamily,
+    fontSize: 17,
     fontWeight: 'bold',
   },
   roundView: {
