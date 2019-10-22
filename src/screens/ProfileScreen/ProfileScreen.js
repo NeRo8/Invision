@@ -8,6 +8,7 @@ import {
   Modal,
   Switch,
   Image,
+  StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
