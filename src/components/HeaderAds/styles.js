@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import { colors } from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS === 'ios' ? 0 : 20,
   },
 
   searchContainer: {
@@ -34,12 +35,13 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   btnTitleStyle: {
+    fontSize: 12,
     fontWeight: 'bold',
   },
   btnStyle: {
     backgroundColor: colors.HEADER_BUTTON,
     borderRadius: 0,
-    height: 35,
+    height: 30,
   },
   btnContainer: {
     flex: 1,
