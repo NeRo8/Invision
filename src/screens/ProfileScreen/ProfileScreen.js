@@ -210,6 +210,7 @@ class ProfileScreen extends Component {
         </View>
         <View style={styles.blockBody}>
           <Text style={styles.headerText}>MY ADS</Text>
+
           <View style={styles.selectedContainer}>
             <TouchableOpacity
               style={
@@ -240,6 +241,7 @@ class ProfileScreen extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+
           <FlatList
             data={this.state.data}
             renderItem={({ item }) => (
