@@ -8,4 +8,5 @@ export const colors = {
   FACEBOOK: 'rgb(89,111,163)',
   TWITTER: 'rgb(86, 174,222)',
   INSTAGRAM: 'rgb(195,74,117)',
+  NOTIF_ICON: 'rgb(236, 69, 114)',
 };
