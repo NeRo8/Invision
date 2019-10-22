@@ -52,6 +52,11 @@ const AdsNavigation = createStackNavigator(
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: 'Filters',
+          headerStyle: {
+            paddingTop: 20,
+            height: 70,
+            backgroundColor: colors.HEADER,
+          },
           headerTitleStyle: {
             color: 'white',
             fontWeight: 'bold',

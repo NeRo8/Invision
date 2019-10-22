@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  Dimensions,
-  StatusBar,
-  SafeAreaView,
-} from 'react-native';
+import { View, Text, FlatList, StatusBar, SafeAreaView } from 'react-native';
 import ElementList from '../../components/ElementList';
 
 import styles from './styles';
