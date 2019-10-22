@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
+import { withNavigation } from 'react-navigation';
 
 import { colors } from '../../constants/colors';
 
@@ -9,6 +10,11 @@ class index extends Component {
     super(props);
     this.state = {};
   }
+
+  handlePressSignInEmail = () => {
+    this.props.navigation.navigate('SignIn');
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -73,6 +79,7 @@ class index extends Component {
             titleStyle={styles.titleEmail}
             buttonStyle={styles.btnStyleEmail}
             containerStyle={styles.btnContainer}
+            onPress={this.handlePressSignInEmail}
           />
         </View>
       </View>
