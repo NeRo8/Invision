@@ -5,6 +5,6 @@ export default StyleSheet.create({
     fontFamily: 'Gotham-Bold',
   },
   gothamBook: {
-    fontFamily: 'GothamBook',
+    fontFamily: 'Gotham',
   },
 });
