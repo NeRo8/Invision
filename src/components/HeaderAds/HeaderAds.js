@@ -5,6 +5,7 @@ import { Input, Icon, Button } from 'react-native-elements';
 
 import { colors } from '../../constants/colors';
 
+import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
 
 class HeaderAds extends Component {
@@ -26,6 +27,7 @@ class HeaderAds extends Component {
       <View style={styles.container}>
         <View style={styles.searchContainer}>
           <Input
+            inputStyle={globalStyles.gothamBook}
             leftIcon={() => (
               <Icon
                 name="ios-search"

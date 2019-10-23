@@ -11,6 +11,7 @@ export default StyleSheet.create({
   searchContainer: {
     paddingTop: 10,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
   inputContainer: {
@@ -30,7 +31,7 @@ export default StyleSheet.create({
     flex: 1,
     width: '95%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     alignSelf: 'center',
   },

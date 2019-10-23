@@ -24,12 +24,15 @@ export default StyleSheet.create({
     width: null,
   },
   title: {
-    fontWeight: 'bold',
+    color: colors.TITLE,
+    fontSize: 13,
   },
   price: {
     color: colors.HEADER,
+    fontSize: 13,
   },
   status: {
     color: colors.UNACTIVE,
+    fontSize: 13,
   },
 });

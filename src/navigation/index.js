@@ -25,6 +25,14 @@ const Navigation = createBottomTabNavigator(
         return {
           tabBarVisible,
           title: 'Ads',
+          tabBarIcon: ({ focused, horizontal, tintColor }) => (
+            <Icon
+              name="calendar-multiple"
+              type="material-community"
+              color={tintColor}
+              size={28}
+            />
+          ),
         };
       },
     },
@@ -32,6 +40,14 @@ const Navigation = createBottomTabNavigator(
       screen: InKuwaitNavigation,
       navigationOptions: {
         title: 'In Kuwait',
+        tabBarIcon: ({ focused, horizontal, tintColor }) => (
+          <Icon
+            name="hospital-building"
+            type="material-community"
+            color={tintColor}
+            size={28}
+          />
+        ),
       },
     },
     Auth: {

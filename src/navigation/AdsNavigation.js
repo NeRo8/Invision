@@ -11,6 +11,8 @@ import HeaderAdsFilters from '../components/HeaderAdsFilters';
 import { colors } from '../constants/colors';
 import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
 
+import globalStyles from '../constants/globalStyles';
+
 const styles = StyleSheet.create({
   btnCancel: {
     color: 'white',
@@ -24,7 +26,7 @@ const HeaderLeft = ({ onPressCancel }) => (
     onPress={() => {
       onPressCancel();
     }}>
-    <Text style={styles.btnCancel}>Cancel</Text>
+    <Text style={[styles.btnCancel, globalStyles.gothamBook]}>Cancel</Text>
   </TouchableOpacity>
 );
 
@@ -53,11 +55,13 @@ const AdsNavigation = createStackNavigator(
         return {
           headerTitle: 'Filters',
           headerStyle: {
+            alignItems: 'center',
             paddingTop: 20,
             height: 70,
             backgroundColor: colors.HEADER,
           },
           headerTitleStyle: {
+            marginLeft: 125,
             color: 'white',
             fontWeight: 'bold',
           },

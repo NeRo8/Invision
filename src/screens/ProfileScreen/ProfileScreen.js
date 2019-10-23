@@ -8,6 +8,7 @@ import {
   Modal,
   Switch,
   Image,
+  StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
@@ -209,6 +210,7 @@ class ProfileScreen extends Component {
         </View>
         <View style={styles.blockBody}>
           <Text style={styles.headerText}>MY ADS</Text>
+
           <View style={styles.selectedContainer}>
             <TouchableOpacity
               style={
@@ -239,6 +241,7 @@ class ProfileScreen extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+
           <FlatList
             data={this.state.data}
             renderItem={({ item }) => (

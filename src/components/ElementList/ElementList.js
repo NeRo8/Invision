@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements';
 
 import { colors } from '../../constants/colors';
 
+import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
 
 const ElementList = ({ item }) => (
@@ -22,7 +23,9 @@ const ElementList = ({ item }) => (
       />
     </View>
     <View style={styles.textBlock}>
-      <Text style={styles.title}>{item.title}Pioneer handphones premium</Text>
+      <Text style={[styles.title, globalStyles.gothamBold]}>
+        {item.title}Pioneer handphones premium
+      </Text>
       <Text style={styles.price}>10 000 KWD</Text>
       <Text style={styles.status}>For sale</Text>
     </View>
