@@ -11,7 +11,6 @@ export default StyleSheet.create({
   headerTitle: {
     fontFamily: globalStyles.gothamBold.fontFamily,
     fontSize: 12,
-
     marginVertical: 10,
   },
   elementContainer: {
