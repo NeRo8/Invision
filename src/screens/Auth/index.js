@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, Platform, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import { colors } from '../../constants/colors';
+import globalStyles from '../../constants/globalStyles';
 
 class index extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class index extends Component {
         <View
           style={{ alignItems: 'center', flex: 2, justifyContent: 'center' }}>
           <View style={styles.logo}>
-            <Text style={styles.iconLogo}>m</Text>
+            <Image source={require('../../assets/icons/appIcon.png')} />
           </View>
           <View style={{ width: '55%' }}>
             <Text style={styles.logoText}>
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   titleEmail: {
     fontSize: 16,
     color: colors.HEADER,
-    fontWeight: 'bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
   },
   btnStyleEmail: {
     height: 60,
@@ -113,14 +114,10 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: 60,
-    width: 100,
-    height: 100,
     borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.HEADER,
   },
   logoText: {
+    fontFamily: globalStyles.gothamBook.fontFamily,
     marginTop: 40,
     fontSize: 30,
     textAlign: 'center',
@@ -139,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 5,
     fontSize: 15,
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     textAlign: 'left',
   },
   blockBottom: {

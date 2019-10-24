@@ -15,9 +15,10 @@ export default StyleSheet.create({
   },
   elementContainer: {
     //backgroundColor: 'red',
+
     width: '100%',
-    height: 100,
-    marginVertical: 10,
+    height: 130,
+    marginVertical: 15,
   },
   element: {
     flex: 1,

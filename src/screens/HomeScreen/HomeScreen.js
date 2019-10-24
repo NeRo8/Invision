@@ -29,6 +29,10 @@ class HomeScreen extends Component {
     };
   }
 
+  showProductDetail = () => {
+    this.props.navigation.navigate('ProductDetail');
+  };
+
   renderBottomPaginator = () => (
     <View style={styles.pagination}>
       <Text style={{ fontWeight: 'bold' }}>1/30</Text>
@@ -46,7 +50,9 @@ class HomeScreen extends Component {
         <FlatList
           numColumns={2}
           data={this.state.data}
-          renderItem={({ item }) => <ElementList item={item} />}
+          renderItem={({ item }) => (
+            <ElementList item={item} onPressProduct={this.showProductDetail} />
+          )}
           contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
           keyExtractor={(item, index) => item.id}
         />

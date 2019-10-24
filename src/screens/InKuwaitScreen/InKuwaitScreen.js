@@ -20,10 +20,10 @@ class InKuwaitScreen extends Component {
       <View style={styles.container}>
         <StatusBar barStyle={'light-content'} translucent />
         <Text style={styles.headerTitle}>CHOOSE ONE OF CATEGORY</Text>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'space-around' }}>
           <TouchableOpacity onPress={() => {}}>
             <ImageBackground
-              source={require('../../assets/images/element-background.jpg')}
+              source={require('../../assets/images/organisation.jpg')}
               style={styles.elementContainer}>
               <View style={styles.element}>
                 <Text style={styles.titleElement}>
@@ -38,7 +38,7 @@ class InKuwaitScreen extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('InKuwaitFAQ')}>
             <ImageBackground
-              source={require('../../assets/images/element-background.jpg')}
+              source={require('../../assets/images/faq.jpg')}
               style={styles.elementContainer}>
               <View style={styles.element}>
                 <Text style={styles.titleElement}>{'FAQ'}</Text>
@@ -50,7 +50,7 @@ class InKuwaitScreen extends Component {
           </TouchableOpacity>
           <TouchableOpacity onPress={() => {}}>
             <ImageBackground
-              source={require('../../assets/images/element-background.jpg')}
+              source={require('../../assets/images/events.jpg')}
               style={styles.elementContainer}>
               <View style={styles.element}>
                 <Text style={styles.titleElement}>{'Events'}</Text>
@@ -62,7 +62,7 @@ class InKuwaitScreen extends Component {
           </TouchableOpacity>
           <TouchableOpacity onPress={() => {}}>
             <ImageBackground
-              source={require('../../assets/images/element-background.jpg')}
+              source={require('../../assets/images/news.jpg')}
               style={styles.elementContainer}>
               <View style={styles.element}>
                 <Text style={styles.titleElement}>{'News'}</Text>

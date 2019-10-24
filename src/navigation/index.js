@@ -78,7 +78,12 @@ const Navigation = createBottomTabNavigator(
       navigationOptions: {
         title: 'Profile',
         tabBarIcon: ({ focused, horizontal, tintColor }) => (
-          <Icon name="ios-contact" type="ionicon" color={tintColor} size={28} />
+          <Icon
+            name="account-circle"
+            type="material-community"
+            color={tintColor}
+            size={28}
+          />
         ),
       },
     },

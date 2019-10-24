@@ -1,5 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 import { colors } from '../../constants/colors';
+import globalStyles from '../../constants/globalStyles';
 
 export default StyleSheet.create({
   container: {
@@ -34,7 +35,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementText: {
-    fontFamily: 'Gotham-Bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     color: 'white',
   },
   selectedElementActive: {
@@ -47,7 +48,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementTextActive: {
-    fontFamily: 'Gotham-Bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     color: colors.HEADER,
   },
   simpleContainer: {

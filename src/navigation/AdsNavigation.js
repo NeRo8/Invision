@@ -8,9 +8,10 @@ import FiltersScreen from '../screens/FiltersScreen';
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
 
-import { colors } from '../constants/colors';
 import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
+import ProductScreen from '../screens/Ads/ProductScreen';
 
+import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
 
 const styles = StyleSheet.create({
@@ -84,6 +85,9 @@ const AdsNavigation = createStackNavigator(
           headerRight: null,
         };
       },
+    },
+    ProductDetail: {
+      screen: ProductScreen,
     },
   },
   {

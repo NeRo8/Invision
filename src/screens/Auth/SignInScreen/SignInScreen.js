@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Icon, Button } from 'react-native-elements';
 import { colors } from '../../../constants/colors';
 import styles from './styles';
@@ -12,46 +12,47 @@ class SignInScreen extends Component {
   }
   render() {
     return (
-      <View style={{ justifyContent: 'space-between', flex: 1 }}>
-        <Text style={[styles.SignInText, globalStyles.gothamBook]}>
-          Sign in
-        </Text>
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <Input
-            inputStyle={[styles.Input, globalStyles.gothamBook]}
-            inputContainerStyle={{ borderBottomWidth: 0.6 }}
-            containerStyle={{ paddingHorizontal: 30 }}
-            placeholder="Email address*"
-          />
-          <Input
-            inputStyle={[styles.Input, globalStyles.gothamBook]}
-            inputContainerStyle={{ borderBottomWidth: 1 }}
-            containerStyle={{ paddingHorizontal: 30 }}
-            placeholder="Password*"
-            rightIcon={
-              <TouchableOpacity>
-                <Text style={[styles.forgot, globalStyles.gothamBook]}>
-                  Forgot?
-                </Text>
-              </TouchableOpacity>
-            }
-            rightIconContainerStyle={{ paddingTop: '4%' }}
-          />
-          <Button
-            title="Sign in"
-            titleStyle={[styles.title, globalStyles.gothamBold]}
-            buttonStyle={[
-              styles.btnSignIn,
-              { backgroundColor: colors.HEADER_BUTTON },
-            ]}
-            containerStyle={styles.btnContainer}
-          />
-        </View>
-        <View style={styles.bottomView}>
-          <Text style={[styles.OrUseText, globalStyles.gothamBook]}>
-            Or use Sign in use social networks
+      <ScrollView>
+        <View>
+          <Text style={[styles.SignInText, globalStyles.gothamBook]}>
+            Sign in
           </Text>
-          {/* <Icon
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Input
+              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputContainerStyle={{ borderBottomWidth: 1 }}
+              containerStyle={{ paddingHorizontal: 30 }}
+              placeholder="Email address*"
+            />
+            <Input
+              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputContainerStyle={{ borderBottomWidth: 1 }}
+              containerStyle={{ paddingHorizontal: 30 }}
+              placeholder="Password*"
+              rightIcon={
+                <TouchableOpacity>
+                  <Text style={[styles.forgot, globalStyles.gothamBook]}>
+                    Forgot?
+                  </Text>
+                </TouchableOpacity>
+              }
+              rightIconContainerStyle={{ paddingTop: 25 }}
+            />
+            <Button
+              title="Sign in"
+              titleStyle={[styles.title, globalStyles.gothamBold]}
+              buttonStyle={[
+                styles.btnSignIn,
+                { backgroundColor: colors.HEADER_BUTTON },
+              ]}
+              containerStyle={styles.btnContainer}
+            />
+          </View>
+          <View style={styles.bottomView}>
+            <Text style={[styles.OrUseText, globalStyles.gothamBook]}>
+              Or use Sign in use social networks
+            </Text>
+            {/* <Icon
             name="facebook"
             type="material-community"
             color="white"
@@ -63,49 +64,50 @@ class SignInScreen extends Component {
             }}
             onPress
           /> */}
-          <View style={styles.btnSocialView}>
-            <Button
-              icon={{
-                name: 'facebook',
-                type: 'material-community',
-                color: 'white',
-              }}
-              titleStyle={styles.title}
-              buttonStyle={[
-                styles.btnSocial,
-                { backgroundColor: colors.FACEBOOK },
-              ]}
-              containerStyle={styles.btnSocialContainer}
-            />
-            <Button
-              icon={{
-                name: 'twitter',
-                type: 'material-community',
-                color: 'white',
-              }}
-              titleStyle={styles.title}
-              buttonStyle={[
-                styles.btnSocial,
-                { backgroundColor: colors.TWITTER },
-              ]}
-              containerStyle={styles.btnSocialContainer}
-            />
-            <Button
-              icon={{
-                name: 'instagram',
-                type: 'material-community',
-                color: 'white',
-              }}
-              titleStyle={styles.title}
-              buttonStyle={[
-                styles.btnSocial,
-                { backgroundColor: colors.INSTAGRAM },
-              ]}
-              containerStyle={styles.btnSocialContainer}
-            />
+            <View style={styles.btnSocialView}>
+              <Button
+                icon={{
+                  name: 'facebook',
+                  type: 'material-community',
+                  color: 'white',
+                }}
+                titleStyle={styles.title}
+                buttonStyle={[
+                  styles.btnSocial,
+                  { backgroundColor: colors.FACEBOOK },
+                ]}
+                containerStyle={styles.btnSocialContainer}
+              />
+              <Button
+                icon={{
+                  name: 'twitter',
+                  type: 'material-community',
+                  color: 'white',
+                }}
+                titleStyle={styles.title}
+                buttonStyle={[
+                  styles.btnSocial,
+                  { backgroundColor: colors.TWITTER },
+                ]}
+                containerStyle={styles.btnSocialContainer}
+              />
+              <Button
+                icon={{
+                  name: 'instagram',
+                  type: 'material-community',
+                  color: 'white',
+                }}
+                titleStyle={styles.title}
+                buttonStyle={[
+                  styles.btnSocial,
+                  { backgroundColor: colors.INSTAGRAM },
+                ]}
+                containerStyle={styles.btnSocialContainer}
+              />
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

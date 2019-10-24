@@ -9,4 +9,6 @@ export const colors = {
   TWITTER: 'rgb(86, 174,222)',
   INSTAGRAM: 'rgb(195,74,117)',
   TITLE: '#2C3440',
+  BORDER: '#EAEAEA',
+  OTHER: '#F5F8FB',
 };
