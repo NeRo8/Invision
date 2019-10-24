@@ -7,7 +7,7 @@ import globalStyles from '../../constants/globalStyles';
 
 import styles from './styles';
 
-class CategoryScreen extends Component {
+class ProfileSettingsScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -93,4 +93,4 @@ class CategoryScreen extends Component {
     }
 }
 
-export default withNavigation(CategoryScreen);
+export default withNavigation(ProfileSettingsScreen);
