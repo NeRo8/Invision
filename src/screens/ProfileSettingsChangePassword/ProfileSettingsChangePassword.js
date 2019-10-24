@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Switch, Button } from 'react-native';
-import { Divider, Icon } from 'react-native-elements';
+import { View, Text, FlatList, TouchableOpacity, Switch } from 'react-native';
+import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import { colors } from '../../constants/colors'
 import globalStyles from '../../constants/globalStyles';
@@ -12,18 +12,13 @@ class ProfileSettingsChangePassword extends Component {
         super(props);
         this.state = {
             categoryList: [
-                { title: 'PERSONAL INFO & PASSWORD', header: true },
-                { title: 'Change password', header: false },
-                { title: 'Change personal information', header: false },
-                { title: 'ABOUT', header: true },
-                { title: 'Privacy Policy', header: false },
-                { title: 'Terms of use', header: false },
-                { title: 'Support', header: false },
-                { title: 'PERSONAL INFO & PASSWORD', header: true },
-                { title: 'Notifications', header: false, toggle: true },
-                { title: 'Take messages about \nanswers on ads.', header: false, toggle: true },
-                { title: 'Receive news, offers and \npromotions from Masaha', header: false, toggle: true },
-                { title: 'Log out', button: true }
+                { title: 'Current Password*', header: true },
+                { title: 'Current Password', header: false },
+                { title: 'New Password*', header: true },
+                { title: 'New Password', header: false },
+                { title: 'Confirm Password*', header: true },
+                { title: 'Confirm Password', header: false },
+                { title: 'Save changes', button: true }
             ],
         };
     }
@@ -38,29 +33,31 @@ class ProfileSettingsChangePassword extends Component {
         else if (item.header) {
             return (
                 <View style={styles.header}>
-                    <Text style={[styles.elementTitle, globalStyles.gothamBold]}>
+                    <Text style={[globalStyles.gothamBold, styles.elementTitle]}>
                         {item.title}
                     </Text>
-
                 </View>
             )
         }
         else if (!item.header) {
             if (!item.toggle) {
                 return (
-                    <TouchableOpacity onPress={() => { }}>
-                        <View style={styles.elementContainer}>
-                            <Text style={[styles.elementTitleNonHeader, globalStyles.gothamBook]}>
-                                {item.title}
-                            </Text>
+                    <Input
+                        inputStyle={[globalStyles.gothamBook,  styles.elementTitleNonHeader]}
+                        leftIcon={() => (
                             <Icon
-                                name="chevron-right"
-                                type="material-community"
-                                color="silver"
-                                size={32}
+                                name="md-key"
+                                type="ionicon"
+                                color={colors.ICON_GREY_COLOR}
+                                size={25}
                             />
-                        </View>
-                    </TouchableOpacity>)
+                        )}
+                        placeholder= {item.title}
+                        placeholderTextColor={colors.UNACTIVE}
+                        leftIconContainerStyle={styles.leftIconContainer}
+                        inputContainerStyle={styles.inputContainerS}
+                        containerStyle={styles.inputContainer}
+                    />)
             }
             else if (item.toggle) {
                 return (
@@ -77,14 +74,12 @@ class ProfileSettingsChangePassword extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, marginTop: 10 }}>
+            <View style={{ flex: 1, marginTop: 10,     marginLeft: 15,
+                marginRight: 15, }}>
                 <FlatList
                     data={this.state.categoryList}
                     renderItem={this.renderItem}
                     keyExtractor={(item, index) => item}
-                    ItemSeparatorComponent={() => (
-                        <Divider style={styles.elementDivider} />
-                    )}
                     stickyHeaderIndices={this.state.stickyHeaderIndices}
                 />
 

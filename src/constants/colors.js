@@ -9,5 +9,8 @@ export const colors = {
   TWITTER: 'rgb(86, 174,222)',
   INSTAGRAM: 'rgb(195,74,117)',
   TITLE: '#2C3440',
-  DEFAULT: '#9BA9BE'
+  DEFAULT: '#9BA9BE',
+  GREY_TITILE_COLOR:'#575C64',
+  BORDER_COLOR: '#E7E7E7',
+  ICON_GREY_COLOR: '#B9C7DA'
 };
