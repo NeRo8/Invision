@@ -7,6 +7,7 @@ import InKuwaitFAQScreen from '../screens/InKuwaitFAQScreen';
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 
 import { colors } from '../constants/colors';
+import globalStyles from '../constants/globalStyles';
 
 const InKuwaitNavigation = createStackNavigator({
   InKuwait: {
@@ -19,9 +20,8 @@ const InKuwaitNavigation = createStackNavigator({
         textAlign: 'center',
         width: '100%',
         fontSize: 17,
-        fontFamily: 'Gotham-Bold',
+        fontFamily: globalStyles.gothamBold.fontFamily,
         color: 'white',
-        fontWeight: 'bold',
       },
       headerStyle: {
         height: 64,

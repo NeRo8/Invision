@@ -40,7 +40,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   roundText: {
-    fontWeight: 'bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     color: colors.HEADER,
   },
 });
