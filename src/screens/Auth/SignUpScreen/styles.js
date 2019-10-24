@@ -37,16 +37,16 @@ export default StyleSheet.create({
   btnSocialView: {
     flexDirection: 'row',
     paddingHorizontal: 19,
-    paddingTop: 35,
   },
   btnSocial: {
-    flex: 1,
     borderRadius: 30,
   },
   btnSocialContainer: {
+    marginTop: 5,
     flex: 1,
+    width: 40,
     height: 44,
-    paddingHorizontal: 11,
+    paddingHorizontal: 10,
   },
   bottomView: {
     justifyContent: 'space-between',

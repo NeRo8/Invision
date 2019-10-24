@@ -40,7 +40,6 @@ export default StyleSheet.create({
     paddingTop: 35,
   },
   btnSocial: {
-    flex: 1,
     borderRadius: 30,
   },
   btnSocialContainer: {
