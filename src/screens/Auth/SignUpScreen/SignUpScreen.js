@@ -65,20 +65,6 @@ class SignUpScreen extends Component {
             />
           </View>
           <View style={styles.bottomView}>
-            {/* <Icon
-            name="facebook"
-            type="material-community"
-            color="white"
-            containerStyle={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 100,
-              height: 44,
-              backgroundColor: colors.FACEBOOK,
-              borderRadius: 30,
-            }}
-            onPress={() => {}}
-          /> */}
             <Text style={[styles.OrUseText, globalStyles.gothamBook]}>
               Or use Sign in use social networks
             </Text>
@@ -88,6 +74,7 @@ class SignUpScreen extends Component {
                   name: 'facebook',
                   type: 'material-community',
                   color: 'white',
+                  containerStyle: {},
                 }}
                 titleStyle={styles.title}
                 buttonStyle={[

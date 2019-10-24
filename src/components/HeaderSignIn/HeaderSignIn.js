@@ -12,6 +12,8 @@ class HeaderAdsFilters extends Component {
     this.state = {};
   }
   render() {
+    const { activeScreen } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -28,11 +30,37 @@ class HeaderAdsFilters extends Component {
         </View>
         <View style={styles.selectedBlock}>
           <View style={styles.simpleContainer}>
-            <TouchableOpacity style={styles.selectedElementActive}>
-              <Text style={styles.selectedElementTextActive}>SignIn</Text>
+            <TouchableOpacity
+              style={
+                activeScreen
+                  ? styles.selectedElementActive
+                  : styles.selectedElement
+              }
+              onPress={() => this.props.navigation.navigate('SignIn')}>
+              <Text
+                style={
+                  activeScreen
+                    ? styles.selectedElementTextActive
+                    : styles.selectedElementText
+                }>
+                SignIn
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.selectedElement}>
-              <Text style={styles.selectedElementText}>Create account</Text>
+            <TouchableOpacity
+              style={
+                !activeScreen
+                  ? styles.selectedElementActive
+                  : styles.selectedElement
+              }
+              onPress={() => this.props.navigation.navigate('SignUp')}>
+              <Text
+                style={
+                  !activeScreen
+                    ? styles.selectedElementTextActive
+                    : styles.selectedElementText
+                }>
+                Create account
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
