@@ -1,50 +1,56 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Switch,Button } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Switch, Button } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
-import {colors} from '../../constants/colors'
+import { colors } from '../../constants/colors'
+import globalStyles from '../../constants/globalStyles';
 
 import styles from './styles';
-import globalStyles from '../../constants/globalStyles';
 
 class CategoryScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
             categoryList: [
-                { title: 'Personal Info & password', header: true },
+                { title: 'PERSONAL INFO & PASSWORD', header: true },
                 { title: 'Change password', header: false },
                 { title: 'Change personal information', header: false },
-                { title: 'About', header: true },
+                { title: 'ABOUT', header: true },
                 { title: 'Privacy Policy', header: false },
                 { title: 'Terms of use', header: false },
                 { title: 'Support', header: false },
-                { title: 'Personal Info & password', header: true },
+                { title: 'PERSONAL INFO & PASSWORD', header: true },
                 { title: 'Notifications', header: false, toggle: true },
                 { title: 'Take messages about \nanswers on ads.', header: false, toggle: true },
-                { title: 'Receive news, offers and \npromotions from Masaha', header: false, toggle: true }
+                { title: 'Receive news, offers and \npromotions from Masaha', header: false, toggle: true },
+                { title: 'Log out', button: true }
             ],
         };
     }
     renderItem = ({ item }) => {
-        if (item.header) {
+        if (item.button) {
             return (
-                <TouchableOpacity onPress={() => { }}>
-                    <View style={styles.header}>
-                        <Text style={[styles.elementTitle, globalStyles.gothamBold]}>
-                            {item.title}
-                        </Text>
-                      
-                    </View>
+                <TouchableOpacity
+                    style={styles.btnStyle}>
+                    <Text style={globalStyles.gothamBold, styles.buttonTextStyle}>{item.title}</Text>
                 </TouchableOpacity>)
         }
+        else if (item.header) {
+            return (
+                <View style={styles.header}>
+                    <Text style={[styles.elementTitle, globalStyles.gothamBold]}>
+                        {item.title}
+                    </Text>
+
+                </View>
+            )
+        }
         else if (!item.header) {
-        
             if (!item.toggle) {
                 return (
                     <TouchableOpacity onPress={() => { }}>
                         <View style={styles.elementContainer}>
-                            <Text style={[styles.elementTitle, globalStyles.gothamBook]}>
+                            <Text style={[styles.elementTitleNonHeader, globalStyles.gothamBook]}>
                                 {item.title}
                             </Text>
                             <Icon
@@ -58,24 +64,20 @@ class CategoryScreen extends Component {
             }
             else if (item.toggle) {
                 return (
-                    <TouchableOpacity onPress={() => { }}>
-                        <View style={styles.elementContainer}>
-                            <Text style={[styles.elementTitle, globalStyles.gothamBook]}>
-                                {item.title}
-                            </Text>
-                            <Switch ios_backgroundColor={colors.DEFAULT} trackColor={{true: colors.HEADER, false: colors.DEFAULT}} ></Switch>
-                        </View>
-                    </TouchableOpacity>)
+                    <View style={styles.elementContainer}>
+                        <Text style={[styles.elementTitleNonHeader, globalStyles.gothamBook]}>
+                            {item.title}
+                        </Text>
+                        <Switch ios_backgroundColor={colors.DEFAULT} trackColor={{ true: colors.HEADER, false: colors.DEFAULT }} ></Switch>
+                    </View>
+                )
             }
-            
         }
-       
-
     }
 
     render() {
         return (
-            <View style={{  flex:1, marginTop:  10 }}>
+            <View style={{ flex: 1, marginTop: 10 }}>
                 <FlatList
                     data={this.state.categoryList}
                     renderItem={this.renderItem}
@@ -85,6 +87,7 @@ class CategoryScreen extends Component {
                     )}
                     stickyHeaderIndices={this.state.stickyHeaderIndices}
                 />
+
             </View>
         );
     }

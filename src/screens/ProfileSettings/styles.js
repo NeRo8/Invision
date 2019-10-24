@@ -1,18 +1,41 @@
 import { StyleSheet } from 'react-native';
-import {colors} from '../../constants/colors'
+import { colors } from '../../constants/colors'
 
 export default StyleSheet.create({
-  header:{
+  btnTitleStyle: {
+    fontSize: 12,
+    fontWeight: 'bold',
+
+  },
+  btnStyle: {
+    backgroundColor: colors.HEADER,
+    height: 50,
+    fontSize: 12,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 15,
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  buttonTextStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 15
+  },
+  header: {
     fontWeight: 'bold',
     marginTop: 25,
     marginBottom: 15,
   },
   elementContainer: {
     paddingVertical: 10,
-    marginRight:15,
+    marginRight: 15,
     flexDirection: 'row',
     alignItems: 'center',
-
+    letterSpacing: 2
   },
   elementDivider: {
     marginHorizontal: 10,
@@ -26,6 +49,11 @@ export default StyleSheet.create({
   elementTitle: {
     flex: 1,
     marginLeft: 10,
-
+    fontSize: 12
+  },
+  elementTitleNonHeader: {
+    flex: 1,
+    marginLeft: 10,
+    fontSize: 17
   },
 });
