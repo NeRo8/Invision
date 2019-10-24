@@ -173,6 +173,7 @@ class ProfileScreen extends Component {
           titleStyle={{
             fontWeight: 'bold',
           }}
+           onPress={() => this.props.navigation.navigate('ProfileSettings')}
           buttonStyle={{
             borderRadius: 0,
             backgroundColor: colors.HEADER,
