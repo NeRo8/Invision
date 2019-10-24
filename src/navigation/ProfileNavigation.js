@@ -4,6 +4,8 @@ import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 
 import ProfileScreen from '../screens/ProfileScreen';
 import ProfileSettings from '../screens/ProfileSettings';
+
+import ProfileSettingsChangePassword from '../screens/ProfileSettingsChangePassword';
 import { colors } from '../constants/colors';
 
 import globalStyles from '../constants/globalStyles';
@@ -35,17 +37,32 @@ const ProfileNavigation = createStackNavigator({
   ProfileSettings: {
     screen: ProfileSettings,
     navigationOptions: ({ navigation }) => {
-      return{
-      headerTitle: 'Settings',
-      headerTitleStyle: {
-        color: 'white',
-      },
-      headerStyle: {
-        backgroundColor: colors.HEADER,
-      },
-      headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+      return {
+        headerTitle: 'Settings',
+        headerTitleStyle: {
+          color: 'white',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+      }
     }
-  }
+  },
+  ProfileSettingsChangePassword: {
+    screen: ProfileSettingsChangePassword,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Change password',
+        headerTitleStyle: {
+          color: 'white',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+      }
+    }
   },
 }
 );

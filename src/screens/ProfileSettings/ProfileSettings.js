@@ -7,13 +7,17 @@ import globalStyles from '../../constants/globalStyles';
 
 import styles from './styles';
 
+
+let changePassord = "Change password"
+
 class ProfileSettingsScreen extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             categoryList: [
                 { title: 'PERSONAL INFO & PASSWORD', header: true },
-                { title: 'Change password', header: false },
+                { title: changePassord, header: false },
                 { title: 'Change personal information', header: false },
                 { title: 'ABOUT', header: true },
                 { title: 'Privacy Policy', header: false },
@@ -48,7 +52,11 @@ class ProfileSettingsScreen extends Component {
         else if (!item.header) {
             if (!item.toggle) {
                 return (
-                    <TouchableOpacity onPress={() => { }}>
+                    <TouchableOpacity onPress={() => { 
+                        if (item.title == changePassord){
+                        this.props.navigation.navigate('ProfileSettingsChangePassword')
+                        }
+                    }}>
                         <View style={styles.elementContainer}>
                             <Text style={[styles.elementTitleNonHeader, globalStyles.gothamBook]}>
                                 {item.title}
