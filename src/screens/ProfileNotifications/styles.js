@@ -40,8 +40,11 @@ export default StyleSheet.create({
     },
     container: {
         backgroundColor: colors.BACKGROUND,
-        paddingLeft: 15,
         paddingRight: 15
+    },
+    containerSwipe:{
+        paddingLeft:15,
+        height: '90%'
     },
 
     standalone: {
@@ -106,7 +109,8 @@ export default StyleSheet.create({
     selectedContainer: {
         flexDirection: 'row',
         marginBottom:15,
-        marginTop: 15
+        marginTop: 15,
+        paddingLeft:15
     },
     rowBack: {
         alignItems: 'center',
@@ -114,8 +118,8 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingLeft: 15,
         marginBottom: 10,
+        marginLeft:20,
         borderRadius: 3
     },
     backRightBtn: {

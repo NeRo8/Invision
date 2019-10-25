@@ -66,7 +66,7 @@ class ProfileNotifications extends Component {
                                     ? styles.selectedTextElementActive
                                     : styles.selectedTextElement
                             }>
-                            Archive
+                            All
               </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -80,11 +80,12 @@ class ProfileNotifications extends Component {
                                     ? styles.selectedTextElementActive
                                     : styles.selectedTextElement
                             }>
-                            All
+                            Archive
               </Text>
                     </TouchableOpacity>
                 </View>
                 <SwipeListView
+                    style={styles.containerSwipe}
                     disableRightSwipe={true}
                     data={this.state.categoryList}
                     renderItem={(rowData, rowMap) => (
@@ -103,7 +104,7 @@ class ProfileNotifications extends Component {
                     )}
                     renderHiddenItem={(data, rowMap) => (
                         <TouchableOpacity style={styles.rowBack}>
-                            <Text></Text>
+                            <View ></View>
                             <Icon
                                 name="md-trash"
                                 type="ionicon"
@@ -114,6 +115,8 @@ class ProfileNotifications extends Component {
                     )}
 
                     rightOpenValue={-75}
+                    previewRowKey={this.state.categoryList[0].key}
+
                 />
             </View>
         );
