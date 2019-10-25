@@ -9,6 +9,7 @@ import ProfileSettingsChangePassword from '../screens/ProfileSettingsChangePassw
 import ProfileSettingsPersonalInformaion from '../screens/ProfileSettingsPersonalInformaion';
 import ProfileSettingsPrivacyPolicy from '../screens/ProfileSettingsPrivacyPolicy';
 import ProfileSettingsTermsOfUse from '../screens/ProfileSettingsTermsOfUse';
+import ProfilePaymentHistory from '../screens/ProfilePaymentHistory';
 
 
 import { colors } from '../constants/colors';
@@ -114,10 +115,21 @@ const ProfileNavigation = createStackNavigator({
       }
     }
   },
-
-  
-
-  
+  ProfilePaymentHistory: {
+    screen: ProfilePaymentHistory,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Payment history',
+        headerTitleStyle: {
+          color: 'white',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+      }
+    }
+  },
 }
 );
 

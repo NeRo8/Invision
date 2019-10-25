@@ -127,6 +127,7 @@ class ProfileScreen extends Component {
                 name="folder-open"
                 type="ion-icon"
                 color="white"
+                onPress={() => this.props.navigation.navigate('ProfilePaymentHistory')}
                 containerStyle={{
                   width: 40,
                   height: 40,
