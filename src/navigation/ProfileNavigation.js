@@ -6,6 +6,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ProfileSettings from '../screens/ProfileSettings';
 
 import ProfileSettingsChangePassword from '../screens/ProfileSettingsChangePassword';
+import ProfileSettingsPersonalInformaion from '../screens/ProfileSettingsPersonalInformaion';
+
 import { colors } from '../constants/colors';
 
 import globalStyles from '../constants/globalStyles';
@@ -54,6 +56,21 @@ const ProfileNavigation = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: 'Change password',
+        headerTitleStyle: {
+          color: 'white',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+      }
+    }
+  },
+  ProfileSettingsPersonalInformaion: {
+    screen: ProfileSettingsPersonalInformaion,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Personal informaion',
         headerTitleStyle: {
           color: 'white',
         },

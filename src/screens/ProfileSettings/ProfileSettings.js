@@ -7,8 +7,10 @@ import globalStyles from '../../constants/globalStyles';
 
 import styles from './styles';
 
-
-let changePassord = "Change password"
+let menuType = {
+    changePassord: "Change password",
+    changePersonalInformaion: 'Change personal information'
+}
 
 class ProfileSettingsScreen extends Component {
 
@@ -17,8 +19,8 @@ class ProfileSettingsScreen extends Component {
         this.state = {
             categoryList: [
                 { title: 'PERSONAL INFO & PASSWORD', header: true },
-                { title: changePassord, header: false },
-                { title: 'Change personal information', header: false },
+                { title: menuType.changePassord, header: false },
+                { title: menuType.changePersonalInformaion, header: false },
                 { title: 'ABOUT', header: true },
                 { title: 'Privacy Policy', header: false },
                 { title: 'Terms of use', header: false },
@@ -52,9 +54,12 @@ class ProfileSettingsScreen extends Component {
         else if (!item.header) {
             if (!item.toggle) {
                 return (
-                    <TouchableOpacity onPress={() => { 
-                        if (item.title == changePassord){
-                        this.props.navigation.navigate('ProfileSettingsChangePassword')
+                    <TouchableOpacity onPress={() => {
+                        if (item.title == menuType.changePassord) {
+                            this.props.navigation.navigate('ProfileSettingsChangePassword')
+                        }
+                        else if (item.title == menuType.changePersonalInformaion) {
+                            this.props.navigation.navigate('ProfileSettingsPersonalInformaion')
                         }
                     }}>
                         <View style={styles.elementContainer}>
