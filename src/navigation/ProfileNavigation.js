@@ -10,6 +10,7 @@ import ProfileSettingsPersonalInformaion from '../screens/ProfileSettingsPersona
 import ProfileSettingsPrivacyPolicy from '../screens/ProfileSettingsPrivacyPolicy';
 import ProfileSettingsTermsOfUse from '../screens/ProfileSettingsTermsOfUse';
 import ProfilePaymentHistory from '../screens/ProfilePaymentHistory';
+import ProfileNotifications from '../screens/ProfileNotifications';
 
 
 import { colors } from '../constants/colors';
@@ -130,6 +131,22 @@ const ProfileNavigation = createStackNavigator({
       }
     }
   },
+  ProfileNotifications: {
+    screen: ProfileNotifications,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Notifications',
+        headerTitleStyle: {
+          color: 'white',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+      }
+    }
+  },
+  
 }
 );
 

@@ -157,6 +157,7 @@ class ProfileScreen extends Component {
                 name="ios-notifications-outline"
                 type="ionicon"
                 color="white"
+                onPress={() => this.props.navigation.navigate('ProfileNotifications')}
                 containerStyle={{
                   width: 40,
                   height: 40,
