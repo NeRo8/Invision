@@ -42,4 +42,20 @@ export default StyleSheet.create({
     fontSize: 17,
     textAlign: 'justify',
   },
+  elementContainer: {
+    marginHorizontal: 10,
+    paddingVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  elementIcon: {},
+  userName: {
+    fontSize: 13,
+    flex: 1,
+    marginLeft: 10,
+  },
+
+  raiting: {
+    height: 1,
+  },
 });

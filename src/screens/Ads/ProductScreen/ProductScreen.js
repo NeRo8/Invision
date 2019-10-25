@@ -7,11 +7,38 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-import { Input, Icon, Button } from 'react-native-elements';
+import {
+  Input,
+  Icon,
+  Button,
+  Avatar,
+  Rating,
+  AirbnbRating,
+} from 'react-native-elements';
+import {} from 'react-native-ratings';
 
 import { colors } from '../../../constants/colors';
 import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
+
+const ElementFlatList = ({ item }) => (
+  <View style={styles.elementContainer}>
+    <View>
+      <Avatar
+        rounded
+        source={item.userIcon}
+        imageProps={{ resizeMode: 'cover' }}
+      />
+    </View>
+    <View>
+      <Text style={[styles.userName, globalStyles.gothamBold]}>
+        {item.userName}
+      </Text>
+
+      <AirbnbRating imageSize={15} readonly startingValue={item.raiting} />
+    </View>
+  </View>
+);
 
 class ProductScreen extends Component {
   constructor(props) {
@@ -22,6 +49,32 @@ class ProductScreen extends Component {
         { id: 1, title: 'New' },
         { id: 2, title: 'Mobile phone' },
         { id: 3, title: 'iPhone x' },
+      ],
+      coments: [
+        {
+          id: 0,
+          userName: 'Tyler Hicks',
+          date: '01.01.19',
+          raiting: 4,
+          userIcon: require('../../../assets/icons/userIcons/man.jpg'),
+          coment: 'Lorem Ipsum is simply dummy text of the printing.',
+        },
+        {
+          id: 1,
+          userName: 'Billy Weaver',
+          date: '01.01.19',
+          raiting: 4,
+          userIcon: require('../../../assets/icons/userIcons/man2.jpg'),
+          coment: 'Lorem Ipsum is simply dummy text of the printing.',
+        },
+        {
+          id: 2,
+          userName: 'Jordan Mann',
+          date: '01.01.19',
+          raiting: 5,
+          userIcon: require('../../../assets/icons/userIcons/man3.jpg'),
+          coment: 'Lorem Ipsum is simply dummy text of the printing.',
+        },
       ],
     };
   }
@@ -63,7 +116,6 @@ class ProductScreen extends Component {
                   name="clock-outline"
                   type="material-community"
                   size={16}
-                  ma
                 />
                 <Text
                   style={[
@@ -159,9 +211,15 @@ class ProductScreen extends Component {
                 marginTop: 10,
               }}></View>
           </View>
-          <Text style={[globalStyles.gothamBold, { marginTop: 25 }]}>
-            REVIEWS
-          </Text>
+          <View>
+            <Text style={[globalStyles.gothamBold, { marginTop: 25 }]}>
+              REVIEWS
+            </Text>
+            <FlatList
+              data={this.state.coments}
+              renderItem={({ item }) => <ElementFlatList item={item} />}
+            />
+          </View>
         </View>
       </ScrollView>
     );
