@@ -5,6 +5,8 @@ import { withNavigation } from 'react-navigation';
 import { colors } from '../../constants/colors'
 import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
+import { Icon } from 'react-native-elements';
+
 // import Images from '../../../assets/images';
 
 var swipeoutBtns = [
@@ -34,69 +36,86 @@ class ProfileNotifications extends Component {
                 { name: 'Pavlo Laptiev', message: "Hello Alex. How are you?", when: "Today" },
                 { name: 'Pavlo Laptiev', message: "Hello Alex. How are you?", when: "Today" },
                 { name: 'Pavlo Laptiev', message: "Hello Alex. How are you?", when: "Today" },
-
             ],
+            Archive: true,
+            All: false,
         };
     }
 
-    renderItem = ({ item }) => {
-        return (
-            <View style={styles.itemContainer}>
-                <View style={{ flexDirection: "row", marginBottom: 10 }}>
-                    <Text style={[globalStyles.gothamBook, styles.tagStyle]}>
-                        {item.tag}
-                    </Text>
-                    <Text style={[globalStyles.gothamBold, styles.elementTitlePrice]}>
-                        {item.price}
-                    </Text>
-                </View>
-                <View style={{ flexDirection: "row" }}>
-                    <Text style={[globalStyles.gothamBook, styles.bottomItems]}>
-                        {item.tagType}
-                    </Text>
-                    <Text style={[globalStyles.gothamBook, styles.bottomItems, { textAlign: 'center' }]}>
-                        {item.date}
-                    </Text>
-
-                    <Text style={[globalStyles.gothamBook, styles.bottomItems, { textAlign: 'right' }]}>
-                        {item.cardType}
-                    </Text>
-                </View>
-            </View>
-        )
-    }
+    handlePressSelectedView = name => {
+        this.setState({
+            Archive: false,
+            All: false,
+            [name]: true,
+        });
+    };
 
     render() {
+        const { Archive, All } = this.state;
         return (
-            <SwipeListView
-                disableRightSwipe={true}
-                style={styles.container}
-                data={this.state.categoryList}
-                renderItem={(rowData, rowMap) => (
-                    <View style={styles.rowFront}>
-                        <Image
-                            source={require('../../../assets/images/profilepic.jpg')}
-                            style={{ width: 45, height: 45, borderRadius: 45 / 2, }}
-                        />
-                        <View style={{ marginLeft: 15 }}>
-                            <Text style={[globalStyles.gothamBook, styles.name]}>{rowData.item.name} </Text>
-                            <Text style={[globalStyles.gothamBook, styles.message]}>{rowData.item.message}</Text>
+            <View style={styles.container}>
+                <View style={styles.selectedContainer}>
+                    <TouchableOpacity
+                        style={
+                            Archive ? styles.selectedElementActive : styles.selectedElement
+                        }
+                        onPress={() => this.handlePressSelectedView('Archive')}>
+                        <Text
+                            style={
+                                Archive
+                                    ? styles.selectedTextElementActive
+                                    : styles.selectedTextElement
+                            }>
+                            Archive
+              </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={
+                            All ? styles.selectedElementActive : styles.selectedElement
+                        }
+                        onPress={() => this.handlePressSelectedView('All')}>
+                        <Text
+                            style={
+                                All
+                                    ? styles.selectedTextElementActive
+                                    : styles.selectedTextElement
+                            }>
+                            All
+              </Text>
+                    </TouchableOpacity>
+                </View>
+                <SwipeListView
+                    disableRightSwipe={true}
+                    data={this.state.categoryList}
+                    renderItem={(rowData, rowMap) => (
+                        <View style={styles.rowFront}>
+                            <Image
+                                source={require('../../../assets/images/profilepic.jpg')}
+                                style={{ width: 45, height: 45, borderRadius: 45 / 2, }}
+                            />
+                            <View style={{ marginLeft: 15 }}>
+                                <Text style={[globalStyles.gothamBook, styles.name]}>{rowData.item.name} </Text>
+                                <Text style={[globalStyles.gothamBook, styles.message]}>{rowData.item.message}</Text>
+                            </View>
+                            <Text style={[globalStyles.gothamBook, styles.when]}>{rowData.item.when}</Text>
+
                         </View>
-                        <Text style={[globalStyles.gothamBook, styles.when]}>{rowData.item.when}</Text>
+                    )}
+                    renderHiddenItem={(data, rowMap) => (
+                        <TouchableOpacity style={styles.rowBack}>
+                            <Text></Text>
+                            <Icon
+                                name="md-trash"
+                                type="ionicon"
+                                color='white'
+                                containerStyle={{ marginHorizontal: 30 }}
+                            />
+                        </TouchableOpacity>
+                    )}
 
-                    </View>
-                )}
-                renderHiddenItem={(data, rowMap) => (
-                    <View style={styles.rowBack}>
-                        <Text></Text>
-                        <Button
-                            title="Choose category" ></Button>
-                    </View>
-                )}
-
-                rightOpenValue={-75}
-            />
-
+                    rightOpenValue={-75}
+                />
+            </View>
         );
     }
 }

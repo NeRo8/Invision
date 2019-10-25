@@ -44,7 +44,6 @@ export default StyleSheet.create({
         paddingRight: 15
     },
 
-
     standalone: {
         marginTop: 30,
         marginBottom: 30,
@@ -75,6 +74,7 @@ export default StyleSheet.create({
         marginBottom: 10,
         paddingLeft: 15,
         paddingRight: 15,
+        borderRadius: 3
     },
     name: {
         marginBottom: 8,
@@ -92,14 +92,31 @@ export default StyleSheet.create({
         color: colors.LABEL_GREY_COLOR,
         fontSize: 13
     },
+    selectedElementActive: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.HEADER,
+        height: 40,
+    },
+    selectedTextElementActive: {
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    selectedContainer: {
+        flexDirection: 'row',
+        marginBottom:15,
+        marginTop: 15
+    },
     rowBack: {
         alignItems: 'center',
-        backgroundColor: '#DDD',
+        backgroundColor: colors.RED_COLOR,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingLeft: 15,
-        marginBottom: 10
+        marginBottom: 10,
+        borderRadius: 3
     },
     backRightBtn: {
         alignItems: 'center',
@@ -137,4 +154,12 @@ export default StyleSheet.create({
         height: 25,
         width: 25,
     },
+    selectedElement: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        height: 40,
+    },
+
 });
