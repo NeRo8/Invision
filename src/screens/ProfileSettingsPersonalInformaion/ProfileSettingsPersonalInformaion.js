@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Picker } from 'react-native';
-import { KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
+import {
+    KeyboardAvoidingView, TouchableOpacity,
+    Text, View
+} from "react-native";
 import SearchableDropdown from 'react-native-searchable-dropdown';
-
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import { colors } from '../../constants/colors'
@@ -48,6 +49,7 @@ var items = [
 class ProfileSettingsPersonalInformaion extends Component {
     constructor(props) {
         super(props);
+        this.test = React.createRef();
         this.state = {
             categoryList: [
                 { title: 'Full name', header: true },
@@ -118,7 +120,7 @@ class ProfileSettingsPersonalInformaion extends Component {
                             color={colors.ICON_GREY_COLOR}
                             size={25}
                         />
-                        <SearchableDropdown 
+                        <SearchableDropdown
                             onItemSelect={(item) => {
                                 const items = this.state.selectedItems;
                                 items.push(item)
@@ -170,22 +172,184 @@ class ProfileSettingsPersonalInformaion extends Component {
 
     render() {
         return (
+            <KeyboardAvoidingView
+                behavior="position"
+                style={{
+                    flex: 1, marginTop: 10, marginLeft: 15,
+                    marginRight: 15,
+                }}
+                enabled={false}
+                ref={this.test}
+            // onRef={ref => ( 'child' = ref)}
+            >
 
-            <View style={{
-                flex: 1, marginTop: 10, marginLeft: 15,
-                marginRight: 15,
-            }}>
-                <KeyboardAwareFlatList
-                    data={this.state.categoryList}
-                    renderItem={this.renderItem}
-                    keyExtractor={(item, index) => item}
-                    stickyHeaderIndices={this.state.stickyHeaderIndices}
+                <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
+                    Full name
+                    </Text>
+                <Input
+                    inputStyle={[globalStyles.gothamBook, styles.elementTitleNonHeader]}
+                    leftIcon={() => (
+                        <Icon
+                            name="md-person"
+                            type="ionicon"
+                            color={colors.ICON_GREY_COLOR}
+                            size={25}
+                        />
+                    )}
+                    placeholder="Please enter your full name"
+                    placeholderTextColor={colors.UNACTIVE}
+                    leftIconContainerStyle={styles.leftIconContainer}
+                    inputContainerStyle={styles.inputContainerS}
+                    containerStyle={styles.inputContainer}
                 />
+                <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
+                    Email
+                    </Text>
+                <Input
+                    inputStyle={[globalStyles.gothamBook, styles.elementTitleNonHeader]}
+                    leftIcon={() => (
+                        <Icon
+                            name="ios-mail"
+                            type="ionicon"
+                            color={colors.ICON_GREY_COLOR}
+                            size={25}
+                        />
+                    )}
+                    placeholder="Please enter your email"
+                    placeholderTextColor={colors.UNACTIVE}
+                    leftIconContainerStyle={styles.leftIconContainer}
+                    inputContainerStyle={styles.inputContainerS}
+                    containerStyle={styles.inputContainer}
+                />
+                <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
+                    Phone number
+                    </Text>
+                <Input
+                    inputStyle={[globalStyles.gothamBook, styles.elementTitleNonHeader]}
+                    leftIcon={() => (
+                        <Icon
+                            name="ios-phone-portrait"
+                            type="ionicon"
+                            color={colors.ICON_GREY_COLOR}
+                            size={25}
+                        />
+                    )}
+                    placeholder="Please enter your phone number"
+                    placeholderTextColor={colors.UNACTIVE}
+                    leftIconContainerStyle={styles.leftIconContainer}
+                    inputContainerStyle={styles.inputContainerS}
+                    containerStyle={styles.inputContainer}
+                />
+                <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
+                    Select city
+                    </Text>
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon
+                        iconStyle={styles.dropDownLeftIconStyle}
+                        name="ios-home"
+                        type="ionicon"
+                        color={colors.ICON_GREY_COLOR}
+                        size={25}
+                    />
+                    <SearchableDropdown
+                    
+                        onItemSelect={(item) => {
+                            // {innerRef.scroll.enabled = true}
+                            this.test.enabled = true
+                            // alert()
+                            const items = this.state.selectedItems;
+                            items.push(item)
+                            this.setState({ selectedItems: items });
+                        }}
+                        containerStyle={styles.dropDownContainer}
+                        onRemoveItem={(item, index) => {
+                            const items = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
+                            this.setState({ selectedItems: items });
+                        }}
+                        itemStyle={styles.dropDownItemStyle}
+                        itemTextStyle={{ color: '#575C64' }}
+                        itemsContainerStyle={{ maxHeight: 165 }}
+                        items={items}
+                        defaultIndex={2}
+                        resetValue={false}
+                        textInputProps={styles.dropDownInputStyle}
+                        listProps={
+                            {
+                                nestedScrollEnabled: true,
+                            }
+                        }
+                    />
+                </View>
+                <TouchableOpacity
+                    style={styles.btnStyle}>
+                    <Text style={globalStyles.gothamBold, styles.buttonTextStyle}>Save changes</Text>
+                </TouchableOpacity>
 
-            </View>
+            </KeyboardAvoidingView>
+
 
         );
+        /*
+        return (
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : null}
+                style={{ flex: 1 }}
+            >
+                <SafeAreaView style={styles.container}>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View style={styles.inner}>
+                            <Text style={styles.header}>
+                                Header
+                            </Text>
+                            <TextInput
+                                placeholder="Username"
+                                style={styles.input}
+                            />
+                            <TextInput
+                                placeholder="Password"
+                                style={styles.input}
+                            />
+                            <TextInput
+                                placeholder="Confrim Password"
+                                style={styles.input}
+                            />
+                            <View style={styles.btnContainer}>
+                                <Button title="Submit" onPress={() => null} />
+                            </View>
+                            <View style={{ flex : 1 }} />
+                        </View>
+                    </TouchableWithoutFeedback>
+                </SafeAreaView>
+            </KeyboardAvoidingView>
+        );*/
     }
+
+
 }
+/*
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    inner: {
+        padding: 100,
+        flex: 1,
+        justifyContent: "flex-end",
+    },
+    header: {
+        fontSize: 36,
+        marginBottom: 48,
+    },
+    input: {
+        height: 40,
+        borderColor: "#000000",
+        borderBottomWidth: 1,
+        marginBottom: 36,
+    },
+    btnContainer: {
+        backgroundColor: "white",
+        marginTop: 12,
+    },
+});*/
 
 export default withNavigation(ProfileSettingsPersonalInformaion);

@@ -21,6 +21,7 @@
 		69F6E0AB5FF540E2B052F589 /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 308815D633704412833B526C /* Gotham-Bold.otf */; };
 		DB106CF70AA5FE3538B5F247 /* libPods-InvisionTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D01B2CEB80AEE0E513E94B48 /* libPods-InvisionTests.a */; };
 		DE738FE1A4D789AEAC7A68AB /* libPods-Invision-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7102A5DE570615EE12B65AF7 /* libPods-Invision-tvOS.a */; };
+		0B4EADDDC0B948C68EDCFC73 /* Gotham-Medium-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		F4B1069EF7DD4C5988CCB996 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F5D6A4AE717D9395A98DC040 /* libPods-Invision.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Invision.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7F643D1F8F191CC35FAA4E /* Pods-Invision-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invision-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Invision-tvOS/Pods-Invision-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */ = {isa = PBXFileReference; name = "Gotham-Medium-Regular.ttf"; path = "../assets/fonts/Gotham-Medium-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				DFF4910B1F6348BF996DDA25 /* SimpleLineIcons.ttf */,
 				94AD3D7EF6944BA4A3EB69E0 /* Zocial.ttf */,
 				2D2EA4661A8A4EAAB4BD73BE /* Gotham-Book.otf */,
+				57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				69F6E0AB5FF540E2B052F589 /* Gotham-Bold.otf in Resources */,
 				1FE94572932142078EBD7895 /* Gotham-Book.otf in Resources */,
+				0B4EADDDC0B948C68EDCFC73 /* Gotham-Medium-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

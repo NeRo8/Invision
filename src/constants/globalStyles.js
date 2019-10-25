@@ -11,4 +11,8 @@ export default StyleSheet.create({
     fontFamily: 'Gotham',
     color: colors.TITLE
   },
+  gothamMediumRegular: {
+    fontFamily: 'Gotham Medium',
+    color: colors.TITLE
+  }
 });

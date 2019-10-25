@@ -7,6 +7,8 @@ import ProfileSettings from '../screens/ProfileSettings';
 
 import ProfileSettingsChangePassword from '../screens/ProfileSettingsChangePassword';
 import ProfileSettingsPersonalInformaion from '../screens/ProfileSettingsPersonalInformaion';
+import ProfileSettingsPrivacyPolicy from '../screens/ProfileSettingsPrivacyPolicy';
+
 
 import { colors } from '../constants/colors';
 
@@ -81,6 +83,23 @@ const ProfileNavigation = createStackNavigator({
       }
     }
   },
+  ProfileSettingsPrivacyPolicy: {
+    screen: ProfileSettingsPrivacyPolicy,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Privacy Policy',
+        headerTitleStyle: {
+          color: 'white',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+      }
+    }
+  },
+
+  
 }
 );
 

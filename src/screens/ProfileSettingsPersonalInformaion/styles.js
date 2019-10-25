@@ -44,20 +44,21 @@ export default StyleSheet.create({
     backgroundColor: 'silver',
   },
   elementTitle: {
-    flex: 1,
+    marginTop:20,
+    marginBottom:7,
     fontSize: 12,
     color: colors.GREY_TITILE_COLOR
   },
   elementTitleNonHeader: {
     flex: 1,
-    fontSize:14
+    fontSize: 14
   },
   inputContainer: {
     backgroundColor: 'white',
     height: 44,
     width: '100%',
-    paddingLeft:0,
-    paddingRight:0
+    paddingLeft: 0,
+    paddingRight: 0
   },
   inputContainerS: {
     borderWidth: 1,
@@ -69,7 +70,7 @@ export default StyleSheet.create({
     marginHorizontal: 10,
     height: 44,
     borderLeftWidth: 0,
-    paddingRight:15,
+    paddingRight: 15,
     borderColor: colors.BORDER_COLOR
   },
   filtersContainer: {
@@ -80,4 +81,33 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },
+  dropDownItemStyle: {
+    padding: 10,
+    marginTop: 2,
+    borderColor: colors.BORDER_COLOR,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontFamily: 'Gotham',
+    color: colors.GREY_TITILE_COLOR
+  },
+  dropDownInputStyle: {
+    padding: 12,
+    borderWidth: 1,
+    borderColor: colors.BORDER_COLOR,
+    fontSize: 14,
+    height:44,
+    color: colors.GREY_TITILE_COLOR
+  },
+  dropDownContainer: {
+    width: '85%',
+  },
+  dropDownLeftIconStyle:{
+    borderWidth:1,
+    padding: 5,
+    paddingLeft: 15,
+    paddingRight: 15,
+    height:44,
+    borderColor: colors.BORDER_COLOR
+  }
+  
 });
