@@ -11,4 +11,5 @@ export const colors = {
   TITLE: '#2C3440',
   BORDER: '#EAEAEA',
   OTHER: '#F5F8FB',
+  STAR: '#FFAA44',
 };

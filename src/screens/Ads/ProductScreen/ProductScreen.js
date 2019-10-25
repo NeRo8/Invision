@@ -5,37 +5,58 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
-  Image,
+  SafeAreaView,
 } from 'react-native';
-import {
-  Input,
-  Icon,
-  Button,
-  Avatar,
-  Rating,
-  AirbnbRating,
-} from 'react-native-elements';
-import {} from 'react-native-ratings';
+import { Icon, Button, Avatar, Input } from 'react-native-elements';
+
+import StarRating from 'react-native-star-rating';
 
 import { colors } from '../../../constants/colors';
+
 import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 
+import ElementList from '../../../components/ElementList/ElementList';
+
 const ElementFlatList = ({ item }) => (
   <View style={styles.elementContainer}>
-    <View>
-      <Avatar
-        rounded
-        source={item.userIcon}
-        imageProps={{ resizeMode: 'cover' }}
-      />
+    <View style={{ flexDirection: 'row', flex: 1, height: 40 }}>
+      <View style={{ flexDirection: 'row', flex: 1 }}>
+        <View style={{ paddingRight: 10 }}>
+          <Avatar
+            rounded
+            source={item.userIcon}
+            imageProps={{ resizeMode: 'cover' }}
+            size={40}
+          />
+        </View>
+        <View style={{ justifyContent: 'space-between' }}>
+          <Text style={[styles.userName, globalStyles.gothamBold]}>
+            {item.userName}
+          </Text>
+          <StarRating
+            disabled
+            maxStars={5}
+            rating={item.raiting}
+            emptyStar="ios-star"
+            fullStar="ios-star"
+            halfStar="ios-star"
+            iconSet="Ionicons"
+            fullStarColor={colors.STAR}
+            emptyStarColor={colors.UNACTIVE}
+            starSize={15}
+            starStyle={{ marginRight: 6 }}
+          />
+        </View>
+      </View>
+      <View>
+        <Text style={[styles.date, globalStyles.gothamBook]}>{item.date}</Text>
+      </View>
     </View>
-    <View>
-      <Text style={[styles.userName, globalStyles.gothamBold]}>
-        {item.userName}
+    <View style={{ marginTop: 15 }}>
+      <Text style={[styles.coment, globalStyles.gothamBook]}>
+        {item.coment}
       </Text>
-
-      <AirbnbRating imageSize={15} readonly startingValue={item.raiting} />
     </View>
   </View>
 );
@@ -57,7 +78,8 @@ class ProductScreen extends Component {
           date: '01.01.19',
           raiting: 4,
           userIcon: require('../../../assets/icons/userIcons/man.jpg'),
-          coment: 'Lorem Ipsum is simply dummy text of the printing.',
+          coment:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
         },
         {
           id: 1,
@@ -65,7 +87,8 @@ class ProductScreen extends Component {
           date: '01.01.19',
           raiting: 4,
           userIcon: require('../../../assets/icons/userIcons/man2.jpg'),
-          coment: 'Lorem Ipsum is simply dummy text of the printing.',
+          coment:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         },
         {
           id: 2,
@@ -75,6 +98,12 @@ class ProductScreen extends Component {
           userIcon: require('../../../assets/icons/userIcons/man3.jpg'),
           coment: 'Lorem Ipsum is simply dummy text of the printing.',
         },
+      ],
+      data: [
+        { id: 1, title: 1, active: true },
+        { id: 2, title: 2, active: false },
+        { id: 3, title: 1, active: true },
+        { id: 4, title: 2, active: false },
       ],
     };
   }
@@ -104,7 +133,7 @@ class ProductScreen extends Component {
                 />
                 <Text
                   style={[
-                    { color: colors.UNACTIVE, fontSize: 15 },
+                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     globalStyles.gothamBook,
                   ]}>
                   100
@@ -119,7 +148,7 @@ class ProductScreen extends Component {
                 />
                 <Text
                   style={[
-                    { color: colors.UNACTIVE, fontSize: 15 },
+                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     globalStyles.gothamBook,
                   ]}>
                   01.01.18
@@ -169,6 +198,7 @@ class ProductScreen extends Component {
                   {
                     color: colors.UNACTIVE,
                     fontSize: 17,
+                    lineHeight: 32,
                     textDecorationLine: 'underline',
                   },
                 ]}>
@@ -191,14 +221,26 @@ class ProductScreen extends Component {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Image source={require('../../../assets/icons/pets.png')} />
-                  <Text style={[globalStyles.gothamBold, { marginLeft: 10 }]}>
+                  <Avatar
+                    rounded
+                    source={require('../../../assets/icons/userIcons/man.jpg')}
+                    imageProps={{ resizeMode: 'cover' }}
+                    size={25}
+                  />
+                  <Text
+                    style={[
+                      globalStyles.gothamBold,
+                      { marginLeft: 10, lineHeight: 20, fontSize: 15 },
+                    ]}>
                     Lucas Unknown
                   </Text>
                 </View>
                 <View>
                   <Text
-                    style={[globalStyles.gothamBook, { color: colors.HEADER }]}>
+                    style={[
+                      globalStyles.gothamBook,
+                      { color: colors.HEADER, fontSize: 15, lineHeight: 23 },
+                    ]}>
                     Other ads
                   </Text>
                 </View>
@@ -212,12 +254,130 @@ class ProductScreen extends Component {
               }}></View>
           </View>
           <View>
-            <Text style={[globalStyles.gothamBold, { marginTop: 25 }]}>
+            <Text
+              style={[
+                globalStyles.gothamBold,
+                {
+                  marginTop: 25,
+                  fontSize: 15,
+                  lineHeight: 23,
+                  letterSpacing: 1,
+                },
+              ]}>
               REVIEWS
             </Text>
             <FlatList
               data={this.state.coments}
               renderItem={({ item }) => <ElementFlatList item={item} />}
+            />
+            <Button
+              title="Rear all 100 reviews"
+              titleStyle={[styles.titleRear, globalStyles.gothamBold]}
+              buttonStyle={styles.btnStyleRear}
+              containerStyle={styles.btnContainer}
+              onPress={null}
+            />
+            <Button
+              title="Write own comment"
+              titleStyle={[styles.titleWrite, globalStyles.gothamBold]}
+              buttonStyle={styles.btnStyleWrite}
+              onPress={null}
+            />
+          </View>
+          <View>
+            <Text
+              style={[
+                globalStyles.gothamBold,
+                {
+                  marginTop: 48,
+                  fontSize: 15,
+                  lineHeight: 23,
+                  letterSpacing: 1,
+                },
+              ]}>
+              SIMILAR ADS
+            </Text>
+            <SafeAreaView style={styles.flatListView}>
+              <FlatList
+                numColumns={2}
+                data={this.state.data}
+                renderItem={({ item }) => (
+                  <ElementList
+                    item={item}
+                    onPressProduct={this.showProductDetail}
+                  />
+                )}
+                keyExtractor={(item, index) => item.id}
+              />
+            </SafeAreaView>
+          </View>
+          <Button
+            title="Show more ads"
+            titleStyle={[styles.titleRear, globalStyles.gothamBold]}
+            buttonStyle={styles.btnStyleRear}
+            containerStyle={styles.btnContainer}
+            onPress={null}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+
+            backgroundColor: '#F8F8F9',
+            marginHorizontal: 15,
+            marginBottom: 15,
+          }}>
+          <View style={{ flex: 1 }}>
+            <Icon
+              name="phone"
+              type="font-awesome"
+              color="white"
+              containerStyle={{
+                backgroundColor: '#9BA9BE',
+                width: 55,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 2,
+                onPress: null,
+              }}
+            />
+          </View>
+          <View style={{ flex: 6 }}>
+            <Input
+              inputStyle={[
+                globalStyles.gothamBook,
+                {
+                  fontSize: 17,
+                  lineHeight: 24,
+                  backgroundColor: 'white',
+                  height: 50,
+                },
+              ]}
+              inputContainerStyle={{
+                maxWidth: '100%',
+                backgroundColor: 'white',
+                borderBottomWidth: 0,
+              }}
+              backgroundColor="white"
+              placeholder="Write massage"
+              rightIcon={
+                <Icon
+                  name="send"
+                  type="material-comunity"
+                  color="white"
+                  containerStyle={{
+                    backgroundColor: colors.HEADER,
+                    width: 55,
+                    height: 50,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 2,
+                    marginRight: -10,
+                    onPress: null,
+                  }}
+                />
+              }
             />
           </View>
         </View>
