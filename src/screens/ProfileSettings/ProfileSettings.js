@@ -10,7 +10,8 @@ import styles from './styles';
 let menuType = {
     changePassord: "Change password",
     changePersonalInformaion: 'Change personal information',
-    privacyPolicy: 'Privacy Policy'
+    privacyPolicy: 'Privacy Policy',
+    termsOfUse: 'Terms of use'
 }
 
 class ProfileSettingsScreen extends Component {
@@ -24,7 +25,7 @@ class ProfileSettingsScreen extends Component {
                 { title: menuType.changePersonalInformaion, header: false },
                 { title: 'ABOUT', header: true },
                 { title: menuType.privacyPolicy, header: false },
-                { title: 'Terms of use', header: false },
+                { title: menuType.termsOfUse, header: false },
                 { title: 'Support', header: false },
                 { title: 'PERSONAL INFO & PASSWORD', header: true },
                 { title: 'Notifications', header: false, toggle: true },
@@ -65,7 +66,9 @@ class ProfileSettingsScreen extends Component {
                         else if (item.title == menuType.privacyPolicy) {
                             this.props.navigation.navigate('ProfileSettingsPrivacyPolicy')
                         }
-                        
+                        else if (item.title == menuType.termsOfUse) {
+                            this.props.navigation.navigate('ProfileSettingsTermsOfUse')
+                        }
                     }}>
                         <View style={styles.elementContainer}>
                             <Text style={[styles.elementTitleNonHeader, globalStyles.gothamBook]}>
