@@ -42,8 +42,8 @@ const Navigation = createBottomTabNavigator(
         title: 'In Kuwait',
         tabBarIcon: ({ focused, horizontal, tintColor }) => (
           <Icon
-            name="hospital-building"
-            type="material-community"
+            name="building"
+            type="font-awesome"
             color={tintColor}
             size={28}
           />
