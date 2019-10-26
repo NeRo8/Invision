@@ -30,23 +30,21 @@ export default StyleSheet.create({
   },
   imgBackText: {
     color: 'white',
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 17,
   },
   blockAction: {
     flex: 1,
-    justifyContent: 'space-between',
   },
   blockHeader: {
-    fontWeight: 'bold',
-    marginHorizontal: 30,
-    marginTop: 15,
+    fontSize: 12,
+    marginHorizontal: 25,
+    marginVertical: 20,
   },
   iconBtnLeft: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     backgroundColor: colors.HEADER,
     borderRadius: 20,
     marginHorizontal: 10,
@@ -54,7 +52,7 @@ export default StyleSheet.create({
   btnStyle: {
     borderRadius: 0,
     backgroundColor: 'white',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderColor: 'silver',
     height: 50,
     justifyContent: 'flex-start',
