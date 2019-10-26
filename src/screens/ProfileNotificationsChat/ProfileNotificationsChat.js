@@ -4,7 +4,7 @@ import {
     View,
     TouchableOpacity,
     Image,
-    ScrollView,
+    KeyboardAvoidingView,
     TextInput,
     FlatList,
 } from 'react-native';
@@ -85,40 +85,45 @@ class ProfileNotificationsChat extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <FlatList style={styles.list}
-                    data={this.state.data}
-                    ref={ref => this.flatList = ref}
-                    onContentSizeChange={() => this.flatList.scrollToEnd({ animated: true })}
-                    onLayout={() => this.flatList.scrollToEnd({ animated: true })}
-                    keyExtractor={(item) => {
-                        return item.id;
-                    }}
-                    renderItem={this.renderItem}
-                />
-                <View style={styles.footer}>
-                    <View style={styles.inputContainer}>
-                        <TextInput style={[globalStyles.gothamBook, styles.inputs]}
-                            value={this.state.textMessage}
-                            onChangeText={(textMessage) => this.setState({ textMessage })}
-                            placeholder="Type something"
-                            underlineColorAndroid='transparent' />
+            <KeyboardAvoidingView 
+            keyboardVerticalOffset={100}
+             style={styles.container} behavior="height" enabled>
+                <View style={styles.container}>
+                    <FlatList style={styles.list}
+                        data={this.state.data}
+                        ref={ref => this.flatList = ref}
+                        onContentSizeChange={() => this.flatList.scrollToEnd({ animated: true })}
+                        onLayout={() => this.flatList.scrollToEnd({ animated: true })}
+                        keyExtractor={(item) => {
+                            return item.id;
+                        }}
+                        renderItem={this.renderItem}
+                    />
+                    <View style={styles.footer}>
+                        <View style={styles.inputContainer}>
+                            <TextInput style={[globalStyles.gothamBook, styles.inputs]}
+                                value={this.state.textMessage}
+                                onChangeText={(textMessage) => this.setState({ textMessage })}
+                                placeholder="Type something"
+                                underlineColorAndroid='transparent' />
+                        </View>
+                        <TouchableOpacity style={styles.btnSend}
+                            onPress={() => {
+                                if (this.state.textMessage != "")
+                                    this.setState({ data: [...this.state.data, { date: "09:05 AM", type: 'me', message: this.state.textMessage }] })
+                                this.state.textMessage = ""
+                            }}>
+                            <Icon
+                                name="ios-send"
+                                type="ionicon"
+                                color='white'
+                                size={25}
+                            />
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.btnSend}
-                        onPress={() => {
-                            if (this.state.textMessage != "")
-                                this.setState({ data: [...this.state.data, { date: "09:05 AM", type: 'me', message: this.state.textMessage }] })
-                            this.state.textMessage = ""
-                        }}>
-                        <Icon
-                            name="ios-send"
-                            type="ionicon"
-                            color='white'
-                            size={25}
-                        />
-                    </TouchableOpacity>
+
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
