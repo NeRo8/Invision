@@ -51,11 +51,11 @@ const ElementFlatList = ({ item }) => (
         </View>
       </View>
       <View>
-        <Text style={[styles.date, globalStyles.gothamBook]}>{item.date}</Text>
+        <Text style={[globalStyles.gothamBook, styles.date]}>{item.date}</Text>
       </View>
     </View>
     <View style={{ marginTop: 15 }}>
-      <Text style={[styles.coment, globalStyles.gothamBook]}>
+      <Text style={[globalStyles.gothamBook, styles.coment]}>
         {item.coment}
       </Text>
     </View>
@@ -115,12 +115,12 @@ class ProductScreen extends Component {
           <FlatList style={{ height: 275, backgroundColor: 'red' }} />
         </View>
         <View style={styles.head}>
-          <Text style={[styles.title, globalStyles.gothamBook]}>
+          <Text style={[globalStyles.gothamBook, styles.title]}>
             iPhone X 16Gb
           </Text>
 
           <View style={styles.properties}>
-            <Text style={[{ flex: 1 }, styles.price, globalStyles.gothamBook]}>
+            <Text style={[globalStyles.gothamBook, styles.price]}>
               10,000 KWD
             </Text>
 
@@ -134,8 +134,8 @@ class ProductScreen extends Component {
                 />
                 <Text
                   style={[
-                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     globalStyles.gothamBook,
+                    { fontSize: 15, lineHeight: 26, color: colors.UNACTIVE },
                   ]}>
                   100
                 </Text>
@@ -149,8 +149,8 @@ class ProductScreen extends Component {
                 />
                 <Text
                   style={[
-                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     globalStyles.gothamBook,
+                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                   ]}>
                   01.01.18
                 </Text>
@@ -163,7 +163,7 @@ class ProductScreen extends Component {
               style={{
                 borderBottomWidth: 0.5,
                 borderTopWidth: 0.5,
-                borderColor: colors.BORDER,
+                borderColor: '#EAEAEA',
               }}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{
@@ -186,7 +186,7 @@ class ProductScreen extends Component {
             />
           </View>
           <View>
-            <Text style={[styles.description, globalStyles.gothamBook]}>
+            <Text style={[globalStyles.gothamBook, styles.description]}>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -286,14 +286,14 @@ class ProductScreen extends Component {
             />
             <Button
               title="Rear all 100 reviews"
-              titleStyle={[styles.titleRear, globalStyles.gothamBold]}
+              titleStyle={[globalStyles.gothamBold, styles.titleRear]}
               buttonStyle={styles.btnStyleRear}
               containerStyle={styles.btnContainer}
               onPress={null}
             />
             <Button
               title="Write own comment"
-              titleStyle={[styles.titleWrite, globalStyles.gothamBold]}
+              titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
               buttonStyle={styles.btnStyleWrite}
               onPress={null}
             />
@@ -327,7 +327,7 @@ class ProductScreen extends Component {
           </View>
           <Button
             title="Show more ads"
-            titleStyle={[styles.titleRear, globalStyles.gothamBold]}
+            titleStyle={[globalStyles.gothamBold, styles.titleRear]}
             buttonStyle={styles.btnStyleRear}
             containerStyle={styles.btnContainer}
             onPress={null}
