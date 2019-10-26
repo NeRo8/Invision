@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
+
 import { colors } from '../../constants/colors';
 
 export default StyleSheet.create({
@@ -6,12 +7,18 @@ export default StyleSheet.create({
     flex: 1,
   },
   fontInsideImage: {
+    fontSize: 11,
     color: 'white',
-    fontWeight: 'bold',
+  },
+  fontDescription: {
+    fontSize: 15,
+    color: 'white',
+    textAlign: 'justify',
+    lineHeight: 20,
   },
   headerProfile: {
     paddingTop: 30,
-    height: 150,
+    height: 190,
     width: '100%',
     alignItems: 'center',
   },
@@ -23,9 +30,9 @@ export default StyleSheet.create({
     flex: 1,
   },
   profileImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 82,
+    height: 82,
+    borderRadius: 41,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
@@ -42,7 +49,7 @@ export default StyleSheet.create({
   infoElement: {
     borderBottomWidth: 0.5,
     borderColor: 'silver',
-    height: 40,
+    height: 55,
     alignItems: 'center',
     flexDirection: 'row',
   },
@@ -57,7 +64,9 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     height: 40,
   },
-  selectedTextElement: {},
+  selectedTextElement: {
+    fontSize: 15,
+  },
   selectedElementActive: {
     flex: 1,
     alignItems: 'center',
@@ -66,13 +75,15 @@ export default StyleSheet.create({
     height: 40,
   },
   selectedTextElementActive: {
-    fontWeight: 'bold',
     color: 'white',
+    fontSize: 15,
   },
+  headerTitleText: { fontSize: 20, color: 'white', marginVertical: 17 },
   headerText: {
+    fontSize: 12,
     fontWeight: 'bold',
     marginLeft: 10,
-    marginVertical: 10,
+    marginVertical: 20,
   },
   blockBody: {
     flex: 1,
@@ -80,17 +91,17 @@ export default StyleSheet.create({
   },
   elementContainer: {
     width: null,
-    height: 150,
+    height: 230,
     flex: 1,
     margin: 10,
-    borderRadius: 10,
+    borderRadius: 5,
     overflow: 'hidden',
     backgroundColor: 'silver',
   },
   elementBody: {
     flexDirection: 'row',
     marginTop: 20,
-    marginHorizontal: 20,
+    paddingHorizontal: 40,
     justifyContent: 'space-between',
   },
   iconDots: {
@@ -102,8 +113,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   iconHeader: {
-    width: 40,
-    height: 40,
+    width: 35,
+    height: 35,
     borderRadius: 20,
     backgroundColor: 'rgba(255,255,255, 0.3)',
     alignItems: 'center',
@@ -114,8 +125,8 @@ export default StyleSheet.create({
     right: 0,
     top: 0,
     backgroundColor: colors.NOTIF_ICON,
-    height: 20,
-    width: 20,
+    height: 15,
+    width: 15,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,8 +135,8 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
-    width: 35,
-    height: 35,
+    width: 25,
+    height: 25,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -138,7 +149,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   btnSettingsTitle: {
-    fontWeight: 'bold',
+    color: 'white',
   },
   btnStyle: {
     borderRadius: 0,
