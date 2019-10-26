@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
+import MapView from 'react-native-maps';
 
 import StarRating from 'react-native-star-rating';
 
@@ -111,7 +112,7 @@ class ProductScreen extends Component {
     return (
       <ScrollView>
         <View>
-          <FlatList style={{ height: 275, backgroundColor: 'red' }}></FlatList>
+          <FlatList style={{ height: 275, backgroundColor: 'red' }} />
         </View>
         <View style={styles.head}>
           <Text style={[styles.title, globalStyles.gothamBook]}>
@@ -248,10 +249,19 @@ class ProductScreen extends Component {
             </View>
             <View
               style={{
-                backgroundColor: 'grey',
                 height: 200,
                 marginTop: 10,
-              }}></View>
+              }}>
+              <MapView
+                initialRegion={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                }}
+                style={{ flex: 1 }}
+              />
+            </View>
           </View>
           <View>
             <Text
@@ -339,7 +349,6 @@ class ProductScreen extends Component {
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 2,
-                onPress: null,
               }}
             />
           </View>
@@ -374,7 +383,6 @@ class ProductScreen extends Component {
                     justifyContent: 'center',
                     borderRadius: 2,
                     marginRight: -10,
-                    onPress: null,
                   }}
                 />
               }
