@@ -259,6 +259,7 @@ class ProductScreen extends Component {
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421,
                 }}
+                provider="google"
                 style={{ flex: 1 }}>
                 <Marker
                   coordinate={{ latitude: 37.78825, longitude: -122.4324 }}

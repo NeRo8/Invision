@@ -38,12 +38,17 @@ target 'Invision' do
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
   target 'InvisionTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
   use_native_modules!
+ 
 end
 
 target 'Invision-tvOS' do
