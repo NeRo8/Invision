@@ -6,11 +6,14 @@ import {
   ScrollView,
   FlatList,
   SafeAreaView,
+  Dimensions,
+  Image,
 } from 'react-native';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 
 import StarRating from 'react-native-star-rating';
+import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import { colors } from '../../../constants/colors';
 
@@ -66,6 +69,24 @@ class ProductScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      productImages: [
+        {
+          id: 0,
+          productImage: require('../../../assets/images/productImages/iphone.jpg'),
+        },
+        {
+          id: 1,
+          productImage: require('../../../assets/images/productImages/iphone2.jpg'),
+        },
+        {
+          id: 2,
+          productImage: require('../../../assets/images/productImages/iphone3.jpg'),
+        },
+        {
+          id: 3,
+          productImage: require('../../../assets/images/productImages/iphone4.jpg'),
+        },
+      ],
       tags: [
         { id: 0, title: 'Privat' },
         { id: 1, title: 'New' },
@@ -101,7 +122,11 @@ class ProductScreen extends Component {
         },
       ],
       data: [
-        { id: 1, title: 1, active: true },
+        {
+          id: 1,
+          title: 1,
+          active: true,
+        },
         { id: 2, title: 2, active: false },
         { id: 3, title: 1, active: true },
         { id: 4, title: 2, active: false },
@@ -111,8 +136,22 @@ class ProductScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <View>
-          <FlatList style={{ height: 275, backgroundColor: 'red' }} />
+        <View style={styles.container}>
+          <SwiperFlatList
+            data={this.state.productImages}
+            showPagination
+            renderItem={items => (
+              <View style={styles.container}>
+                <View style={styles.child}>
+                  <Image
+                    resizeMode="contain"
+                    style={styles.swiperImage}
+                    source={items.item.productImage}
+                  />
+                </View>
+              </View>
+            )}
+          />
         </View>
         <View style={styles.head}>
           <Text style={[globalStyles.gothamBook, styles.title]}>
