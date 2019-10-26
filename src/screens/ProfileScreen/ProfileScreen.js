@@ -5,10 +5,6 @@ import {
   TouchableOpacity,
   FlatList,
   ImageBackground,
-  Modal,
-  Switch,
-  Image,
-  StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
@@ -121,6 +117,9 @@ class ProfileScreen extends Component {
                 type="ion-icon"
                 color="white"
                 containerStyle={styles.iconHeader}
+                onPress={() =>
+                  this.props.navigation.navigate('ProfilePaymentHistory')
+                }
               />
               <View>
                 <View style={styles.profileImage}>
@@ -146,6 +145,9 @@ class ProfileScreen extends Component {
                     type="ionicon"
                     color="white"
                     containerStyle={styles.iconHeader}
+                    onPress={() =>
+                      this.props.navigation.navigate('ProfileNotifications')
+                    }
                   />
                 </View>
                 <View style={styles.containerTextIcon}>
@@ -159,6 +161,7 @@ class ProfileScreen extends Component {
           title="Settings"
           titleStyle={styles.btnSettingTitle}
           buttonStyle={styles.btnStyle}
+          onPress={() => this.props.navigation.navigate('ProfileSettings')}
         />
         <View>
           <View style={styles.infoElement}>
