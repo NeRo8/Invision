@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -8,8 +8,11 @@ import FiltersScreen from '../screens/FiltersScreen';
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
 
-import { colors } from '../constants/colors';
 import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
+import ProductScreen from '../screens/Ads/ProductScreen';
+
+import { colors } from '../constants/colors';
+import globalStyles from '../constants/globalStyles';
 
 const styles = StyleSheet.create({
   btnCancel: {
@@ -24,7 +27,7 @@ const HeaderLeft = ({ onPressCancel }) => (
     onPress={() => {
       onPressCancel();
     }}>
-    <Text style={styles.btnCancel}>Cancel</Text>
+    <Text style={[styles.btnCancel, globalStyles.gothamBook]}>Cancel</Text>
   </TouchableOpacity>
 );
 
@@ -41,7 +44,7 @@ const AdsNavigation = createStackNavigator(
       navigationOptions: {
         headerTitle: <HeaderAds />,
         headerStyle: {
-          height: 100,
+          height: Platform.OS === 'ios' ? 95 : 110,
           backgroundColor: colors.HEADER,
         },
         headerTintColor: 'white',
@@ -52,7 +55,15 @@ const AdsNavigation = createStackNavigator(
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: 'Filters',
+          headerStyle: {
+            paddingTop: 20,
+            height: 70,
+            backgroundColor: colors.HEADER,
+          },
           headerTitleStyle: {
+            textAlign: 'center',
+            width: '100%',
+            paddingRight: 90,
             color: 'white',
             fontWeight: 'bold',
           },
@@ -67,13 +78,16 @@ const AdsNavigation = createStackNavigator(
           gesturesEnabled: false,
           headerTitle: <HeaderAdsFilters />,
           headerStyle: {
-            height: 110,
+            height: Platform.OS === 'ios' ? 110 : 130,
             backgroundColor: colors.HEADER,
           },
           headerLeft: null,
           headerRight: null,
         };
       },
+    },
+    ProductDetail: {
+      screen: ProductScreen,
     },
   },
   {

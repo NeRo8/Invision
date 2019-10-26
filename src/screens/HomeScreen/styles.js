@@ -21,4 +21,12 @@ export default StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  flatListView: {
+    backgroundColor: 'rgb(247,247,247)',
+    flex: 1,
+    width: '100%',
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    alignSelf: 'center',
+  },
 });

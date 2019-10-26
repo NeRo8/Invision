@@ -1,5 +1,5 @@
 export const colors = {
-  HEADER: '#236AE6',
+  HEADER: '#0A68EF',
   HEADER_BUTTON: '#3F7FE9',
   UNACTIVE: '#9DA9BC',
   ACTIVE: '#236AE6',
@@ -9,4 +9,8 @@ export const colors = {
   TWITTER: 'rgb(86, 174,222)',
   INSTAGRAM: 'rgb(195,74,117)',
   NOTIF_ICON: 'rgb(236, 69, 114)',
+  TITLE: '#2C3440',
+  BORDER: '#EAEAEA',
+  OTHER: '#F5F8FB',
+  STAR: '#FFAA44',
 };

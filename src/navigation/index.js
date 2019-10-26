@@ -25,6 +25,14 @@ const Navigation = createBottomTabNavigator(
         return {
           tabBarVisible,
           title: 'Ads',
+          tabBarIcon: ({ focused, horizontal, tintColor }) => (
+            <Icon
+              name="calendar-multiple"
+              type="material-community"
+              color={tintColor}
+              size={28}
+            />
+          ),
         };
       },
     },
@@ -32,6 +40,14 @@ const Navigation = createBottomTabNavigator(
       screen: InKuwaitNavigation,
       navigationOptions: {
         title: 'In Kuwait',
+        tabBarIcon: ({ focused, horizontal, tintColor }) => (
+          <Icon
+            name="building"
+            type="font-awesome"
+            color={tintColor}
+            size={28}
+          />
+        ),
       },
     },
     Auth: {
@@ -62,7 +78,12 @@ const Navigation = createBottomTabNavigator(
       navigationOptions: {
         title: 'Profile',
         tabBarIcon: ({ focused, horizontal, tintColor }) => (
-          <Icon name="ios-contact" type="ionicon" color={tintColor} size={28} />
+          <Icon
+            name="account-circle"
+            type="material-community"
+            color={tintColor}
+            size={28}
+          />
         ),
       },
     },

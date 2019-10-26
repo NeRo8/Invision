@@ -5,11 +5,13 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 import { colors } from '../../constants/colors';
+import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
 
 class FiltersScreen extends Component {
@@ -86,7 +88,9 @@ class FiltersScreen extends Component {
         scrollEnabled={this.state.scrollEnabled}>
         <View style={styles.container}>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>TYPE OF AD</Text>
+            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
+              TYPE OF AD
+            </Text>
             <View style={styles.selectBlock}>
               <TouchableOpacity
                 style={typeOfAd.private ? styles.elementActive : styles.element}
@@ -109,7 +113,7 @@ class FiltersScreen extends Component {
                       ? styles.textElementActive
                       : styles.textElement
                   }>
-                  Buisnes
+                  Business
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -125,7 +129,9 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>STATE OF PRODUCT</Text>
+            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
+              STATE OF PRODUCT
+            </Text>
             <View style={styles.selectBlock}>
               <TouchableOpacity
                 style={
@@ -174,7 +180,9 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>Price</Text>
+            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
+              Price
+            </Text>
             <View>
               <View style={styles.blockPrice}>
                 <Input
@@ -199,16 +207,24 @@ class FiltersScreen extends Component {
                   max={max}
                   values={multiSliderValue}
                   sliderLength={Dimensions.get('window').width - 20}
-                  markerStyle={{ borderRadius: 0, height: 20, width: 20 }}
+                  markerStyle={{
+                    marginTop: 14,
+                    borderRadius: 0,
+                    borderWidth: 1,
+                    borderColor: '#E4E5EC',
+                    height: 20,
+                    width: 20,
+                    backgroundColor: 'white',
+                  }}
                   containerStyle={{ flex: 1 }}
                   onValuesChange={this.onMultiSliderValueChange}
                   onValuesChangeStart={this.disableScroll}
                   onValuesChangeFinish={this.enableScroll}
                   unselectedStyle={{
                     backgroundColor: 'rgba(35, 107, 230, 0.2)',
-                    height: 5,
+                    height: 14,
                   }}
-                  selectedStyle={{ backgroundColor: colors.HEADER, height: 5 }}
+                  selectedStyle={{ backgroundColor: colors.HEADER, height: 14 }}
                 />
                 <View
                   style={{
@@ -222,7 +238,9 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>CHOOSE CATEGORY</Text>
+            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
+              CHOOSE CATEGORY
+            </Text>
             <ScrollView
               horizontal
               contentContainerStyle={styles.blockPrice}

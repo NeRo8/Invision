@@ -11,7 +11,7 @@ export default StyleSheet.create({
     marginVertical: 20,
   },
   textBlock: {
-    fontWeight: 'bold',
+    color: colors.TITLE,
   },
   selectBlock: {
     marginTop: 10,

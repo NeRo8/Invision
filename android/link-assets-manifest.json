@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/.DS_Store",
+      "sha1": "cbf10b52b9159b165692f7e5c9ddeaf42edab36d"
+    },
+    {
+      "path": "assets/fonts/Gotham-Bold.otf",
+      "sha1": "acd8beda0d3d0d108f94092cece27d1ab74ddada"
+    },
+    {
+      "path": "assets/fonts/Gotham-Book.otf",
+      "sha1": "e84b62cebdc85a2673d9c81d49507ea66890e290"
+    }
+  ]
+}

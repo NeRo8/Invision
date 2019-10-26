@@ -4,6 +4,7 @@ import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
+import globalStyles from '../../constants/globalStyles';
 
 class HeaderAdsFilters extends Component {
   constructor(props) {
@@ -23,7 +24,9 @@ class HeaderAdsFilters extends Component {
           />
           <Text style={styles.headerText}>Filters</Text>
           <TouchableOpacity onPress={() => {}}>
-            <Text style={styles.headerRight}>Done</Text>
+            <Text style={[globalStyles.gothamBook, styles.headerRight]}>
+              Done
+            </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bodyBlock}>

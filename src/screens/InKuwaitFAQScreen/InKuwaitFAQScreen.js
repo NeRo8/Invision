@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StatusBar } from 'react-native';
 
 import styles from './styles';
 
@@ -60,6 +60,7 @@ class InKuwaitFAQScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" translucent />
         <View style={styles.headerBlock}>
           <View style={styles.selectBlockActive}>
             <Text style={styles.textActive}>Top Questions</Text>

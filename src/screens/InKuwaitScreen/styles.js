@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+
+import globalStyles from '../../constants/globalStyles';
 import { colors } from '../../constants/colors';
 
 export default StyleSheet.create({
@@ -7,15 +9,16 @@ export default StyleSheet.create({
     padding: 10,
   },
   headerTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginVertical: 15,
+    fontFamily: globalStyles.gothamBold.fontFamily,
+    fontSize: 12,
+    marginVertical: 10,
   },
   elementContainer: {
     //backgroundColor: 'red',
+
     width: '100%',
-    height: 100,
-    marginVertical: 10,
+    height: 130,
+    marginVertical: 15,
   },
   element: {
     flex: 1,
@@ -25,8 +28,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleElement: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
+    fontSize: 17,
   },
   roundView: {
     width: 50,
@@ -38,7 +41,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   roundText: {
-    fontWeight: 'bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     color: colors.HEADER,
   },
 });

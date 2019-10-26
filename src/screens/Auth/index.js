@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, Platform, Image } from 'react-native';
 import { Button } from 'react-native-elements';
+import { withNavigation } from 'react-navigation';
 
 import { colors } from '../../constants/colors';
+import globalStyles from '../../constants/globalStyles';
 
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  handlePressSignInEmail = () => {
+    this.props.navigation.navigate('SignIn');
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <View
           style={{ alignItems: 'center', flex: 2, justifyContent: 'center' }}>
           <View style={styles.logo}>
-            <Text style={styles.iconLogo}>m</Text>
+            <Image source={require('../../assets/icons/appIcon.png')} />
           </View>
-
-          <Text style={styles.logoText}>
-            {'For first sign in \n to your account'}
-          </Text>
+          <View style={{ width: '55%' }}>
+            <Text style={styles.logoText}>
+              {'For first sign in to your account'}
+            </Text>
+          </View>
         </View>
         <View style={styles.blockBottom}>
           <Button
@@ -36,6 +44,7 @@ class index extends Component {
               { backgroundColor: colors.FACEBOOK },
             ]}
             containerStyle={styles.btnContainer}
+            iconContainerStyle={{ flex: 2 }}
           />
           <Button
             icon={{
@@ -47,6 +56,7 @@ class index extends Component {
             titleStyle={styles.title}
             buttonStyle={[styles.btnStyle, { backgroundColor: colors.TWITTER }]}
             containerStyle={styles.btnContainer}
+            iconContainerStyle={{ flex: 2 }}
           />
           <Button
             icon={{
@@ -63,12 +73,14 @@ class index extends Component {
               { backgroundColor: colors.INSTAGRAM },
             ]}
             containerStyle={styles.btnContainer}
+            iconContainerStyle={{ flex: 2 }}
           />
           <Button
             title="Sign in or Sign up use email"
             titleStyle={styles.titleEmail}
             buttonStyle={styles.btnStyleEmail}
             containerStyle={styles.btnContainer}
+            onPress={this.handlePressSignInEmail}
           />
         </View>
       </View>
@@ -90,26 +102,23 @@ const styles = StyleSheet.create({
   titleEmail: {
     fontSize: 16,
     color: colors.HEADER,
-    fontWeight: 'bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
   },
   btnStyleEmail: {
     height: 60,
-    borderRadius: 0,
+    borderRadius: 2,
     backgroundColor: 'white',
 
     borderWidth: 1,
     borderColor: colors.HEADER,
   },
   logo: {
-    width: 100,
-    height: 100,
+    marginTop: 60,
     borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.HEADER,
   },
   logoText: {
-    marginTop: 20,
+    fontFamily: globalStyles.gothamBook.fontFamily,
+    marginTop: 40,
     fontSize: 30,
     textAlign: 'center',
   },
@@ -117,17 +126,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 70,
     fontWeight: 'bold',
-    lineHeight: 0,
-    marginTop: -10,
+    marginTop: -15,
   },
   btnStyle: {
     height: 60,
-    borderRadius: 0,
+    borderRadius: 2,
   },
   title: {
+    flex: 5,
     fontSize: 15,
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
+    textAlign: 'left',
   },
   blockBottom: {
     flex: 3,

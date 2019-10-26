@@ -5,9 +5,10 @@ import { colors } from '../../constants/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    height: 300,
+    marginHorizontal: 5,
+    marginVertical: 5,
     backgroundColor: 'white',
-    height: 200,
-    margin: 5,
   },
   pictureBlock: {
     flex: 1,
@@ -23,12 +24,15 @@ export default StyleSheet.create({
     width: null,
   },
   title: {
-    fontWeight: 'bold',
+    color: colors.TITLE,
+    fontSize: 13,
   },
   price: {
     color: colors.HEADER,
+    fontSize: 13,
   },
   status: {
     color: colors.UNACTIVE,
+    fontSize: 13,
   },
 });

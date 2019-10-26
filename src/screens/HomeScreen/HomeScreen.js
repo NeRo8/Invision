@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Dimensions } from 'react-native';
+import { View, Text, FlatList, StatusBar, SafeAreaView } from 'react-native';
 import ElementList from '../../components/ElementList';
 
 import styles from './styles';
@@ -29,6 +29,10 @@ class HomeScreen extends Component {
     };
   }
 
+  showProductDetail = () => {
+    this.props.navigation.navigate('ProductDetail');
+  };
+
   renderBottomPaginator = () => (
     <View style={styles.pagination}>
       <Text style={{ fontWeight: 'bold' }}>1/30</Text>
@@ -37,16 +41,23 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <SafeAreaView style={styles.flatListView}>
+        <StatusBar
+          translucent
+          barStyle="light-content"
+          backgroundColor="transparent"
+        />
         <FlatList
           numColumns={2}
           data={this.state.data}
-          renderItem={({ item }) => <ElementList item={item} />}
+          renderItem={({ item }) => (
+            <ElementList item={item} onPressProduct={this.showProductDetail} />
+          )}
           contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
           keyExtractor={(item, index) => item.id}
         />
         {this.renderBottomPaginator()}
-      </View>
+      </SafeAreaView>
     );
   }
 }
