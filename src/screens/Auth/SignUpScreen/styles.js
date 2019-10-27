@@ -18,15 +18,20 @@ export default StyleSheet.create({
     color: colors.HEADER,
   },
   title: {
+    color: 'white',
     fontSize: 15,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   OrUseText: {
     fontSize: 14,
-    fontWeight: '300',
     lineHeight: 24,
+    marginVertical: 25,
     textAlign: 'center',
+  },
+  textOfTerms: {
+    fontSize: 15,
+    lineHeight: 26,
+    fontWeight: '100',
   },
   btnSignUp: {
     height: 50,
@@ -49,7 +54,6 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
   },
   bottomView: {
-    justifyContent: 'space-between',
     marginBottom: 40,
   },
 });

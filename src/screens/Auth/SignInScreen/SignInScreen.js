@@ -14,7 +14,7 @@ class SignInScreen extends Component {
     return (
       <ScrollView>
         <View>
-          <Text style={[styles.SignInText, globalStyles.gothamBook]}>
+          <Text style={[globalStyles.gothamBook, styles.SignInText]}>
             Sign in
           </Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -31,7 +31,7 @@ class SignInScreen extends Component {
               placeholder="Password*"
               rightIcon={
                 <TouchableOpacity>
-                  <Text style={[styles.forgot, globalStyles.gothamBook]}>
+                  <Text style={[globalStyles.gothamBook, styles.forgot]}>
                     Forgot?
                   </Text>
                 </TouchableOpacity>
@@ -40,7 +40,7 @@ class SignInScreen extends Component {
             />
             <Button
               title="Sign in"
-              titleStyle={[styles.title, globalStyles.gothamBold]}
+              titleStyle={[globalStyles.gothamBold, styles.title]}
               buttonStyle={[
                 styles.btnSignIn,
                 { backgroundColor: colors.HEADER_BUTTON },
@@ -49,7 +49,7 @@ class SignInScreen extends Component {
             />
           </View>
           <View style={styles.bottomView}>
-            <Text style={[styles.OrUseText, globalStyles.gothamBook]}>
+            <Text style={[globalStyles.gothamBook, styles.OrUseText]}>
               Or use Sign in use social networks
             </Text>
             {/* <Icon
