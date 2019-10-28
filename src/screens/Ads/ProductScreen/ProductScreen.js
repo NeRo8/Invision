@@ -6,8 +6,8 @@ import {
   ScrollView,
   FlatList,
   SafeAreaView,
-  Dimensions,
   Image,
+  StatusBar,
 } from 'react-native';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
@@ -144,7 +144,7 @@ class ProductScreen extends Component {
               <View style={styles.container}>
                 <View style={styles.child}>
                   <Image
-                    resizeMode="contain"
+                    resizeMode="cover"
                     style={styles.swiperImage}
                     source={items.item.productImage}
                   />
@@ -245,7 +245,7 @@ class ProductScreen extends Component {
                 Show more
               </Text>
             </TouchableOpacity>
-            <View style={{ marginTop: 25, backgroundColor: colors.OTHER }}>
+            <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
               <TouchableOpacity
                 style={{
                   marginHorizontal: 15,

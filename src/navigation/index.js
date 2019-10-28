@@ -19,7 +19,11 @@ const Navigation = createBottomTabNavigator(
         let tabBarVisible = true;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
-        if (routeName === 'Filters' || routeName === 'Category') {
+        if (
+          routeName === 'Filters' ||
+          routeName === 'Category' ||
+          routeName === 'ProductDetail'
+        ) {
           tabBarVisible = false;
         }
         return {

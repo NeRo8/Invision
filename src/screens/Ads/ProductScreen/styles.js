@@ -9,7 +9,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
   },
   child: {
-    height: height * 0.3,
+    height: height * 0.4,
     width,
     justifyContent: 'center',
   },

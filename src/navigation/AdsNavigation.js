@@ -7,6 +7,7 @@ import FiltersScreen from '../screens/FiltersScreen';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
+import HeaderProduct from '../components/HeaderProduct';
 
 import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
@@ -88,6 +89,14 @@ const AdsNavigation = createStackNavigator(
     },
     ProductDetail: {
       screen: ProductScreen,
+      navigationOptions: {
+        headerLeft: null,
+        headerTitle: <HeaderProduct />,
+        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'transparent',
+        },
+      },
     },
   },
   {
