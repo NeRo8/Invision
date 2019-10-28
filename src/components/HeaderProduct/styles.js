@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
     flexDirection: 'row',
-    marginTop: 12,
+    marginTop: 20,
   },
   headerBlock: {
     backgroundColor: 'transparent',

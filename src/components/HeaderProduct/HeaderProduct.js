@@ -19,7 +19,7 @@ class HeaderProduct extends Component {
             name="chevron-left"
             type="material-community"
             color="white"
-            size={32}
+            size={40}
             onPress={() => this.props.navigation.goBack()}
           />
         </View>
@@ -31,7 +31,7 @@ class HeaderProduct extends Component {
             flex: 8,
           }}>
           <Icon
-            name="flag-outline"
+            name="flag"
             type="material-community"
             color="white"
             size={32}
@@ -39,7 +39,12 @@ class HeaderProduct extends Component {
           />
           <Icon name="share-apple" type="evilicon" color="white" size={32} />
 
-          <Icon name="heart-outline" type="material-community" color="white" />
+          <Icon
+            name="heart-outline"
+            type="material-community"
+            color="white"
+            size={32}
+          />
         </View>
       </View>
     );
