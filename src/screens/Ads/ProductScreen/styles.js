@@ -1,7 +1,23 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { colors } from '../../../constants/colors';
 
+export const { width, height } = Dimensions.get('window');
+
 export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  child: {
+    height: height * 0.4,
+    width,
+    justifyContent: 'center',
+  },
+  swiperImage: {
+    flex: 1,
+    width: null,
+    height: null,
+  },
   title: {
     fontSize: 22,
     lineHeight: 30,
@@ -10,6 +26,7 @@ export default StyleSheet.create({
     color: colors.HEADER,
     fontSize: 17,
     lineHeight: 26,
+    flex: 1,
   },
   head: {
     marginHorizontal: 15,
@@ -46,7 +63,6 @@ export default StyleSheet.create({
     lineHeight: 28,
     fontWeight: '300',
     textAlign: 'justify',
-    color: colors.TITLE,
   },
   elementContainer: {
     marginVertical: 15,
@@ -62,15 +78,14 @@ export default StyleSheet.create({
   },
   date: {
     fontSize: 12,
-    color: '#6B6F81',
     flex: 1,
+    color: colors.UNACTIVE,
   },
   coment: {
     fontSize: 15,
     lineHeight: 28,
     fontWeight: '300',
     textAlign: 'justify',
-    color: colors.TITLE,
   },
   titleRear: {
     fontSize: 15,
@@ -99,5 +114,6 @@ export default StyleSheet.create({
   },
   flatListView: {
     width: '100%',
+    marginTop: 25,
   },
 });

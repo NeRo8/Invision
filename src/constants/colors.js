@@ -16,4 +16,5 @@ export const colors = {
   ICON_GREY_COLOR: '#B9C7DA',
   LABEL_GREY_COLOR: '#74859E',
   RED_COLOR: '#FF3C3C',
+  STAR: '#FFAA44',
 };

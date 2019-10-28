@@ -6,11 +6,14 @@ import {
   ScrollView,
   FlatList,
   SafeAreaView,
+  Image,
+  StatusBar,
 } from 'react-native';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 
 import StarRating from 'react-native-star-rating';
+import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import { colors } from '../../../constants/colors';
 
@@ -51,11 +54,11 @@ const ElementFlatList = ({ item }) => (
         </View>
       </View>
       <View>
-        <Text style={[styles.date, globalStyles.gothamBook]}>{item.date}</Text>
+        <Text style={[globalStyles.gothamBook, styles.date]}>{item.date}</Text>
       </View>
     </View>
     <View style={{ marginTop: 15 }}>
-      <Text style={[styles.coment, globalStyles.gothamBook]}>
+      <Text style={[globalStyles.gothamBook, styles.coment]}>
         {item.coment}
       </Text>
     </View>
@@ -66,6 +69,24 @@ class ProductScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      productImages: [
+        {
+          id: 0,
+          productImage: require('../../../assets/images/productImages/iphone.jpg'),
+        },
+        {
+          id: 1,
+          productImage: require('../../../assets/images/productImages/iphone2.jpg'),
+        },
+        {
+          id: 2,
+          productImage: require('../../../assets/images/productImages/iphone3.jpg'),
+        },
+        {
+          id: 3,
+          productImage: require('../../../assets/images/productImages/iphone4.jpg'),
+        },
+      ],
       tags: [
         { id: 0, title: 'Privat' },
         { id: 1, title: 'New' },
@@ -101,7 +122,11 @@ class ProductScreen extends Component {
         },
       ],
       data: [
-        { id: 1, title: 1, active: true },
+        {
+          id: 1,
+          title: 1,
+          active: true,
+        },
         { id: 2, title: 2, active: false },
         { id: 3, title: 1, active: true },
         { id: 4, title: 2, active: false },
@@ -111,16 +136,30 @@ class ProductScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <View>
-          <FlatList style={{ height: 275, backgroundColor: 'red' }} />
+        <View style={styles.container}>
+          <SwiperFlatList
+            data={this.state.productImages}
+            showPagination
+            renderItem={items => (
+              <View style={styles.container}>
+                <View style={styles.child}>
+                  <Image
+                    resizeMode="cover"
+                    style={styles.swiperImage}
+                    source={items.item.productImage}
+                  />
+                </View>
+              </View>
+            )}
+          />
         </View>
         <View style={styles.head}>
-          <Text style={[styles.title, globalStyles.gothamBook]}>
+          <Text style={[globalStyles.gothamBook, styles.title]}>
             iPhone X 16Gb
           </Text>
 
           <View style={styles.properties}>
-            <Text style={[{ flex: 1 }, styles.price, globalStyles.gothamBook]}>
+            <Text style={[globalStyles.gothamBook, styles.price]}>
               10,000 KWD
             </Text>
 
@@ -134,8 +173,8 @@ class ProductScreen extends Component {
                 />
                 <Text
                   style={[
-                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     globalStyles.gothamBook,
+                    { fontSize: 15, lineHeight: 26, color: colors.UNACTIVE },
                   ]}>
                   100
                 </Text>
@@ -149,8 +188,8 @@ class ProductScreen extends Component {
                 />
                 <Text
                   style={[
-                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     globalStyles.gothamBook,
+                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                   ]}>
                   01.01.18
                 </Text>
@@ -163,7 +202,7 @@ class ProductScreen extends Component {
               style={{
                 borderBottomWidth: 0.5,
                 borderTopWidth: 0.5,
-                borderColor: colors.BORDER,
+                borderColor: '#EAEAEA',
               }}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{
@@ -186,7 +225,7 @@ class ProductScreen extends Component {
             />
           </View>
           <View>
-            <Text style={[styles.description, globalStyles.gothamBook]}>
+            <Text style={[globalStyles.gothamBook, styles.description]}>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -206,7 +245,7 @@ class ProductScreen extends Component {
                 Show more
               </Text>
             </TouchableOpacity>
-            <View style={{ marginTop: 25, backgroundColor: colors.OTHER }}>
+            <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
               <TouchableOpacity
                 style={{
                   marginHorizontal: 15,
@@ -286,14 +325,14 @@ class ProductScreen extends Component {
             />
             <Button
               title="Rear all 100 reviews"
-              titleStyle={[styles.titleRear, globalStyles.gothamBold]}
+              titleStyle={[globalStyles.gothamBold, styles.titleRear]}
               buttonStyle={styles.btnStyleRear}
               containerStyle={styles.btnContainer}
               onPress={null}
             />
             <Button
               title="Write own comment"
-              titleStyle={[styles.titleWrite, globalStyles.gothamBold]}
+              titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
               buttonStyle={styles.btnStyleWrite}
               onPress={null}
             />
@@ -327,7 +366,7 @@ class ProductScreen extends Component {
           </View>
           <Button
             title="Show more ads"
-            titleStyle={[styles.titleRear, globalStyles.gothamBold]}
+            titleStyle={[globalStyles.gothamBold, styles.titleRear]}
             buttonStyle={styles.btnStyleRear}
             containerStyle={styles.btnContainer}
             onPress={null}
