@@ -15,6 +15,7 @@ export default StyleSheet.create({
   },
   forgot: {
     fontSize: 17,
+    lineHeight: 17,
     color: colors.HEADER,
   },
   title: {

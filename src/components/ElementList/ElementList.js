@@ -24,11 +24,11 @@ const ElementList = ({ item, onPressProduct }) => (
         />
       </View>
       <View style={styles.textBlock}>
-        <Text style={[styles.title, globalStyles.gothamBold]}>
+        <Text style={[globalStyles.gothamBold, styles.title]}>
           {item.title} Pioneer handphones premium
         </Text>
-        <Text style={styles.price}>10 000 KWD</Text>
-        <Text style={styles.status}>For sale</Text>
+        <Text style={[globalStyles.gothamBook, styles.price]}>10 000 KWD</Text>
+        <Text style={[globalStyles.gothamBook, styles.status]}>For sale</Text>
       </View>
     </View>
   </TouchableOpacity>

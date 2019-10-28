@@ -5,7 +5,7 @@ import { colors } from '../../constants/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    height: 300,
+    height: 234,
     marginHorizontal: 5,
     marginVertical: 5,
     backgroundColor: 'white',
@@ -24,7 +24,6 @@ export default StyleSheet.create({
     width: null,
   },
   title: {
-    color: colors.TITLE,
     fontSize: 13,
   },
   price: {

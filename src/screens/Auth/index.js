@@ -24,7 +24,7 @@ class index extends Component {
           <View style={styles.logo}>
             <Image source={require('../../assets/icons/appIcon.png')} />
           </View>
-          <View style={{ width: '55%' }}>
+          <View style={{ width: '80%' }}>
             <Text style={styles.logoText}>
               {'For first sign in to your account'}
             </Text>

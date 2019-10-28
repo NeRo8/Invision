@@ -17,7 +17,7 @@ import globalStyles from '../constants/globalStyles';
 const styles = StyleSheet.create({
   btnCancel: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 17,
     marginHorizontal: 10,
   },
 });
@@ -27,7 +27,7 @@ const HeaderLeft = ({ onPressCancel }) => (
     onPress={() => {
       onPressCancel();
     }}>
-    <Text style={[styles.btnCancel, globalStyles.gothamBook]}>Cancel</Text>
+    <Text style={[globalStyles.gothamBook, styles.btnCancel]}>Cancel</Text>
   </TouchableOpacity>
 );
 
@@ -57,7 +57,7 @@ const AdsNavigation = createStackNavigator(
           headerTitle: 'Filters',
           headerStyle: {
             paddingTop: 20,
-            height: 70,
+            height: 64,
             backgroundColor: colors.HEADER,
           },
           headerTitleStyle: {
@@ -65,7 +65,8 @@ const AdsNavigation = createStackNavigator(
             width: '100%',
             paddingRight: 90,
             color: 'white',
-            fontWeight: 'bold',
+            fontFamily: 'Gotham-Bold',
+            fontSize: 17,
           },
           headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
         };

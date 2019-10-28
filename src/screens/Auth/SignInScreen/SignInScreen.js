@@ -19,24 +19,27 @@ class SignInScreen extends Component {
           </Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Email address*"
             />
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Password*"
               rightIcon={
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('ForgotPassword')
+                  }>
                   <Text style={[globalStyles.gothamBook, styles.forgot]}>
                     Forgot?
                   </Text>
                 </TouchableOpacity>
               }
-              rightIconContainerStyle={{ paddingTop: 25 }}
+              rightIconContainerStyle={{ paddingTop: 20 }}
             />
             <Button
               title="Sign in"

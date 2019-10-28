@@ -15,6 +15,8 @@ export default StyleSheet.create({
   headerText: {
     flex: 1,
     fontSize: 20,
+    lineHeight: 30,
+    padding: 0,
     textAlign: 'center',
     color: 'white',
   },
@@ -37,6 +39,7 @@ export default StyleSheet.create({
   selectedElementText: {
     fontFamily: globalStyles.gothamBold.fontFamily,
     color: 'white',
+    lineHeight: 30,
   },
   selectedElementActive: {
     flex: 1,
@@ -48,6 +51,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementTextActive: {
+    lineHeight: 30,
     fontFamily: globalStyles.gothamBold.fontFamily,
     color: colors.HEADER,
   },
