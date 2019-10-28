@@ -80,7 +80,8 @@ const AdsNavigation = createStackNavigator(
           gesturesEnabled: false,
           headerTitle: <HeaderAdsFilters />,
           headerStyle: {
-            height: Platform.OS === 'ios' ? 110 : 130,
+            paddingTop: 10,
+            height: Platform.OS === 'ios' ? 150 : 174,
             backgroundColor: colors.HEADER,
           },
           headerLeft: null,

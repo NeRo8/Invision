@@ -65,7 +65,7 @@ const Navigation = createBottomTabNavigator(
           routeName === 'SignIn' ||
           routeName === 'SignUp' ||
           routeName === 'ForgotPassword' ||
-          routeName === 'NewPasport'
+          routeName === 'NewPassword'
         ) {
           tabBarVisible = false;
         }

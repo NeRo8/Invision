@@ -12,7 +12,8 @@ const ElementFlatList = ({ item }) => (
       <View style={styles.elementIcon}>
         <Image
           source={item.icon}
-          style={{ width: null, height: null, flex: 1 }}></Image>
+          style={{ width: null, height: null, flex: 1 }}
+        />
       </View>
       <Text style={[styles.elementTitle, globalStyles.gothamBook]}>
         {item.title}
@@ -32,15 +33,24 @@ class CategoryScreen extends Component {
     super(props);
     this.state = {
       categoryList: [
-        { title: 'Cars', icon: require('../../assets/icons/car.png') },
-        { title: 'For Sale', icon: require('../../assets/icons/sale.png') },
-        { title: 'Services', icon: require('../../assets/icons/tool.png') },
-        { title: 'Jobs', icon: require('../../assets/icons/job.png') },
+        { id: 1, title: 'Cars', icon: require('../../assets/icons/car.png') },
         {
+          id: 2,
+          title: 'For Sale',
+          icon: require('../../assets/icons/sale.png'),
+        },
+        {
+          id: 3,
+          title: 'Services',
+          icon: require('../../assets/icons/tool.png'),
+        },
+        { id: 4, title: 'Jobs', icon: require('../../assets/icons/job.png') },
+        {
+          id: 5,
           title: 'Properties',
           icon: require('../../assets/icons/property.png'),
         },
-        { title: 'Pets', icon: require('../../assets/icons/pets.png') },
+        { id: 6, title: 'Pets', icon: require('../../assets/icons/pets.png') },
       ],
     };
   }

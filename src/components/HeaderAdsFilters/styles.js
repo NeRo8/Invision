@@ -15,11 +15,13 @@ export default StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
   },
   headerRight: {
-    marginHorizontal: 10,
+    width: 60,
+    marginRight: 10,
+    textAlign: 'right',
     color: 'white',
+    fontSize: 17,
   },
   bodyBlock: {
     flex: 1,
@@ -27,13 +29,13 @@ export default StyleSheet.create({
   },
   inputStyle: {
     marginLeft: 10,
-    fontSize: 14,
+    fontSize: 15,
   },
   inputContainer: {
-    marginTop: 5,
+    marginTop: 10,
   },
   inputContainerStl: {
-    height: 30,
+    height: 40,
     borderBottomWidth: 0,
     backgroundColor: 'rgba(255,255,255, 0.2)',
   },

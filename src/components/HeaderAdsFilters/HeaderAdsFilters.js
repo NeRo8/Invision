@@ -21,8 +21,11 @@ class HeaderAdsFilters extends Component {
             color="white"
             size={32}
             onPress={() => this.props.navigation.goBack()}
+            containerStyle={{ width: 50 }}
           />
-          <Text style={styles.headerText}>Filters</Text>
+          <Text style={[globalStyles.gothamBold, styles.headerText]}>
+            Filters
+          </Text>
           <TouchableOpacity onPress={() => {}}>
             <Text style={[globalStyles.gothamBook, styles.headerRight]}>
               Done
@@ -31,18 +34,22 @@ class HeaderAdsFilters extends Component {
         </View>
         <View style={styles.bodyBlock}>
           <Input
-            leftIcon={<Icon name="ios-search" type="ionicon" color="white" />}
+            leftIcon={
+              <Icon name="ios-search" type="ionicon" color="white" size={20} />
+            }
             placeholder="Search ad..."
             placeholderTextColor="white"
-            inputStyle={styles.inputStyle}
+            inputStyle={[globalStyles.gothamBook, styles.inputStyle]}
             inputContainerStyle={styles.inputContainerStl}
             containerStyle={styles.inputContainer}
           />
           <Input
-            leftIcon={<Icon name="ios-pin" type="ionicon" color="white" />}
+            leftIcon={
+              <Icon name="ios-pin" type="ionicon" color="white" size={20} />
+            }
             placeholder="Choose location"
             placeholderTextColor="white"
-            inputStyle={styles.inputStyle}
+            inputStyle={[globalStyles.gothamBook, styles.inputStyle]}
             inputContainerStyle={styles.inputContainerStl}
             containerStyle={styles.inputContainer}
           />
