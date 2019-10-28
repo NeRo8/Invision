@@ -1,21 +1,23 @@
-package com.invision;
+package com.masaha;
 
+import android.content.Intent;
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
-import org.devio.rn.splashscreen.SplashScreen; // import this
-import android.os.Bundle; // import this
 
-public class MainActivity extends ReactActivity {
+public class SplashActivity extends ReactActivity {
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
    */
-   @Override
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
-    SplashScreen.show(this);  // here
     super.onCreate(savedInstanceState);
-  }
 
+    Intent intent = new Intent(this, MainActivity.class);
+    startActivity(intent);
+    finish();
+  }
 
   @Override
   protected String getMainComponentName() {
