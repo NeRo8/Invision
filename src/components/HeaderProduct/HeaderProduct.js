@@ -23,7 +23,13 @@ class HeaderProduct extends Component {
             onPress={() => this.props.navigation.goBack()}
           />
         </View>
-        <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            flex: 8,
+          }}>
           <Icon
             name="flag-outline"
             type="material-community"
@@ -31,6 +37,8 @@ class HeaderProduct extends Component {
             size={32}
             onPress={() => this.props.navigation.goBack()}
           />
+          <Icon name="share-apple" type="evilicon" color="white" size={32} />
+
           <Icon name="heart-outline" type="material-community" color="white" />
         </View>
       </View>
