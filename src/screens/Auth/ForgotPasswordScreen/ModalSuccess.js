@@ -51,6 +51,7 @@ const ModalSuccess = ({ show, onPressSubmit }) => (
               marginTop: 15,
               lineHeight: 24,
               textAlign: 'center',
+              color: '#2C3440',
             },
           ]}>
           We’ve sent you access for access on your email - kris@gmail.com.
@@ -62,9 +63,8 @@ const ModalSuccess = ({ show, onPressSubmit }) => (
             globalStyles.gothamBold,
             { fontSize: 15, color: 'white' },
           ]}
-          buttonStyle={{ height: 55 }}
-          containerStyle={{ backgroundColor: 'red' }}
-          onPress={() => onPressSubmit()}
+          buttonStyle={{ height: 55, backgroundColor: colors.HEADER }}
+          onPress={() => onPressSubmit(false)}
         />
       </View>
     </View>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(127,127,127,0.5)',
+    backgroundColor: 'rgba(127,127,127,0.8)',
   },
 });
 

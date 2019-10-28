@@ -1,70 +1,64 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, KeyboardAvoidingView } from 'react-native';
-import { Button, Input } from 'react-native-elements';
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  Platform,
+} from 'react-native';
+import { Input, Button } from 'react-native-elements';
 
 import globalStyles from '../../../constants/globalStyles';
-
-import ModalSuccess from './ModalSuccess';
-
 import styles from './styles';
 
-class ForgotPasswordScreen extends Component {
+class NewPasswordScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: false,
-    };
+    this.state = {};
   }
-
-  handlePressShowModal = show => {
-    if (show) {
-      this.setState({
-        showModal: show,
-      });
-    } else {
-      this.setState({
-        showModal: show,
-      });
-      this.props.navigation.navigate('NewPassword');
-    }
-  };
-
   render() {
     return (
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+      <KeyboardAvoidingView
+        behavior="padding"
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}>
         <SafeAreaView style={styles.container}>
           <View style={styles.containerForm}>
             <Text style={[globalStyles.gothamBook, { fontSize: 24 }]}>
-              Forgot Password?
+              Change your password
             </Text>
             <Text style={[globalStyles.gothamBook, styles.fontHint]}>
-              Enter your email and we will send you access
+              Enter youre new password and confirm it
             </Text>
             <Input
-              label="Email*"
+              secureTextEntry
+              label="New password*"
+              labelStyle={[globalStyles.gothamBook, styles.labelInput]}
+              inputStyle={[globalStyles.gothamBook, { fontSize: 17 }]}
+              containerStyle={styles.containerInput}
+            />
+            <Input
+              secureTextEntry
+              label="Repeat new password*"
               labelStyle={[globalStyles.gothamBook, styles.labelInput]}
               inputStyle={[globalStyles.gothamBook, { fontSize: 17 }]}
               containerStyle={styles.containerInput}
             />
             <Button
-              title="Send password"
+              title="Change password"
               titleStyle={[
                 globalStyles.gothamBold,
                 { fontSize: 15, color: 'white' },
               ]}
               buttonStyle={styles.btnStyles}
               containerStyle={{ marginTop: 35 }}
-              onPress={() => this.handlePressShowModal(true)}
+              onPress={() => this.props.navigation.navigate('SignIn')}
             />
           </View>
-          <ModalSuccess
-            show={this.state.showModal}
-            onPressSubmit={this.handlePressShowModal}
-          />
         </SafeAreaView>
       </KeyboardAvoidingView>
     );
   }
 }
 
-export default ForgotPasswordScreen;
+export default NewPasswordScreen;

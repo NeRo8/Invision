@@ -19,8 +19,4 @@ public class SplashActivity extends ReactActivity {
     finish();
   }
 
-  @Override
-  protected String getMainComponentName() {
-    return "Invision";
-  }
 }

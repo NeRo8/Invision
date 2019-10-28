@@ -16,8 +16,9 @@ export default StyleSheet.create({
     color: '#626773',
   },
   labelInput: {
-    fontSize: 17,
+    fontSize: 13,
     fontWeight: '100',
+    color: '#74859E',
   },
   containerInput: {
     paddingHorizontal: 0,
