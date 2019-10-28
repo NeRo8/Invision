@@ -88,6 +88,12 @@ const AdsNavigation = createStackNavigator(
     },
     ProductDetail: {
       screen: ProductScreen,
+      navigationOptions: {
+        headerStyle: {
+          backgroundColor: 'transparent',
+        },
+        headerTransparent: true,
+      },
     },
   },
   {
