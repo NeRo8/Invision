@@ -15,6 +15,7 @@ const RightButton = () => (
         fontSize: 17,
         marginRight: 10,
         fontFamily: globalStyles.gothamBook.fontFamily,
+        paddingBottom: 5,
       }}>
       Clear all
     </Text>
@@ -29,12 +30,12 @@ const FavoriteNavigation = createStackNavigator({
       headerTitleStyle: {
         fontSize: 17,
         fontFamily: globalStyles.gothamBold.fontFamily,
+        lineHeight: 24,
         color: 'white',
         width: '100%',
         textAlign: 'center',
       },
       headerStyle: {
-        paddingTop: 15,
         backgroundColor: colors.HEADER,
       },
       headerRight: <RightButton />,

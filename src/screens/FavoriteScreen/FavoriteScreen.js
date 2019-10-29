@@ -10,6 +10,8 @@ import ElementList from '../../components/ElementList';
 
 import styles from './styles';
 import { colors } from '../../constants/colors';
+import ElementFlServices from './ElementFlServices';
+import ElementFlEvents from './ElementFlEvents';
 
 class FavoriteScreen extends Component {
   constructor(props) {
@@ -31,6 +33,95 @@ class FavoriteScreen extends Component {
         { id: 8, title: 2, active: true },
         { id: 9, title: 1, active: true },
         { id: 10, title: 2, active: true },
+      ],
+
+      dataOrg: [
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 3.3,
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 5.0,
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 5.0,
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 1.0,
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 2.0,
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 3.0,
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 5.0,
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element-background.jpg'),
+          title: 'Central skyscrapers',
+          rating: 5,
+        },
+      ],
+      dataEvents: [
+        {
+          id: 0,
+          image: require('../../assets/images/element.jpg'),
+          title: 'Lorem ipsum is simply dummy text',
+          date: 'Oct 11-12',
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element.jpg'),
+          title: 'Lorem ipsum is simply dummy text',
+          date: 'Oct 11-12',
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element.jpg'),
+          title: 'Lorem ipsum is simply dummy text',
+          date: 'Oct 11-12',
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element.jpg'),
+          title: 'Lorem ipsum is simply dummy text',
+          date: 'Oct 11-12',
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element.jpg'),
+          title: 'Lorem ipsum is simply dummy text',
+          date: 'Oct 11-12',
+        },
+        {
+          id: 0,
+          image: require('../../assets/images/element.jpg'),
+          title: 'Lorem ipsum is simply dummy text',
+          date: 'Oct 11-12',
+        },
       ],
     };
   }
@@ -113,15 +204,39 @@ class FavoriteScreen extends Component {
           </View>
         </View>
         <View style={styles.bodyBlock}>
-          <FlatList
-            numColumns={2}
-            data={this.state.data}
-            renderItem={({ item }) => (
-              <ElementList item={item} onPressProduct={() => {}} />
-            )}
-            contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-            keyExtractor={(item, index) => item.id}
-          />
+          {this.state.favoritesCategory.ads ? (
+            <FlatList
+              numColumns={2}
+              data={this.state.data}
+              renderItem={({ item }) => (
+                <ElementList item={item} onPressProduct={() => {}} />
+              )}
+              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+              keyExtractor={(item, index) => item.id}
+            />
+          ) : null}
+          {this.state.favoritesCategory.services ? (
+            <FlatList
+              numColumns={2}
+              data={this.state.dataOrg}
+              renderItem={({ item }) => (
+                <ElementFlServices element={item} onPressProduct={() => {}} />
+              )}
+              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+              keyExtractor={(item, index) => item.id}
+            />
+          ) : null}
+          {this.state.favoritesCategory.events ? (
+            <FlatList
+              numColumns={2}
+              data={this.state.dataEvents}
+              renderItem={({ item }) => (
+                <ElementFlEvents element={item} onPressProduct={() => {}} />
+              )}
+              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+              keyExtractor={(item, index) => item.id}
+            />
+          ) : null}
         </View>
       </View>
     );
