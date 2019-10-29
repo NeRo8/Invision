@@ -18,8 +18,9 @@ class HeaderProduct extends Component {
             containerStyle={styles.icons}
             name="chevron-left"
             type="material-community"
+            underlayColor="transparent"
             color="white"
-            size={32}
+            size={40}
             onPress={() => this.props.navigation.goBack()}
           />
         </View>

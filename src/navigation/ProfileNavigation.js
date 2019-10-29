@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 import ProfileScreen from '../screens/ProfileScreen';
 import ProfileSettings from '../screens/ProfileSettings';
@@ -33,6 +34,18 @@ const HeaderLeft = ({ onPressCancel }) => (
   </TouchableOpacity>
 );
 
+const HeaderLeftIcon = ({ onPressBack }) => (
+  <Icon
+    name={'chevron-left'}
+    size={38}
+    color="white"
+    underlayColor="transparent"
+    onPress={() => {
+      onPressBack();
+    }}
+  />
+);
+
 const ProfileNavigation = createStackNavigator({
   Home: {
     screen: ProfileScreen,
@@ -51,7 +64,7 @@ const ProfileNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
         },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
       };
     },
   },
@@ -66,7 +79,7 @@ const ProfileNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
         },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
       };
     },
   },
@@ -81,7 +94,7 @@ const ProfileNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
         },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
       };
     },
   },
@@ -96,7 +109,7 @@ const ProfileNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
         },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
       };
     },
   },
@@ -111,7 +124,7 @@ const ProfileNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
         },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
       };
     },
   },
@@ -126,7 +139,7 @@ const ProfileNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
         },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
       };
     },
   },
@@ -141,7 +154,7 @@ const ProfileNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
         },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
       };
     },
   },

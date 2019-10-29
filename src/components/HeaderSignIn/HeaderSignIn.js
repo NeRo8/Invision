@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Input, Icon, Button } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
@@ -24,7 +24,7 @@ class HeaderAdsFilters extends Component {
             size={32}
             onPress={() => this.props.navigation.goBack()}
           />
-          <Text style={[styles.headerText, globalStyles.gothamBold]}>
+          <Text style={[globalStyles.gothamBold, styles.headerText]}>
             Add ad
           </Text>
         </View>

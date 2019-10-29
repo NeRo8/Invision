@@ -5,6 +5,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 
 import styles from './styles';
@@ -17,7 +18,7 @@ class InKuwaitScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <StatusBar barStyle={'light-content'} translucent />
         <Text style={styles.headerTitle}>CHOOSE ONE OF CATEGORY</Text>
         <View style={{ flex: 1, justifyContent: 'space-around' }}>
@@ -73,7 +74,7 @@ class InKuwaitScreen extends Component {
             </ImageBackground>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

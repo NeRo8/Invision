@@ -5,7 +5,7 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  StatusBar,
+  Image,
 } from 'react-native';
 import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
@@ -13,6 +13,7 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { colors } from '../../constants/colors';
 import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
+import { FlatList } from 'react-native-gesture-handler';
 
 class FiltersScreen extends Component {
   constructor(props) {
@@ -24,16 +25,36 @@ class FiltersScreen extends Component {
       multiSliderValue: [0, 400000],
 
       typeOfAd: {
-        private: false,
+        private: true,
         buisnes: false,
         all: false,
       },
 
       stateOfProduct: {
         newProduct: false,
-        bA: false,
+        bA: true,
         all: false,
       },
+      categoryList: [
+        { id: 1, title: 'CARS', icon: require('../../assets/icons/car.png') },
+        {
+          id: 2,
+          title: 'FOR SALE',
+          icon: require('../../assets/icons/sale.png'),
+        },
+        {
+          id: 3,
+          title: 'SERVICES',
+          icon: require('../../assets/icons/tool.png'),
+        },
+        { id: 4, title: 'Jobs', icon: require('../../assets/icons/job.png') },
+        {
+          id: 5,
+          title: 'PROPERTIES',
+          icon: require('../../assets/icons/property.png'),
+        },
+        { id: 6, title: 'PETS', icon: require('../../assets/icons/pets.png') },
+      ],
     };
   }
 
@@ -189,6 +210,7 @@ class FiltersScreen extends Component {
                   placeholder="0"
                   label="From"
                   labelStyle={styles.labelInput}
+                  inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
                 />
@@ -197,6 +219,7 @@ class FiltersScreen extends Component {
                   placeholder="0"
                   label="To"
                   labelStyle={styles.labelInput}
+                  inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
                 />
@@ -207,23 +230,13 @@ class FiltersScreen extends Component {
                   max={max}
                   values={multiSliderValue}
                   sliderLength={Dimensions.get('window').width - 20}
-                  markerStyle={{
-                    marginTop: 14,
-                    borderRadius: 0,
-                    borderWidth: 1,
-                    borderColor: '#E4E5EC',
-                    height: 20,
-                    width: 20,
-                    backgroundColor: 'white',
-                  }}
+                  markerStyle={styles.markerStyle}
+                  pressedMarkerStyle={styles.markerStyle}
                   containerStyle={{ flex: 1 }}
                   onValuesChange={this.onMultiSliderValueChange}
                   onValuesChangeStart={this.disableScroll}
                   onValuesChangeFinish={this.enableScroll}
-                  unselectedStyle={{
-                    backgroundColor: 'rgba(35, 107, 230, 0.2)',
-                    height: 14,
-                  }}
+                  unselectedStyle={styles.unselectedStyle}
                   selectedStyle={{ backgroundColor: colors.HEADER, height: 14 }}
                 />
                 <View
@@ -231,8 +244,12 @@ class FiltersScreen extends Component {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                   }}>
-                  <Text>{this.state.multiSliderValue[0]}</Text>
-                  <Text>{this.state.multiSliderValue[1]}</Text>
+                  <Text style={styles.textElement}>
+                    {this.state.multiSliderValue[0]}
+                  </Text>
+                  <Text style={styles.textElement}>
+                    {this.state.multiSliderValue[1]}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -241,19 +258,22 @@ class FiltersScreen extends Component {
             <Text style={[globalStyles.gothamBold, styles.textBlock]}>
               CHOOSE CATEGORY
             </Text>
-            <ScrollView
+            <FlatList
               horizontal
               contentContainerStyle={styles.blockPrice}
-              showsHorizontalScrollIndicator={false}>
-              <View style={styles.categoryElement} />
-              <View style={styles.categoryElement} />
-              <View style={styles.categoryElement} />
-              <View style={styles.categoryElement} />
-              <View style={styles.categoryElement} />
-              <View style={styles.categoryElement} />
-              <View style={styles.categoryElement} />
-              <View style={styles.categoryElement} />
-            </ScrollView>
+              showsHorizontalScrollIndicator={false}
+              data={this.state.categoryList}
+              renderItem={items => (
+                <View style={styles.categoryElement}>
+                  <Image
+                    source={items.item.icon}
+                    style={{ width: 30, height: 30 }}
+                  />
+                  <Text style={styles.titleCategory}>{items.item.title}</Text>
+                </View>
+              )}
+              keyExtractor={items => items.id}
+            />
           </View>
         </View>
       </ScrollView>

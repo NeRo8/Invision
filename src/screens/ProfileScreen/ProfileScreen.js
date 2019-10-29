@@ -5,10 +5,12 @@ import {
   TouchableOpacity,
   FlatList,
   ImageBackground,
+  ScrollView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
 
+import globalStyles from '../../constants/globalStyles';
 import { colors } from '../../constants/colors';
 
 import styles from './styles';
@@ -19,17 +21,58 @@ const ElementFL = ({ item, showOption }) => (
     style={styles.elementContainer}
     source={require('../../assets/images/background-phone.jpg')}>
     <View style={styles.container}>
-      <View style={styles.elementBody}>
-        <Text style={styles.fontInsideImage}>
-          Whole every miles as tiled at seven or. Wished he entire esteem mr oh
-          by.
-        </Text>
-        <Icon
-          name="dots-vertical"
-          type="material-community"
-          containerStyle={styles.iconDots}
-          onPress={() => showOption(true)}
-        />
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View
+          style={{
+            marginLeft: 40,
+            flex: 1,
+            paddingTop: 25,
+          }}>
+          <Text
+            style={[globalStyles.gothamMediumRegular, styles.fontDescription]}>
+            Whole every miles as tiled at seven or. Wished he entire esteem mr
+            oh by.
+          </Text>
+        </View>
+        <View
+          style={{
+            marginRight: 25,
+            marginTop: 36,
+            marginLeft: 25,
+          }}>
+          <Icon
+            name="dots-vertical"
+            type="material-community"
+            containerStyle={styles.iconDots}
+            onPress={() => showOption(true)}
+          />
+        </View>
+      </View>
+      <View
+        style={{
+          backgroundColor: 'white',
+          width: '100%',
+          height: 44,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-around',
+        }}>
+        <Text style={[globalStyles.gothamBook]}>$150</Text>
+        <Text style={[globalStyles.gothamBook]}>01.03.05</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text style={[globalStyles.gothamBook]}>10</Text>
+          <Icon
+            name="ios-mail"
+            type="ionicon"
+            color="silver"
+            containerStyle={{ marginLeft: 5 }}
+          />
+        </View>
       </View>
     </View>
   </ImageBackground>
@@ -105,7 +148,7 @@ class ProfileScreen extends Component {
     const { active, inactive } = this.state;
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <LinearGradient
           colors={['rgb(45,118,233)', 'rgb(97,193,248)']}
           start={{ x: 0.0, y: 1 }}
@@ -135,6 +178,7 @@ class ProfileScreen extends Component {
                   name="pencil-outline"
                   type="material-community"
                   color="white"
+                  size={20}
                   containerStyle={styles.iconHeaderProfile}
                 />
               </View>
@@ -151,15 +195,26 @@ class ProfileScreen extends Component {
                   />
                 </View>
                 <View style={styles.containerTextIcon}>
-                  <Text style={styles.fontInsideImage}>5</Text>
+                  <Text
+                    style={[
+                      globalStyles.gothamMediumRegular,
+                      styles.fontInsideImage,
+                    ]}>
+                    5
+                  </Text>
                 </View>
               </View>
+            </View>
+            <View>
+              <Text style={[globalStyles.gothamBold, styles.headerTitleText]}>
+                Lucas Blar
+              </Text>
             </View>
           </View>
         </LinearGradient>
         <Button
           title="Settings"
-          titleStyle={styles.btnSettingTitle}
+          titleStyle={[globalStyles.gothamBold, styles.btnSettingsTitle]}
           buttonStyle={styles.btnStyle}
           onPress={() => this.props.navigation.navigate('ProfileSettings')}
         />
@@ -171,7 +226,9 @@ class ProfileScreen extends Component {
               color={colors.HEADER}
               containerStyle={{ marginHorizontal: 20 }}
             />
-            <Text>danny@gmail.com</Text>
+            <Text style={[globalStyles.gothamBook, { fontSize: 15 }]}>
+              danny@gmail.com
+            </Text>
           </View>
           <View style={styles.infoElement}>
             <Icon
@@ -180,7 +237,9 @@ class ProfileScreen extends Component {
               color={colors.HEADER}
               containerStyle={{ marginHorizontal: 20 }}
             />
-            <Text>498-848-7534</Text>
+            <Text style={[globalStyles.gothamBook, { fontSize: 15 }]}>
+              498-848-7534
+            </Text>
           </View>
           <View style={styles.infoElement}>
             <Icon
@@ -189,11 +248,15 @@ class ProfileScreen extends Component {
               color={colors.HEADER}
               containerStyle={{ marginHorizontal: 20 }}
             />
-            <Text>Kuwait</Text>
+            <Text style={[globalStyles.gothamBook, { fontSize: 15 }]}>
+              Kuwait
+            </Text>
           </View>
         </View>
         <View style={styles.blockBody}>
-          <Text style={styles.headerText}>MY ADS</Text>
+          <Text style={[globalStyles.gothamBold, styles.headerText]}>
+            MY ADS
+          </Text>
 
           <View style={styles.selectedContainer}>
             <TouchableOpacity
@@ -204,8 +267,11 @@ class ProfileScreen extends Component {
               <Text
                 style={
                   active
-                    ? styles.selectedTextElementActive
-                    : styles.selectedTextElement
+                    ? [
+                        globalStyles.gothamBold,
+                        styles.selectedTextElementActive,
+                      ]
+                    : [globalStyles.gothamBook, styles.selectedTextElement]
                 }>
                 Active
               </Text>
@@ -218,8 +284,11 @@ class ProfileScreen extends Component {
               <Text
                 style={
                   inactive
-                    ? styles.selectedTextElementActive
-                    : styles.selectedTextElement
+                    ? [
+                        globalStyles.gothamBold,
+                        styles.selectedTextElementActive,
+                      ]
+                    : [globalStyles.gothamBook, styles.selectedTextElement]
                 }>
                 Inactive
               </Text>
@@ -238,7 +307,7 @@ class ProfileScreen extends Component {
             showOption={this.showOption}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -56,16 +56,31 @@ const Navigation = createBottomTabNavigator(
     },
     Auth: {
       screen: AuthNavigation,
-      navigationOptions: {
-        title: 'Add ad',
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (
-          <Icon
-            name="ios-add-circle"
-            type="ionicon"
-            color={tintColor}
-            size={28}
-          />
-        ),
+      navigationOptions: ({ navigation }) => {
+        //title: 'Ads',
+        let tabBarVisible = true;
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+        if (
+          routeName === 'SignIn' ||
+          routeName === 'SignUp' ||
+          routeName === 'ForgotPassword' ||
+          routeName === 'NewPassword'
+        ) {
+          tabBarVisible = false;
+        }
+        return {
+          tabBarVisible,
+          title: 'Add ad',
+          tabBarIcon: ({ focused, horizontal, tintColor }) => (
+            <Icon
+              name="ios-add-circle"
+              type="ionicon"
+              color={tintColor}
+              size={28}
+            />
+          ),
+        };
       },
     },
     Favorite: {

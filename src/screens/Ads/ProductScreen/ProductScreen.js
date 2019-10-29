@@ -339,7 +339,7 @@ class ProductScreen extends Component {
               title="Write own comment"
               titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
               buttonStyle={styles.btnStyleWrite}
-              onPress={this.handlePressWriteOwnComment}
+              onPress={() => this.props.navigation.navigate('CreateComment')}
             />
           </View>
           <View>

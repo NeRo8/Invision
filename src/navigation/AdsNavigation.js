@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -11,15 +12,15 @@ import HeaderProduct from '../components/HeaderProduct';
 
 import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
-import ProductWriteMessage from '../screens/Ads/ProductWriteMessage';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
+import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 
 const styles = StyleSheet.create({
   btnCancel: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 17,
     marginHorizontal: 10,
   },
 });
@@ -29,7 +30,7 @@ const HeaderLeft = ({ onPressCancel }) => (
     onPress={() => {
       onPressCancel();
     }}>
-    <Text style={[styles.btnCancel, globalStyles.gothamBook]}>Cancel</Text>
+    <Text style={[globalStyles.gothamBook, styles.btnCancel]}>Cancel</Text>
   </TouchableOpacity>
 );
 
@@ -59,7 +60,7 @@ const AdsNavigation = createStackNavigator(
           headerTitle: 'Filters',
           headerStyle: {
             paddingTop: 20,
-            height: 70,
+            height: 64,
             backgroundColor: colors.HEADER,
           },
           headerTitleStyle: {
@@ -67,7 +68,8 @@ const AdsNavigation = createStackNavigator(
             width: '100%',
             paddingRight: 90,
             color: 'white',
-            fontWeight: 'bold',
+            fontFamily: 'Gotham-Bold',
+            fontSize: 17,
           },
           headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
         };
@@ -80,7 +82,8 @@ const AdsNavigation = createStackNavigator(
           gesturesEnabled: false,
           headerTitle: <HeaderAdsFilters />,
           headerStyle: {
-            height: Platform.OS === 'ios' ? 110 : 130,
+            paddingTop: 10,
+            height: Platform.OS === 'ios' ? 150 : 174,
             backgroundColor: colors.HEADER,
           },
           headerLeft: null,
@@ -99,22 +102,33 @@ const AdsNavigation = createStackNavigator(
         },
       },
     },
-    ProductWriteMessage: {
-      screen: ProductWriteMessage,
-      navigationOptions: {
-        headerTitle: 'Write comment',
-        headerTitleStyle: [globalStyles.gothamBold, { color: 'white' }],
-
-        headerStyle: {
-          height: 64,
-          backgroundColor: colors.HEADER,
-        },
-        headerTitleContainerStyle: {
-          marginTop: 10,
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        headerLeftContainerStyle: { marginTop: 10 },
+    CreateComment: {
+      screen: CreateCommentScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Write comment',
+          headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: 'Gotham-Bold',
+            color: 'white',
+            paddingTop: 15,
+            width: '100%',
+            paddingRight: 60,
+          },
+          headerLeft: (
+            <Icon
+              name="chevron-left"
+              type="material-community"
+              size={32}
+              color="white"
+              containerStyle={{
+                paddingTop: 15,
+                width: 50,
+              }}
+              onPress={() => navigation.goBack()}
+            />
+          ),
+        };
       },
     },
   },

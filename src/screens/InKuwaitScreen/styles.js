@@ -18,7 +18,7 @@ export default StyleSheet.create({
 
     width: '100%',
     height: 130,
-    marginVertical: 15,
+    marginVertical: 5,
   },
   element: {
     flex: 1,
@@ -32,9 +32,9 @@ export default StyleSheet.create({
     fontSize: 17,
   },
   roundView: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 75,
+    height: 75,
+    borderRadius: 35,
     borderWidth: 1,
     borderColor: 'silver',
     alignItems: 'center',
@@ -43,5 +43,6 @@ export default StyleSheet.create({
   roundText: {
     fontFamily: globalStyles.gothamBold.fontFamily,
     color: colors.HEADER,
+    fontSize: 13,
   },
 });

@@ -14,33 +14,36 @@ class SignInScreen extends Component {
     return (
       <ScrollView>
         <View>
-          <Text style={[styles.SignInText, globalStyles.gothamBook]}>
+          <Text style={[globalStyles.gothamBook, styles.SignInText]}>
             Sign in
           </Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Email address*"
             />
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Password*"
               rightIcon={
-                <TouchableOpacity>
-                  <Text style={[styles.forgot, globalStyles.gothamBook]}>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('ForgotPassword')
+                  }>
+                  <Text style={[globalStyles.gothamBook, styles.forgot]}>
                     Forgot?
                   </Text>
                 </TouchableOpacity>
               }
-              rightIconContainerStyle={{ paddingTop: 25 }}
+              rightIconContainerStyle={{ paddingTop: 20 }}
             />
             <Button
               title="Sign in"
-              titleStyle={[styles.title, globalStyles.gothamBold]}
+              titleStyle={[globalStyles.gothamBold, styles.title]}
               buttonStyle={[
                 styles.btnSignIn,
                 { backgroundColor: colors.HEADER_BUTTON },
@@ -49,7 +52,7 @@ class SignInScreen extends Component {
             />
           </View>
           <View style={styles.bottomView}>
-            <Text style={[styles.OrUseText, globalStyles.gothamBook]}>
+            <Text style={[globalStyles.gothamBook, styles.OrUseText]}>
               Or use Sign in use social networks
             </Text>
             {/* <Icon

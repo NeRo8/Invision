@@ -19,53 +19,80 @@ class SignUpScreen extends Component {
           </Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="First & Last name"
             />
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Email"
             />
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Phone number"
             />
             <Input
-              inputStyle={[styles.Input, globalStyles.gothamBook]}
+              inputStyle={[globalStyles.gothamBook, styles.Input]}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Password"
             />
             <Button
               title="Sign up"
-              titleStyle={[styles.title, globalStyles.gothamBold]}
+              titleStyle={[globalStyles.gothamBold, styles.title]}
               buttonStyle={[
                 styles.btnSignUp,
                 { backgroundColor: colors.HEADER_BUTTON },
               ]}
               containerStyle={styles.btnContainer}
             />
-            <CheckBox
-              title="By Signing up you agree to our Terms of Service & Privacy Policy."
-              textStyle={globalStyles.gothamBook}
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
-              checked={this.state.checked}
-              containerStyle={{
-                paddingHorizontal: 30,
-                borderWidth: 0,
-                backgroundColor: 'transparent',
-              }}
-            />
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginHorizontal: 30,
+              }}>
+              <CheckBox
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                checked={this.state.checked}
+                containerStyle={{
+                  paddingHorizontal: 0,
+                  marginHorizontal: 0,
+                  borderWidth: 0,
+                  backgroundColor: 'transparent',
+                }}
+              />
+              <Text style={[globalStyles.gothamBook, styles.textOfTerms]}>
+                By Signing up you agree to our {'\n'}
+                <Text
+                  style={[
+                    globalStyles.gothamBook,
+                    styles.textOfTerms,
+                    { color: colors.HEADER },
+                  ]}>
+                  Terms of Service
+                </Text>{' '}
+                &{' '}
+                <Text
+                  style={[
+                    globalStyles.gothamBook,
+                    styles.textOfTerms,
+                    { color: colors.HEADER },
+                  ]}>
+                  Privacy Policy
+                </Text>
+                .
+              </Text>
+            </View>
           </View>
           <View style={styles.bottomView}>
-            <Text style={[styles.OrUseText, globalStyles.gothamBook]}>
+            <Text style={[globalStyles.gothamBook, styles.OrUseText]}>
               Or use Sign in use social networks
             </Text>
             <View style={styles.btnSocialView}>

@@ -36,8 +36,8 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   btnTitleStyle: {
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize: 13,
+    color: 'white',
   },
   btnStyle: {
     backgroundColor: colors.HEADER_BUTTON,

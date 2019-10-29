@@ -27,10 +27,14 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  textUnactive: {},
+  textUnactive: {
+    fontFamily: 'Gotham-Book',
+    fontSize: 14,
+  },
   textActive: {
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: 'Gotham-Bold',
+    fontSize: 14,
   },
   bodyBlock: {
     flex: 1,

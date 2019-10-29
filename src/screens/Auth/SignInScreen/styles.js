@@ -15,17 +15,15 @@ export default StyleSheet.create({
   },
   forgot: {
     fontSize: 17,
+    lineHeight: 17,
     color: colors.HEADER,
   },
   title: {
     fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    color: 'white',
   },
   OrUseText: {
     fontSize: 14,
-    fontWeight: '300',
-    lineHeight: 24,
     textAlign: 'center',
   },
   btnSignIn: {

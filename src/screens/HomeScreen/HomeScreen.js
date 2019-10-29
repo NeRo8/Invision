@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, StatusBar, SafeAreaView } from 'react-native';
 import ElementList from '../../components/ElementList';
+import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
 
@@ -27,6 +28,10 @@ class HomeScreen extends Component {
         { id: 14, title: 2, active: false },
       ],
     };
+  }
+
+  componentDidMount() {
+    SplashScreen.hide();
   }
 
   showProductDetail = () => {
