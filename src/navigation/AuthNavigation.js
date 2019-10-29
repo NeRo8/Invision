@@ -41,7 +41,7 @@ const AuthNavigation = createStackNavigator(
         return {
           headerTitle: <HeaderSignIn activeScreen={true} />,
           headerStyle: {
-            height: 100,
+            height: 80,
             backgroundColor: colors.HEADER,
           },
           headerLeft: null,
@@ -54,7 +54,7 @@ const AuthNavigation = createStackNavigator(
       navigationOptions: {
         headerTitle: <HeaderSignIn activeScreen={false} />,
         headerStyle: {
-          height: 100,
+          height: 80,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
@@ -71,8 +71,6 @@ const AuthNavigation = createStackNavigator(
             color: 'white',
           },
           headerStyle: {
-            paddingTop: 15,
-            height: 65,
             backgroundColor: colors.HEADER,
           },
           headerLeft: <HeaderLeft onBack={navigation.goBack} />,
@@ -94,7 +92,6 @@ const AuthNavigation = createStackNavigator(
         headerStyle: {
           paddingTop: 15,
           backgroundColor: colors.HEADER,
-          height: 64,
         },
         headerLeft: null,
       },
