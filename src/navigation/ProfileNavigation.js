@@ -60,6 +60,9 @@ const ProfileNavigation = createStackNavigator({
         headerTitle: 'Settings',
         headerTitleStyle: {
           color: 'white',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
         },
         headerStyle: {
           backgroundColor: colors.HEADER,
@@ -75,6 +78,9 @@ const ProfileNavigation = createStackNavigator({
         headerTitle: 'Change password',
         headerTitleStyle: {
           color: 'white',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
         },
         headerStyle: {
           backgroundColor: colors.HEADER,
@@ -90,6 +96,9 @@ const ProfileNavigation = createStackNavigator({
         headerTitle: 'Personal informaion',
         headerTitleStyle: {
           color: 'white',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
         },
         headerStyle: {
           backgroundColor: colors.HEADER,
@@ -105,6 +114,9 @@ const ProfileNavigation = createStackNavigator({
         headerTitle: 'Privacy Policy',
         headerTitleStyle: {
           color: 'white',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
         },
         headerStyle: {
           backgroundColor: colors.HEADER,
@@ -120,6 +132,9 @@ const ProfileNavigation = createStackNavigator({
         headerTitle: 'Terms of Use',
         headerTitleStyle: {
           color: 'white',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
         },
         headerStyle: {
           backgroundColor: colors.HEADER,
@@ -135,6 +150,9 @@ const ProfileNavigation = createStackNavigator({
         headerTitle: 'Payment history',
         headerTitleStyle: {
           color: 'white',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
         },
         headerStyle: {
           backgroundColor: colors.HEADER,
@@ -150,6 +168,9 @@ const ProfileNavigation = createStackNavigator({
         headerTitle: 'Notifications',
         headerTitleStyle: {
           color: 'white',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
         },
         headerStyle: {
           backgroundColor: colors.HEADER,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import FavoriteScreen from '../screens/FavoriteScreen';
@@ -7,18 +7,19 @@ import FavoriteScreen from '../screens/FavoriteScreen';
 import globalStyles from '../constants/globalStyles';
 import { colors } from '../constants/colors';
 
+const styles = StyleSheet.create({
+  clearAllButton: {
+    color: 'white',
+    fontSize: 17,
+    marginRight: 10,
+    fontFamily: globalStyles.gothamBook.fontFamily,
+    paddingBottom: 5,
+  },
+});
+
 const RightButton = () => (
   <TouchableOpacity>
-    <Text
-      style={{
-        color: 'white',
-        fontSize: 17,
-        marginRight: 10,
-        fontFamily: globalStyles.gothamBook.fontFamily,
-        paddingBottom: 5,
-      }}>
-      Clear all
-    </Text>
+    <Text style={styles.clearAllButton}>Clear all</Text>
   </TouchableOpacity>
 );
 
