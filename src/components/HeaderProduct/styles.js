@@ -4,10 +4,12 @@ export default StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
     flexDirection: 'row',
-    marginTop: 12,
+    marginTop: 32,
+    justifyContent: 'space-between',
+    width: '100%',
   },
-  headerBlock: {
-    backgroundColor: 'transparent',
-    flex: 1,
+  headerBlock: {},
+  icons: {
+    paddingHorizontal: 12,
   },
 });

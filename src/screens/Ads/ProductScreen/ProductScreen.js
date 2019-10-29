@@ -133,6 +133,11 @@ class ProductScreen extends Component {
       ],
     };
   }
+
+  handlePressWriteOwnComment = () => {
+    this.props.navigation.navigate('ProductWriteMessage');
+  };
+
   render() {
     return (
       <ScrollView>
@@ -334,7 +339,7 @@ class ProductScreen extends Component {
               title="Write own comment"
               titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
               buttonStyle={styles.btnStyleWrite}
-              onPress={null}
+              onPress={this.handlePressWriteOwnComment}
             />
           </View>
           <View>

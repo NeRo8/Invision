@@ -11,6 +11,7 @@ import HeaderProduct from '../components/HeaderProduct';
 
 import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
+import ProductWriteMessage from '../screens/Ads/ProductWriteMessage';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
@@ -98,7 +99,26 @@ const AdsNavigation = createStackNavigator(
         },
       },
     },
+    ProductWriteMessage: {
+      screen: ProductWriteMessage,
+      navigationOptions: {
+        headerTitle: 'Write comment',
+        headerTitleStyle: [globalStyles.gothamBold, { color: 'white' }],
+
+        headerStyle: {
+          height: 64,
+          backgroundColor: colors.HEADER,
+        },
+        headerTitleContainerStyle: {
+          marginTop: 10,
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        headerLeftContainerStyle: { marginTop: 10 },
+      },
+    },
   },
+
   {
     defaultNavigationOptions: {
       headerStyle: {
