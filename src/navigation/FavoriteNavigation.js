@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import FavoriteScreen from '../screens/FavoriteScreen';
 
+import globalStyles from '../constants/globalStyles';
 import { colors } from '../constants/colors';
 
 const RightButton = () => (
@@ -13,7 +14,7 @@ const RightButton = () => (
         color: 'white',
         fontSize: 17,
         marginRight: 10,
-        fontFamily: 'GothamBook',
+        fontFamily: globalStyles.gothamBook.fontFamily,
       }}>
       Clear all
     </Text>
@@ -27,7 +28,7 @@ const FavoriteNavigation = createStackNavigator({
       headerTitle: 'Favorites',
       headerTitleStyle: {
         fontSize: 17,
-        fontFamily: 'Gotham-Bold',
+        fontFamily: globalStyles.gothamBold.fontFamily,
         color: 'white',
         width: '100%',
         textAlign: 'center',

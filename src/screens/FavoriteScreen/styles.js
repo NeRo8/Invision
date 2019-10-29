@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import globalStyles from '../../constants/globalStyles';
 import { colors } from '../../constants/colors';
 
 export default StyleSheet.create({
@@ -28,12 +29,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   textUnactive: {
-    fontFamily: 'Gotham-Book',
+    fontFamily: globalStyles.gothamBook.fontFamily,
     fontSize: 14,
   },
   textActive: {
     color: 'white',
-    fontFamily: 'Gotham-Bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     fontSize: 14,
   },
   bodyBlock: {

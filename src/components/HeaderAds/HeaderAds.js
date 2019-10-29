@@ -60,6 +60,7 @@ class HeaderAds extends Component {
                 name: 'filter',
                 type: 'material-community',
                 color: 'white',
+                size: 20,
               }}
               title="Add filters"
               titleStyle={[globalStyles.gothamBold, styles.btnTitleStyle]}

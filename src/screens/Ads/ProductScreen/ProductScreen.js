@@ -355,10 +355,7 @@ class ProductScreen extends Component {
                 numColumns={2}
                 data={this.state.data}
                 renderItem={({ item }) => (
-                  <ElementList
-                    item={item}
-                    onPressProduct={this.showProductDetail}
-                  />
+                  <ElementList item={item} onPressProduct={() => {}} />
                 )}
                 keyExtractor={(item, index) => item.id}
               />
