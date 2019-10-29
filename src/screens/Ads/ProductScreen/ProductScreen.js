@@ -21,6 +21,7 @@ import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 
 import ElementList from '../../../components/ElementList/ElementList';
+import ModalShare from './ModalShare';
 
 const ElementFlatList = ({ item }) => (
   <View style={styles.elementContainer}>
@@ -131,6 +132,8 @@ class ProductScreen extends Component {
         { id: 3, title: 1, active: true },
         { id: 4, title: 2, active: false },
       ],
+
+      ModalShow: true,
     };
   }
 
@@ -437,6 +440,7 @@ class ProductScreen extends Component {
             />
           </View>
         </View>
+        <ModalShare show={this.state.ModalShow}></ModalShare>
       </ScrollView>
     );
   }

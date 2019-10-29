@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   Platform,
+  TextInput,
 } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 
@@ -38,7 +39,11 @@ class CreateCommentScreen extends Component {
             <Input
               multiline
               placeholder="Enter description of your question"
-              inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
+              inputStyle={[
+                globalStyles.gothamBook,
+                styles.inputStyles,
+                { textAlignVertical: 'top', paddingTop: 12 },
+              ]}
               inputContainerStyle={[
                 styles.inputContainerStyle,
                 { height: '100%' },

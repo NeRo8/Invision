@@ -116,4 +116,5 @@ export default StyleSheet.create({
     width: '100%',
     marginTop: 25,
   },
+  modalButton: {},
 });

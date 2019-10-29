@@ -16,6 +16,7 @@ export default StyleSheet.create({
   inputStyles: {
     height: '100%',
     fontSize: 17,
+    lineHeight: 26,
     backgroundColor: 'white',
   },
   inputContainerStyle: {
