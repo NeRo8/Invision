@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import globalStyles from '../../constants/globalStyles';
 import { colors } from '../../constants/colors';
 
 export default StyleSheet.create({
@@ -28,7 +29,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   textElement: {
-    fontFamily: 'Gotham-Book',
+    fontFamily: globalStyles.gothamBook.fontFamily,
     color: colors.TITLE,
     fontSize: 14,
   },
@@ -41,7 +42,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   textElementActive: {
-    fontFamily: 'Gotham-Bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     color: 'white',
     fontSize: 14,
   },
@@ -51,7 +52,7 @@ export default StyleSheet.create({
     backgroundColor: '#F3F5F7',
   },
   labelInput: {
-    fontFamily: 'Gotham Medium',
+    fontFamily: globalStyles.gothamMediumRegular.fontFamily,
     padding: 0,
     marginBottom: 5,
     fontSize: 12,
@@ -70,7 +71,7 @@ export default StyleSheet.create({
   },
   inputS: {
     fontSize: 14,
-    fontFamily: 'Muli Regular',
+    fontFamily: globalStyles.muliRegular.fontFamily,
   },
   markerStyle: {
     marginTop: 14,
@@ -96,7 +97,7 @@ export default StyleSheet.create({
   },
   titleCategory: {
     marginTop: 10,
-    fontFamily: 'Gotham-Bold',
+    fontFamily: globalStyles.gothamBold.fontFamily,
     fontSize: 12,
   },
 });

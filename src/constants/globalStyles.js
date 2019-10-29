@@ -14,4 +14,8 @@ export default StyleSheet.create({
     fontFamily: 'Gotham Medium',
     color: colors.TITLE,
   },
+  muliRegular: {
+    fontFamily: 'Muli-Regular',
+    color: colors.TITLE,
+  },
 });

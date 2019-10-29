@@ -116,7 +116,9 @@ class FavoriteScreen extends Component {
           <FlatList
             numColumns={2}
             data={this.state.data}
-            renderItem={({ item }) => <ElementList item={item} />}
+            renderItem={({ item }) => (
+              <ElementList item={item} onPressProduct={() => {}} />
+            )}
             contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
             keyExtractor={(item, index) => item.id}
           />
