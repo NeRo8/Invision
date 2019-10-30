@@ -149,6 +149,7 @@ class ModalShare extends Component {
               ]}
               buttonStyle={styles.buttonCancel}
               title="Cancel"
+              onPress={() => this.props.onPressClose()}
             />
           </View>
         </View>

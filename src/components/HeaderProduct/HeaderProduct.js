@@ -20,17 +20,12 @@ class HeaderProduct extends Component {
             type="material-community"
             underlayColor="transparent"
             color="white"
-            size={40}
+            size={32}
             onPress={() => this.props.navigation.goBack()}
           />
         </View>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
+        <View style={styles.rightBlock}>
           <Icon
             containerStyle={styles.icons}
             name="flag-outline"
@@ -45,7 +40,7 @@ class HeaderProduct extends Component {
             type="evilicon"
             color="white"
             size={32}
-            onPress={() => this.props.showShare(true)}
+            onPress={() => this.props.onPressShere()}
           />
           <Icon
             containerStyle={styles.icons}

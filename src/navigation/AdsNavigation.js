@@ -94,12 +94,7 @@ const AdsNavigation = createStackNavigator(
     ProductDetail: {
       screen: ProductScreen,
       navigationOptions: {
-        headerLeft: null,
-        headerTitle: <HeaderProduct />,
-        headerTransparent: true,
-        headerStyle: {
-          backgroundColor: 'transparent',
-        },
+        header: null,
       },
     },
     CreateComment: {
