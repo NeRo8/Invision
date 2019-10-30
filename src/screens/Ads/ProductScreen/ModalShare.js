@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Modal, View, Text, Image } from 'react-native';
+import { Modal, View, Text, ImageBackground } from 'react-native';
 
-import { Icon, Button } from 'react-native-elements';
+import { Icon, Button, Divider } from 'react-native-elements';
 
 import { colors } from '../../../constants/colors';
 import styles from './styles';
+import globalStyles from '../../../constants/globalStyles';
 
 class ModalShare extends Component {
   constructor(props) {
@@ -14,65 +15,141 @@ class ModalShare extends Component {
   render() {
     return (
       <Modal visible={this.props.show} transparent>
-        <View style={{ flex: 1, backgroundColor: 'rgba(245,245,245, 0.3)' }}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(0,0,0, 0.5)',
+            justifyContent: 'flex-end',
+          }}>
           <View
             style={{
-              height: '69%',
               marginHorizontal: 11,
-              justifyContent: 'space-between',
+              marginBottom: 15,
             }}>
-            <View style={{ height: '27%' }}>
-              <Image
-                style={{ height: '100%', resizeMode: 'cover' }}
-                source={require('../../../assets/images/productImages/iphone.jpg')}
-              />
-              <Text>iPhone X 16Gb</Text>
-            </View>
-            <View style={{ justifyContent: 'space-between' }}>
-              <Text>SELECT SOCIAL FOR SHARING</Text>
-              <Button
-                style={styles.modalButton}
-                title="Facebook"
-                icon={
-                  <Icon
-                    containerStyle={{
-                      borderRadius: 50,
-                      backgroundColor: colors.FACEBOOK,
-                    }}
-                    name="facebook"
-                    type="material-community"
-                    color="white"
-                  />
-                }></Button>
+            <View>
+              <View style={{ height: 178 }}>
+                <ImageBackground
+                  source={require('../../../assets/images/productImages/iphone.jpg')}
+                  style={styles.shareBackgroundImage}
+                  imageStyle={{
+                    borderTopLeftRadius: 3,
+                    borderTopRightRadius: 3,
+                  }}>
+                  <Text
+                    style={[
+                      globalStyles.gothamBook,
+                      styles.title,
+                      { color: 'white', marginBottom: 15, marginLeft: 25 },
+                    ]}>
+                    iPhone X 16Gb
+                  </Text>
+                </ImageBackground>
+              </View>
+              <View style={styles.shareSelectSocialView}>
+                <Text
+                  style={[globalStyles.gothamBold, styles.selectSocialText]}>
+                  SELECT SOCIAL FOR SHARING
+                </Text>
 
-              <Icon
-                containerStyle={{
-                  borderRadius: 50,
-                  backgroundColor: colors.TWITTER,
-                }}
-                name="twitter"
-                type="material-community"
-                color="white"
-              />
-              <Icon
-                containerStyle={{
-                  borderRadius: 50,
-                  backgroundColor: colors.INSTAGRAM,
-                }}
-                name="instagram"
-                type="material-community"
-                color="white"
-              />
-              <Icon
-                containerStyle={{
-                  borderRadius: 50,
-                  backgroundColor: colors.UNACTIVE,
-                }}
-                name="link-variant"
-                type="material-community"
-                color="white"
-              />
+                <Button
+                  titleStyle={[
+                    globalStyles.gothamBook,
+                    { color: colors.FACEBOOK, fontSize: 17, lineHeight: 27 },
+                  ]}
+                  buttonStyle={styles.modalButton}
+                  title="Facebook"
+                  icon={
+                    <Icon
+                      size={15}
+                      containerStyle={[
+                        styles.modalButtonIconContainer,
+                        { backgroundColor: colors.FACEBOOK },
+                      ]}
+                      name="facebook"
+                      type="material-community"
+                      color="white"
+                    />
+                  }
+                />
+                <Divider
+                  style={{ backgroundColor: colors.DIVIDER, height: 1 }}
+                />
+                <Button
+                  titleStyle={[
+                    globalStyles.gothamBook,
+                    { color: colors.TWITTER, fontSize: 17, lineHeight: 27 },
+                  ]}
+                  buttonStyle={styles.modalButton}
+                  title="Twitter"
+                  icon={
+                    <Icon
+                      size={15}
+                      containerStyle={[
+                        styles.modalButtonIconContainer,
+                        { backgroundColor: colors.TWITTER },
+                      ]}
+                      name="twitter"
+                      type="material-community"
+                      color="white"
+                    />
+                  }
+                />
+                <Divider
+                  style={{ backgroundColor: colors.DIVIDER, height: 1 }}
+                />
+                <Button
+                  titleStyle={[
+                    globalStyles.gothamBook,
+                    { color: colors.INSTAGRAM, fontSize: 17, lineHeight: 27 },
+                  ]}
+                  buttonStyle={styles.modalButton}
+                  title="Instagram"
+                  icon={
+                    <Icon
+                      size={15}
+                      containerStyle={[
+                        styles.modalButtonIconContainer,
+                        { backgroundColor: colors.INSTAGRAM },
+                      ]}
+                      name="instagram"
+                      type="material-community"
+                      color="white"
+                    />
+                  }
+                />
+                <Divider
+                  style={{ backgroundColor: colors.DIVIDER, height: 1 }}
+                />
+                <Button
+                  titleStyle={[
+                    globalStyles.gothamBook,
+                    { color: '#34465F', fontSize: 17, lineHeight: 27 },
+                  ]}
+                  buttonStyle={[styles.modalButton, { marginBottom: 6 }]}
+                  title="Copy link"
+                  icon={
+                    <Icon
+                      size={15}
+                      containerStyle={[
+                        styles.modalButtonIconContainer,
+                        { backgroundColor: '#34465F' },
+                      ]}
+                      name="link-variant"
+                      type="material-community"
+                      color="white"
+                    />
+                  }
+                />
+              </View>
             </View>
+            <Button
+              titleStyle={[
+                globalStyles.gothamBold,
+                { color: colors.HEADER, fontSize: 17, lineHeight: 23 },
+              ]}
+              buttonStyle={styles.buttonCancel}
+              title="Cancel"
+            />
           </View>
         </View>
       </Modal>

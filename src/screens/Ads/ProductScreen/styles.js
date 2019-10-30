@@ -116,5 +116,40 @@ export default StyleSheet.create({
     width: '100%',
     marginTop: 25,
   },
-  modalButton: {},
+  modalButton: {
+    marginHorizontal: 25,
+    justifyContent: 'flex-start',
+    backgroundColor: 'transparent',
+  },
+  buttonCancel: {
+    marginVertical: 10,
+    backgroundColor: 'white',
+  },
+  modalButtonIconContainer: {
+    borderRadius: 40,
+    height: 25,
+    width: 25,
+    justifyContent: 'center',
+    marginRight: 15,
+  },
+  selectSocialText: {
+    marginTop: 25,
+    marginHorizontal: 25,
+    fontSize: 12,
+    lineHeight: 23,
+    letterSpacing: 1,
+  },
+  shareBackgroundImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 20,
+    justifyContent: 'flex-end',
+  },
+  shareSelectSocialView: {
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    height: 282,
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 3,
+  },
 });

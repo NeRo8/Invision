@@ -17,4 +17,5 @@ export const colors = {
   LABEL_GREY_COLOR: '#74859E',
   RED_COLOR: '#FF3C3C',
   STAR: '#FFAA44',
+  DIVIDER: '#EFEFED',
 };

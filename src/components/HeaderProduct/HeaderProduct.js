@@ -45,6 +45,7 @@ class HeaderProduct extends Component {
             type="evilicon"
             color="white"
             size={32}
+            onPress={() => this.props.showShare(true)}
           />
           <Icon
             containerStyle={styles.icons}
