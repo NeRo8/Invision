@@ -14,6 +14,7 @@ import { colors } from '../../../constants/colors';
 import styles from './styles';
 
 import ElementList from '../../../components/ElementList/ElementList';
+import ComplainModal from './ComplainModal';
 
 class ProductBuyerProfile extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class ProductBuyerProfile extends Component {
         { id: 3, title: 1, active: true },
         { id: 4, title: 2, active: false },
       ],
+      ModalShow: false,
     };
   }
   render() {
@@ -124,6 +126,7 @@ class ProductBuyerProfile extends Component {
             </SafeAreaView>
           </View>
         </View>
+        <ComplainModal show={this.state.ModalShow}></ComplainModal>
       </ScrollView>
     );
   }
