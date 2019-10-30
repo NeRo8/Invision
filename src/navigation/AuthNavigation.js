@@ -9,7 +9,14 @@ import SignUpScreen from '../screens/Auth/SignUpScreen';
 import ForgotPasswordScreen from '../screens/Auth/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/Auth/NewPasswordScreen';
 
+import Step1Screen from '../screens/AddAd/PassportScreens/Step1Screen';
+import Step2Screen from '../screens/AddAd/PassportScreens/Step2Screen';
+import Step3Screen from '../screens/AddAd/PassportScreens/Step3Screen';
+import Step4Screen from '../screens/AddAd/PassportScreens/Step4Screen';
+import Step5Screen from '../screens/AddAd/PassportScreens/Step5Screen';
+
 import HeaderSignIn from '../components/HeaderSignIn/HeaderSignIn';
+import HeaderCreateAccount from '../components/HeaderCreateAccount';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
@@ -25,6 +32,31 @@ const HeaderLeft = ({ onBack }) => (
       onBack();
     }}
   />
+);
+
+const PassportNavigation = createStackNavigator(
+  {
+    StepOne: {
+      screen: Step1Screen,
+    },
+    StepTwo: {
+      screen: Step2Screen,
+    },
+    StepThree: {
+      screen: Step3Screen,
+    },
+    StepFour: {
+      screen: Step4Screen,
+    },
+    StepFive: {
+      screen: Step5Screen,
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  },
 );
 
 const AuthNavigation = createStackNavigator(
@@ -94,6 +126,48 @@ const AuthNavigation = createStackNavigator(
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
+      },
+    },
+    CreateAccount: {
+      screen: PassportNavigation,
+      navigationOptions: ({ navigation }) => {
+        let index = 1;
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+
+        switch (routeName) {
+          case 'StepOne': {
+            index = 1;
+            break;
+          }
+          case 'StepTwo': {
+            index = 2;
+            break;
+          }
+          case 'StepThree': {
+            index = 3;
+            break;
+          }
+          case 'StepFour': {
+            index = 4;
+            break;
+          }
+          case 'StepFive': {
+            index = 5;
+            break;
+          }
+          default: {
+            index = 1;
+          }
+        }
+        return {
+          headerTitle: <HeaderCreateAccount index={index} />,
+          headerLeft: null,
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+            height: 65,
+          },
+        };
       },
     },
   },

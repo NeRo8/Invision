@@ -5,17 +5,16 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from '../screens/HomeScreen';
 import FiltersScreen from '../screens/FiltersScreen';
+import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
+import ProductScreen from '../screens/Ads/ProductScreen';
+import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
 import HeaderProduct from '../components/HeaderProduct';
 
-import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
-import ProductScreen from '../screens/Ads/ProductScreen';
-
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
-import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 
 const styles = StyleSheet.create({
   btnCancel: {

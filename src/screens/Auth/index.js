@@ -45,6 +45,7 @@ class index extends Component {
             ]}
             containerStyle={styles.btnContainer}
             iconContainerStyle={{ flex: 2 }}
+            onPress={() => this.props.navigation.navigate('CreateAccount')}
           />
           <Button
             icon={{
