@@ -15,7 +15,7 @@ const ElementFlatList = ({ item }) => (
           style={{ width: null, height: null, flex: 1 }}
         />
       </View>
-      <Text style={[styles.elementTitle, globalStyles.gothamBook]}>
+      <Text style={[globalStyles.gothamBook, styles.elementTitle]}>
         {item.title}
       </Text>
       <Icon

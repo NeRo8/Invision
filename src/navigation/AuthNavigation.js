@@ -20,6 +20,8 @@ import HeaderCreateAccount from '../components/HeaderCreateAccount';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
+import ChooseCategoryScreen from '../screens/AddAd/ChooseCategoryScreen/ChooseCategoryScreen';
+import HeaderChooseCategory from '../screens/AddAd/ChooseCategoryScreen/HeaderChooseCategory';
 
 const HeaderLeft = ({ onBack }) => (
   <Icon
@@ -50,6 +52,14 @@ const PassportNavigation = createStackNavigator(
     },
     StepFive: {
       screen: Step5Screen,
+    },
+    ChooseCategory: {
+      screen: ChooseCategoryScreen,
+      navigationOptions: {
+        header: ({ navigation }) => (
+          <HeaderChooseCategory navigation={navigation} />
+        ),
+      },
     },
   },
   {
@@ -132,6 +142,7 @@ const AuthNavigation = createStackNavigator(
       screen: PassportNavigation,
       navigationOptions: ({ navigation }) => {
         let index = 1;
+        let headerVisible = null;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
 
@@ -155,6 +166,17 @@ const AuthNavigation = createStackNavigator(
           case 'StepFive': {
             index = 5;
             break;
+          }
+          case 'ChooseCategory': {
+            return {
+              headerTitle: <HeaderCreateAccount index={index} />,
+              headerLeft: null,
+              headerStyle: {
+                backgroundColor: colors.HEADER,
+                height: 65,
+              },
+              header: headerVisible,
+            };
           }
           default: {
             index = 1;
