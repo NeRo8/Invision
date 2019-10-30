@@ -14,61 +14,64 @@ class Step4Screen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[globalStyles.gothamBold, styles.headerTitle]}>
-          CONTACT DETAILS
-        </Text>
-        <View style={{ flex: 1 }}>
-          <Input
-            placeholder="Enter title of ad"
-            placeholderTextColor={colors.LABEL_GREY_COLOR}
-            inputStyle={[
-              globalStyles.gothamBook,
-              { fontSize: 17, color: colors.LABEL_GREY_COLOR },
-            ]}
-            inputContainerStyle={styles.inputContainerStyle}
-            containerStyle={styles.inputContainer}
-          />
-          <TouchableOpacity onPress={() => {}}>
-            <View style={styles.elementPicker}>
-              <Text style={[globalStyles.gothamBook, styles.elementPickerText]}>
-                Choose youre city
-              </Text>
-              <Icon
-                name="chevron-right"
-                type="material-community"
-                size={24}
-                color={'#74859E'}
-                containerStyle={{}}
-              />
-            </View>
-          </TouchableOpacity>
-          <Input
-            placeholder="Email address"
-            placeholderTextColor={colors.LABEL_GREY_COLOR}
-            inputStyle={[
-              globalStyles.gothamBook,
-              { fontSize: 17, color: colors.LABEL_GREY_COLOR },
-            ]}
-            inputContainerStyle={styles.inputContainerStyle}
-            containerStyle={styles.inputContainer}
-          />
-          <Input
-            placeholder="Contact phone number"
-            placeholderTextColor={colors.LABEL_GREY_COLOR}
-            inputStyle={[
-              globalStyles.gothamBook,
-              { fontSize: 17, color: colors.LABEL_GREY_COLOR },
-            ]}
-            inputContainerStyle={styles.inputContainerStyle}
-            containerStyle={styles.inputContainer}
-          />
+        <View style={styles.containerBlock}>
+          <Text style={[globalStyles.gothamBold, styles.headerTitle]}>
+            CONTACT DETAILS
+          </Text>
+          <View style={{ flex: 1 }}>
+            <Input
+              placeholder="Enter title of ad"
+              placeholderTextColor={colors.LABEL_GREY_COLOR}
+              inputStyle={[
+                globalStyles.gothamBook,
+                { fontSize: 17, color: colors.LABEL_GREY_COLOR },
+              ]}
+              inputContainerStyle={styles.inputContainerStyle}
+              containerStyle={styles.inputContainer}
+            />
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles.elementPicker}>
+                <Text
+                  style={[globalStyles.gothamBook, styles.elementPickerText]}>
+                  Choose youre city
+                </Text>
+                <Icon
+                  name="chevron-right"
+                  type="material-community"
+                  size={24}
+                  color={'#74859E'}
+                  containerStyle={{}}
+                />
+              </View>
+            </TouchableOpacity>
+            <Input
+              placeholder="Email address"
+              placeholderTextColor={colors.LABEL_GREY_COLOR}
+              inputStyle={[
+                globalStyles.gothamBook,
+                { fontSize: 17, color: colors.LABEL_GREY_COLOR },
+              ]}
+              inputContainerStyle={styles.inputContainerStyle}
+              containerStyle={styles.inputContainer}
+            />
+            <Input
+              placeholder="Contact phone number"
+              placeholderTextColor={colors.LABEL_GREY_COLOR}
+              inputStyle={[
+                globalStyles.gothamBook,
+                { fontSize: 17, color: colors.LABEL_GREY_COLOR },
+              ]}
+              inputContainerStyle={styles.inputContainerStyle}
+              containerStyle={styles.inputContainer}
+            />
+          </View>
         </View>
 
         <Button
           title="Continue"
           titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
           buttonStyle={styles.btnStyles}
-          onPress={() => this.props.navigation.navigate('StepTwo')}
+          onPress={() => this.props.navigation.navigate('StepFive')}
         />
       </View>
     );

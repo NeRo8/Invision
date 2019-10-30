@@ -6,6 +6,10 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgb(237, 237, 237)',
+  },
+  containerBlock: {
+    flex: 1,
+    backgroundColor: 'rgb(237, 237, 237)',
     paddingHorizontal: 15,
   },
   headerTitle: {
@@ -22,7 +26,7 @@ export default StyleSheet.create({
     paddingHorizontal: 25,
   },
   inputContainer: {
-    marginTop: 25,
+    marginTop: 15,
     paddingHorizontal: 0,
   },
   elementPicker: {
