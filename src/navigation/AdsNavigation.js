@@ -16,6 +16,7 @@ import ProductScreen from '../screens/Ads/ProductScreen';
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
+import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 
 const styles = StyleSheet.create({
   btnCancel: {
@@ -126,6 +127,50 @@ const AdsNavigation = createStackNavigator(
                 width: 50,
               }}
               onPress={() => navigation.goBack()}
+            />
+          ),
+        };
+      },
+    },
+    ProductBuyerProfile: {
+      screen: ProductBuyerProfile,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerStyle: {
+            paddingTop: 20,
+            height: 64,
+            backgroundColor: 'transparent',
+          },
+          headerTitleStyle: {
+            textAlign: 'center',
+            width: '100%',
+            paddingRight: 90,
+            color: 'white',
+            fontFamily: 'Gotham-Bold',
+            fontSize: 17,
+          },
+          headerLeft: (
+            <Icon
+              name="chevron-left"
+              type="material-community"
+              size={32}
+              color="black"
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          headerRight: (
+            <Icon
+              name="flag"
+              type="material-community"
+              size={24}
+              color={colors.DEFAULT}
+              containerStyle={{
+                width: 50,
+              }}
+              //onPress={() => navigation.goBack()}
             />
           ),
         };

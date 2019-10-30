@@ -133,13 +133,9 @@ class ProductScreen extends Component {
         { id: 4, title: 2, active: false },
       ],
 
-      ModalShow: true,
+      ModalShow: false,
     };
   }
-
-  handlePressWriteOwnComment = () => {
-    this.props.navigation.navigate('ProductWriteMessage');
-  };
 
   render() {
     return (
@@ -255,6 +251,9 @@ class ProductScreen extends Component {
             </TouchableOpacity>
             <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
               <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('ProductBuyerProfile')
+                }
                 style={{
                   marginHorizontal: 15,
                   alignItems: 'center',
@@ -380,7 +379,6 @@ class ProductScreen extends Component {
         <View
           style={{
             flexDirection: 'row',
-
             backgroundColor: '#F8F8F9',
             marginHorizontal: 15,
             marginBottom: 15,

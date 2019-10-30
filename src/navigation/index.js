@@ -22,7 +22,8 @@ const Navigation = createBottomTabNavigator(
         if (
           routeName === 'Filters' ||
           routeName === 'Category' ||
-          routeName === 'ProductDetail'
+          routeName === 'ProductDetail' ||
+          routeName === 'ProductBuyerProfile'
         ) {
           tabBarVisible = false;
         }
