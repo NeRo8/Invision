@@ -11,7 +11,7 @@ class ComplainModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: true,
+      checked: false,
     };
   }
   render() {
@@ -24,22 +24,28 @@ class ComplainModal extends Component {
             justifyContent: 'center',
           }}>
           <View style={styles.modalBody}>
+            <View style={styles.closeView}>
+              <Icon
+                name="close"
+                type="material-community"
+                iconStyle={{ paddingTop: 15, paddingRight: 15 }}
+                color={colors.UNACTIVE}
+              />
+            </View>
             <View style={styles.modalWraper}>
-              <View>
-                <Text
-                  style={[globalStyles.gothamMediumRegular, styles.WhatHapp]}>
-                  What happens?
+              <Text style={[globalStyles.gothamMediumRegular, styles.WhatHapp]}>
+                What happens?
+              </Text>
+              <Text style={[globalStyles.gothamBook, styles.Choose]}>
+                Choose one of option below
+              </Text>
+              <View style={styles.checkBox}>
+                {/* Цей їбучий чекбокс, це якась хуйня недороблена */}
+                <Text style={[globalStyles.gothamBook, styles.radioTitle]}>
+                  Fraud or spam
                 </Text>
-                <Text style={[globalStyles.gothamBook, styles.Choose]}>
-                  Choose one of option below
-                </Text>
-
                 <CheckBox
-                  right
-                  title="Fraud or spam"
-                  fontFamily={globalStyles.gothamBook.fontFamily}
-                  textStyle={styles.radioTitle}
-                  iconRight
+                  containerStyle={{}}
                   checkedIcon={
                     <Icon
                       name="check-circle"
@@ -52,13 +58,64 @@ class ComplainModal extends Component {
                     <Icon
                       name="radiobox-blank"
                       type="material-community"
-                      color={colors.DIVIDER}
+                      color={colors.UNACTIVE}
                       size={25}
                     />
                   }
                   checked={this.state.checked}
                 />
               </View>
+              <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
+              <View style={styles.checkBox}>
+                <Text style={[globalStyles.gothamBook, styles.radioTitle]}>
+                  Unparliamentary language
+                </Text>
+                <CheckBox
+                  checkedIcon={
+                    <Icon
+                      name="check-circle"
+                      type="material-community"
+                      color={colors.HEADER}
+                      size={25}
+                    />
+                  }
+                  uncheckedIcon={
+                    <Icon
+                      name="radiobox-blank"
+                      type="material-community"
+                      color={colors.UNACTIVE}
+                      size={25}
+                    />
+                  }
+                  checked={this.state.checked}
+                />
+              </View>
+              <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
+              <View style={styles.checkBox}>
+                <Text style={[globalStyles.gothamBook, styles.radioTitle]}>
+                  Other
+                </Text>
+                <CheckBox
+                  checkedIcon={
+                    <Icon
+                      name="check-circle"
+                      type="material-community"
+                      color={colors.HEADER}
+                      size={25}
+                    />
+                  }
+                  uncheckedIcon={
+                    <Icon
+                      name="radiobox-blank"
+                      type="material-community"
+                      color={colors.UNACTIVE}
+                      size={25}
+                    />
+                  }
+                  checked={this.state.checked}
+                />
+              </View>
+              <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
               <Button
                 titleStyle={[
                   globalStyles.gothamBold,

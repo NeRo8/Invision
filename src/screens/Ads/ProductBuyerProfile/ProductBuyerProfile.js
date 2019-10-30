@@ -26,7 +26,7 @@ class ProductBuyerProfile extends Component {
         { id: 3, title: 1, active: true },
         { id: 4, title: 2, active: false },
       ],
-      ModalShow: false,
+      ComplainModalShow: true,
     };
   }
   render() {
@@ -126,7 +126,7 @@ class ProductBuyerProfile extends Component {
             </SafeAreaView>
           </View>
         </View>
-        <ComplainModal show={this.state.ModalShow}></ComplainModal>
+        <ComplainModal show={this.state.ComplainModalShow}></ComplainModal>
       </ScrollView>
     );
   }

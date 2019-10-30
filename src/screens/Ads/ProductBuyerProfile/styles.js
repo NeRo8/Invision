@@ -7,6 +7,10 @@ export default StyleSheet.create({
     marginHorizontal: 15,
     marginTop: 15,
   },
+  closeView: {
+    width: '100%',
+    alignItems: 'flex-end',
+  },
   userName: {
     fontSize: 20,
     lineHeight: 30,
@@ -51,21 +55,20 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   modalWraper: {
-    backgroundColor: 'red',
-    height: '50%',
     marginHorizontal: 32,
-    borderRadius: 2,
   },
   modalBody: {
-    backgroundColor: 'red',
-    height: '50%',
+    backgroundColor: 'white',
     marginHorizontal: 15,
     borderRadius: 2,
   },
   buttonSend: {
     backgroundColor: colors.HEADER,
+    height: 50,
+    marginVertical: 25,
   },
   Choose: {
+    marginTop: 15,
     fontSize: 13,
     lineHeight: 20,
     color: colors.TITLE,
@@ -74,5 +77,11 @@ export default StyleSheet.create({
     fontSize: 17,
     lineHeight: 27,
     color: colors.TITLE,
+  },
+  checkBox: {
+    height: 55,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
