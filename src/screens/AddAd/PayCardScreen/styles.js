@@ -3,8 +3,8 @@ import { colors } from '../../../constants/colors';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 15,
+    flexGrow: 1,
+    backgroundColor: colors.BACKGROUND,
   },
   cardView: {
     borderStyle: 'dashed',
@@ -28,5 +28,30 @@ export default StyleSheet.create({
   textHint: {
     fontSize: 17,
     lineHeight: 25,
+  },
+  inputRowContainer: {
+    flex: 1,
+  },
+  inputContainer: {
+    marginVertical: 15,
+  },
+  inputRowStyle: {
+    textAlign: 'center',
+    fontSize: 17,
+  },
+  inputRowCStyle: {
+    borderBottomWidth: 0,
+    height: 50,
+    backgroundColor: 'white',
+    borderRadius: 5,
+  },
+  btnStyle: {
+    height: 55,
+    backgroundColor: colors.HEADER,
+    borderRadius: 0,
+  },
+  btnTitle: {
+    fontSize: 13,
+    color: 'white',
   },
 });
