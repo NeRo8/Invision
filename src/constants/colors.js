@@ -18,4 +18,5 @@ export const colors = {
   RED_COLOR: '#FF3C3C',
   STAR: '#FFAA44',
   HINT: '#626773',
+  CAMERA: '#74859E',
 };

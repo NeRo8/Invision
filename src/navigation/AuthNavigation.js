@@ -25,6 +25,7 @@ import HeaderPay from '../components/HeaderPay';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
+import MakePictureScreen from '../screens/AddAd/MakePictureScreen/MakePictureScreen';
 
 const HeaderLeft = ({ onBack }) => (
   <Icon
@@ -224,6 +225,12 @@ const AuthNavigation = createStackNavigator(
           },
           headerLeft: null,
         };
+      },
+    },
+    MakePicture: {
+      screen: MakePictureScreen,
+      navigationOptions: {
+        header: null,
       },
     },
   },

@@ -46,9 +46,12 @@ class Step3Screen extends Component {
             name="ios-camera"
             type="ionicon"
             color="white"
+            underlayColor="transparent"
             size={32}
             containerStyle={styles.iconCamera}
-            onPress={() => {}}
+            onPress={() => {
+              this.props.navigation.navigate('MakePicture');
+            }}
           />
           <Button
             title="Continue"
