@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwaitFAQScreen';
 import NewsScreen from '../screens/InKuwait/NewsScreen';
+import NewsArticleScreen from '../screens/InKuwait/NewsArticleScreen/';
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
 
@@ -64,6 +65,12 @@ const InKuwaitNavigation = createStackNavigator({
         headerLeft: null,
         headerRight: null,
       };
+    },
+  },
+  NewsArticle: {
+    screen: NewsArticleScreen,
+    navigationOptions: {
+      header: null,
     },
   },
 });

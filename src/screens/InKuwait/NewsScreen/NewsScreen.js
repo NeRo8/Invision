@@ -28,6 +28,11 @@ class NewsScreen extends Component {
       ],
     };
   }
+
+  onPressNews = () => {
+    this.props.navigation.navigate('NewsArticle');
+  };
+
   render() {
     return (
       <View style={styles.wraper}>
@@ -37,7 +42,7 @@ class NewsScreen extends Component {
             numColumns={2}
             data={this.state.data}
             renderItem={({ item }) => (
-              <NewsList item={item} onPressProduct={() => {}} />
+              <NewsList item={item} onPressProduct={this.onPressNews} />
             )}
             keyExtractor={(item, index) => item.id}
           />
