@@ -43,16 +43,25 @@ const Navigation = createBottomTabNavigator(
     },
     InKuwait: {
       screen: InKuwaitNavigation,
-      navigationOptions: {
-        title: 'In Kuwait',
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (
-          <Icon
-            name="building"
-            type="font-awesome"
-            color={tintColor}
-            size={28}
-          />
-        ),
+      navigationOptions: ({ navigation }) => {
+        let tabBarVisible = true;
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+        if (routeName === 'InKuwaitNews') {
+          tabBarVisible = false;
+        }
+        return {
+          tabBarVisible,
+          title: 'In Kuwait',
+          tabBarIcon: ({ focused, horizontal, tintColor }) => (
+            <Icon
+              name="building"
+              type="font-awesome"
+              color={tintColor}
+              size={28}
+            />
+          ),
+        };
       },
     },
     Auth: {

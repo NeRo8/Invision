@@ -26,20 +26,49 @@ class ProductBuyerProfile extends Component {
         { id: 3, title: 1, active: true },
         { id: 4, title: 2, active: false },
       ],
-      ComplainModalShow: true,
+      complainModalShow: false,
     };
   }
+
+  onPressComplain = () => {
+    this.setState({
+      complainModalShow: !this.state.complainModalShow,
+    });
+  };
+
   render() {
     return (
       <ScrollView style={{ backgroundColor: colors.BACKGROUND }}>
         <StatusBar barStyle="dark-content" />
-
+        <View style={styles.header}>
+          <Icon
+            name="chevron-left"
+            type="material-community"
+            size={32}
+            color="black"
+            containerStyle={{
+              width: 50,
+            }}
+            onPress={() => this.props.navigation.goBack()}
+          />
+          <Icon
+            name="flag"
+            type="material-community"
+            size={24}
+            color={colors.DEFAULT}
+            containerStyle={{
+              width: 50,
+            }}
+            onPress={() => this.onPressComplain()}
+          />
+        </View>
         <View
           style={{
             flexDirection: 'row',
             backgroundColor: 'white',
             paddingHorizontal: 15,
             alignItems: 'center',
+            paddingTop: 15,
           }}>
           <Avatar
             containerStyle={{ marginRight: 25 }}
@@ -126,7 +155,10 @@ class ProductBuyerProfile extends Component {
             </SafeAreaView>
           </View>
         </View>
-        <ComplainModal show={this.state.ComplainModalShow}></ComplainModal>
+        <ComplainModal
+          show={this.state.complainModalShow}
+          onPressClose={this.onPressComplain}
+        />
       </ScrollView>
     );
   }

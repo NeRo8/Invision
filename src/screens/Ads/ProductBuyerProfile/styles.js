@@ -1,7 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { colors } from '../../../constants/colors';
 
 export default StyleSheet.create({
+  header: {
+    paddingTop: Platform.OS === 'ios' ? 40 : 20,
+    backgroundColor: 'white',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
   wraperView: {
     minHeight: '100%',
     marginHorizontal: 15,
@@ -74,14 +82,27 @@ export default StyleSheet.create({
     color: colors.TITLE,
   },
   radioTitle: {
+    marginLeft: 0,
+    paddingLeft: 0,
+    marginRight: 0,
+    paddingRight: 0,
     fontSize: 17,
     lineHeight: 27,
     color: colors.TITLE,
+    fontWeight: '300',
   },
   checkBox: {
+    marginLeft: 0,
+    paddingLeft: 0,
+    marginRight: 0,
+    paddingRight: 0,
     height: 55,
     alignItems: 'center',
     flexDirection: 'row',
+    borderWidth: 0,
+  },
+  checkBoxWraper: {
+    width: '100%',
     justifyContent: 'space-between',
   },
 });

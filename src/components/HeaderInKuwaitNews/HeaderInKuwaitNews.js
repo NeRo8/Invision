@@ -5,8 +5,9 @@ import { Icon, Input } from 'react-native-elements';
 import { colors } from '../../constants/colors';
 
 import styles from './styles';
+import globalStyles from '../../constants/globalStyles';
 
-class HeaderInKuwaitFAQ extends Component {
+class HeaderInKuwaitNews extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,13 +17,14 @@ class HeaderInKuwaitFAQ extends Component {
       <View style={styles.container}>
         <View style={styles.headerBlock}>
           <Icon
+            containerStyle={{ marginLeft: -10 }}
             name="chevron-left"
-            type="material-community"
+            type="feather"
             color="white"
             size={32}
             onPress={() => this.props.onPressBack()}
           />
-          <Text style={styles.headerText}>FAQ</Text>
+          <Text style={styles.headerText}>News</Text>
           <Icon
             name="filter"
             type="material-community"
@@ -37,11 +39,14 @@ class HeaderInKuwaitFAQ extends Component {
                 name="ios-search"
                 type="ionicon"
                 color={colors.UNACTIVE}
-                size={32}
+                size={24}
               />
             )}
-            placeholder="Search question..."
-            inputStyle={{ fontSize: 18 }}
+            placeholder="Search news"
+            inputStyle={[
+              globalStyles.gothamBook,
+              { fontSize: 15, lineHeight: 20, fontWeight: '300' },
+            ]}
             placeholderTextColor={colors.UNACTIVE}
             leftIconContainerStyle={styles.leftIconContainer}
             inputContainerStyle={styles.inputContainerS}
@@ -53,4 +58,4 @@ class HeaderInKuwaitFAQ extends Component {
   }
 }
 
-export default HeaderInKuwaitFAQ;
+export default HeaderInKuwaitNews;

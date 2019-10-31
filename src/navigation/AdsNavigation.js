@@ -95,12 +95,7 @@ const AdsNavigation = createStackNavigator(
     ProductDetail: {
       screen: ProductScreen,
       navigationOptions: {
-        headerLeft: null,
-        headerTitle: <HeaderProduct />,
-        headerTransparent: true,
-        headerStyle: {
-          backgroundColor: 'transparent',
-        },
+        header: null,
       },
     },
     CreateComment: {
@@ -134,46 +129,8 @@ const AdsNavigation = createStackNavigator(
     },
     ProductBuyerProfile: {
       screen: ProductBuyerProfile,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerStyle: {
-            paddingTop: 20,
-            height: 64,
-            backgroundColor: 'transparent',
-          },
-          headerTitleStyle: {
-            textAlign: 'center',
-            width: '100%',
-            paddingRight: 90,
-            color: 'white',
-            fontFamily: 'Gotham-Bold',
-            fontSize: 17,
-          },
-          headerLeft: (
-            <Icon
-              name="chevron-left"
-              type="material-community"
-              size={32}
-              color="black"
-              containerStyle={{
-                width: 50,
-              }}
-              onPress={() => navigation.goBack()}
-            />
-          ),
-          headerRight: (
-            <Icon
-              name="flag"
-              type="material-community"
-              size={24}
-              color={colors.DEFAULT}
-              containerStyle={{
-                width: 50,
-              }}
-              //onPress={() => navigation.goBack()}
-            />
-          ),
-        };
+      navigationOptions: {
+        header: null,
       },
     },
   },

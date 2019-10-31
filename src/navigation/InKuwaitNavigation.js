@@ -3,8 +3,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwaitFAQScreen';
-
+import NewsScreen from '../screens/InKuwait/NewsScreen';
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
+import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
@@ -38,6 +39,26 @@ const InKuwaitNavigation = createStackNavigator({
         ),
         headerStyle: {
           height: 90,
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: null,
+        headerRight: null,
+      };
+    },
+  },
+  InKuwaitNews: {
+    screen: NewsScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: (
+          <HeaderInKuwaitNews
+            onPressBack={() => navigation.goBack()}
+            onPressFilter={() => navigation.goBack()}
+          />
+        ),
+        headerStyle: {
+          paddingTop: 30,
+          height: 132,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
