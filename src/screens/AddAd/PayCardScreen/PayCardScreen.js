@@ -4,12 +4,23 @@ import { Icon, Input, Button } from 'react-native-elements';
 
 import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
+import ModalComplite from './ModalComplite';
 
 class PayCardScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showModal: false,
+    };
   }
+  onShowModal = () => {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+    if (!this.state.showModal === false) {
+      this.props.navigation.navigate('Profile');
+    }
+  };
 
   render() {
     return (
@@ -69,7 +80,9 @@ class PayCardScreen extends Component {
           title="BUY AD (150 KWD)"
           titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
           buttonStyle={styles.btnStyle}
+          onPress={() => this.onShowModal()}
         />
+        <ModalComplite show={this.state.showModal} onClose={this.onShowModal} />
       </ScrollView>
     );
   }
