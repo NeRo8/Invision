@@ -9,6 +9,9 @@ import SignInScreen from '../screens/Auth/SignInScreen';
 import SignUpScreen from '../screens/Auth/SignUpScreen';
 import ForgotPasswordScreen from '../screens/Auth/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/Auth/NewPasswordScreen';
+import ChooseCategoryScreen from '../screens/AddAd/ChooseCategoryScreen/ChooseCategoryScreen';
+import HeaderChooseCategory from '../screens/AddAd/ChooseCategoryScreen/HeaderChooseCategory';
+import PayCardScreen from '../screens/AddAd/PayCardScreen';
 
 import Step1Screen from '../screens/AddAd/PassportScreens/Step1Screen';
 import Step2Screen from '../screens/AddAd/PassportScreens/Step2Screen';
@@ -18,12 +21,10 @@ import Step5Screen from '../screens/AddAd/PassportScreens/Step5Screen';
 
 import HeaderSignIn from '../components/HeaderSignIn/HeaderSignIn';
 import HeaderCreateAccount from '../components/HeaderCreateAccount';
+import HeaderPay from '../components/HeaderPay';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
-import ChooseCategoryScreen from '../screens/AddAd/ChooseCategoryScreen/ChooseCategoryScreen';
-import HeaderChooseCategory from '../screens/AddAd/ChooseCategoryScreen/HeaderChooseCategory';
-import PayScreen from '../screens/AddAd/PayScreen';
 
 const HeaderLeft = ({ onBack }) => (
   <Icon
@@ -63,6 +64,19 @@ const PassportNavigation = createStackNavigator(
           <HeaderChooseCategory navigation={navigation} />
         ),
       },
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  },
+);
+
+const PayNavigation = createStackNavigator(
+  {
+    PayCard: {
+      screen: PayCardScreen,
     },
   },
   {
@@ -200,12 +214,16 @@ const AuthNavigation = createStackNavigator(
       },
     },
     Pay: {
-      screen: PayScreen,
-      navigationOptions: {
-        headerStyle: {
-          height: 110,
-          backgroundColor: colors.HEADER,
-        },
+      screen: PayNavigation,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: <HeaderPay navigation={navigation} />,
+          headerStyle: {
+            height: 110,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: null,
+        };
       },
     },
   },

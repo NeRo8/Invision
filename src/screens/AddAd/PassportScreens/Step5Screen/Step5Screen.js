@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
+import ModalComplite from './ModalComplite';
 
 import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
@@ -9,8 +10,20 @@ import styles from './styles';
 class Step5Screen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showModal: false,
+    };
   }
+
+  showModalComplite = () => {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+    if (!this.state.showModal === false) {
+      this.props.navigation.navigate('Profile');
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +32,7 @@ class Step5Screen extends Component {
             CHOOSE PACKAGE OF YOUR AD
           </Text>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={this.showModalComplite}>
               <View style={styles.card}>
                 <LinearGradient
                   colors={['#01DF96', '#00B8B7']}
@@ -103,7 +116,11 @@ class Step5Screen extends Component {
           title="Public my ad"
           titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
           buttonStyle={styles.btnStyles}
-          onPress={() => this.props.navigation.navigate('StepFive')}
+          onPress={() => this.showModalComplite()}
+        />
+        <ModalComplite
+          show={this.state.showModal}
+          onClose={this.showModalComplite}
         />
       </View>
     );

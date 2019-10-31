@@ -63,11 +63,8 @@ export default StyleSheet.create({
     marginLeft: 25,
   },
   iconContainer: {
-    width: 35,
-    height: 35,
-    borderRadius: 17,
-    backgroundColor: '#08A375',
-    marginTop: 20,
-    marginLeft: 25,
+    flex: 1,
+    width: null,
+    height: null,
   },
 });
