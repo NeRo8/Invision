@@ -54,4 +54,20 @@ export default StyleSheet.create({
     fontSize: 15,
     marginRight: 25,
   },
+  iconSpeakerContainer: {
+    width: 35,
+    height: 35,
+    borderRadius: 17,
+    backgroundColor: '#08A375',
+    marginTop: 20,
+    marginLeft: 25,
+  },
+  iconContainer: {
+    width: 35,
+    height: 35,
+    borderRadius: 17,
+    backgroundColor: '#08A375',
+    marginTop: 20,
+    marginLeft: 25,
+  },
 });

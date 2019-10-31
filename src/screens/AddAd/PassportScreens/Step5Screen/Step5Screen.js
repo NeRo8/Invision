@@ -26,10 +26,13 @@ class Step5Screen extends Component {
                   start={{ x: 0.0, y: 0.5 }}
                   end={{ x: 0.8, y: 0.5 }}
                   style={{ flex: 1, flexDirection: 'row' }}>
-                  <Image
-                    source={require('../../../../assets/icons/advertising.png')}
-                    style={{ marginTop: 20, marginLeft: 25 }}
-                  />
+                  <View style={styles.iconSpeakerContainer}>
+                    <Image
+                      source={require('../../../../assets/icons/speaker.png')}
+                      style={styles.iconContainer}
+                      resizeMode={'contain'}
+                    />
+                  </View>
                   <View style={{ flex: 1, marginLeft: 15 }}>
                     <Text style={[globalStyles.gothamBold, styles.cardText]}>
                       FREE AD
@@ -52,7 +55,10 @@ class Step5Screen extends Component {
                 </LinearGradient>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Pay');
+              }}>
               <View style={styles.card}>
                 <LinearGradient
                   colors={['#FFB860', '#FA8B60']}

@@ -16,6 +16,7 @@ export default StyleSheet.create({
     flex: 1,
     fontSize: 20,
     lineHeight: 30,
+    marginRight: 40,
     padding: 0,
     textAlign: 'center',
     color: 'white',

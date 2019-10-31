@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Icon } from 'react-native-elements';
+import { Platform } from 'react-native';
 
 import Auth from '../screens/Auth';
 import SignInScreen from '../screens/Auth/SignInScreen';
@@ -22,6 +23,7 @@ import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
 import ChooseCategoryScreen from '../screens/AddAd/ChooseCategoryScreen/ChooseCategoryScreen';
 import HeaderChooseCategory from '../screens/AddAd/ChooseCategoryScreen/HeaderChooseCategory';
+import PayScreen from '../screens/AddAd/PayScreen';
 
 const HeaderLeft = ({ onBack }) => (
   <Icon
@@ -33,6 +35,7 @@ const HeaderLeft = ({ onBack }) => (
     onPress={() => {
       onBack();
     }}
+    containerStyle={{ paddingTop: 10 }}
   />
 );
 
@@ -83,7 +86,7 @@ const AuthNavigation = createStackNavigator(
         return {
           headerTitle: <HeaderSignIn activeScreen={true} />,
           headerStyle: {
-            height: 80,
+            height: Platform.OS === 'ios' ? 80 : 100,
             backgroundColor: colors.HEADER,
           },
           headerLeft: null,
@@ -96,7 +99,7 @@ const AuthNavigation = createStackNavigator(
       navigationOptions: {
         headerTitle: <HeaderSignIn activeScreen={false} />,
         headerStyle: {
-          height: 80,
+          height: Platform.OS === 'ios' ? 80 : 100,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
@@ -111,6 +114,10 @@ const AuthNavigation = createStackNavigator(
           headerTitleStyle: {
             fontFamily: 'Gotham-Bold',
             color: 'white',
+            paddingTop: 10,
+            flex: 1,
+            textAlign: 'center',
+            marginRight: 40,
           },
           headerStyle: {
             backgroundColor: colors.HEADER,
@@ -190,6 +197,15 @@ const AuthNavigation = createStackNavigator(
             height: 65,
           },
         };
+      },
+    },
+    Pay: {
+      screen: PayScreen,
+      navigationOptions: {
+        headerStyle: {
+          height: 110,
+          backgroundColor: colors.HEADER,
+        },
       },
     },
   },

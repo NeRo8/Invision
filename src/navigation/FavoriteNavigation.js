@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginRight: 10,
     fontFamily: globalStyles.gothamBook.fontFamily,
-    paddingBottom: 5,
   },
 });
 
@@ -38,6 +37,7 @@ const FavoriteNavigation = createStackNavigator({
       },
       headerStyle: {
         backgroundColor: colors.HEADER,
+        paddingTop: 10,
       },
       headerRight: <RightButton />,
     },

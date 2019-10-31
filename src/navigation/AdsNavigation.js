@@ -58,19 +58,19 @@ const AdsNavigation = createStackNavigator(
         return {
           headerTitle: 'Filters',
           headerStyle: {
-            paddingTop: 20,
-            height: 64,
+            paddingTop: 10,
             backgroundColor: colors.HEADER,
           },
           headerTitleStyle: {
             textAlign: 'center',
-            width: '100%',
-            paddingRight: 90,
+            flex: 1,
+            marginRight: Platform.OS === 'ios' ? 0 : 60,
             color: 'white',
             fontFamily: 'Gotham-Bold',
             fontSize: 17,
           },
           headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+          headerRight: null,
         };
       },
     },
