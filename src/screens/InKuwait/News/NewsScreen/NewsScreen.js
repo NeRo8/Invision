@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
+import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 
 import NewsList from '../../../../components/NewsList/NewsList';
 
 import styles from './styles';
-import { globalStyles } from '../../../../constants/globalStyles';
-import { colors } from '../../../../constants/colors';
 
 class NewsScreen extends Component {
   constructor(props) {
