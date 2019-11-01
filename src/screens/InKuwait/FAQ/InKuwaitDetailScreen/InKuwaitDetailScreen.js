@@ -100,6 +100,9 @@ class InKuwaitDetailScreen extends Component {
           title="Write comment"
           titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
           buttonStyle={styles.buttonSend}
+          onPress={() =>
+            this.props.navigation.navigate('InKuwaitCreateComment')
+          }
         />
       </ScrollView>
     );
