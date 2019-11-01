@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 import ElementListEvents from '../../../../components/ElementListEvents';
+import TextPicker from '../../../../components/TextPicker';
 
 import { colors } from '../../../../constants/colors';
 
@@ -53,6 +54,25 @@ class EventsScreen extends Component {
           favorite: false,
         },
       ],
+
+      filters: [
+        {
+          id: 0,
+          title: 'Upcoming Events',
+          active: true,
+          func: () => {
+            console.warn('Upcoming');
+          },
+        },
+        {
+          id: 1,
+          title: 'Previous Events',
+          active: false,
+          func: () => {
+            console.warn('Previo');
+          },
+        },
+      ],
     };
   }
 
@@ -65,9 +85,29 @@ class EventsScreen extends Component {
     });
   };
 
+  handlePressFilter = id => {
+    const { filters } = this.state;
+
+    const newFilter = filters.map(item =>
+      item.id === id ? { ...item, active: true } : { ...item, active: false },
+    );
+
+    this.setState({
+      filters: newFilter,
+    });
+
+    console.log(filters);
+  };
+
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingHorizontal: 15 }}>
+        <View style={{ height: 40, width: '100%', marginVertical: 15 }}>
+          <TextPicker
+            dataList={this.state.filters}
+            onPressElement={this.handlePressFilter}
+          />
+        </View>
         <FlatList
           numColumns={2}
           data={this.state.dataEvents}
