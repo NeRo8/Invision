@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  Image,
+  ScrollView,
+} from 'react-native';
 import { Button } from 'react-native-elements';
-import { withNavigation } from 'react-navigation';
 
 import { colors } from '../../constants/colors';
 import globalStyles from '../../constants/globalStyles';
@@ -18,7 +24,7 @@ class index extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View
           style={{ alignItems: 'center', flex: 2, justifyContent: 'center' }}>
           <View style={styles.logo}>
@@ -84,17 +90,18 @@ class index extends Component {
             onPress={this.handlePressSignInEmail}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     marginTop: Platform.OS === 'ios' ? 40 : 20,
     alignItems: 'center',
     justifyContent: 'space-around',
+    paddingBottom: 30,
   },
   btnContainer: {
     width: '70%',

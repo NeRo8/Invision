@@ -11,12 +11,16 @@ import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
 import InKuwaitAnswersScreen from '../screens/InKuwait/FAQ/InKuwaitAnswersScreen';
 import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateCommentScreen';
 
+import EventsScreen from '../screens/InKuwait/Events/EventsScreen';
+import EventsFilter from '../screens/InKuwait/Events/EventsFilter';
+
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
 import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
 
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
+import HeaderInKuwaitEvents from '../components/HeaderInKuwaitEvents';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
@@ -31,6 +35,23 @@ const HeaderLeftIcon = ({ goBack }) => (
     onPress={() => goBack()}
   />
 );
+
+const EventsNavigation = createStackNavigator({
+  InKuwaitEvents: {
+    screen: EventsScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  InKuwaitEventsFilter: {
+    screen: EventsFilter,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: 'red',
+      },
+    },
+  },
+});
 
 const InKuwaitNavigation = createStackNavigator({
   InKuwait: {
@@ -193,6 +214,32 @@ const InKuwaitNavigation = createStackNavigator({
           paddingTop: 15,
         },
         headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  EventsNavigation: {
+    screen: EventsNavigation,
+    navigationOptions: ({ navigation }) => {
+      let routeName = navigation.state.routes[navigation.state.index].routeName;
+      if (routeName !== 'InKuwaitEvents') {
+        return {
+          header: null,
+        };
+      }
+      return {
+        headerTitle: (
+          <HeaderInKuwaitEvents
+            onPressBack={() => navigation.goBack()}
+            navigation={navigation}
+          />
+        ),
+        headerStyle: {
+          paddingTop: 30,
+          height: Platform.OS === 'ios' ? 90 : 120,
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: null,
+        headerRight: null,
       };
     },
   },

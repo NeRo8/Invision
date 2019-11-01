@@ -53,7 +53,8 @@ class InKuwaitScreen extends Component {
               </View>
             </ImageBackground>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('EventsNavigation')}>
             <ImageBackground
               source={require('../../assets/images/events.jpg')}
               style={styles.elementContainer}>

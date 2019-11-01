@@ -44,15 +44,11 @@ const Navigation = createBottomTabNavigator(
     InKuwait: {
       screen: InKuwaitNavigation,
       navigationOptions: ({ navigation }) => {
-        let tabBarVisible = true;
+        let tabBarVisible = false;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
-        if (
-          routeName === 'InKuwaitNews' ||
-          routeName === 'NewsArticle' ||
-          routeName === 'ArticleComents'
-        ) {
-          tabBarVisible = false;
+        if (routeName === 'InKuwait') {
+          tabBarVisible = true;
         }
         return {
           tabBarVisible,
