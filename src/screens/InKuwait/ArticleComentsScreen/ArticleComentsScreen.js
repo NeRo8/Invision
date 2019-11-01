@@ -20,8 +20,27 @@ class ArticleComentsScreen extends Component {
   }
   render() {
     return (
-      <View>
-        <Text>123</Text>
+      <View style={styles.wraper}>
+        <View style={styles.coment}>
+          <View style={styles.topOfComent}>
+            <Text>Andre Cross</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Icon
+                name="clock"
+                type="octicon"
+                containerStyle={{ marginRight: 8 }}
+              />
+              <Text>22.09.18</Text>
+            </View>
+          </View>
+          <View style={{ marginTop: 10 }}>
+            <Text>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s
+            </Text>
+          </View>
+        </View>
       </View>
     );
   }
