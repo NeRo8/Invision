@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-import globalStyles from '../../../constants/globalStyles';
+import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
-import { colors } from '../../../constants/colors';
+import { colors } from '../../../../constants/colors';
 
 const ElementFlatList = ({ item }) => (
   <View style={styles.elementFL}>

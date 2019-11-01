@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Input, Icon, Button } from 'react-native-elements';
 
-import globalStyles from '../../../constants/globalStyles';
+import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
-import { colors } from '../../../constants/colors';
+import { colors } from '../../../../constants/colors';
 
 class InKuwaitAskScreen extends Component {
   constructor(props) {

@@ -4,14 +4,14 @@ import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import InKuwaitScreen from '../screens/InKuwaitScreen';
-import InKuwaitFAQScreen from '../screens/InKuwait/InKuwaitFAQScreen';
-import InKuwaitFilterScreen from '../screens/InKuwait/InKuwaitFilterScreen';
+import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
+import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
+import InKuwaitAskScreen from '../screens/InKuwait/FAQ/InKuwaitAskScreen';
 
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
-import InKuwaitAskScreen from '../screens/InKuwait/InKuwaitAskScreen/InKuwaitAskScreen';
 
 const HeaderLeftIcon = ({ goBack }) => (
   <Icon
