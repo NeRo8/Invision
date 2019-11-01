@@ -13,7 +13,7 @@ const ElementFlEvents = ({ element, onPressProduct, onPressHeart }) => (
       <View style={{ flex: 1 }}>
         <Image source={element.image} style={styles.image} />
         <Icon
-          name={'ios-heart'}
+          name={element.favorite ? 'ios-heart' : 'ios-heart-empty'}
           type="ionicon"
           color={element.favorite ? colors.HEART_ACTIVE : 'silver'}
           underlayColor="transparent"
