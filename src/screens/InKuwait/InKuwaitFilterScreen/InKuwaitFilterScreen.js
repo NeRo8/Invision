@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { CheckBox, Button } from 'react-native-elements';
 
 import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
-import { FlatList } from 'react-native-gesture-handler';
 import { colors } from '../../../constants/colors';
 
 const ElementFl = ({ element, onChange }) => (
@@ -121,6 +120,13 @@ class InKuwaitFilterScreen extends Component {
             )}
           />
         </View>
+        <Button
+          title="Done"
+          titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
+          buttonStyle={styles.btnStyle}
+          containerStyle={styles.btnContainer}
+          onPress={() => this.props.navigation.goBack()}
+        />
       </View>
     );
   }

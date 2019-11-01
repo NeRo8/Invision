@@ -54,4 +54,14 @@ export default StyleSheet.create({
   textCount: {
     fontSize: 15,
   },
+  btnTitle: {
+    color: 'white',
+    fontSize: 15,
+  },
+  btnStyle: {
+    marginVertical: 15,
+    height: 50,
+    backgroundColor: colors.HEADER,
+  },
+  btnContainer: {},
 });
