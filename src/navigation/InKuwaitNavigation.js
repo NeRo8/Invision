@@ -1,13 +1,26 @@
 import React from 'react';
+import { Platform } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import InKuwaitScreen from '../screens/InKuwaitScreen';
-import InKuwaitFAQScreen from '../screens/InKuwaitFAQScreen';
+import InKuwaitFAQScreen from '../screens/InKuwait/InKuwaitFAQScreen';
+import InKuwaitFilterScreen from '../screens/InKuwait/InKuwaitFilterScreen';
 
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
+
+const HeaderLeftIcon = ({ goBack }) => (
+  <Icon
+    name="chevron-left"
+    type="material-community"
+    color="white"
+    size={32}
+    onPress={() => goBack()}
+  />
+);
 
 const InKuwaitNavigation = createStackNavigator({
   InKuwait: {
@@ -34,14 +47,39 @@ const InKuwaitNavigation = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: (
-          <HeaderInKuwaitFAQ onPressBack={() => navigation.goBack()} />
+          <HeaderInKuwaitFAQ
+            onPressBack={() => navigation.goBack()}
+            navigation={navigation}
+          />
         ),
         headerStyle: {
-          height: 90,
+          paddingTop: 30,
+          height: Platform.OS === 'ios' ? 90 : 120,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
         headerRight: null,
+      };
+    },
+  },
+  InKuwaitFilter: {
+    screen: InKuwaitFilterScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Filter',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
       };
     },
   },

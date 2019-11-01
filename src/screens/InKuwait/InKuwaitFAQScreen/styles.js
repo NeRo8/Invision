@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '../../constants/colors';
+import { colors } from '../../../constants/colors';
 
 export default StyleSheet.create({
   container: {
@@ -23,15 +23,15 @@ export default StyleSheet.create({
   },
   textActive: {
     color: 'white',
-    fontWeight: 'bold',
+    fontSize: 13,
   },
   textUnactive: {
     color: 'black',
-    fontWeight: 'bold',
+    fontSize: 13,
   },
   headerBlock: {
     width: '100%',
-    marginTop: 10,
+    marginVertical: 10,
     paddingHorizontal: 10,
     flexDirection: 'row',
   },
@@ -41,12 +41,12 @@ export default StyleSheet.create({
   },
   elementFL: {
     marginVertical: 10,
-    height: 70,
+    height: 78,
     backgroundColor: 'white',
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     justifyContent: 'space-between',
   },
   roundView: {
@@ -57,5 +57,33 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 0.5,
     borderColor: 'silver',
+  },
+  roundText: {
+    fontSize: 13,
+    color: colors.HEADER,
+  },
+  textElement: {
+    fontSize: 15,
+    lineHeight: 26,
+  },
+  iconAddContainer: {
+    position: 'absolute',
+    right: 15,
+    bottom: 15,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+
+    elevation: 8,
   },
 });

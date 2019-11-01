@@ -5,6 +5,7 @@ import { Icon, Input } from 'react-native-elements';
 import { colors } from '../../constants/colors';
 
 import styles from './styles';
+import globalStyles from '../../constants/globalStyles';
 
 class HeaderInKuwaitFAQ extends Component {
   constructor(props) {
@@ -22,8 +23,14 @@ class HeaderInKuwaitFAQ extends Component {
             size={32}
             onPress={() => this.props.onPressBack()}
           />
-          <Text style={styles.headerText}>FAQ</Text>
-          <Icon name="filter" type="material-community" color="white" />
+          <Text style={[globalStyles.gothamBold, styles.headerText]}>FAQ</Text>
+          <Icon
+            name="filter"
+            type="material-community"
+            color="white"
+            underlayColor="transparent"
+            onPress={() => this.props.navigation.navigate('InKuwaitFilter')}
+          />
         </View>
         <View style={styles.bodyBlock}>
           <Input
@@ -32,13 +39,13 @@ class HeaderInKuwaitFAQ extends Component {
                 name="ios-search"
                 type="ionicon"
                 color={colors.UNACTIVE}
-                size={32}
+                size={24}
               />
             )}
-            placeholder="Search question..."
-            inputStyle={{ fontSize: 18 }}
-            placeholderTextColor={colors.UNACTIVE}
             leftIconContainerStyle={styles.leftIconContainer}
+            placeholder="Search question..."
+            placeholderTextColor={colors.UNACTIVE}
+            inputStyle={[globalStyles.gothamBook, { fontSize: 15 }]}
             inputContainerStyle={styles.inputContainerS}
             containerStyle={styles.inputContainer}
           />

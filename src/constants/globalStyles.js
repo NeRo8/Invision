@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { colors } from '../constants/colors';
 
 export default StyleSheet.create({
@@ -11,7 +11,8 @@ export default StyleSheet.create({
     color: colors.TITLE,
   },
   gothamMediumRegular: {
-    fontFamily: 'Gotham Medium',
+    fontFamily:
+      Platform.OS === 'ios' ? 'Gotham Medium' : 'Gotham-Medium-Regular',
     color: colors.TITLE,
   },
   muliRegular: {
