@@ -11,6 +11,7 @@ import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
+import InKuwaitAskScreen from '../screens/InKuwait/InKuwaitAskScreen/InKuwaitAskScreen';
 
 const HeaderLeftIcon = ({ goBack }) => (
   <Icon
@@ -78,6 +79,26 @@ const InKuwaitNavigation = createStackNavigator({
         headerStyle: {
           backgroundColor: colors.HEADER,
           paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  InKuwaitAsk: {
+    screen: InKuwaitAskScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Ask question',
+        headerTitleStyle: {
+          flex: 1,
+          textAlign: 'center',
+          marginRight: 70,
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          color: 'white',
+        },
+        headerStyle: {
+          paddingTop: 15,
+          backgroundColor: colors.HEADER,
         },
         headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
       };

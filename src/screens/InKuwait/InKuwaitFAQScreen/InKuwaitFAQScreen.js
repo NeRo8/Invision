@@ -138,7 +138,9 @@ class InKuwaitFAQScreen extends Component {
             width: '100%',
           }}
           containerStyle={styles.iconAddContainer}
-          onPress={() => {}}
+          onPress={() => {
+            this.props.navigation.navigate('InKuwaitAsk');
+          }}
         />
       </View>
     );
