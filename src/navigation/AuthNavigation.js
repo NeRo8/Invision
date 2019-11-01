@@ -9,15 +9,16 @@ import SignInScreen from '../screens/Auth/SignInScreen';
 import SignUpScreen from '../screens/Auth/SignUpScreen';
 import ForgotPasswordScreen from '../screens/Auth/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/Auth/NewPasswordScreen';
-import ChooseCategoryScreen from '../screens/AddAd/ChooseCategoryScreen/ChooseCategoryScreen';
-import HeaderChooseCategory from '../screens/AddAd/ChooseCategoryScreen/HeaderChooseCategory';
-import PayCardScreen from '../screens/AddAd/PayCardScreen';
+import ChooseCategoryScreen from '../screens/Auth/ChooseCategoryScreen/ChooseCategoryScreen';
+import HeaderChooseCategory from '../screens/Auth/ChooseCategoryScreen/HeaderChooseCategory';
+import PayCardScreen from '../screens/Auth/PayCardScreen';
+import MakePictureScreen from '../screens/Auth/MakePictureScreen/MakePictureScreen';
 
-import Step1Screen from '../screens/AddAd/PassportScreens/Step1Screen';
-import Step2Screen from '../screens/AddAd/PassportScreens/Step2Screen';
-import Step3Screen from '../screens/AddAd/PassportScreens/Step3Screen';
-import Step4Screen from '../screens/AddAd/PassportScreens/Step4Screen';
-import Step5Screen from '../screens/AddAd/PassportScreens/Step5Screen';
+import Step1Screen from '../screens/Auth/PassportScreens/Step1Screen';
+import Step2Screen from '../screens/Auth/PassportScreens/Step2Screen';
+import Step3Screen from '../screens/Auth/PassportScreens/Step3Screen';
+import Step4Screen from '../screens/Auth/PassportScreens/Step4Screen';
+import Step5Screen from '../screens/Auth/PassportScreens/Step5Screen';
 
 import HeaderSignIn from '../components/HeaderSignIn/HeaderSignIn';
 import HeaderCreateAccount from '../components/HeaderCreateAccount';
@@ -25,7 +26,6 @@ import HeaderPay from '../components/HeaderPay';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
-import MakePictureScreen from '../screens/AddAd/MakePictureScreen/MakePictureScreen';
 
 const HeaderLeft = ({ onBack }) => (
   <Icon
