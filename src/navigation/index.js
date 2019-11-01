@@ -22,7 +22,8 @@ const Navigation = createBottomTabNavigator(
         if (
           routeName === 'Filters' ||
           routeName === 'Category' ||
-          routeName === 'ProductDetail'
+          routeName === 'ProductDetail' ||
+          routeName === 'ProductBuyerProfile'
         ) {
           tabBarVisible = false;
         }
@@ -42,16 +43,29 @@ const Navigation = createBottomTabNavigator(
     },
     InKuwait: {
       screen: InKuwaitNavigation,
-      navigationOptions: {
-        title: 'In Kuwait',
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (
-          <Icon
-            name="building"
-            type="font-awesome"
-            color={tintColor}
-            size={28}
-          />
-        ),
+      navigationOptions: ({ navigation }) => {
+        let tabBarVisible = true;
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+        if (
+          routeName === 'InKuwaitNews' ||
+          routeName === 'NewsArticle' ||
+          routeName === 'ArticleComents'
+        ) {
+          tabBarVisible = false;
+        }
+        return {
+          tabBarVisible,
+          title: 'In Kuwait',
+          tabBarIcon: ({ focused, horizontal, tintColor }) => (
+            <Icon
+              name="building"
+              type="font-awesome"
+              color={tintColor}
+              size={28}
+            />
+          ),
+        };
       },
     },
     Auth: {

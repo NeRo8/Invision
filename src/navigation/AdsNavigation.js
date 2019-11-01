@@ -8,10 +8,10 @@ import FiltersScreen from '../screens/Ads/FiltersScreen';
 import CategoryScreen from '../screens/Ads/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
+import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
-import HeaderProduct from '../components/HeaderProduct';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
@@ -93,12 +93,7 @@ const AdsNavigation = createStackNavigator(
     ProductDetail: {
       screen: ProductScreen,
       navigationOptions: {
-        headerLeft: null,
-        headerTitle: <HeaderProduct />,
-        headerTransparent: true,
-        headerStyle: {
-          backgroundColor: 'transparent',
-        },
+        header: null,
       },
     },
     CreateComment: {
@@ -117,7 +112,7 @@ const AdsNavigation = createStackNavigator(
           headerLeft: (
             <Icon
               name="chevron-left"
-              type="material-community"
+              type="feather"
               size={32}
               color="white"
               containerStyle={{
@@ -130,7 +125,14 @@ const AdsNavigation = createStackNavigator(
         };
       },
     },
+    ProductBuyerProfile: {
+      screen: ProductBuyerProfile,
+      navigationOptions: {
+        header: null,
+      },
+    },
   },
+
   {
     defaultNavigationOptions: {
       headerStyle: {

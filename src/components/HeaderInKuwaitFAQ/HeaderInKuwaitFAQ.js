@@ -18,7 +18,7 @@ class HeaderInKuwaitFAQ extends Component {
         <View style={styles.headerBlock}>
           <Icon
             name="chevron-left"
-            type="material-community"
+            type="feather"
             color="white"
             size={32}
             onPress={() => this.props.onPressBack()}

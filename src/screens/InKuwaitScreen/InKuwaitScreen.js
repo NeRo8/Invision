@@ -19,7 +19,11 @@ class InKuwaitScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <StatusBar barStyle={'light-content'} translucent />
+        <StatusBar
+          backgroundColor={'transparent'}
+          barStyle={'light-content'}
+          translucent
+        />
         <Text style={styles.headerTitle}>CHOOSE ONE OF CATEGORY</Text>
         <View style={{ flex: 1, justifyContent: 'space-around' }}>
           <TouchableOpacity onPress={() => {}}>
@@ -61,7 +65,10 @@ class InKuwaitScreen extends Component {
               </View>
             </ImageBackground>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('InKuwaitNews');
+            }}>
             <ImageBackground
               source={require('../../assets/images/news.jpg')}
               style={styles.elementContainer}>

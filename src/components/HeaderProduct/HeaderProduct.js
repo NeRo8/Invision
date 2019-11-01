@@ -4,7 +4,6 @@ import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
-import globalStyles from '../../constants/globalStyles';
 
 class HeaderProduct extends Component {
   constructor(props) {
@@ -16,35 +15,39 @@ class HeaderProduct extends Component {
       <View style={styles.container}>
         <View style={styles.headerBlock}>
           <Icon
+            containerStyle={styles.icons}
             name="chevron-left"
-            type="material-community"
+            type="feather"
             underlayColor="transparent"
             color="white"
-            size={40}
+            size={32}
             onPress={() => this.props.navigation.goBack()}
           />
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            flex: 8,
-          }}>
+
+        <View style={styles.rightBlock}>
           <Icon
-            name="flag"
+            containerStyle={styles.icons}
+            name="flag-outline"
             type="material-community"
             color="white"
-            size={32}
+            size={26}
             onPress={() => this.props.navigation.goBack()}
           />
-          <Icon name="share-apple" type="evilicon" color="white" size={32} />
-
           <Icon
+            containerStyle={styles.icons}
+            name="share-apple"
+            type="evilicon"
+            color="white"
+            size={32}
+            onPress={() => this.props.onPressShere()}
+          />
+          <Icon
+            containerStyle={styles.icons}
             name="heart-outline"
             type="material-community"
             color="white"
-            size={32}
+            size={24}
           />
         </View>
       </View>

@@ -14,13 +14,14 @@ export default StyleSheet.create({
     paddingHorizontal: 0,
   },
   inputStyles: {
+    height: '100%',
     fontSize: 17,
+    lineHeight: 26,
+    backgroundColor: 'white',
   },
   inputContainerStyle: {
-    borderWidth: 0.5,
     height: 50,
-    borderColor: 'silver',
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 0,
   },
   btnStyle: {
     height: 50,

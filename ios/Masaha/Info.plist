@@ -61,6 +61,7 @@
 		<string>Gotham-Book.otf</string>
 		<string>Gotham-Medium-Regular.ttf</string>
 		<string>Muli-Regular.ttf</string>
+		<string>Gotham Medium.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

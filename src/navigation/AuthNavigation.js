@@ -30,7 +30,7 @@ import globalStyles from '../constants/globalStyles';
 const HeaderLeft = ({ onBack }) => (
   <Icon
     name="chevron-left"
-    type="material-community"
+    type="feather"
     size={32}
     color="white"
     underlayColor="transparent"

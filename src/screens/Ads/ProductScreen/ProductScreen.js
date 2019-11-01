@@ -21,6 +21,8 @@ import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 
 import ElementList from '../../../components/ElementList/ElementList';
+import ModalShare from './ModalShare';
+import HeaderProduct from '../../../components/HeaderProduct';
 
 const ElementFlatList = ({ item }) => (
   <View style={styles.elementContainer}>
@@ -131,305 +133,328 @@ class ProductScreen extends Component {
         { id: 3, title: 1, active: true },
         { id: 4, title: 2, active: false },
       ],
+
+      modalShow: false,
     };
   }
+
+  handlePressWriteOwnComment = () => {
+    this.props.navigation.navigate('ProductWriteMessage');
+  };
+
+  onPressShere = () => {
+    this.setState({
+      modalShow: !this.state.modalShow,
+    });
+  };
+
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          <SwiperFlatList
-            data={this.state.productImages}
-            showPagination
-            renderItem={items => (
-              <View style={styles.container}>
-                <View style={styles.child}>
-                  <Image
-                    resizeMode="cover"
-                    style={styles.swiperImage}
-                    source={items.item.productImage}
-                  />
-                </View>
-              </View>
-            )}
-          />
-        </View>
-        <View style={styles.head}>
-          <Text style={[globalStyles.gothamBook, styles.title]}>
-            iPhone X 16Gb
-          </Text>
-
-          <View style={styles.properties}>
-            <Text style={[globalStyles.gothamBook, styles.price]}>
-              10,000 KWD
-            </Text>
-
-            <View style={styles.vdView}>
-              <View style={styles.vd}>
-                <Icon
-                  iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
-                  name="eye-outline"
-                  type="material-community"
-                  size={16}
-                />
-                <Text
-                  style={[
-                    globalStyles.gothamBook,
-                    { fontSize: 15, lineHeight: 26, color: colors.UNACTIVE },
-                  ]}>
-                  100
-                </Text>
-              </View>
-              <View style={styles.vd}>
-                <Icon
-                  iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
-                  name="clock-outline"
-                  type="material-community"
-                  size={16}
-                />
-                <Text
-                  style={[
-                    globalStyles.gothamBook,
-                    { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
-                  ]}>
-                  01.01.18
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.tagsView}>
-            <FlatList
-              style={{
-                borderBottomWidth: 0.5,
-                borderTopWidth: 0.5,
-                borderColor: '#EAEAEA',
-              }}
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{
-                minWidth: '90%',
-                height: 45,
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-              keyExtractor={item => item.id}
-              horizontal
-              data={this.state.tags}
-              render
+      <View style={{ flex: 1 }}>
+        <HeaderProduct onPressShere={this.onPressShere} />
+        <ScrollView>
+          <View style={styles.container}>
+            <SwiperFlatList
+              data={this.state.productImages}
+              showPagination
               renderItem={items => (
-                <TouchableOpacity style={{ paddingRight: 10 }}>
-                  <Text style={[globalStyles.gothamBold, styles.tagsText]}>
-                    {items.item.title}
-                  </Text>
-                </TouchableOpacity>
+                <View style={styles.container}>
+                  <View style={styles.child}>
+                    <Image
+                      resizeMode="cover"
+                      style={styles.swiperImage}
+                      source={items.item.productImage}
+                    />
+                  </View>
+                </View>
               )}
             />
           </View>
-          <View>
-            <Text style={[globalStyles.gothamBook, styles.description]}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make.
+          <View style={styles.head}>
+            <Text style={[globalStyles.gothamBook, styles.title]}>
+              iPhone X 16Gb
             </Text>
-            <TouchableOpacity style={{ marginTop: 8 }}>
-              <Text
-                style={[
-                  globalStyles.gothamBook,
-                  {
-                    color: colors.UNACTIVE,
-                    fontSize: 17,
-                    lineHeight: 32,
-                    textDecorationLine: 'underline',
-                  },
-                ]}>
-                Show more
+
+            <View style={styles.properties}>
+              <Text style={[globalStyles.gothamBook, styles.price]}>
+                10,000 KWD
               </Text>
-            </TouchableOpacity>
-            <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
-              <TouchableOpacity
-                style={{
-                  marginHorizontal: 15,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: 48,
-                  justifyContent: 'space-between',
-                  flexDirection: 'row',
-                }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Avatar
-                    rounded
-                    source={require('../../../assets/icons/userIcons/man.jpg')}
-                    imageProps={{ resizeMode: 'cover' }}
-                    size={25}
+
+              <View style={styles.vdView}>
+                <View style={styles.vd}>
+                  <Icon
+                    iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
+                    name="eye-outline"
+                    type="material-community"
+                    size={16}
                   />
                   <Text
                     style={[
-                      globalStyles.gothamBold,
-                      { marginLeft: 10, lineHeight: 20, fontSize: 15 },
+                      globalStyles.gothamBook,
+                      { fontSize: 15, lineHeight: 26, color: colors.UNACTIVE },
                     ]}>
-                    Lucas Unknown
+                    100
                   </Text>
                 </View>
-                <View>
+                <View style={styles.vd}>
+                  <Icon
+                    iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
+                    name="clock-outline"
+                    type="material-community"
+                    size={16}
+                  />
                   <Text
                     style={[
                       globalStyles.gothamBook,
-                      { color: colors.HEADER, fontSize: 15, lineHeight: 23 },
+                      { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     ]}>
-                    Other ads
+                    01.01.18
                   </Text>
                 </View>
-              </TouchableOpacity>
+              </View>
             </View>
-            <View
-              style={{
-                height: 200,
-                marginTop: 10,
-              }}>
-              <MapView
-                initialRegion={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421,
+
+            <View style={styles.tagsView}>
+              <FlatList
+                style={{
+                  borderBottomWidth: 0.5,
+                  borderTopWidth: 0.5,
+                  borderColor: '#EAEAEA',
                 }}
-                provider="google"
-                style={{ flex: 1 }}>
-                <Marker
-                  coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
-                />
-              </MapView>
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  minWidth: '90%',
+                  height: 45,
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+                keyExtractor={item => item.id}
+                horizontal
+                data={this.state.tags}
+                render
+                renderItem={items => (
+                  <TouchableOpacity style={{ paddingRight: 10 }}>
+                    <Text style={[globalStyles.gothamBold, styles.tagsText]}>
+                      {items.item.title}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              />
             </View>
-          </View>
-          <View>
-            <Text
-              style={[
-                globalStyles.gothamBold,
-                {
-                  marginTop: 25,
-                  fontSize: 15,
-                  lineHeight: 23,
-                  letterSpacing: 1,
-                },
-              ]}>
-              REVIEWS
-            </Text>
-            <FlatList
-              data={this.state.coments}
-              renderItem={({ item }) => <ElementFlatList item={item} />}
-            />
+            <View>
+              <Text style={[globalStyles.gothamBook, styles.description]}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make.
+              </Text>
+              <TouchableOpacity style={{ marginTop: 8 }}>
+                <Text
+                  style={[
+                    globalStyles.gothamBook,
+                    {
+                      color: colors.UNACTIVE,
+                      fontSize: 17,
+                      lineHeight: 32,
+                      textDecorationLine: 'underline',
+                    },
+                  ]}>
+                  Show more
+                </Text>
+              </TouchableOpacity>
+              <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('ProductBuyerProfile')
+                  }
+                  style={{
+                    marginHorizontal: 15,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: 48,
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Avatar
+                      rounded
+                      source={require('../../../assets/icons/userIcons/man.jpg')}
+                      imageProps={{ resizeMode: 'cover' }}
+                      size={25}
+                    />
+                    <Text
+                      style={[
+                        globalStyles.gothamBold,
+                        { marginLeft: 10, lineHeight: 20, fontSize: 15 },
+                      ]}>
+                      Lucas Unknown
+                    </Text>
+                  </View>
+                  <View>
+                    <Text
+                      style={[
+                        globalStyles.gothamBook,
+                        { color: colors.HEADER, fontSize: 15, lineHeight: 23 },
+                      ]}>
+                      Other ads
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View
+                style={{
+                  height: 200,
+                  marginTop: 10,
+                }}>
+                <MapView
+                  initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                  }}
+                  provider="google"
+                  style={{ flex: 1 }}>
+                  <Marker
+                    coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+                  />
+                </MapView>
+              </View>
+            </View>
+            <View>
+              <Text
+                style={[
+                  globalStyles.gothamBold,
+                  {
+                    marginTop: 25,
+                    fontSize: 15,
+                    lineHeight: 23,
+                    letterSpacing: 1,
+                  },
+                ]}>
+                REVIEWS
+              </Text>
+              <FlatList
+                data={this.state.coments}
+                renderItem={({ item }) => <ElementFlatList item={item} />}
+              />
+              <Button
+                title="Rear all 100 reviews"
+                titleStyle={[globalStyles.gothamBold, styles.titleRear]}
+                buttonStyle={styles.btnStyleRear}
+                containerStyle={styles.btnContainer}
+                onPress={null}
+              />
+              <Button
+                title="Write own comment"
+                titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
+                buttonStyle={styles.btnStyleWrite}
+                onPress={() => this.props.navigation.navigate('CreateComment')}
+              />
+            </View>
+            <View>
+              <Text
+                style={[
+                  globalStyles.gothamBold,
+                  {
+                    marginTop: 48,
+                    fontSize: 15,
+                    lineHeight: 23,
+                    letterSpacing: 1,
+                  },
+                ]}>
+                SIMILAR ADS
+              </Text>
+              <SafeAreaView style={styles.flatListView}>
+                <FlatList
+                  numColumns={2}
+                  data={this.state.data}
+                  renderItem={({ item }) => (
+                    <ElementList item={item} onPressProduct={() => {}} />
+                  )}
+                  keyExtractor={(item, index) => item.id}
+                />
+              </SafeAreaView>
+            </View>
             <Button
-              title="Rear all 100 reviews"
+              title="Show more ads"
               titleStyle={[globalStyles.gothamBold, styles.titleRear]}
               buttonStyle={styles.btnStyleRear}
               containerStyle={styles.btnContainer}
               onPress={null}
             />
-            <Button
-              title="Write own comment"
-              titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
-              buttonStyle={styles.btnStyleWrite}
-              onPress={() => this.props.navigation.navigate('CreateComment')}
-            />
           </View>
-          <View>
-            <Text
-              style={[
-                globalStyles.gothamBold,
-                {
-                  marginTop: 48,
-                  fontSize: 15,
-                  lineHeight: 23,
-                  letterSpacing: 1,
-                },
-              ]}>
-              SIMILAR ADS
-            </Text>
-            <SafeAreaView style={styles.flatListView}>
-              <FlatList
-                numColumns={2}
-                data={this.state.data}
-                renderItem={({ item }) => (
-                  <ElementList item={item} onPressProduct={() => {}} />
-                )}
-                keyExtractor={(item, index) => item.id}
-              />
-            </SafeAreaView>
-          </View>
-          <Button
-            title="Show more ads"
-            titleStyle={[globalStyles.gothamBold, styles.titleRear]}
-            buttonStyle={styles.btnStyleRear}
-            containerStyle={styles.btnContainer}
-            onPress={null}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
+          <View
+            style={{
+              flexDirection: 'row',
 
-            backgroundColor: '#F8F8F9',
-            marginHorizontal: 15,
-            marginBottom: 15,
-          }}>
-          <View style={{ flex: 1 }}>
-            <Icon
-              name="phone"
-              type="font-awesome"
-              color="white"
-              containerStyle={{
-                backgroundColor: '#9BA9BE',
-                width: 55,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 2,
-              }}
-            />
-          </View>
-          <View style={{ flex: 6 }}>
-            <Input
-              inputStyle={[
-                globalStyles.gothamBook,
-                {
-                  fontSize: 17,
-                  lineHeight: 24,
-                  backgroundColor: 'white',
+              backgroundColor: '#F8F8F9',
+              marginHorizontal: 15,
+              marginBottom: 15,
+            }}>
+            <View style={{ flex: 1 }}>
+              <Icon
+                name="phone"
+                type="font-awesome"
+                color="white"
+                containerStyle={{
+                  backgroundColor: '#9BA9BE',
+                  width: 55,
                   height: 50,
-                },
-              ]}
-              inputContainerStyle={{
-                maxWidth: '100%',
-                backgroundColor: 'white',
-                borderBottomWidth: 0,
-              }}
-              backgroundColor="white"
-              placeholder="Write massage"
-              rightIcon={
-                <Icon
-                  name="send"
-                  type="material-comunity"
-                  color="white"
-                  containerStyle={{
-                    backgroundColor: colors.HEADER,
-                    width: 55,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 2,
+                }}
+              />
+            </View>
+            <View style={{ flex: 6 }}>
+              <Input
+                inputStyle={[
+                  globalStyles.gothamBook,
+                  {
+                    fontSize: 17,
+                    lineHeight: 24,
+                    backgroundColor: 'white',
                     height: 50,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 2,
-                    marginRight: -10,
-                  }}
-                />
-              }
-            />
+                  },
+                ]}
+                inputContainerStyle={{
+                  maxWidth: '100%',
+                  backgroundColor: 'white',
+                  borderBottomWidth: 0,
+                }}
+                backgroundColor="white"
+                placeholder="Write massage"
+                rightIcon={
+                  <Icon
+                    name="send"
+                    type="material-comunity"
+                    color="white"
+                    containerStyle={{
+                      backgroundColor: colors.HEADER,
+                      width: 55,
+                      height: 50,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 2,
+                      marginRight: -10,
+                    }}
+                  />
+                }
+              />
+            </View>
           </View>
-        </View>
-      </ScrollView>
+          <ModalShare
+            show={this.state.modalShow}
+            onPressClose={this.onPressShere}
+          />
+        </ScrollView>
+      </View>
     );
   }
 }

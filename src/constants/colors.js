@@ -19,4 +19,5 @@ export const colors = {
   STAR: '#FFAA44',
   HINT: '#626773',
   CAMERA: '#74859E',
+  DIVIDER: '#EFEFED',
 };

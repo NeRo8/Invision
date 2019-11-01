@@ -23,6 +23,7 @@
 		DE738FE1A4D789AEAC7A68AB /* libPods-Masaha-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7102A5DE570615EE12B65AF7 /* libPods-Masaha-tvOS.a */; };
 		0B4EADDDC0B948C68EDCFC73 /* Gotham-Medium-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */; };
 		E0D00A6C1EA24FF4B2B6B9BF /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5204F95B3F594FDF8A92A94E /* Muli-Regular.ttf */; };
+		D9D296CCC6434427BF1DCBE9 /* Gotham Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		FA7F643D1F8F191CC35FAA4E /* Pods-Masaha-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Masaha-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Masaha-tvOS/Pods-Masaha-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */ = {isa = PBXFileReference; name = "Gotham-Medium-Regular.ttf"; path = "../assets/fonts/Gotham-Medium-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5204F95B3F594FDF8A92A94E /* Muli-Regular.ttf */ = {isa = PBXFileReference; name = "Muli-Regular.ttf"; path = "../assets/fonts/Muli-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */ = {isa = PBXFileReference; name = "Gotham Medium.ttf"; path = "../assets/fonts/Gotham Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				2D2EA4661A8A4EAAB4BD73BE /* Gotham-Book.otf */,
 				57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */,
 				5204F95B3F594FDF8A92A94E /* Muli-Regular.ttf */,
+				0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				1FE94572932142078EBD7895 /* Gotham-Book.otf in Resources */,
 				0B4EADDDC0B948C68EDCFC73 /* Gotham-Medium-Regular.ttf in Resources */,
 				E0D00A6C1EA24FF4B2B6B9BF /* Muli-Regular.ttf in Resources */,
+				D9D296CCC6434427BF1DCBE9 /* Gotham Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
