@@ -12,6 +12,7 @@ import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
 import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
 import NewsWriteComment from '../screens/InKuwait/News/NewsWriteComment';
+import NewsFilterScreen from '../screens/InKuwait/News/NewsFilterScreen';
 
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
@@ -117,7 +118,7 @@ const InKuwaitNavigation = createStackNavigator({
         headerTitle: (
           <HeaderInKuwaitNews
             onPressBack={() => navigation.goBack()}
-            onPressFilter={() => navigation.goBack()}
+            onPressFilter={() => navigation.navigate('NewsFilter')}
           />
         ),
         headerStyle: {
@@ -179,6 +180,44 @@ const InKuwaitNavigation = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       return {
         title: 'Write comment',
+        headerTitleStyle: {
+          textAlign: 'center',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
+          color: 'white',
+          width: '100%',
+          paddingRight: 60,
+        },
+        headerLeft: (
+          <Icon
+            name="chevron-left"
+            type="feather"
+            size={32}
+            color="white"
+            containerStyle={{
+              width: 50,
+            }}
+            onPress={() => navigation.goBack()}
+          />
+        ),
+        headerStyle: {
+          paddingTop: 15,
+          height: Platform.OS === 'ios' ? 64 : 64,
+          backgroundColor: colors.HEADER,
+        },
+        headerTitleContainerStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      };
+    },
+  },
+  NewsFilter: {
+    screen: NewsFilterScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Filter',
         headerTitleStyle: {
           textAlign: 'center',
           fontFamily: globalStyles.gothamBold.fontFamily,

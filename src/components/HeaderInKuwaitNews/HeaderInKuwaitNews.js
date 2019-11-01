@@ -12,6 +12,7 @@ class HeaderInKuwaitNews extends Component {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,7 +30,7 @@ class HeaderInKuwaitNews extends Component {
             name="filter"
             type="material-community"
             color="white"
-            onPress={() => this.props.onPressFilter()}
+            onPress={this.props.onPressFilter}
           />
         </View>
         <View style={styles.bodyBlock}>
