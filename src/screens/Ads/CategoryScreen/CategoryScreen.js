@@ -4,7 +4,7 @@ import { Divider, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
-import globalStyles from '../../constants/globalStyles';
+import globalStyles from '../../../constants/globalStyles';
 
 const ElementFlatList = ({ item }) => (
   <TouchableOpacity onPress={() => {}}>
@@ -33,24 +33,36 @@ class CategoryScreen extends Component {
     super(props);
     this.state = {
       categoryList: [
-        { id: 1, title: 'Cars', icon: require('../../assets/icons/car.png') },
+        {
+          id: 1,
+          title: 'Cars',
+          icon: require('../../../assets/icons/car.png'),
+        },
         {
           id: 2,
           title: 'For Sale',
-          icon: require('../../assets/icons/sale.png'),
+          icon: require('../../../assets/icons/sale.png'),
         },
         {
           id: 3,
           title: 'Services',
-          icon: require('../../assets/icons/tool.png'),
+          icon: require('../../../assets/icons/tool.png'),
         },
-        { id: 4, title: 'Jobs', icon: require('../../assets/icons/job.png') },
+        {
+          id: 4,
+          title: 'Jobs',
+          icon: require('../../../assets/icons/job.png'),
+        },
         {
           id: 5,
           title: 'Properties',
-          icon: require('../../assets/icons/property.png'),
+          icon: require('../../../assets/icons/property.png'),
         },
-        { id: 6, title: 'Pets', icon: require('../../assets/icons/pets.png') },
+        {
+          id: 6,
+          title: 'Pets',
+          icon: require('../../../assets/icons/pets.png'),
+        },
       ],
     };
   }

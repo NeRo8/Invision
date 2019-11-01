@@ -7,7 +7,7 @@ import styles from './styles';
 
 import { colors } from '../../constants/colors';
 
-class HomeScreen extends Component {
+class AdsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,4 +67,4 @@ class HomeScreen extends Component {
   }
 }
 
-export default HomeScreen;
+export default AdsScreen;

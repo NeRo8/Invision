@@ -3,9 +3,9 @@ import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import HomeScreen from '../screens/HomeScreen';
-import FiltersScreen from '../screens/FiltersScreen';
-import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
+import AdsScreen from '../screens/AdsScreen';
+import FiltersScreen from '../screens/Ads/FiltersScreen';
+import CategoryScreen from '../screens/Ads/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 
@@ -42,7 +42,7 @@ const HeaderRight = ({ onPressConfirm }) => (
 const AdsNavigation = createStackNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: AdsScreen,
       navigationOptions: {
         headerTitle: <HeaderAds />,
         headerStyle: {

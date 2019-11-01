@@ -10,8 +10,8 @@ import {
 import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-import { colors } from '../../constants/colors';
-import globalStyles from '../../constants/globalStyles';
+import { colors } from '../../../constants/colors';
+import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -36,24 +36,36 @@ class FiltersScreen extends Component {
         all: false,
       },
       categoryList: [
-        { id: 1, title: 'CARS', icon: require('../../assets/icons/car.png') },
+        {
+          id: 1,
+          title: 'CARS',
+          icon: require('../../../assets/icons/car.png'),
+        },
         {
           id: 2,
           title: 'FOR SALE',
-          icon: require('../../assets/icons/sale.png'),
+          icon: require('../../../assets/icons/sale.png'),
         },
         {
           id: 3,
           title: 'SERVICES',
-          icon: require('../../assets/icons/tool.png'),
+          icon: require('../../../assets/icons/tool.png'),
         },
-        { id: 4, title: 'Jobs', icon: require('../../assets/icons/job.png') },
+        {
+          id: 4,
+          title: 'Jobs',
+          icon: require('../../../assets/icons/job.png'),
+        },
         {
           id: 5,
           title: 'PROPERTIES',
-          icon: require('../../assets/icons/property.png'),
+          icon: require('../../../assets/icons/property.png'),
         },
-        { id: 6, title: 'PETS', icon: require('../../assets/icons/pets.png') },
+        {
+          id: 6,
+          title: 'PETS',
+          icon: require('../../../assets/icons/pets.png'),
+        },
       ],
     };
   }
