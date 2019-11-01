@@ -9,7 +9,7 @@ import styles from './styles';
 
 const ElementList = ({ item, onPressProduct }) => (
   <TouchableOpacity style={styles.container} onPress={() => onPressProduct()}>
-    <View style={styles.container}>
+    <View style={{ flex: 1 }}>
       <View style={styles.pictureBlock}>
         <Image
           resizeMode="cover"

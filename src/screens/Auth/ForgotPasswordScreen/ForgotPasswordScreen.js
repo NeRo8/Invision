@@ -41,8 +41,7 @@ class ForgotPasswordScreen extends Component {
               Enter your email and we will send you access
             </Text>
             <Input
-              label="Email*"
-              labelStyle={[globalStyles.gothamBook, styles.labelInput]}
+              placeholder="Email*"
               inputStyle={[globalStyles.gothamBook, { fontSize: 17 }]}
               containerStyle={styles.containerInput}
             />

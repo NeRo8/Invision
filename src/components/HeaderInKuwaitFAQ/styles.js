@@ -7,31 +7,32 @@ export default StyleSheet.create({
   headerBlock: {
     flexDirection: 'row',
     height: 30,
+    justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 10,
   },
   headerText: {
     flex: 1,
-    fontSize: 20,
+    fontSize: 17,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
   },
   headerRight: {
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     color: 'white',
   },
   bodyBlock: {
     flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: 15,
+    marginTop: 10,
   },
   inputStyle: {
     marginLeft: 10,
     fontSize: 14,
   },
   inputContainer: {
-    marginTop: 10,
     backgroundColor: 'white',
-    width: '95%',
+    height: 40,
   },
   inputContainerS: {
     borderBottomWidth: 0,

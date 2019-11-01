@@ -50,7 +50,8 @@ const Navigation = createBottomTabNavigator(
         if (
           routeName === 'InKuwaitNews' ||
           routeName === 'NewsArticle' ||
-          routeName === 'ArticleComents'
+          routeName === 'ArticleComents' ||
+          routeName === 'NewsWriteComment'
         ) {
           tabBarVisible = false;
         }
@@ -72,16 +73,11 @@ const Navigation = createBottomTabNavigator(
       screen: AuthNavigation,
       navigationOptions: ({ navigation }) => {
         //title: 'Ads',
-        let tabBarVisible = true;
+        let tabBarVisible = false;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
-        if (
-          routeName === 'SignIn' ||
-          routeName === 'SignUp' ||
-          routeName === 'ForgotPassword' ||
-          routeName === 'NewPassword'
-        ) {
-          tabBarVisible = false;
+        if (routeName === 'Home') {
+          tabBarVisible = true;
         }
         return {
           tabBarVisible,

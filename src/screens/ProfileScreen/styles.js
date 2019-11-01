@@ -96,7 +96,6 @@ export default StyleSheet.create({
     margin: 10,
     borderRadius: 5,
     overflow: 'hidden',
-    backgroundColor: 'silver',
   },
   elementBody: {
     flexDirection: 'row',

@@ -3,20 +3,18 @@ import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import HomeScreen from '../screens/HomeScreen';
-import FiltersScreen from '../screens/FiltersScreen';
+import AdsScreen from '../screens/AdsScreen';
+import FiltersScreen from '../screens/Ads/FiltersScreen';
+import CategoryScreen from '../screens/Ads/CategoryScreen';
+import ProductScreen from '../screens/Ads/ProductScreen';
+import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
+import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
-import HeaderProduct from '../components/HeaderProduct';
-
-import CategoryScreen from '../screens/CategoryScreen/CategoryScreen';
-import ProductScreen from '../screens/Ads/ProductScreen';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
-import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
-import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 
 const styles = StyleSheet.create({
   btnCancel: {
@@ -44,7 +42,7 @@ const HeaderRight = ({ onPressConfirm }) => (
 const AdsNavigation = createStackNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: AdsScreen,
       navigationOptions: {
         headerTitle: <HeaderAds />,
         headerStyle: {
@@ -60,19 +58,19 @@ const AdsNavigation = createStackNavigator(
         return {
           headerTitle: 'Filters',
           headerStyle: {
-            paddingTop: 20,
-            height: 64,
+            paddingTop: 10,
             backgroundColor: colors.HEADER,
           },
           headerTitleStyle: {
             textAlign: 'center',
-            width: '100%',
-            paddingRight: 90,
+            flex: 1,
+            marginRight: Platform.OS === 'ios' ? 0 : 60,
             color: 'white',
             fontFamily: 'Gotham-Bold',
             fontSize: 17,
           },
           headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+          headerRight: null,
         };
       },
     },

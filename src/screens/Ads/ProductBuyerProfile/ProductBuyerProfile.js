@@ -52,8 +52,8 @@ class ProductBuyerProfile extends Component {
             onPress={() => this.props.navigation.goBack()}
           />
           <Icon
-            name="flag"
-            type="material-community"
+            name="md-flag"
+            type="ionicon"
             size={24}
             color={colors.DEFAULT}
             containerStyle={{
