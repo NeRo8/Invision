@@ -7,6 +7,8 @@ import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
 import InKuwaitAskScreen from '../screens/InKuwait/FAQ/InKuwaitAskScreen';
+import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
+import InkuwaitAnswersScreen from '../screens/InKuwait/FAQ/InKuwaitAnswersScreen';
 
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
@@ -17,11 +19,13 @@ import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
+import InKuwaitAnswersScreen from '../screens/InKuwait/FAQ/InKuwaitAnswersScreen';
 
 const HeaderLeftIcon = ({ goBack }) => (
   <Icon
     name="chevron-left"
     type="material-community"
+    underlayColor="transparent"
     color="white"
     size={32}
     onPress={() => goBack()}
@@ -128,6 +132,30 @@ const InKuwaitNavigation = createStackNavigator({
         headerRight: null,
       };
     },
+  },
+  InKuwaitDetail: {
+    screen: InKuwaitDetailScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'FAQ',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  InKuwaitAnswers: {
+    screen: InKuwaitAnswersScreen,
   },
   NewsArticle: {
     screen: NewsArticleScreen,

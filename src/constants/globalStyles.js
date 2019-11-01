@@ -11,8 +11,7 @@ export default StyleSheet.create({
     color: colors.TITLE,
   },
   gothamMediumRegular: {
-    fontFamily:
-      Platform.OS === 'ios' ? 'Gotham Medium' : 'Gotham-Medium-Regular',
+    fontFamily: 'Gotham Medium',
     color: colors.TITLE,
   },
   muliRegular: {

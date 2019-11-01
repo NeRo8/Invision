@@ -54,7 +54,7 @@ class NewsArticleScreen extends Component {
             height: imgHeight / (imgWidth / Dimensions.get('window').width),
           }}>
           <Image
-            source={require('../../../assets/images/Event.jpg')}
+            source={require('../../../../assets/images/Event.jpg')}
             style={styles.imageContainer}
             resizeMode="contain"
           />

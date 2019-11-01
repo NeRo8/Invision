@@ -2,44 +2,22 @@ import { StyleSheet, Platform } from 'react-native';
 import { colors } from '../../../../constants/colors';
 
 export default StyleSheet.create({
-  header: {
-    backgroundColor: 'transparent',
-  },
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: Platform.OS === 'ios' ? 40 : 30,
-    zIndex: 1,
-    alignItems: 'center',
+    flexGrow: 1,
+    backgroundColor: colors.BACKGROUND,
+    padding: 15,
   },
-  title: {
+  titleHeader: {
     fontSize: 17,
     lineHeight: 30,
+    marginBottom: 15,
   },
-
-  titleView: {
-    marginTop: 25,
-  },
-
-  description: {
-    fontSize: 15,
-    lineHeight: 27,
-    fontWeight: '300',
-    textAlign: 'justify',
-  },
-  descriptionView: {
-    marginTop: 20,
-    backgroundColor: 'rgba(255,255,265, 0.3)',
-  },
-  icons: {},
-  rightBlock: {
+  rowBlock: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    marginTop: 5,
   },
-  wraperView: {
-    marginHorizontal: 15,
-  },
+
   block: {
     paddingHorizontal: 20,
     flexDirection: 'row',
@@ -50,8 +28,25 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   blockText: {
-    fontSize: 15,
+    fontSize: 13,
     lineHeight: 26,
+  },
+  description: {
+    marginTop: 20,
+    fontSize: 15,
+    lineHeight: 27,
+    textAlign: 'justify',
+  },
+
+  pickerBlock: {
+    marginTop: 30,
+    flexDirection: 'row',
+    width: '100%',
+    height: 50,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
   },
   blockBottomText: {
     fontSize: 17,
@@ -59,10 +54,10 @@ export default StyleSheet.create({
     fontWeight: '300',
     color: colors.LABEL_GREY_COLOR,
   },
-  imageContainer: {
-    flex: 1,
-    width: null,
-    height: null,
+  btnTitle: {
+    color: 'white',
+    fontSize: 15,
+    lineHeight: 24,
   },
   buttonSend: {
     backgroundColor: colors.HEADER,
