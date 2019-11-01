@@ -11,8 +11,8 @@ import {
 import { Icon, Button } from 'react-native-elements';
 
 import styles from './styles';
-import globalStyles from '../../../constants/globalStyles';
-import { colors } from '../../../constants/colors';
+import globalStyles from '../../../../constants/globalStyles';
+import { colors } from '../../../../constants/colors';
 
 const imgWidth = 1600;
 const imgHeight = 750;
@@ -173,7 +173,7 @@ class NewsArticleScreen extends Component {
                 height: imgHeight / (imgWidth / Dimensions.get('window').width),
               }}>
               <Image
-                source={require('../../../assets/images/Event.jpg')}
+                source={require('../../../../assets/images/Event.jpg')}
                 style={styles.imageContainer}
                 resizeMode="contain"
               />

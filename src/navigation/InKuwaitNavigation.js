@@ -8,9 +8,10 @@ import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
 import InKuwaitAskScreen from '../screens/InKuwait/FAQ/InKuwaitAskScreen';
 
-import NewsScreen from '../screens/InKuwait/NewsScreen';
-import NewsArticleScreen from '../screens/InKuwait/NewsArticleScreen/';
-import ArticleComentsScreen from '../screens/InKuwait/ArticleComentsScreen/';
+import NewsScreen from '../screens/InKuwait/News/NewsScreen';
+import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
+import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
+
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
 

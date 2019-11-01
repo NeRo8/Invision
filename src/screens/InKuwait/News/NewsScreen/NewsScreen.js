@@ -8,11 +8,11 @@ import {
   StatusBar,
 } from 'react-native';
 
-import NewsList from '../../../components/NewsList/NewsList';
+import NewsList from '../../../../components/NewsList/NewsList';
 
 import styles from './styles';
-import { globalStyles } from '../../../constants/globalStyles';
-import { colors } from '../../../constants/colors';
+import { globalStyles } from '../../../../constants/globalStyles';
+import { colors } from '../../../../constants/colors';
 
 class NewsScreen extends Component {
   constructor(props) {
