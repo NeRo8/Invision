@@ -156,6 +156,24 @@ const InKuwaitNavigation = createStackNavigator({
   },
   InKuwaitAnswers: {
     screen: InKuwaitAnswersScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Answers',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
   },
   NewsArticle: {
     screen: NewsArticleScreen,
