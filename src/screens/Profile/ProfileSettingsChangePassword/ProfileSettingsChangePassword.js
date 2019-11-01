@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Switch } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
-import { colors } from '../../constants/colors';
-import globalStyles from '../../constants/globalStyles';
+import { colors } from '../../../constants/colors';
+import globalStyles from '../../../constants/globalStyles';
 
 import styles from './styles';
 

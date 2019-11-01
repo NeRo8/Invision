@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import globalStyles from '../../../constants/globalStyles';
 import { Icon } from 'react-native-elements';
-import globalStyles from '../../constants/globalStyles';
 
-import { colors } from '../../constants/colors';
-
+import { colors } from '../../../constants/colors';
 import styles from './styles';
 
 class ProfileSettingsPrivacyPolicy extends Component {
@@ -18,7 +17,9 @@ class ProfileSettingsPrivacyPolicy extends Component {
         style={{
           flex: 1,
           marginTop: 10,
-          paddingHorizontal: 15,
+          marginLeft: 15,
+          marginRight: 15,
+          flexDirection: 'column',
         }}>
         <Text style={[globalStyles.gothamMediumRegular, styles.privacyPolicy]}>
           1. Lorem ipsum

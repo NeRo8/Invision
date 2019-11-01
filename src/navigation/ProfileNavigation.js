@@ -4,14 +4,14 @@ import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import ProfileScreen from '../screens/ProfileScreen';
-import ProfileSettings from '../screens/ProfileSettings';
 
-import ProfileSettingsChangePassword from '../screens/ProfileSettingsChangePassword';
-import ProfileSettingsPersonalInformaion from '../screens/ProfileSettingsPersonalInformaion';
-import ProfileSettingsPrivacyPolicy from '../screens/ProfileSettingsPrivacyPolicy';
-import ProfileSettingsTermsOfUse from '../screens/ProfileSettingsTermsOfUse';
-import ProfilePaymentHistory from '../screens/ProfilePaymentHistory';
-import ProfileNotifications from '../screens/ProfileNotifications';
+import ProfileSettings from '../screens/Profile/ProfileSettings';
+import ProfileSettingsChangePassword from '../screens/Profile/ProfileSettingsChangePassword';
+import ProfileSettingsPersonalInformaion from '../screens/Profile/ProfileSettingsPersonalInformaion';
+import ProfileSettingsPrivacyPolicy from '../screens/Profile/ProfileSettingsPrivacyPolicy';
+import ProfileSettingsTermsOfUse from '../screens/Profile/ProfileSettingsTermsOfUse';
+import ProfilePaymentHistory from '../screens/Profile/ProfilePaymentHistory';
+import ProfileNotifications from '../screens/Profile/ProfileNotifications';
 
 import { colors } from '../constants/colors';
 

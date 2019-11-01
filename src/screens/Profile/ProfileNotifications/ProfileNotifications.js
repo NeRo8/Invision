@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { withNavigation } from 'react-navigation';
-import { colors } from '../../constants/colors';
-import globalStyles from '../../constants/globalStyles';
+import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
 import { Icon } from 'react-native-elements';
 
@@ -153,7 +152,7 @@ class ProfileNotifications extends Component {
           renderItem={(rowData, rowMap) => (
             <View style={styles.rowFront}>
               <Image
-                source={require('../../../assets/images/profilepic.jpg')}
+                source={require('../../../../assets/images/profilepic.jpg')}
                 style={{ width: 45, height: 45, borderRadius: 45 / 2 }}
               />
               <View style={{ marginLeft: 15 }}>
