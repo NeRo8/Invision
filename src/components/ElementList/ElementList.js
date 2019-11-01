@@ -25,7 +25,7 @@ const ElementList = ({ item, onPressProduct }) => (
       </View>
       <View style={styles.textBlock}>
         <Text style={[globalStyles.gothamBold, styles.title]}>
-          {item.title} Pioneer handphones premium
+          {item.title}
         </Text>
         <Text style={[globalStyles.gothamBook, styles.price]}>10 000 KWD</Text>
         <Text style={[globalStyles.gothamBook, styles.status]}>For sale</Text>

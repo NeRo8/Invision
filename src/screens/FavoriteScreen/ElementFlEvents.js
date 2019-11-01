@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 
@@ -17,6 +17,7 @@ const ElementFlEvents = ({ element, onPressProduct }) => (
           containerStyle={styles.heart}
         />
       </View>
+
       <View style={[styles.fullFlex, { paddingHorizontal: 5 }]}>
         <Text style={[globalStyles.gothamBook, styles.dateText]}>
           {element.date}
