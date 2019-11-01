@@ -16,7 +16,7 @@ class MakePictureScreen extends Component {
   }
 
   componentDidMount() {
-    const variantPhoto = this.props.navigation.getParam('variant');
+    const variantPhoto = this.props.navigation.getParam('variant', 'item');
 
     if (variantPhoto === 'card') {
       this.setState({
@@ -53,6 +53,7 @@ class MakePictureScreen extends Component {
                 name="arrow-left"
                 type="material-community"
                 color={'white'}
+                onPress={() => this.props.navigation.goBack()}
               />
               <Icon
                 name="flash-off"

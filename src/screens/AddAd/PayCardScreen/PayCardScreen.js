@@ -34,7 +34,11 @@ class PayCardScreen extends Component {
               underlayColor="transparent"
               size={48}
               containerStyle={styles.iconContainer}
-              onPress={() => {}}
+              onPress={() => {
+                this.props.navigation.navigate('MakePicture', {
+                  variant: 'card',
+                });
+              }}
             />
 
             <Text style={[globalStyles.gothamBook, styles.textHint]}>
