@@ -43,7 +43,7 @@ class ProductBuyerProfile extends Component {
         <View style={styles.header}>
           <Icon
             name="chevron-left"
-            type="material-community"
+            type="feather"
             size={32}
             color="black"
             containerStyle={{

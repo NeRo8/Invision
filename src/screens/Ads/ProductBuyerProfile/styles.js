@@ -100,6 +100,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     borderWidth: 0,
+    backgroundColor: 'transparent',
   },
   checkBoxWraper: {
     width: '100%',

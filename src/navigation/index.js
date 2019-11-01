@@ -47,7 +47,11 @@ const Navigation = createBottomTabNavigator(
         let tabBarVisible = true;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
-        if (routeName === 'InKuwaitNews') {
+        if (
+          routeName === 'InKuwaitNews' ||
+          routeName === 'NewsArticle' ||
+          routeName === 'ArticleComents'
+        ) {
           tabBarVisible = false;
         }
         return {

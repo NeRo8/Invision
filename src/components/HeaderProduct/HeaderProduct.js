@@ -17,7 +17,7 @@ class HeaderProduct extends Component {
           <Icon
             containerStyle={styles.icons}
             name="chevron-left"
-            type="material-community"
+            type="feather"
             underlayColor="transparent"
             color="white"
             size={32}

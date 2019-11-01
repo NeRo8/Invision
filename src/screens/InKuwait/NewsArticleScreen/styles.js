@@ -3,16 +3,24 @@ import { colors } from '../../../constants/colors';
 
 export default StyleSheet.create({
   header: {
-    backgroundColor: 'grey',
+    backgroundColor: 'transparent',
   },
   container: {
-    backgroundColor: 'grey',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: Platform.OS === 'ios' ? 40 : 30,
     zIndex: 1,
     alignItems: 'center',
   },
+  title: {
+    fontSize: 17,
+    lineHeight: 30,
+  },
+
+  titleView: {
+    marginTop: 25,
+  },
+
   description: {
     fontSize: 15,
     lineHeight: 27,
@@ -21,6 +29,7 @@ export default StyleSheet.create({
   },
   descriptionView: {
     marginTop: 20,
+    backgroundColor: 'rgba(255,255,265, 0.3)',
   },
   icons: {},
   rightBlock: {
@@ -29,9 +38,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   wraperView: {
-    backgroundColor: 'red',
     marginHorizontal: 15,
-    marginTop: 15,
   },
   block: {
     paddingHorizontal: 20,
@@ -42,17 +49,24 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  bottomImageView: {
-    marginTop: 30,
-    width: '100%',
-  },
-  bottomImage: {
-    flex: 1,
-    width: '100%',
-    resizeMode: 'contain',
-  },
   blockText: {
     fontSize: 15,
     lineHeight: 26,
+  },
+  blockBottomText: {
+    fontSize: 17,
+    lineHeight: 26,
+    fontWeight: '300',
+    color: colors.LABEL_GREY_COLOR,
+  },
+  imageContainer: {
+    flex: 1,
+    width: null,
+    height: null,
+  },
+  buttonSend: {
+    backgroundColor: colors.HEADER,
+    height: 50,
+    marginVertical: 15,
   },
 });

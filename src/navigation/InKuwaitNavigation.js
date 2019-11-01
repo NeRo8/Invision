@@ -1,10 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
+import { Platform } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwaitFAQScreen';
 import NewsScreen from '../screens/InKuwait/NewsScreen';
 import NewsArticleScreen from '../screens/InKuwait/NewsArticleScreen/';
+import ArticleComentsScreen from '../screens/InKuwait/ArticleComentsScreen/';
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
 
@@ -71,6 +74,44 @@ const InKuwaitNavigation = createStackNavigator({
     screen: NewsArticleScreen,
     navigationOptions: {
       header: null,
+    },
+  },
+  ArticleComents: {
+    screen: ArticleComentsScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Coments',
+        headerTitleStyle: {
+          textAlign: 'center',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
+          color: 'white',
+          width: '100%',
+          paddingRight: 60,
+        },
+        headerLeft: (
+          <Icon
+            name="chevron-left"
+            type="feather"
+            size={32}
+            color="white"
+            containerStyle={{
+              width: 50,
+            }}
+            onPress={() => navigation.goBack()}
+          />
+        ),
+        headerStyle: {
+          paddingTop: 15,
+          height: Platform.OS === 'ios' ? 64 : 64,
+          backgroundColor: colors.HEADER,
+        },
+        headerTitleContainerStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      };
     },
   },
 });

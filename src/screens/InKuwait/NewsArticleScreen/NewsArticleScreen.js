@@ -1,20 +1,64 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, Image, ImageBackground } from 'react-native';
-import { Icon } from 'react-native-elements';
+import {
+  ScrollView,
+  View,
+  Text,
+  Image,
+  Dimensions,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
+import { Icon, Button } from 'react-native-elements';
 
 import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 import { colors } from '../../../constants/colors';
 
+const imgWidth = 1600;
+const imgHeight = 750;
+
 class NewsArticleScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      iWidth: 0,
+      iHeight: 0,
+      imgURL:
+        'https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/north-america/united-states/newyork/newyork_NationalGeographic_2328428.adapt.1900.1.jpg',
+    };
   }
 
+  componentDidMount() {
+    Image.getSize(this.state.imgURL, (width, height) => {
+      this.setState({
+        iWidth: width,
+        iHeight: height,
+      });
+    });
+  }
+
+  onPressArticleComents = () => {
+    this.props.navigation.navigate('ArticleComents');
+  };
+
   render() {
+    const remoteImage =
+      this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
+
     return (
       <ScrollView>
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: imgHeight / (imgWidth / Dimensions.get('window').width),
+          }}>
+          <Image
+            source={require('../../../assets/images/Event.jpg')}
+            style={styles.imageContainer}
+            resizeMode="contain"
+          />
+        </View>
         <View style={styles.header}>
           <View style={styles.container}>
             <Icon
@@ -35,10 +79,26 @@ class NewsArticleScreen extends Component {
             />
           </View>
         </View>
-        <View style={{ backgroundColor: colors.BACKGROUND }}>
+
+        <View
+          //Цю діч треба поправити
+          style={{
+            backgroundColor: colors.BACKGROUND,
+            marginTop:
+              imgHeight / (imgWidth / Dimensions.get('window').width) - 65,
+          }}>
           <View style={styles.wraperView}>
+            <View style={styles.titleView}>
+              <Text style={[globalStyles.gothamMediumRegular, styles.title]}>
+                Is there a cheaper Private english school in Kuwait ?
+              </Text>
+            </View>
             <View
-              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 20,
+              }}>
               <View style={styles.block}>
                 <Icon
                   name="cellphone-text"
@@ -70,29 +130,32 @@ class NewsArticleScreen extends Component {
               }}>
               <View style={styles.block}>
                 <Icon
-                  name="cellphone-text"
+                  name="eye-outline"
                   type="material-community"
                   color={'#63A3FF'}
                   iconStyle={{ marginRight: 10 }}
                 />
                 <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                  01567 23040
+                  100
                 </Text>
               </View>
               <View style={styles.block}>
                 <Icon
-                  name="clock"
-                  type="octicon"
+                  name="tag-outline"
+                  type="material-community"
                   color={'#63A3FF'}
-                  iconStyle={{ marginRight: 10 }}
+                  iconStyle={{
+                    marginRight: 10,
+                    transform: [{ rotate: '90deg' }],
+                  }}
                 />
                 <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                  Since 2017
+                  Education
                 </Text>
               </View>
             </View>
             <View style={styles.descriptionView}>
-              <Text style={[globalStyles.gothamBook, styles.description]}>
+              <Text style={[globalStyles.gotham, styles.description]}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s, when an unknown printer took a galley
@@ -102,17 +165,46 @@ class NewsArticleScreen extends Component {
                 popularised in the 1960s with.
               </Text>
             </View>
-            <View style={styles.bottomImageView}>
+
+            <View
+              style={{
+                marginTop: 30,
+                width: '100%',
+                height: imgHeight / (imgWidth / Dimensions.get('window').width),
+              }}>
               <Image
-                resizeMethod={'resize'}
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  flex: 1,
-                }}
                 source={require('../../../assets/images/Event.jpg')}
+                style={styles.imageContainer}
+                resizeMode="contain"
               />
             </View>
+            <TouchableOpacity onPress={this.onPressArticleComents}>
+              <View
+                style={[
+                  styles.block,
+                  { justifyContent: 'space-between', marginTop: 20 },
+                ]}>
+                <Text style={[globalStyles.gothamBook, styles.blockBottomText]}>
+                  Answers
+                </Text>
+                <Text
+                  style={[
+                    globalStyles.gothamBook,
+                    styles.blockBottomText,
+                    { color: 'black' },
+                  ]}>
+                  3
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <Button
+              titleStyle={[
+                globalStyles.gothamBold,
+                { color: 'white', fontSize: 15, lineHeight: 24 },
+              ]}
+              buttonStyle={styles.buttonSend}
+              title="Write comment"
+            />
           </View>
         </View>
       </ScrollView>

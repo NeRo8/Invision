@@ -114,7 +114,7 @@ const AdsNavigation = createStackNavigator(
           headerLeft: (
             <Icon
               name="chevron-left"
-              type="material-community"
+              type="feather"
               size={32}
               color="white"
               containerStyle={{
