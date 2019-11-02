@@ -4,8 +4,9 @@ import {
   View,
   Text,
   Image,
-  Dimensions,
-  TouchableOpacity,
+  Modal,
+  StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 
@@ -22,16 +23,21 @@ class EventsDetail extends Component {
     this.state = {
       iWidth: 0,
       iHeight: 0,
+      modalVisible: false,
     };
   }
 
-  onPressArticleComents = () => {
-    this.props.navigation.navigate('ArticleComents');
+  onChangeModalVisible = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible,
+    });
+    setTimeout(() => this.setState({ modalVisible: false }), 2000);
   };
 
   render() {
     return (
       <ScrollView contentContainerStyle={styles.container}>
+        <StatusBar />
         <View style={styles.header}>
           <Icon
             containerStyle={{}}
@@ -164,24 +170,28 @@ class EventsDetail extends Component {
             />
           </View>
           <Button
-            titleStyle={[
-              globalStyles.gothamBold,
-              { color: 'white', fontSize: 15, lineHeight: 24 },
-            ]}
+            titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
             buttonStyle={styles.buttonAddGoogle}
             containerStyle={{ width: '100%' }}
             title="Add to Google or iOS Calendar"
+            onPress={() => this.onChangeModalVisible()}
           />
           <Button
-            titleStyle={[
-              globalStyles.gothamBold,
-              { color: 'white', fontSize: 15, lineHeight: 24 },
-            ]}
+            titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
             buttonStyle={styles.buttonRegister}
             containerStyle={{ width: '100%' }}
             title="Register to event"
+            onPress={() => this.onChangeModalVisible()}
           />
         </View>
+        <Modal visible={this.state.modalVisible} transparent>
+          <View style={styles.modalWindow}>
+            <ActivityIndicator size="large" color="white" />
+            <Text style={[globalStyles.gothamBook, styles.textModal]}>
+              {"Please, wait\nWill be open the organizer's website"}
+            </Text>
+          </View>
+        </Modal>
       </ScrollView>
     );
   }

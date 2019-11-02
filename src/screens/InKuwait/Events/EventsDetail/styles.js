@@ -122,4 +122,17 @@ export default StyleSheet.create({
     left: 15,
     right: 15,
   },
+  btnTitle: { color: 'white', fontSize: 15, lineHeight: 24 },
+  modalWindow: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textModal: {
+    fontSize: 15,
+    color: 'white',
+    lineHeight: 24,
+    textAlign: 'center',
+  },
 });
