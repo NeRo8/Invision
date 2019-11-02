@@ -7,6 +7,12 @@ import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
 import InKuwaitAskScreen from '../screens/InKuwait/FAQ/InKuwaitAskScreen';
+import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
+import InKuwaitAnswersScreen from '../screens/InKuwait/FAQ/InKuwaitAnswersScreen';
+import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateCommentScreen';
+
+import EventsScreen from '../screens/InKuwait/Events/EventsScreen';
+import EventsFilter from '../screens/InKuwait/Events/EventsFilter';
 
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
@@ -14,8 +20,15 @@ import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/
 import NewsWriteComment from '../screens/InKuwait/News/NewsWriteComment';
 import NewsFilterScreen from '../screens/InKuwait/News/NewsFilterScreen';
 
+import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesScreen';
+import HeaderOrganisationAndServices from '../components/HeaderOrganisationAndServices/HeaderOrganisationAndServices';
+import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter/OrganisationAndServicesFilter';
+import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail/OrganisationServiceDetail';
+import ChooseLocationScreen from '../screens/InKuwait/OrganisationAndServices/ChooseLocationScreen/ChooselocationScreen';
+
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
+import HeaderInKuwaitEvents from '../components/HeaderInKuwaitEvents';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
@@ -24,11 +37,29 @@ const HeaderLeftIcon = ({ goBack }) => (
   <Icon
     name="chevron-left"
     type="material-community"
+    underlayColor="transparent"
     color="white"
     size={32}
     onPress={() => goBack()}
   />
 );
+
+const EventsNavigation = createStackNavigator({
+  InKuwaitEvents: {
+    screen: EventsScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  InKuwaitEventsFilter: {
+    screen: EventsFilter,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: 'red',
+      },
+    },
+  },
+});
 
 const InKuwaitNavigation = createStackNavigator({
   InKuwait: {
@@ -131,6 +162,95 @@ const InKuwaitNavigation = createStackNavigator({
       };
     },
   },
+  InKuwaitDetail: {
+    screen: InKuwaitDetailScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'FAQ',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  InKuwaitAnswers: {
+    screen: InKuwaitAnswersScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Answers',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  InKuwaitCreateComment: {
+    screen: InKuwaitCreateCommentScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Write comment',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  EventsNavigation: {
+    screen: EventsNavigation,
+    navigationOptions: ({ navigation }) => {
+      let routeName = navigation.state.routes[navigation.state.index].routeName;
+      if (routeName !== 'InKuwaitEvents') {
+        return {
+          header: null,
+        };
+      }
+      return {
+        headerTitle: (
+          <HeaderInKuwaitEvents
+            onPressBack={() => navigation.goBack()}
+            navigation={navigation}
+          />
+        ),
+        headerStyle: {
+          paddingTop: 30,
+          height: Platform.OS === 'ios' ? 90 : 120,
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: null,
+        headerRight: null,
+      };
+    },
+  },
   NewsArticle: {
     screen: NewsArticleScreen,
     navigationOptions: {
@@ -218,6 +338,110 @@ const InKuwaitNavigation = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       return {
         title: 'Filter',
+        headerTitleStyle: {
+          textAlign: 'center',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
+          color: 'white',
+          width: '100%',
+          paddingRight: 60,
+        },
+        headerLeft: (
+          <Icon
+            name="chevron-left"
+            type="feather"
+            size={32}
+            color="white"
+            containerStyle={{
+              width: 50,
+            }}
+            onPress={() => navigation.goBack()}
+          />
+        ),
+        headerStyle: {
+          paddingTop: 15,
+          height: Platform.OS === 'ios' ? 64 : 64,
+          backgroundColor: colors.HEADER,
+        },
+        headerTitleContainerStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      };
+    },
+  },
+  OrganisationAndServices: {
+    screen: OrganisationAndServicesScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: (
+          <HeaderOrganisationAndServices
+            onPressBack={() => navigation.goBack()}
+            onPressOrganizationAndServicesFilter={() =>
+              navigation.navigate('OrganisationAndServicesFilter')
+            }
+          />
+        ),
+        headerStyle: {
+          paddingTop: 30,
+          height: 132,
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: null,
+        headerRight: null,
+      };
+    },
+  },
+  OrganisationAndServicesFilter: {
+    screen: OrganisationAndServicesFilter,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Filter',
+        headerTitleStyle: {
+          textAlign: 'center',
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          lineHeight: 24,
+          color: 'white',
+          width: '100%',
+          paddingRight: 60,
+        },
+        headerLeft: (
+          <Icon
+            name="chevron-left"
+            type="feather"
+            size={32}
+            color="white"
+            containerStyle={{
+              width: 50,
+            }}
+            onPress={() => navigation.goBack()}
+          />
+        ),
+        headerStyle: {
+          paddingTop: 15,
+          height: Platform.OS === 'ios' ? 64 : 64,
+          backgroundColor: colors.HEADER,
+        },
+        headerTitleContainerStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      };
+    },
+  },
+  OrganisationServiceDetail: {
+    screen: OrganisationServiceDetail,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ChooseLocationServices: {
+    screen: ChooseLocationScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Organisations & Services',
         headerTitleStyle: {
           textAlign: 'center',
           fontFamily: globalStyles.gothamBold.fontFamily,

@@ -6,35 +6,60 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
+
 import ElementList from '../../components/ElementList';
+import ElementFlServices from './ElementFlServices';
+import ElementFlEvents from './ElementFlEvents';
 
 import styles from './styles';
 import { colors } from '../../constants/colors';
-import ElementFlServices from './ElementFlServices';
-import ElementFlEvents from './ElementFlEvents';
+
+import TextPicker from '../../components/TextPicker';
 
 class FavoriteScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favoritesCategory: {
-        ads: true,
-        services: false,
-        events: false,
-      },
-      data: [
-        { id: 1, title: 1, active: true },
-        { id: 2, title: 2, active: true },
-        { id: 3, title: 1, active: true },
-        { id: 4, title: 2, active: true },
-        { id: 5, title: 1, active: true },
-        { id: 6, title: 2, active: true },
-        { id: 7, title: 1, active: true },
-        { id: 8, title: 2, active: true },
-        { id: 9, title: 1, active: true },
-        { id: 10, title: 2, active: true },
+      activeFilter: 'ads',
+      filters: [
+        {
+          id: 0,
+          title: 'Ads',
+          active: true,
+          func: () => {
+            this.setState({ activeFilter: 'ads' });
+          },
+        },
+        {
+          id: 1,
+          title: 'Org/Services',
+          active: false,
+          func: () => {
+            this.setState({ activeFilter: 'org' });
+          },
+        },
+        {
+          id: 2,
+          title: 'Events',
+          active: false,
+          func: () => {
+            this.setState({ activeFilter: 'even' });
+          },
+        },
       ],
 
+      dataAds: [
+        { id: 1, title: 'Pioneer handphones premium', active: true },
+        { id: 2, title: 'Pioneer handphones premium', active: true },
+        { id: 3, title: 'Pioneer handphones premium', active: true },
+        { id: 4, title: 'Pioneer handphones premium', active: true },
+        { id: 5, title: 'Pioneer handphones premium', active: true },
+        { id: 6, title: 'Pioneer handphones premium', active: true },
+        { id: 7, title: 'Pioneer handphones premium', active: true },
+        { id: 8, title: 'Pioneer handphones premium', active: true },
+        { id: 9, title: 'Pioneer handphones premium', active: true },
+        { id: 10, title: 'Pioneer handphones premium', active: true },
+      ],
       dataOrg: [
         {
           id: 0,
@@ -43,43 +68,43 @@ class FavoriteScreen extends Component {
           rating: 3.3,
         },
         {
-          id: 0,
+          id: 1,
           image: require('../../assets/images/element-background.jpg'),
           title: 'Central skyscrapers',
           rating: 5.0,
         },
         {
-          id: 0,
+          id: 2,
           image: require('../../assets/images/element-background.jpg'),
           title: 'Central skyscrapers',
           rating: 5.0,
         },
         {
-          id: 0,
+          id: 3,
           image: require('../../assets/images/element-background.jpg'),
           title: 'Central skyscrapers',
           rating: 1.0,
         },
         {
-          id: 0,
+          id: 4,
           image: require('../../assets/images/element-background.jpg'),
           title: 'Central skyscrapers',
           rating: 2.0,
         },
         {
-          id: 0,
+          id: 5,
           image: require('../../assets/images/element-background.jpg'),
           title: 'Central skyscrapers',
           rating: 3.0,
         },
         {
-          id: 0,
+          id: 6,
           image: require('../../assets/images/element-background.jpg'),
           title: 'Central skyscrapers',
           rating: 5.0,
         },
         {
-          id: 0,
+          id: 7,
           image: require('../../assets/images/element-background.jpg'),
           title: 'Central skyscrapers',
           rating: 5,
@@ -93,31 +118,31 @@ class FavoriteScreen extends Component {
           date: 'Oct 11-12',
         },
         {
-          id: 0,
+          id: 1,
           image: require('../../assets/images/element.jpg'),
           title: 'Lorem ipsum is simply dummy text',
           date: 'Oct 11-12',
         },
         {
-          id: 0,
+          id: 2,
           image: require('../../assets/images/element.jpg'),
           title: 'Lorem ipsum is simply dummy text',
           date: 'Oct 11-12',
         },
         {
-          id: 0,
+          id: 3,
           image: require('../../assets/images/element.jpg'),
           title: 'Lorem ipsum is simply dummy text',
           date: 'Oct 11-12',
         },
         {
-          id: 0,
+          id: 4,
           image: require('../../assets/images/element.jpg'),
           title: 'Lorem ipsum is simply dummy text',
           date: 'Oct 11-12',
         },
         {
-          id: 0,
+          id: 5,
           image: require('../../assets/images/element.jpg'),
           title: 'Lorem ipsum is simply dummy text',
           date: 'Oct 11-12',
@@ -126,96 +151,41 @@ class FavoriteScreen extends Component {
     };
   }
 
-  handlePressCategoryFilter = filter => {
-    const { favoritesCategory } = this.state;
+  handlePressElement = id => {
+    const { filters } = this.state;
 
-    const newFavoriteCategory = {
-      ...favoritesCategory,
-      ads: false,
-      services: false,
-      events: false,
-      [filter]: true,
-    };
+    const newFilters = filters.map(item =>
+      item.id === id ? { ...item, active: true } : { ...item, active: false },
+    );
 
     this.setState({
-      favoritesCategory: newFavoriteCategory,
+      filters: newFilters,
     });
   };
 
-  componentDidUpdate() {
-    console.log(this.state.favoritesCategory);
-  }
-
   render() {
-    const { favoritesCategory } = this.state;
+    const { filters, dataAds, dataOrg, dataEvents } = this.state;
 
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
-          <View style={styles.selectorContainer}>
-            <TouchableOpacity
-              style={
-                favoritesCategory.ads
-                  ? styles.activeElement
-                  : styles.unactiveElement
-              }
-              onPress={() => this.handlePressCategoryFilter('ads')}>
-              <Text
-                style={
-                  favoritesCategory.ads
-                    ? styles.textActive
-                    : styles.textUnactive
-                }>
-                Ads
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={
-                favoritesCategory.services
-                  ? styles.activeElement
-                  : styles.unactiveElement
-              }
-              onPress={() => this.handlePressCategoryFilter('services')}>
-              <Text
-                style={
-                  favoritesCategory.services
-                    ? styles.textActive
-                    : styles.textUnactive
-                }>
-                Org/Services
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={
-                favoritesCategory.events
-                  ? styles.activeElement
-                  : styles.unactiveElement
-              }
-              onPress={() => this.handlePressCategoryFilter('events')}>
-              <Text
-                style={
-                  favoritesCategory.events
-                    ? styles.textActive
-                    : styles.textUnactive
-                }>
-                Events
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <TextPicker
+            dataList={this.state.filters}
+            onPressElement={this.handlePressElement}
+          />
         </View>
         <View style={styles.bodyBlock}>
-          {this.state.favoritesCategory.ads ? (
+          {this.state.activeFilter === 'ads' ? (
             <FlatList
               numColumns={2}
-              data={this.state.data}
+              data={this.state.dataAds}
               renderItem={({ item }) => (
                 <ElementList item={item} onPressProduct={() => {}} />
               )}
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
               keyExtractor={(item, index) => item.id}
             />
-          ) : null}
-          {this.state.favoritesCategory.services ? (
+          ) : this.state.activeFilter === 'org' ? (
             <FlatList
               numColumns={2}
               data={this.state.dataOrg}
@@ -225,8 +195,7 @@ class FavoriteScreen extends Component {
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
               keyExtractor={(item, index) => item.id}
             />
-          ) : null}
-          {this.state.favoritesCategory.events ? (
+          ) : (
             <FlatList
               numColumns={2}
               data={this.state.dataEvents}
@@ -236,7 +205,7 @@ class FavoriteScreen extends Component {
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
               keyExtractor={(item, index) => item.id}
             />
-          ) : null}
+          )}
         </View>
       </View>
     );

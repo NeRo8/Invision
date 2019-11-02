@@ -43,7 +43,8 @@ export default StyleSheet.create({
     marginTop: 5,
   },
   headerBlock: {
-    alignItems: 'center',
+    height: 40,
+    paddingHorizontal: 10,
     marginTop: 10,
   },
 });

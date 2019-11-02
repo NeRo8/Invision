@@ -69,9 +69,10 @@ export default StyleSheet.create({
     width: null,
     height: null,
   },
-  buttonSend: {
-    backgroundColor: colors.HEADER,
-    height: 50,
-    marginVertical: 15,
+
+  date: {
+    marginTop: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

@@ -6,8 +6,8 @@ import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
 import { colors } from '../../../../constants/colors';
 
-const ElementFlatList = ({ item }) => (
-  <View style={styles.elementFL}>
+const ElementFlatList = ({ item, onPressElement }) => (
+  <TouchableOpacity style={styles.elementFL} onPress={() => onPressElement()}>
     <View style={styles.roundView}>
       <Text style={[globalStyles.gothamBook, styles.roundText]}>
         {item.size}
@@ -18,7 +18,7 @@ const ElementFlatList = ({ item }) => (
         {item.title}
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 class InKuwaitFAQScreen extends Component {
@@ -79,6 +79,10 @@ class InKuwaitFAQScreen extends Component {
     });
   };
 
+  handlePressElement = () => {
+    this.props.navigation.navigate('InKuwaitDetail');
+  };
+
   render() {
     const { filters } = this.state;
     return (
@@ -123,7 +127,12 @@ class InKuwaitFAQScreen extends Component {
         </View>
         <FlatList
           data={this.state.data}
-          renderItem={({ item }) => <ElementFlatList item={item} />}
+          renderItem={({ item }) => (
+            <ElementFlatList
+              item={item}
+              onPressElement={this.handlePressElement}
+            />
+          )}
           keyExtractor={(item, index) => item.id}
           contentContainerStyle={{
             flexGrow: 1,

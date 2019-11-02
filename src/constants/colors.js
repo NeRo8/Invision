@@ -20,4 +20,6 @@ export const colors = {
   HINT: '#626773',
   CAMERA: '#74859E',
   DIVIDER: '#EFEFED',
+  REPLY: '#0A68EF',
+  REPORT: '#F05B88',
 };
