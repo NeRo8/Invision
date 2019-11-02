@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 import ElementListEvents from '../../../../components/ElementListEvents';
 import TextPicker from '../../../../components/TextPicker';
 
 import { colors } from '../../../../constants/colors';
+
+import styles from './styles';
 
 class EventsScreen extends Component {
   constructor(props) {
@@ -61,7 +64,7 @@ class EventsScreen extends Component {
           title: 'Upcoming Events',
           active: true,
           func: () => {
-            console.warn('Upcoming');
+            //console.warn('Upcoming');
           },
         },
         {
@@ -69,7 +72,7 @@ class EventsScreen extends Component {
           title: 'Previous Events',
           active: false,
           func: () => {
-            console.warn('Previo');
+            //console.warn('Previo');
           },
         },
       ],
@@ -95,20 +98,19 @@ class EventsScreen extends Component {
     this.setState({
       filters: newFilter,
     });
-
-    console.log(filters);
   };
 
   render() {
     return (
-      <View style={{ flex: 1, paddingHorizontal: 15 }}>
-        <View style={{ height: 40, width: '100%', marginVertical: 15 }}>
+      <View style={styles.container}>
+        <View style={styles.headerPicker}>
           <TextPicker
             dataList={this.state.filters}
             onPressElement={this.handlePressFilter}
           />
         </View>
         <FlatList
+          showsVerticalScrollIndicator={false}
           numColumns={2}
           data={this.state.dataEvents}
           renderItem={({ item }) => (
@@ -118,9 +120,17 @@ class EventsScreen extends Component {
               onPressHeart={this.handlePressHeart}
             />
           )}
-          contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
           keyExtractor={(item, index) => item.id}
         />
+        <View style={styles.btnLContainer}>
+          <Icon
+            name="ios-pin"
+            type="ionicon"
+            color={colors.HEADER}
+            iconStyle={styles.icon}
+            onPress={() => {}}
+          />
+        </View>
       </View>
     );
   }
