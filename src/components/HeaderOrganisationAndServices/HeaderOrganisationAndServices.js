@@ -7,7 +7,7 @@ import { colors } from '../../constants/colors';
 import styles from './styles';
 import globalStyles from '../../constants/globalStyles';
 
-class HeaderInKuwaitNews extends Component {
+class HeaderOrganisationAndServices extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,12 +25,12 @@ class HeaderInKuwaitNews extends Component {
             size={32}
             onPress={() => this.props.onPressBack()}
           />
-          <Text style={styles.headerText}>News</Text>
+          <Text style={styles.headerText}>Organisation & Services</Text>
           <Icon
             name="filter"
             type="material-community"
             color="white"
-            onPress={this.props.onPressFilter}
+            onPress={this.props.onPressOrganizationAndServicesFilter}
           />
         </View>
         <View style={styles.bodyBlock}>
@@ -43,7 +43,7 @@ class HeaderInKuwaitNews extends Component {
                 size={24}
               />
             )}
-            placeholder="Search news"
+            placeholder="Search organisation or service…"
             inputStyle={[
               globalStyles.gothamBook,
               { fontSize: 15, lineHeight: 20, fontWeight: '300' },
@@ -59,4 +59,4 @@ class HeaderInKuwaitNews extends Component {
   }
 }
 
-export default HeaderInKuwaitNews;
+export default HeaderOrganisationAndServices;

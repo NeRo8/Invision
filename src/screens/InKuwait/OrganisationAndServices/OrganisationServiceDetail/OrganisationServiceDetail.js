@@ -10,14 +10,16 @@ import {
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 
+import StarRating from 'react-native-star-rating';
+
 import styles from './styles';
 import globalStyles from '../../../../constants/globalStyles';
 import { colors } from '../../../../constants/colors';
 
-const imgWidth = 1600;
+const imgWidth = 1000;
 const imgHeight = 750;
 
-class NewsArticleScreen extends Component {
+class OrganisationServiceDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,6 +63,7 @@ class NewsArticleScreen extends Component {
               size={32}
               onPress={() => this.props.navigation.goBack()}
             />
+
             <Icon
               containerStyle={styles.icons}
               name="share-apple"
@@ -79,7 +82,7 @@ class NewsArticleScreen extends Component {
               height: imgHeight / (imgWidth / Dimensions.get('window').width),
             }}>
             <Image
-              source={require('../../../../assets/images/Event.jpg')}
+              source={require('../../../../assets/images/building.jpg')}
               style={styles.imageContainer}
               resizeMode="contain"
             />
@@ -92,8 +95,23 @@ class NewsArticleScreen extends Component {
             <View style={styles.wraperView}>
               <View style={styles.titleView}>
                 <Text style={[globalStyles.gothamMediumRegular, styles.title]}>
-                  Is there a cheaper Private english school in Kuwait ?
+                  Central skyscraper
                 </Text>
+                <View style={styles.date}>
+                  <StarRating
+                    disabled
+                    maxStars={5}
+                    rating={'4'}
+                    emptyStar="ios-star"
+                    fullStar="ios-star"
+                    halfStar="ios-star"
+                    iconSet="Ionicons"
+                    fullStarColor={colors.STAR}
+                    emptyStarColor={colors.UNACTIVE}
+                    starSize={15}
+                    starStyle={{ marginRight: 6 }}
+                  />
+                </View>
               </View>
               <View
                 style={{
@@ -103,13 +121,13 @@ class NewsArticleScreen extends Component {
                 }}>
                 <View style={styles.block}>
                   <Icon
-                    name="cellphone-text"
+                    name="calendar-range-outline"
                     type="material-community"
                     color={'#63A3FF'}
                     iconStyle={{ marginRight: 10 }}
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                    01567 23040
+                    Oct 11-12
                   </Text>
                 </View>
                 <View style={styles.block}>
@@ -120,7 +138,7 @@ class NewsArticleScreen extends Component {
                     iconStyle={{ marginRight: 10 }}
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                    Since 2017
+                    11am - 14pm
                   </Text>
                 </View>
               </View>
@@ -132,13 +150,13 @@ class NewsArticleScreen extends Component {
                 }}>
                 <View style={styles.block}>
                   <Icon
-                    name="eye-outline"
+                    name="cash"
                     type="material-community"
                     color={'#63A3FF'}
                     iconStyle={{ marginRight: 10 }}
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                    100
+                    3 KD Entry
                   </Text>
                 </View>
                 <View style={styles.block}>
@@ -167,49 +185,6 @@ class NewsArticleScreen extends Component {
                   essentially unchanged. It was popularised in the 1960s with.
                 </Text>
               </View>
-
-              <View
-                style={{
-                  marginTop: 30,
-                  width: '100%',
-                  height:
-                    imgHeight / (imgWidth / Dimensions.get('window').width),
-                }}>
-                <Image
-                  source={require('../../../../assets/images/Event.jpg')}
-                  style={styles.imageContainer}
-                  resizeMode="contain"
-                />
-              </View>
-              <TouchableOpacity onPress={this.onPressArticleComents}>
-                <View
-                  style={[
-                    styles.block,
-                    { justifyContent: 'space-between', marginTop: 20 },
-                  ]}>
-                  <Text
-                    style={[globalStyles.gothamBook, styles.blockBottomText]}>
-                    Answers
-                  </Text>
-                  <Text
-                    style={[
-                      globalStyles.gothamBook,
-                      styles.blockBottomText,
-                      { color: 'black' },
-                    ]}>
-                    3
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <Button
-                titleStyle={[
-                  globalStyles.gothamBold,
-                  { color: 'white', fontSize: 15, lineHeight: 24 },
-                ]}
-                buttonStyle={styles.buttonSend}
-                title="Write comment"
-                onPress={this.onPressWriteComment}
-              />
             </View>
           </View>
         </ScrollView>
@@ -218,4 +193,4 @@ class NewsArticleScreen extends Component {
   }
 }
 
-export default NewsArticleScreen;
+export default OrganisationServiceDetail;
