@@ -16,6 +16,7 @@ import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateC
 import EventsScreen from '../screens/InKuwait/Events/EventsScreen';
 import EventsFilter from '../screens/InKuwait/Events/EventsFilter';
 import EventsMap from '../screens/InKuwait/Events/EventsMap';
+import EventsDetail from '../screens/InKuwait/Events/EventsDetail';
 
 //News
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
@@ -93,6 +94,12 @@ const EventsNavigation = createStackNavigator({
           />
         ),
       };
+    },
+  },
+  InKuwaitEventsDetail: {
+    screen: EventsDetail,
+    navigationOptions: {
+      header: null,
     },
   },
 });

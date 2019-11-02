@@ -123,7 +123,9 @@ class EventsScreen extends Component {
           renderItem={({ item }) => (
             <ElementListEvents
               element={item}
-              onPressProduct={() => {}}
+              onPressProduct={() => {
+                this.props.navigation.navigate('InKuwaitEventsDetail');
+              }}
               onPressHeart={this.handlePressHeart}
               grayscale={this.state.grayscale}
             />
