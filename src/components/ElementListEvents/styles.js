@@ -52,8 +52,8 @@ export default StyleSheet.create({
   textGrayscale: {
     position: 'absolute',
     zIndex: 1,
-    top: 30,
-    left: 30,
+    top: '35%',
+    left: '25%',
     fontSize: 30,
     color: 'rgba(255,255,255, 0.4)',
   },

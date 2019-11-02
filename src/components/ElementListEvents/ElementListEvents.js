@@ -12,23 +12,20 @@ const ElementFlEvents = ({
   element,
   onPressProduct,
   onPressHeart,
-  grayscale = false,
+  grayscale,
 }) => (
   <TouchableOpacity onPress={() => onPressProduct()} style={styles.container}>
     <View style={styles.fullFlex}>
       <View style={{ flex: 1 }}>
         {grayscale ? (
-          <Grayscale style={{ flex: 1 }}>
-            <View
-              style={{
-                flex: 1,
-              }}>
-              <Text style={[globalStyles.gothamBold, styles.textGrayscale]}>
-                PAST
-              </Text>
+          <View style={{ flex: 1 }}>
+            <Text style={[globalStyles.gothamBold, styles.textGrayscale]}>
+              PAST
+            </Text>
+            <Grayscale style={{ flex: 1 }}>
               <Image source={element.image} style={styles.image} />
-            </View>
-          </Grayscale>
+            </Grayscale>
+          </View>
         ) : (
           <Image source={element.image} style={styles.image} />
         )}

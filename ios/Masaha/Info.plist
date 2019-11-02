@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gotham-Bold.otf</string>
@@ -59,7 +59,6 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Gotham-Book.otf</string>
-		<string>Gotham-Medium-Regular.ttf</string>
 		<string>Muli-Regular.ttf</string>
 		<string>Gotham Medium.ttf</string>
 	</array>
