@@ -8,6 +8,7 @@ import TextPicker from '../../../../components/TextPicker';
 import { colors } from '../../../../constants/colors';
 
 import styles from './styles';
+import { Grayscale } from 'react-native-color-matrix-image-filters';
 
 class EventsScreen extends Component {
   constructor(props) {
@@ -64,7 +65,9 @@ class EventsScreen extends Component {
           title: 'Upcoming Events',
           active: true,
           func: () => {
-            //console.warn('Upcoming');
+            this.setState({
+              grayscale: false,
+            });
           },
         },
         {
@@ -72,10 +75,14 @@ class EventsScreen extends Component {
           title: 'Previous Events',
           active: false,
           func: () => {
-            //console.warn('Previo');
+            this.setState({
+              grayscale: true,
+            });
           },
         },
       ],
+
+      grayscale: false,
     };
   }
 
@@ -118,6 +125,7 @@ class EventsScreen extends Component {
               element={item}
               onPressProduct={() => {}}
               onPressHeart={this.handlePressHeart}
+              grayscale={this.state.grayscale}
             />
           )}
           keyExtractor={(item, index) => item.id}

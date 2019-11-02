@@ -6,12 +6,32 @@ import { colors } from '../../constants/colors';
 import globalStyles from '../../constants/globalStyles';
 
 import styles from './styles';
+import { Grayscale } from 'react-native-color-matrix-image-filters';
 
-const ElementFlEvents = ({ element, onPressProduct, onPressHeart }) => (
+const ElementFlEvents = ({
+  element,
+  onPressProduct,
+  onPressHeart,
+  grayscale = false,
+}) => (
   <TouchableOpacity onPress={() => onPressProduct()} style={styles.container}>
     <View style={styles.fullFlex}>
       <View style={{ flex: 1 }}>
-        <Image source={element.image} style={styles.image} />
+        {grayscale ? (
+          <Grayscale style={{ flex: 1 }}>
+            <View
+              style={{
+                flex: 1,
+              }}>
+              <Text style={[globalStyles.gothamBold, styles.textGrayscale]}>
+                PAST
+              </Text>
+              <Image source={element.image} style={styles.image} />
+            </View>
+          </Grayscale>
+        ) : (
+          <Image source={element.image} style={styles.image} />
+        )}
         <Icon
           name={element.favorite ? 'ios-heart' : 'ios-heart-empty'}
           type="ionicon"
