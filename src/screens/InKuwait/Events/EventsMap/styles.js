@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../../../constants/colors';
 
 export default StyleSheet.create({
   markerContainer: {
@@ -34,5 +35,19 @@ export default StyleSheet.create({
   elementUnderTitle: {
     fontSize: 13,
     color: 'white',
+  },
+  inputSearch: {
+    height: 40,
+    fontSize: 15,
+    color: colors.LABEL_GREY_COLOR,
+  },
+  inputContainerStyle: {
+    backgroundColor: 'white',
+    borderBottomWidth: 0,
+  },
+  containerInput: {
+    position: 'absolute',
+    top: 15,
+    paddingHorizontal: 15,
   },
 });

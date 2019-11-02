@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Image, FlatList, ImageBackground } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Icon } from 'react-native-elements';
+import { Icon, Input } from 'react-native-elements';
 
 import { colors } from '../../../../constants/colors';
-import glogbalStyles from '../../../../constants/globalStyles';
-import styles from './styles';
 import globalStyles from '../../../../constants/globalStyles';
+import styles from './styles';
 
 const CustomMarker = ({ title }) => (
   <View style={styles.markerContainer}>
@@ -14,7 +13,7 @@ const CustomMarker = ({ title }) => (
       source={require('../../../../assets/icons/pin.png')}
       style={styles.markerIcon}
     />
-    <Text style={[glogbalStyles.gothamBold, styles.markerTitle]}>{title}</Text>
+    <Text style={[globalStyles.gothamBold, styles.markerTitle]}>{title}</Text>
   </View>
 );
 
@@ -129,11 +128,23 @@ class EventsMap extends Component {
             </Marker>
           ))}
         </MapView>
+        <Input
+          placeholder="Select location..."
+          leftIcon={{
+            name: 'ios-search',
+            type: 'ionicon',
+            color: colors.LABEL_GREY_COLOR,
+          }}
+          placeholderTextColor={colors.LABEL_GREY_COLOR}
+          inputStyle={[globalStyles.gothamBook, styles.inputSearch]}
+          inputContainerStyle={styles.inputContainerStyle}
+          containerStyle={styles.containerInput}
+        />
         <Icon
           raised
           name="crosshairs-gps"
           type="material-community"
-          color="silver"
+          color={colors.LABEL_GREY_COLOR}
           containerStyle={{ position: 'absolute', bottom: 170, right: 15 }}
         />
         <View style={styles.containerMapFL}>
