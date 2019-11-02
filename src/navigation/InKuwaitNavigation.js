@@ -27,9 +27,9 @@ import NewsFilterScreen from '../screens/InKuwait/News/NewsFilterScreen';
 
 import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesScreen';
 import HeaderOrganisationAndServices from '../components/HeaderOrganisationAndServices/HeaderOrganisationAndServices';
-import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter/OrganisationAndServicesFilter';
-import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail/OrganisationServiceDetail';
-import ChooseLocationScreen from '../screens/InKuwait/OrganisationAndServices/ChooseLocationScreen/ChooselocationScreen';
+import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter';
+import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail';
+import OrganisationMap from '../screens/InKuwait/OrganisationAndServices/OrganisationMap/OrganisationMap';
 
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
@@ -37,7 +37,6 @@ import HeaderInKuwaitEvents from '../components/HeaderInKuwaitEvents';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
-
 const HeaderLeftIcon = ({ goBack }) => (
   <Icon
     name="chevron-left"
@@ -487,8 +486,8 @@ const InKuwaitNavigation = createStackNavigator({
       header: null,
     },
   },
-  ChooseLocationServices: {
-    screen: ChooseLocationScreen,
+  OrganisationServiceMap: {
+    screen: OrganisationMap,
     navigationOptions: ({ navigation }) => {
       return {
         title: 'Organisations & Services',

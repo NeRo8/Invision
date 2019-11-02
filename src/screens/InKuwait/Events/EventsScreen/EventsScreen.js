@@ -134,11 +134,10 @@ class EventsScreen extends Component {
         />
         <View style={styles.btnLContainer}>
           <Icon
-            name="ios-pin"
-            type="ionicon"
+            name="map-pin"
+            type="feather"
             color={colors.HEADER}
             iconStyle={styles.icon}
-            size={32}
             onPress={() => {
               this.props.navigation.navigate('InKuwaitEventsMap');
             }}
