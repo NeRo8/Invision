@@ -138,6 +138,7 @@ class EventsScreen extends Component {
             type="ionicon"
             color={colors.HEADER}
             iconStyle={styles.icon}
+            size={32}
             onPress={() => {
               this.props.navigation.navigate('InKuwaitEventsMap');
             }}

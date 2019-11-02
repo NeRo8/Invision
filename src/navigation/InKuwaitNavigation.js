@@ -78,8 +78,7 @@ const EventsNavigation = createStackNavigator({
           fontFamily: globalStyles.gothamBold.fontFamily,
           fontSize: 17,
           color: 'white',
-          flex: 1,
-          marginRight: 70,
+          width: '100%',
           textAlign: 'center',
         },
         headerStyle: {
