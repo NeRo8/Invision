@@ -121,7 +121,7 @@ class EventsMap extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-          style={{ flex: 3 }}>
+          style={{ flex: 1 }}>
           {this.state.dataEvents.map(item => (
             <Marker coordinate={item.coordinate}>
               <CustomMarker title={item.id} />

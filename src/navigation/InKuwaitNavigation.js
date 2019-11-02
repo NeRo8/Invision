@@ -49,10 +49,23 @@ const EventsNavigation = createStackNavigator({
   },
   InKuwaitEventsFilter: {
     screen: EventsFilter,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: 'red',
-      },
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Filter',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
     },
   },
   InKuwaitEventsMap: {
@@ -72,7 +85,13 @@ const EventsNavigation = createStackNavigator({
           backgroundColor: colors.HEADER,
           paddingTop: 15,
         },
-        headerLeft: <HeaderLeftIcon goBack={() => {}} />,
+        headerLeft: (
+          <HeaderLeftIcon
+            goBack={() => {
+              navigation.goBack();
+            }}
+          />
+        ),
       };
     },
   },
