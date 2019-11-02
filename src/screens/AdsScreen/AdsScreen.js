@@ -12,20 +12,16 @@ class AdsScreen extends Component {
     super(props);
     this.state = {
       data: [
-        { id: 1, title: 1, active: true },
-        { id: 2, title: 2, active: false },
-        { id: 3, title: 1, active: true },
-        { id: 4, title: 2, active: false },
-        { id: 5, title: 1, active: true },
-        { id: 6, title: 2, active: false },
-        { id: 7, title: 1, active: true },
-        { id: 8, title: 2, active: false },
-        { id: 9, title: 1, active: true },
-        { id: 10, title: 2, active: false },
-        { id: 11, title: 1, active: true },
-        { id: 12, title: 2, active: false },
-        { id: 13, title: 1, active: true },
-        { id: 14, title: 2, active: false },
+        { id: 1, title: 'Pioneer handphones premium', active: true },
+        { id: 2, title: 'Pioneer handphones premium', active: true },
+        { id: 3, title: 'Pioneer handphones premium', active: true },
+        { id: 4, title: 'Pioneer handphones premium', active: true },
+        { id: 5, title: 'Pioneer handphones premium', active: true },
+        { id: 6, title: 'Pioneer handphones premium', active: true },
+        { id: 7, title: 'Pioneer handphones premium', active: true },
+        { id: 8, title: 'Pioneer handphones premium', active: true },
+        { id: 9, title: 'Pioneer handphones premium', active: true },
+        { id: 10, title: 'Pioneer handphones premium', active: true },
       ],
     };
   }

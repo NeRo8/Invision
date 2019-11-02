@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
+//FAQ
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
@@ -11,9 +12,12 @@ import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
 import InKuwaitAnswersScreen from '../screens/InKuwait/FAQ/InKuwaitAnswersScreen';
 import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateCommentScreen';
 
+//Events
 import EventsScreen from '../screens/InKuwait/Events/EventsScreen';
 import EventsFilter from '../screens/InKuwait/Events/EventsFilter';
+import EventsMap from '../screens/InKuwait/Events/EventsMap';
 
+//News
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
 import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
@@ -49,6 +53,27 @@ const EventsNavigation = createStackNavigator({
       headerStyle: {
         backgroundColor: 'red',
       },
+    },
+  },
+  InKuwaitEventsMap: {
+    screen: EventsMap,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Events',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => {}} />,
+      };
     },
   },
 });
