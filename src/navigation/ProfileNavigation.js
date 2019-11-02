@@ -12,7 +12,7 @@ import ProfileSettingsPrivacyPolicy from '../screens/Profile/ProfileSettingsPriv
 import ProfileSettingsTermsOfUse from '../screens/Profile/ProfileSettingsTermsOfUse';
 import ProfilePaymentHistory from '../screens/Profile/ProfilePaymentHistory';
 import ProfileNotifications from '../screens/Profile/ProfileNotifications';
-import ProfileNotificationsChat from '../screens/ProfileNotificationsChat';
+import ProfileNotificationsChat from '../screens/Profile/ProfileNotificationsChat';
 
 import { colors } from '../constants/colors';
 

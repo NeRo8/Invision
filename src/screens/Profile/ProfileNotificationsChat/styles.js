@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../constants/colors'
+import { colors } from '../../../constants/colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:colors.CHAT_BACKGROUND
+    backgroundColor: colors.CHAT_BACKGROUND,
   },
   list: {
     paddingHorizontal: 12,
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     height: 50,
     marginLeft: 20,
     flex: 1,
-    fontSize:17
+    fontSize: 17,
   },
   itemIn: {
     alignSelf: 'flex-start',
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 12,
-    paddingRight: 12
+    paddingRight: 12,
   },
   date: {
     color: colors.CHAT_DATE,
@@ -73,7 +73,7 @@ export default StyleSheet.create({
     paddingTop: 7,
     paddingBottom: 7,
     marginBottom: 25,
-    marginTop: 15
+    marginTop: 15,
   },
   itemInName: {
     flexDirection: 'row',
@@ -81,21 +81,21 @@ export default StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 12,
-    paddingRight: 12
+    paddingRight: 12,
   },
   messageIn: {
     flexDirection: 'row',
     backgroundColor: colors.CHAT_BACKGROUND_IN,
     paddingBottom: 10,
     paddingLeft: 12,
-    paddingRight: 12
+    paddingRight: 12,
   },
   messageMe: {
     color: colors.CHAT_MESSAGES_COLOR,
-    fontSize: 17
+    fontSize: 17,
   },
   messageInTitle: {
     color: colors.CHAT_NAME_COLOR,
-    fontSize: 15
-  }
+    fontSize: 15,
+  },
 });
