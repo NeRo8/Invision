@@ -6,6 +6,8 @@ import { withNavigation } from 'react-navigation';
 import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 
+import { get_category } from '../../../api';
+
 const ElementFlatList = ({ item }) => (
   <TouchableOpacity onPress={() => {}}>
     <View style={styles.elementContainer}>
@@ -16,7 +18,7 @@ const ElementFlatList = ({ item }) => (
         />
       </View>
       <Text style={[globalStyles.gothamBook, styles.elementTitle]}>
-        {item.title}
+        {item.name}
       </Text>
       <Icon
         name="chevron-right"
@@ -32,47 +34,21 @@ class CategoryScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryList: [
-        {
-          id: 1,
-          title: 'Cars',
-          icon: require('../../../assets/icons/car.png'),
-        },
-        {
-          id: 2,
-          title: 'For Sale',
-          icon: require('../../../assets/icons/sale.png'),
-        },
-        {
-          id: 3,
-          title: 'Services',
-          icon: require('../../../assets/icons/tool.png'),
-        },
-        {
-          id: 4,
-          title: 'Jobs',
-          icon: require('../../../assets/icons/job.png'),
-        },
-        {
-          id: 5,
-          title: 'Properties',
-          icon: require('../../../assets/icons/property.png'),
-        },
-        {
-          id: 6,
-          title: 'Pets',
-          icon: require('../../../assets/icons/pets.png'),
-        },
-      ],
+      categoryList: [],
     };
   }
+
+  componentDidMount() {
+    get_category().then(responce => this.setState({ categoryList: responce }));
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.state.categoryList}
           renderItem={({ item }) => <ElementFlatList item={item} />}
-          keyExtractor={(item, index) => item}
+          keyExtractor={item => item.pk.toString()}
           ItemSeparatorComponent={() => (
             <Divider style={styles.elementDivider} />
           )}

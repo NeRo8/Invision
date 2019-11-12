@@ -13,13 +13,13 @@ const ElementList = ({ item, onPressProduct }) => (
       <View style={styles.pictureBlock}>
         <Image
           resizeMode="cover"
-          source={require('../../assets/images/element.jpg')}
+          source={{ uri: item.primary_image }}
           style={styles.picture}
         />
         <Icon
-          name={item.active ? 'ios-heart' : 'ios-heart-empty'}
+          name={item.is_favorite ? 'ios-heart' : 'ios-heart-empty'}
           type="ionicon"
-          color={item.active ? colors.HEART_ACTIVE : 'white'}
+          color={item.is_favorite ? colors.HEART_ACTIVE : 'white'}
           containerStyle={{ position: 'absolute', top: 5, right: 10 }}
         />
       </View>
@@ -27,7 +27,9 @@ const ElementList = ({ item, onPressProduct }) => (
         <Text style={[globalStyles.gothamBold, styles.title]}>
           {item.title}
         </Text>
-        <Text style={[globalStyles.gothamBook, styles.price]}>10 000 KWD</Text>
+        <Text style={[globalStyles.gothamBook, styles.price]}>
+          {item.price} {item.currency.toUpperCase()}
+        </Text>
         <Text style={[globalStyles.gothamBook, styles.status]}>For sale</Text>
       </View>
     </View>
