@@ -20,7 +20,6 @@ class AdsScreen extends Component {
   componentDidMount() {
     SplashScreen.hide();
     get_ads().then(responce => {
-      console.log(responce);
       this.setState({ data: responce });
     });
   }

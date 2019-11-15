@@ -10,10 +10,20 @@ import {
 
 import styles from './styles';
 
+import { get_categories_count } from '../../api';
+
 class InKuwaitScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      categoriesCount: [],
+    };
+  }
+
+  componentDidMount() {
+    get_categories_count().then(responce => {
+      this.setState({ categoriesCount: responce });
+    });
   }
 
   render() {
@@ -38,7 +48,9 @@ class InKuwaitScreen extends Component {
                   {'Organisation \n & services'}
                 </Text>
                 <View style={styles.roundView}>
-                  <Text style={styles.roundText}>200</Text>
+                  <Text style={styles.roundText}>
+                    {this.state.categoriesCount.services}
+                  </Text>
                 </View>
               </View>
             </ImageBackground>
@@ -51,7 +63,9 @@ class InKuwaitScreen extends Component {
               <View style={styles.element}>
                 <Text style={styles.titleElement}>{'FAQ'}</Text>
                 <View style={styles.roundView}>
-                  <Text style={styles.roundText}>55</Text>
+                  <Text style={styles.roundText}>
+                    {this.state.categoriesCount.faqs}
+                  </Text>
                 </View>
               </View>
             </ImageBackground>
@@ -64,7 +78,9 @@ class InKuwaitScreen extends Component {
               <View style={styles.element}>
                 <Text style={styles.titleElement}>{'Events'}</Text>
                 <View style={styles.roundView}>
-                  <Text style={styles.roundText}>55</Text>
+                  <Text style={styles.roundText}>
+                    {this.state.categoriesCount.events}
+                  </Text>
                 </View>
               </View>
             </ImageBackground>
@@ -79,7 +95,9 @@ class InKuwaitScreen extends Component {
               <View style={styles.element}>
                 <Text style={styles.titleElement}>{'News'}</Text>
                 <View style={styles.roundView}>
-                  <Text style={styles.roundText}>44</Text>
+                  <Text style={styles.roundText}>
+                    {this.state.categoriesCount.news}
+                  </Text>
                 </View>
               </View>
             </ImageBackground>

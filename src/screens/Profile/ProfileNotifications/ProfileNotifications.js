@@ -150,7 +150,11 @@ class ProfileNotifications extends Component {
           disableRightSwipe={true}
           data={this.state.categoryList}
           renderItem={(rowData, rowMap) => (
-            <View style={styles.rowFront}>
+            <TouchableOpacity
+              style={styles.rowFront}
+              onPress={() =>
+                this.props.navigation.navigate('ProfileNotificationsChat')
+              }>
               <Image
                 source={require('../../../../assets/images/profilepic.jpg')}
                 style={{ width: 45, height: 45, borderRadius: 45 / 2 }}
@@ -166,7 +170,7 @@ class ProfileNotifications extends Component {
               <Text style={[globalStyles.gothamBook, styles.when]}>
                 {rowData.item.when}
               </Text>
-            </View>
+            </TouchableOpacity>
           )}
           renderHiddenItem={(data, rowMap) => (
             <TouchableOpacity style={styles.rowBack}>

@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MasahaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MasahaTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -19,11 +20,10 @@
 		4D09F38D7CBD448169B7906D /* libPods-Masaha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D6A4AE717D9395A98DC040 /* libPods-Masaha.a */; };
 		5F4E3D11722E4ADC18A2EF28 /* libPods-Masaha-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3910DC5EC88257E7EBC41B0A /* libPods-Masaha-tvOSTests.a */; };
 		69F6E0AB5FF540E2B052F589 /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 308815D633704412833B526C /* Gotham-Bold.otf */; };
+		D9D296CCC6434427BF1DCBE9 /* Gotham Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */; };
 		DB106CF70AA5FE3538B5F247 /* libPods-MasahaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D01B2CEB80AEE0E513E94B48 /* libPods-MasahaTests.a */; };
 		DE738FE1A4D789AEAC7A68AB /* libPods-Masaha-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7102A5DE570615EE12B65AF7 /* libPods-Masaha-tvOS.a */; };
-		0B4EADDDC0B948C68EDCFC73 /* Gotham-Medium-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */; };
 		E0D00A6C1EA24FF4B2B6B9BF /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5204F95B3F594FDF8A92A94E /* Muli-Regular.ttf */; };
-		D9D296CCC6434427BF1DCBE9 /* Gotham Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +48,7 @@
 		00E356EE1AD99517003FC87E /* MasahaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasahaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MasahaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasahaTests.m; sourceTree = "<group>"; };
+		0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gotham Medium.ttf"; path = "../assets/fonts/Gotham Medium.ttf"; sourceTree = "<group>"; };
 		0BB4EC72ABBA51DF18E87F52 /* Pods-MasahaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasahaTests.release.xcconfig"; path = "Target Support Files/Pods-MasahaTests/Pods-MasahaTests.release.xcconfig"; sourceTree = "<group>"; };
 		0DAF35758B7B41C69A9E4FE6 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Masaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Masaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +69,9 @@
 		33B386581D5A4459BF752775 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		3910DC5EC88257E7EBC41B0A /* libPods-Masaha-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Masaha-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4613EA1AEC774026A716B91E /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		5204F95B3F594FDF8A92A94E /* Muli-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Muli-Regular.ttf"; path = "../assets/fonts/Muli-Regular.ttf"; sourceTree = "<group>"; };
 		573898D0CAA24D7C8AF5BE55 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gotham-Medium-Regular.ttf"; path = "../assets/fonts/Gotham-Medium-Regular.ttf"; sourceTree = "<group>"; };
 		7102A5DE570615EE12B65AF7 /* libPods-Masaha-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Masaha-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		718A7FDDA9C347B4B006F054 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		7B2911E7C22E42A0ACFE2E45 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -89,9 +92,6 @@
 		F4B1069EF7DD4C5988CCB996 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F5D6A4AE717D9395A98DC040 /* libPods-Masaha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Masaha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7F643D1F8F191CC35FAA4E /* Pods-Masaha-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Masaha-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Masaha-tvOS/Pods-Masaha-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		57A5B667A02045AF97791DF9 /* Gotham-Medium-Regular.ttf */ = {isa = PBXFileReference; name = "Gotham-Medium-Regular.ttf"; path = "../assets/fonts/Gotham-Medium-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5204F95B3F594FDF8A92A94E /* Muli-Regular.ttf */ = {isa = PBXFileReference; name = "Muli-Regular.ttf"; path = "../assets/fonts/Muli-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */ = {isa = PBXFileReference; name = "Gotham Medium.ttf"; path = "../assets/fonts/Gotham Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,7 +395,6 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				69F6E0AB5FF540E2B052F589 /* Gotham-Bold.otf in Resources */,
 				1FE94572932142078EBD7895 /* Gotham-Book.otf in Resources */,
-				0B4EADDDC0B948C68EDCFC73 /* Gotham-Medium-Regular.ttf in Resources */,
 				E0D00A6C1EA24FF4B2B6B9BF /* Muli-Regular.ttf in Resources */,
 				D9D296CCC6434427BF1DCBE9 /* Gotham Medium.ttf in Resources */,
 			);

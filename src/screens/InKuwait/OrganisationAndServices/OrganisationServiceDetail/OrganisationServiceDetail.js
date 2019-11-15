@@ -175,7 +175,7 @@ class OrganisationServiceDetail extends Component {
                 </View>
               </View>
               <View style={styles.descriptionView}>
-                <Text style={[globalStyles.gotham, styles.description]}>
+                <Text style={[globalStyles.gothamBook, styles.description]}>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s, when an unknown

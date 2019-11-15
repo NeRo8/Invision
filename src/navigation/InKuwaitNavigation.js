@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
+//FAQ
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
@@ -11,9 +12,13 @@ import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
 import InKuwaitAnswersScreen from '../screens/InKuwait/FAQ/InKuwaitAnswersScreen';
 import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateCommentScreen';
 
+//Events
 import EventsScreen from '../screens/InKuwait/Events/EventsScreen';
 import EventsFilter from '../screens/InKuwait/Events/EventsFilter';
+import EventsMap from '../screens/InKuwait/Events/EventsMap';
+import EventsDetail from '../screens/InKuwait/Events/EventsDetail';
 
+//News
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
 import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
@@ -22,9 +27,9 @@ import NewsFilterScreen from '../screens/InKuwait/News/NewsFilterScreen';
 
 import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesScreen';
 import HeaderOrganisationAndServices from '../components/HeaderOrganisationAndServices/HeaderOrganisationAndServices';
-import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter/OrganisationAndServicesFilter';
-import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail/OrganisationServiceDetail';
-import ChooseLocationScreen from '../screens/InKuwait/OrganisationAndServices/ChooseLocationScreen/ChooselocationScreen';
+import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter';
+import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail';
+import OrganisationMap from '../screens/InKuwait/OrganisationAndServices/OrganisationMap/OrganisationMap';
 
 import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
@@ -32,7 +37,6 @@ import HeaderInKuwaitEvents from '../components/HeaderInKuwaitEvents';
 
 import { colors } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
-
 const HeaderLeftIcon = ({ goBack }) => (
   <Icon
     name="chevron-left"
@@ -53,10 +57,55 @@ const EventsNavigation = createStackNavigator({
   },
   InKuwaitEventsFilter: {
     screen: EventsFilter,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Filter',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          flex: 1,
+          marginRight: 70,
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  InKuwaitEventsMap: {
+    screen: EventsMap,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Events',
+        headerTitleStyle: {
+          fontFamily: globalStyles.gothamBold.fontFamily,
+          fontSize: 17,
+          color: 'white',
+          width: '100%',
+          textAlign: 'center',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          paddingTop: 15,
+        },
+        headerLeft: (
+          <HeaderLeftIcon
+            goBack={() => {
+              navigation.goBack();
+            }}
+          />
+        ),
+      };
+    },
+  },
+  InKuwaitEventsDetail: {
+    screen: EventsDetail,
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: 'red',
-      },
+      header: null,
     },
   },
 });
@@ -154,7 +203,7 @@ const InKuwaitNavigation = createStackNavigator({
         ),
         headerStyle: {
           paddingTop: 30,
-          height: 132,
+          height: Platform.OS === 'ios' ? 90 : 120,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
@@ -437,8 +486,8 @@ const InKuwaitNavigation = createStackNavigator({
       header: null,
     },
   },
-  ChooseLocationServices: {
-    screen: ChooseLocationScreen,
+  OrganisationServiceMap: {
+    screen: OrganisationMap,
     navigationOptions: ({ navigation }) => {
       return {
         title: 'Organisations & Services',

@@ -6,6 +6,15 @@ export default StyleSheet.create({
     height: 207,
     backgroundColor: 'white',
     margin: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+
+    elevation: 4,
   },
   fullFlex: {
     flex: 1,
@@ -39,5 +48,13 @@ export default StyleSheet.create({
     color: '#6B6F81',
     lineHeight: 24,
     marginVertical: 10,
+  },
+  textGrayscale: {
+    position: 'absolute',
+    zIndex: 1,
+    top: '35%',
+    left: '25%',
+    fontSize: 30,
+    color: 'rgba(255,255,255, 0.4)',
   },
 });

@@ -12,6 +12,7 @@ import ProfileSettingsPrivacyPolicy from '../screens/Profile/ProfileSettingsPriv
 import ProfileSettingsTermsOfUse from '../screens/Profile/ProfileSettingsTermsOfUse';
 import ProfilePaymentHistory from '../screens/Profile/ProfilePaymentHistory';
 import ProfileNotifications from '../screens/Profile/ProfileNotifications';
+import ProfileNotificationsChat from '../screens/Profile/ProfileNotificationsChat';
 
 import { colors } from '../constants/colors';
 
@@ -176,6 +177,21 @@ const ProfileNavigation = createStackNavigator({
           backgroundColor: colors.HEADER,
         },
         headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
+      };
+    },
+  },
+  ProfileNotificationsChat: {
+    screen: ProfileNotificationsChat,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Pavlo Laptev',
+        headerTitleStyle: {
+          color: 'white',
+        },
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
       };
     },
   },

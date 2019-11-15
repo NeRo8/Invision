@@ -57,8 +57,8 @@ class OrganisationAndServicesScreen extends Component {
     this.props.navigation.navigate('OrganisationServiceDetail');
   };
 
-  OnPressChoodeLocation = () => {
-    this.props.navigation.navigate('ChooseLocationServices');
+  onPressChoodeLocation = () => {
+    this.props.navigation.navigate('OrganisationServiceMap');
   };
 
   render() {
@@ -78,11 +78,12 @@ class OrganisationAndServicesScreen extends Component {
             keyExtractor={(item, index) => item.id}
           />
           <Icon
+            raised
             name="map-pin"
             type="feather"
             containerStyle={styles.mapPin}
             color={colors.HEADER}
-            onPress={this.OnPressChoodeLocation}
+            onPress={this.onPressChoodeLocation}
           />
         </SafeAreaView>
       </View>
