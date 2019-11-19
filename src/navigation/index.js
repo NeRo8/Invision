@@ -1,4 +1,5 @@
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Icon } from 'react-native-elements';
 
@@ -126,4 +127,4 @@ const Navigation = createBottomTabNavigator(
   },
 );
 
-export default Navigation;
+export default createAppContainer(Navigation);
