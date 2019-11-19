@@ -3,6 +3,7 @@ import { colors } from '../../../../constants/colors';
 
 export default StyleSheet.create({
   wraper: {
+    flex: 1,
     paddingHorizontal: 5,
     paddingTop: 10,
   },

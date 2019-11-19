@@ -205,13 +205,13 @@ PODS:
     - React-cxxreact (= 0.61.3)
     - React-jsi (= 0.61.3)
   - React-jsinspector (0.61.3)
-  - react-native-camera (3.8.0):
+  - react-native-camera (3.9.0):
     - React
-    - react-native-camera/RCT (= 3.8.0)
-    - react-native-camera/RN (= 3.8.0)
-  - react-native-camera/RCT (3.8.0):
+    - react-native-camera/RCT (= 3.9.0)
+    - react-native-camera/RN (= 3.9.0)
+  - react-native-camera/RCT (3.9.0):
     - React
-  - react-native-camera/RN (3.8.0):
+  - react-native-camera/RN (3.9.0):
     - React
   - react-native-google-maps (0.26.1):
     - Google-Maps-iOS-Utils (= 2.1.0)
@@ -407,7 +407,7 @@ SPEC CHECKSUMS:
   React-jsi: 8bcf5836caa8a759c135ab9ef97f3e023a7b94af
   React-jsiexecutor: ae078e9df9c65bcdcf68f9a17656657932d95528
   React-jsinspector: a8939cc6909607eb5e8a5ecfff7c6226984e174d
-  react-native-camera: 3e52a28e4f437b566302e574bed0f77eeab3f737
+  react-native-camera: 8ad12cae113fd60b07236983532acc8e595c0fc3
   react-native-google-maps: 2e2e697dab576abd5809d78cd74e775865b62bf7
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
@@ -430,4 +430,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a79152c9705d6533371899a5f2f2d249dec5373c
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

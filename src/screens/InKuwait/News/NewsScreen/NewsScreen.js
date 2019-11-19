@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 
-import NewsList from '../../../../components/NewsList/NewsList';
+import ElementListNews from '../../../../components/ElementListNews';
 
 import styles from './styles';
 
@@ -33,7 +33,7 @@ class NewsScreen extends Component {
             numColumns={2}
             data={this.state.data}
             renderItem={({ item }) => (
-              <NewsList item={item} onPressProduct={this.onPressNews} />
+              <ElementListNews item={item} onPressProduct={this.onPressNews} />
             )}
             keyExtractor={(item, index) => item.id}
           />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 
-import NewsList from '../../../../components/OrganisationAndServicesList/OrganisationAndServicesList';
+import ElementListOrganisation from '../../../../components/ElementListOrganisation';
 
 import styles from './styles';
 import { colors } from '../../../../constants/colors';
@@ -65,27 +65,27 @@ class OrganisationAndServicesScreen extends Component {
     return (
       <View style={styles.wraper}>
         <StatusBar backgroundColor={'transparent'} />
-        <SafeAreaView style={styles.flatListView}>
-          <FlatList
-            numColumns={2}
-            data={this.state.data}
-            renderItem={({ item }) => (
-              <NewsList
-                item={item}
-                onPressOrganizationOrService={this.onPressOrganizationOrService}
-              />
-            )}
-            keyExtractor={(item, index) => item.id}
-          />
-          <Icon
-            raised
-            name="map-pin"
-            type="feather"
-            containerStyle={styles.mapPin}
-            color={colors.HEADER}
-            onPress={this.onPressChoodeLocation}
-          />
-        </SafeAreaView>
+
+        <FlatList
+          numColumns={2}
+          data={this.state.data}
+          renderItem={({ item }) => (
+            <ElementListOrganisation
+              item={item}
+              onPressOrganizationOrService={this.onPressOrganizationOrService}
+            />
+          )}
+          keyExtractor={(item, index) => item.id}
+          contentContainerStyle={{ flex: 1 }}
+        />
+        <Icon
+          raised
+          name="map-pin"
+          type="feather"
+          containerStyle={styles.mapPin}
+          color={colors.HEADER}
+          onPress={this.onPressChoodeLocation}
+        />
       </View>
     );
   }

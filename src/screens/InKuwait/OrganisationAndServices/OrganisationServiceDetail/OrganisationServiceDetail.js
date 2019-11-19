@@ -52,7 +52,7 @@ class OrganisationServiceDetail extends Component {
       this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <View style={styles.header}>
           <View style={styles.container}>
             <Icon
@@ -75,7 +75,7 @@ class OrganisationServiceDetail extends Component {
           </View>
         </View>
 
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View
             style={{
               width: '100%',
@@ -90,6 +90,7 @@ class OrganisationServiceDetail extends Component {
 
           <View
             style={{
+              flex: 1,
               backgroundColor: colors.BACKGROUND,
             }}>
             <View style={styles.wraperView}>

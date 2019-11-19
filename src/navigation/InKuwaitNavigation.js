@@ -434,7 +434,7 @@ const InKuwaitNavigation = createStackNavigator({
         ),
         headerStyle: {
           paddingTop: 30,
-          height: 132,
+          height: Platform.OS === 'ios' ? 100 : 132,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
