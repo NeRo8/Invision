@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
-import { withNavigation } from 'react-navigation';
+
+import { connect } from 'react-redux';
 
 import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 
 import { get_category } from '../../../api';
+import { getCategories } from '../../../redux/actions/adsAction';
 
 const ElementFlatList = ({ item }) => (
   <TouchableOpacity onPress={() => {}}>
@@ -33,20 +35,18 @@ const ElementFlatList = ({ item }) => (
 class CategoryScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      categoryList: [],
-    };
+    this.state = {};
   }
 
   componentDidMount() {
-    get_category().then(responce => this.setState({ categoryList: responce }));
+    this.props.getCategoriesList();
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <FlatList
-          data={this.state.categoryList}
+          data={this.props.data}
           renderItem={({ item }) => <ElementFlatList item={item} />}
           keyExtractor={item => item.pk.toString()}
           ItemSeparatorComponent={() => (
@@ -58,4 +58,18 @@ class CategoryScreen extends Component {
   }
 }
 
-export default withNavigation(CategoryScreen);
+const mapStateToProps = state => {
+  return {
+    data: state.ads.categoriesList,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCategoriesList: () => {
+      dispatch(getCategories());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen);

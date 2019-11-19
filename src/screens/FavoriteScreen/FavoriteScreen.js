@@ -15,6 +15,8 @@ import styles from './styles';
 import { colors } from '../../constants/colors';
 
 import TextPicker from '../../components/TextPicker';
+import { connect } from 'react-redux';
+import { getAdsFavorites } from '../../redux/actions/adsAction';
 
 class FavoriteScreen extends Component {
   constructor(props) {
@@ -48,18 +50,7 @@ class FavoriteScreen extends Component {
         },
       ],
 
-      dataAds: [
-        { id: 1, title: 'Pioneer handphones premium', active: true },
-        { id: 2, title: 'Pioneer handphones premium', active: true },
-        { id: 3, title: 'Pioneer handphones premium', active: true },
-        { id: 4, title: 'Pioneer handphones premium', active: true },
-        { id: 5, title: 'Pioneer handphones premium', active: true },
-        { id: 6, title: 'Pioneer handphones premium', active: true },
-        { id: 7, title: 'Pioneer handphones premium', active: true },
-        { id: 8, title: 'Pioneer handphones premium', active: true },
-        { id: 9, title: 'Pioneer handphones premium', active: true },
-        { id: 10, title: 'Pioneer handphones premium', active: true },
-      ],
+      dataAds: [],
       dataOrg: [
         {
           id: 0,
@@ -163,6 +154,9 @@ class FavoriteScreen extends Component {
     });
   };
 
+  componentDidMount() {
+    this.props.getFavorites();
+  }
   render() {
     const { filters, dataAds, dataOrg, dataEvents } = this.state;
 
@@ -212,4 +206,18 @@ class FavoriteScreen extends Component {
   }
 }
 
-export default FavoriteScreen;
+const mapStateToProps = state => {
+  return {
+    adsFavorites: state.ads.adsFavoritesList,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getFavorites: () => {
+      dispatch(getAdsFavorites());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteScreen);
