@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 
-import NewsList from '../../../../components/OrganisationAndServicesList/OrganisationAndServicesList';
+import ElementListOrganisation from '../../../../components/ElementListOrganisation';
 
 import styles from './styles';
 import { colors } from '../../../../constants/colors';
@@ -70,7 +70,7 @@ class OrganisationAndServicesScreen extends Component {
             numColumns={2}
             data={this.state.data}
             renderItem={({ item }) => (
-              <NewsList
+              <ElementListOrganisation
                 item={item}
                 onPressOrganizationOrService={this.onPressOrganizationOrService}
               />
