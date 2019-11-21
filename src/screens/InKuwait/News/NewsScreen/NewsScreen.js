@@ -2,23 +2,21 @@ import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 
 import ElementListNews from '../../../../components/ElementListNews';
-
+import { getNews } from '../../../../redux/actions/inKuwaitAction';
+import { connect } from 'react-redux';
 import styles from './styles';
 
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        { id: 1, title: 'Lorem Ipsum is simply dummy text.', date: '21.09.18' },
-        { id: 2, title: 'Lorem Ipsum is simply dummy text.', date: '21.09.18' },
-        { id: 3, title: 'Lorem Ipsum is simply dummy text.', date: '21.09.18' },
-        { id: 4, title: 'Lorem Ipsum is simply dummy text.', date: '21.09.18' },
-        { id: 5, title: 'Lorem Ipsum is simply dummy text.', date: '21.09.18' },
-        { id: 6, title: 'Lorem Ipsum is simply dummy text.', date: '21.09.18' },
-      ],
+      data: [],
     };
   }
+
+  componentDidMount = () => {
+    this.props.getNewsList();
+  };
 
   onPressNews = () => {
     this.props.navigation.navigate('NewsArticle');
@@ -31,7 +29,7 @@ class NewsScreen extends Component {
         <SafeAreaView style={styles.flatListView}>
           <FlatList
             numColumns={2}
-            data={this.state.data}
+            data={this.props.data}
             renderItem={({ item }) => (
               <ElementListNews item={item} onPressProduct={this.onPressNews} />
             )}
@@ -43,4 +41,18 @@ class NewsScreen extends Component {
   }
 }
 
-export default NewsScreen;
+const mapStateToProps = state => {
+  return {
+    data: state.inKuwait.newsList,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getNewsList: () => {
+      dispatch(getNews());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsScreen);

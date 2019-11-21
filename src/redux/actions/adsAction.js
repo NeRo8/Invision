@@ -37,7 +37,7 @@ export const getAdsFavorites = filters => dispatch => {
   })
     .then(response => response.json())
     .then(responseJson => {
-      console.log('wtf', responseJson);
+      //console.log('wtf', responseJson);
       dispatch(setFavorites(responseJson.results));
     })
     .catch(error => {

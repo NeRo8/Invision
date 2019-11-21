@@ -23,11 +23,11 @@ const ElementFlEvents = ({
               PAST
             </Text>
             <Grayscale style={{ flex: 1 }}>
-              <Image source={element.image} style={styles.image} />
+              <Image source={{ uri: element.image }} style={styles.image} />
             </Grayscale>
           </View>
         ) : (
-          <Image source={element.image} style={styles.image} />
+          <Image source={{ uri: element.image }} style={styles.image} />
         )}
         <Icon
           name={element.favorite ? 'ios-heart' : 'ios-heart-empty'}

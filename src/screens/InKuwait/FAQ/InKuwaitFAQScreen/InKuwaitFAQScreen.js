@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { getQuestions } from '../../../../redux/actions/inKuwaitAction';
 
 import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
@@ -10,7 +12,7 @@ const ElementFlatList = ({ item, onPressElement }) => (
   <TouchableOpacity style={styles.elementFL} onPress={() => onPressElement()}>
     <View style={styles.roundView}>
       <Text style={[globalStyles.gothamBook, styles.roundText]}>
-        {item.size}
+        {item.answer_count}
       </Text>
     </View>
     <View style={{ flex: 1, marginLeft: 10 }}>
@@ -25,49 +27,17 @@ class InKuwaitFAQScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          id: 1,
-          size: 40,
-          title: 'Lorem Ipsum is simply dummy text of the printing',
-        },
-        {
-          id: 2,
-          size: 15,
-          title: 'Lorem Ipsum is simply dummy text of the printing',
-        },
-        {
-          id: 3,
-          size: 25,
-          title: 'Lorem Ipsum is simply dummy text of the printing',
-        },
-        {
-          id: 4,
-          size: 35,
-          title: 'Lorem Ipsum is simply dummy text of the printing',
-        },
-        {
-          id: 5,
-          size: 15,
-          title: 'Lorem Ipsum is simply dummy text of the printing',
-        },
-        {
-          id: 6,
-          size: 5,
-          title: 'Lorem Ipsum is simply dummy text of the printing',
-        },
-        {
-          id: 7,
-          size: 50,
-          title: 'Lorem Ipsum is simply dummy text of the printing',
-        },
-      ],
+      data: [],
       filters: {
         topQuestion: true,
         recentQuestion: false,
       },
     };
   }
+
+  componentDidMount = () => {
+    this.props.getQuestionsList();
+  };
 
   handleChangeFilter = name => {
     this.setState({
@@ -126,14 +96,14 @@ class InKuwaitFAQScreen extends Component {
           </TouchableOpacity>
         </View>
         <FlatList
-          data={this.state.data}
+          data={this.props.data}
           renderItem={({ item }) => (
             <ElementFlatList
               item={item}
               onPressElement={this.handlePressElement}
             />
           )}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item, index) => item.pk}
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 10,
@@ -156,4 +126,18 @@ class InKuwaitFAQScreen extends Component {
   }
 }
 
-export default InKuwaitFAQScreen;
+const mapStateToProps = state => {
+  return {
+    data: state.inKuwait.questionsList,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getQuestionsList: () => {
+      dispatch(getQuestions());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InKuwaitFAQScreen);

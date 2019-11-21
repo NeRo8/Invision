@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-
 import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
 
@@ -10,7 +9,7 @@ const ElementListNews = ({ item, onPressProduct }) => (
     <View style={styles.pictureBlock}>
       <Image
         resizeMode="cover"
-        source={require('../../assets/images/Event.jpg')}
+        source={{ uri: item.cover }}
         style={styles.picture}
       />
       <View style={styles.date}>
@@ -21,7 +20,9 @@ const ElementListNews = ({ item, onPressProduct }) => (
           size={16}
           iconStyle={{ marginRight: 10 }}
         />
-        <Text style={[globalStyles.gothamBook, styles.title]}>{item.date}</Text>
+        <Text style={[globalStyles.gothamBook, styles.title]}>
+          {item.created.slice(0, 10)}
+        </Text>
       </View>
     </View>
 

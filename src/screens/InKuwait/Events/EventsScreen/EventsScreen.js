@@ -4,11 +4,11 @@ import { Icon } from 'react-native-elements';
 
 import ElementListEvents from '../../../../components/ElementListEvents';
 import TextPicker from '../../../../components/TextPicker';
-
 import { colors } from '../../../../constants/colors';
-
 import styles from './styles';
-import { Grayscale } from 'react-native-color-matrix-image-filters';
+
+import { connect } from 'react-redux';
+import { getEvents } from '../../../../redux/actions/inKuwaitAction';
 
 class EventsScreen extends Component {
   constructor(props) {
@@ -107,6 +107,10 @@ class EventsScreen extends Component {
     });
   };
 
+  componentDidMount = () => {
+    this.props.getEventsList();
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -119,7 +123,7 @@ class EventsScreen extends Component {
         <FlatList
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          data={this.state.dataEvents}
+          data={this.props.dataEvents}
           renderItem={({ item }) => (
             <ElementListEvents
               element={item}
@@ -148,4 +152,18 @@ class EventsScreen extends Component {
   }
 }
 
-export default EventsScreen;
+const mapStateToProps = state => {
+  return {
+    dataEvents: state.inKuwait.eventsList,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getEventsList: () => {
+      dispatch(getEvents());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventsScreen);
