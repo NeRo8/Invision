@@ -5,17 +5,25 @@ import { colors } from '../../../constants/colors';
 import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 import { connect } from 'react-redux';
-import { signin } from '../../../redux/actions/authAction';
+
+import { DefaultInput } from '../../../components/Inputs';
+
+import { login } from '../../../redux/actions/authAction';
 
 class SignInScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: null,
+      password: null,
+    };
   }
 
-  componentDidMount() {
-    console.log(this.props.email);
-  }
+  onChangeState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
 
   render() {
     return (
@@ -25,19 +33,14 @@ class SignInScreen extends Component {
             Sign in
           </Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Input
-              inputStyle={[globalStyles.gothamBook, styles.Input]}
-              inputContainerStyle={{ borderBottomWidth: 1 }}
-              containerStyle={{ paddingHorizontal: 30 }}
+            <DefaultInput
+              value={this.state.email}
               placeholder="Email address*"
-              value={this.props.email}
+              onChangeText={text => this.onChangeState('email', text)}
             />
-            <Input
-              inputStyle={[globalStyles.gothamBook, styles.Input]}
-              inputContainerStyle={{ borderBottomWidth: 1 }}
-              containerStyle={{ paddingHorizontal: 30 }}
+            <DefaultInput
+              value={this.state.password}
               placeholder="Password*"
-              value={this.props.password}
               rightIcon={
                 <TouchableOpacity
                   onPress={() =>
@@ -49,6 +52,7 @@ class SignInScreen extends Component {
                 </TouchableOpacity>
               }
               rightIconContainerStyle={{ paddingTop: 20 }}
+              onChangeText={text => this.onChangeState('password', text)}
             />
             <Button
               title="Sign in"
@@ -58,24 +62,18 @@ class SignInScreen extends Component {
                 { backgroundColor: colors.HEADER_BUTTON },
               ]}
               containerStyle={styles.btnContainer}
+              onPress={() =>
+                this.props.handlePressSignIn(
+                  this.state.email,
+                  this.state.password,
+                )
+              }
             />
           </View>
           <View style={styles.bottomView}>
             <Text style={[globalStyles.gothamBook, styles.OrUseText]}>
               Or use Sign in use social networks
             </Text>
-            {/* <Icon
-            name="facebook"
-            type="material-community"
-            color="white"
-            iconStyle={{
-              width: 100,
-              height: 44,
-              backgroundColor: colors.FACEBOOK,
-              borderRadius: 30,
-            }}
-            onPress
-          /> */}
             <View style={styles.btnSocialView}>
               <Button
                 icon={{
@@ -126,15 +124,14 @@ class SignInScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    email: state.auth.email,
-    password: state.auth.password,
+    authStatus: state.auth.authStatus,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handlePressSignIn: (e, p) => {
-      dispatch(signin(e, p));
+    handlePressSignIn: (email, password) => {
+      dispatch(login(email, password));
     },
   };
 };

@@ -28,7 +28,10 @@ const ElementList = ({ item, onPressProduct }) => (
           {item.title}
         </Text>
         <Text style={[globalStyles.gothamBook, styles.price]}>
-          {item.price} {item.currency.toUpperCase()}
+          {item.price}{' '}
+          {item.currency !== undefined
+            ? item.currency.toUpperCase()
+            : item.currency}
         </Text>
         <Text style={[globalStyles.gothamBook, styles.status]}>For sale</Text>
       </View>

@@ -1,9 +1,9 @@
 import { SIGN_IN, LOGOUT } from '../actions/authAction';
 
 const initState = {
-  email: 'xxxxxxs',
-  password: '',
-  auth: false,
+  profile: null,
+  authStatus: false,
+  error: null,
 };
 
 const signInReducer = (state = initState, action) => {
@@ -11,13 +11,15 @@ const signInReducer = (state = initState, action) => {
     case SIGN_IN: {
       return {
         ...state,
-        auth: true,
+        profile: action.profile,
+        authStatus: true,
       };
     }
     case LOGOUT: {
       return {
         ...state,
-        auth: false,
+        profile: null,
+        authStatus: false,
       };
     }
     default: {

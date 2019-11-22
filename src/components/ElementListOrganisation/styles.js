@@ -40,6 +40,7 @@ export default StyleSheet.create({
   },
   date: {
     marginTop: 8,
+    marginBottom: 5,
     flexDirection: 'row',
     alignItems: 'center',
   },

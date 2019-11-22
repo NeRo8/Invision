@@ -7,7 +7,7 @@ import {
 const initState = {
   adsList: [],
   categoriesList: [],
-  adsFavoritesList: [],
+  adsFavoritesList: null,
 };
 
 const adsReducer = (state = initState, action) => {
