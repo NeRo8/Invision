@@ -49,19 +49,23 @@ export const getAd = productId => dispatch => {
       console.error(error);
     });
 };
-export const getAdsFavorites = filters => dispatch => {
+
+export const getAdsFavorites = (token, filters = null) => dispatch => {
+  const autorization = 'Bearer ' + token;
   fetch(`${ADS}favorites/`, {
     method: 'GET',
+    headers: {
+      Authorization: autorization,
+      'Content-Type': 'application/json',
+    },
   })
     .then(response => response.json())
-    .then(responseJson => {
-      //console.log('wtf', responseJson);
-      dispatch(setFavorites(responseJson.results));
-    })
+    .then(responseJson => dispatch(setFavorites(responseJson.results)))
     .catch(error => {
       console.error(error);
     });
 };
+
 export const getCategories = filters => dispatch => {
   fetch(`${ADS}categories/`, {
     method: 'GET',

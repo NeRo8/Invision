@@ -8,17 +8,21 @@ import { colors } from '../../constants/colors';
 
 import StarRating from 'react-native-star-rating';
 
-const ElementListOrganisation = ({ item, onPressOrganizationOrService }) => (
+const ElementListOrganisation = ({ element, onPressOrganizationOrService }) => (
   <TouchableOpacity
     style={styles.container}
     onPress={() => onPressOrganizationOrService()}>
     <View style={styles.pictureBlock}>
-      <Image source={item.image} style={styles.picture} resizeMode="contain" />
+      <Image
+        source={element.image}
+        style={styles.picture}
+        resizeMode="contain"
+      />
       <Icon
         size={20}
-        name={item.active ? 'ios-heart' : 'ios-heart-empty'}
+        name={element.active ? 'ios-heart' : 'ios-heart-empty'}
         type="ionicon"
-        color={item.active ? colors.HEART_ACTIVE : 'white'}
+        color={element.active ? colors.HEART_ACTIVE : 'white'}
         underlayColor="transparent"
         containerStyle={{ position: 'absolute', top: 5, right: 10, zIndex: 1 }}
         onPress={() => {}}
@@ -26,13 +30,13 @@ const ElementListOrganisation = ({ item, onPressOrganizationOrService }) => (
     </View>
     <View style={{ marginHorizontal: 10 }}>
       <Text style={[globalStyles.gothamMediumRegular, styles.title]}>
-        {item.title}
+        {element.title}
       </Text>
       <View style={styles.date}>
         <StarRating
           disabled
           maxStars={5}
-          rating={item.rating}
+          rating={element.rating}
           emptyStar="ios-star"
           fullStar="ios-star"
           halfStar="ios-star"
@@ -43,7 +47,7 @@ const ElementListOrganisation = ({ item, onPressOrganizationOrService }) => (
           starStyle={{ marginRight: 6 }}
         />
         <Text style={[globalStyles.gothamBook, styles.rating]}>
-          {item.rating}
+          {element.rating}
         </Text>
       </View>
     </View>

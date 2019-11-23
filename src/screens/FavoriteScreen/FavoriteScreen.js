@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  StatusBar,
-} from 'react-native';
+import { View, ActivityIndicator, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import { getData } from '../../utils/AsyncStorage';
 
 import ElementList from '../../components/ElementList';
-import ElementFlServices from './ElementFlServices';
-import ElementFlEvents from './ElementFlEvents';
+import ElementEvents from '../../components/ElementListEvents';
+import ElementListOrganisation from '../../components/ElementListOrganisation';
 
 import styles from './styles';
 import { colors } from '../../constants/colors';
 
 import TextPicker from '../../components/TextPicker';
-import { connect } from 'react-redux';
+
 import { getAdsFavorites } from '../../redux/actions/adsAction';
 
 class FavoriteScreen extends Component {
@@ -142,6 +138,12 @@ class FavoriteScreen extends Component {
     };
   }
 
+  async componentDidMount() {
+    const token = await getData('token');
+
+    this.props.getFavorites(token);
+  }
+
   handlePressElement = id => {
     const { filters } = this.state;
 
@@ -154,12 +156,7 @@ class FavoriteScreen extends Component {
     });
   };
 
-  componentDidMount() {
-    this.props.getFavorites();
-  }
   render() {
-    const { filters, dataAds, dataOrg, dataEvents } = this.state;
-
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -168,39 +165,49 @@ class FavoriteScreen extends Component {
             onPressElement={this.handlePressElement}
           />
         </View>
-        <View style={styles.bodyBlock}>
-          {this.state.activeFilter === 'ads' ? (
-            <FlatList
-              numColumns={2}
-              data={this.state.dataAds}
-              renderItem={({ item }) => (
-                <ElementList item={item} onPressProduct={() => {}} />
-              )}
-              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-              keyExtractor={(item, index) => item.id}
-            />
-          ) : this.state.activeFilter === 'org' ? (
-            <FlatList
-              numColumns={2}
-              data={this.state.dataOrg}
-              renderItem={({ item }) => (
-                <ElementFlServices element={item} onPressProduct={() => {}} />
-              )}
-              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-              keyExtractor={(item, index) => item.id}
-            />
-          ) : (
-            <FlatList
-              numColumns={2}
-              data={this.state.dataEvents}
-              renderItem={({ item }) => (
-                <ElementFlEvents element={item} onPressProduct={() => {}} />
-              )}
-              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-              keyExtractor={(item, index) => item.id}
-            />
-          )}
-        </View>
+        {this.props.adsFavorites === undefined ? (
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <ActivityIndicator size="large" color={colors.HEADER} />
+          </View>
+        ) : (
+          <View style={styles.bodyBlock}>
+            {this.state.activeFilter === 'ads' ? (
+              <FlatList
+                numColumns={2}
+                data={this.props.adsFavorites}
+                renderItem={({ item }) => (
+                  <ElementList item={item.ad} onPressProduct={() => {}} />
+                )}
+                contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+                keyExtractor={(item, index) => item.id}
+              />
+            ) : this.state.activeFilter === 'org' ? (
+              <FlatList
+                numColumns={2}
+                data={this.state.dataOrg}
+                renderItem={({ item }) => (
+                  <ElementListOrganisation
+                    element={item}
+                    onPressProduct={() => {}}
+                  />
+                )}
+                contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+                keyExtractor={(item, index) => item.id}
+              />
+            ) : (
+              <FlatList
+                numColumns={2}
+                data={this.state.dataEvents}
+                renderItem={({ item }) => (
+                  <ElementEvents element={item} onPressProduct={() => {}} />
+                )}
+                contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+                keyExtractor={(item, index) => item.id}
+              />
+            )}
+          </View>
+        )}
       </View>
     );
   }
@@ -214,8 +221,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFavorites: () => {
-      dispatch(getAdsFavorites());
+    getFavorites: token => {
+      dispatch(getAdsFavorites(token));
     },
   };
 };
