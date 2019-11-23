@@ -175,7 +175,7 @@ class ProductScreen extends Component {
                     <Image
                       resizeMode="cover"
                       style={styles.swiperImage}
-                      source={items.item.image}
+                      source={{ uri: items.item.image }}
                     />
                   </View>
                 </View>
