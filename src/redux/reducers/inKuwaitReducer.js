@@ -3,6 +3,7 @@ import {
   SET_QUESTIONS,
   SET_EVENTS,
   SET_COUNT_LIST,
+  SET_SERVICES,
 } from '../actions/inKuwaitAction';
 
 const initState = {
@@ -10,6 +11,7 @@ const initState = {
   newsList: [],
   questionsList: [],
   eventsList: [],
+  servicesList: [],
 };
 const inKuwaitReducer = (state = initState, action) => {
   switch (action.type) {
@@ -35,6 +37,12 @@ const inKuwaitReducer = (state = initState, action) => {
       return {
         ...state,
         eventsList: action.events,
+      };
+    }
+    case SET_SERVICES: {
+      return {
+        ...state,
+        servicesList: action.services,
       };
     }
 

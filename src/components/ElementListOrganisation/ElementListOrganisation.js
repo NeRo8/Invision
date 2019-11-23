@@ -14,9 +14,9 @@ const ElementListOrganisation = ({ element, onPressOrganizationOrService }) => (
     onPress={() => onPressOrganizationOrService()}>
     <View style={styles.pictureBlock}>
       <Image
-        source={element.image}
+        source={{ uri: element.cover }}
         style={styles.picture}
-        resizeMode="contain"
+        resizeMode="cover"
       />
       <Icon
         size={20}
@@ -30,13 +30,13 @@ const ElementListOrganisation = ({ element, onPressOrganizationOrService }) => (
     </View>
     <View style={{ marginHorizontal: 10 }}>
       <Text style={[globalStyles.gothamMediumRegular, styles.title]}>
-        {element.title}
+        {element.name}
       </Text>
       <View style={styles.date}>
         <StarRating
           disabled
           maxStars={5}
-          rating={element.rating}
+          rating={element.rating === undefined ? 0 : element.rating}
           emptyStar="ios-star"
           fullStar="ios-star"
           halfStar="ios-star"
@@ -47,7 +47,7 @@ const ElementListOrganisation = ({ element, onPressOrganizationOrService }) => (
           starStyle={{ marginRight: 6 }}
         />
         <Text style={[globalStyles.gothamBook, styles.rating]}>
-          {element.rating}
+          {element.rating === undefined ? 0 : element.rating}
         </Text>
       </View>
     </View>

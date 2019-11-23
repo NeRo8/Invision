@@ -1,56 +1,26 @@
 import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+import { getServices } from '../../../../redux/actions/inKuwaitAction';
 
 import ElementListOrganisation from '../../../../components/ElementListOrganisation';
 
 import styles from './styles';
-import { colors } from '../../../../constants/colors';
 
-import { Icon } from 'react-native-elements';
+import { colors } from '../../../../constants/colors';
 
 class OrganisationAndServicesScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [
-        {
-          id: 1,
-          title: 'Central skyscrapers',
-          rating: '4.0',
-          image: require('../../../../assets/images/building.jpg'),
-        },
-        {
-          id: 2,
-          title: 'Central skyscrapers',
-          rating: '5.0',
-          image: require('../../../../assets/images/building.jpg'),
-        },
-        {
-          id: 3,
-          title: 'Central skyscrapers',
-          rating: '4.0',
-          image: require('../../../../assets/images/building.jpg'),
-        },
-        {
-          id: 4,
-          title: 'Central skyscrapers',
-          rating: '5.0',
-          image: require('../../../../assets/images/building.jpg'),
-        },
-        {
-          id: 5,
-          title: 'Central skyscrapers',
-          rating: '4.0',
-          image: require('../../../../assets/images/building.jpg'),
-        },
-        {
-          id: 6,
-          title: 'Central skyscrapers',
-          rating: '5.0',
-          image: require('../../../../assets/images/building.jpg'),
-        },
-      ],
-    };
+    this.state = {};
+  }
+
+  componentDidMount() {
+    this.props.getServiceList();
+
+    console.log(this.props.serviceList);
   }
 
   onPressOrganizationOrService = () => {
@@ -68,10 +38,10 @@ class OrganisationAndServicesScreen extends Component {
 
         <FlatList
           numColumns={2}
-          data={this.state.data}
+          data={this.props.servicesList}
           renderItem={({ item }) => (
             <ElementListOrganisation
-              item={item}
+              element={item}
               onPressOrganizationOrService={this.onPressOrganizationOrService}
             />
           )}
@@ -91,4 +61,21 @@ class OrganisationAndServicesScreen extends Component {
   }
 }
 
-export default OrganisationAndServicesScreen;
+const mapStateToProps = state => {
+  return {
+    servicesList: state.inKuwait.servicesList,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getServiceList: () => {
+      dispatch(getServices());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(OrganisationAndServicesScreen);
