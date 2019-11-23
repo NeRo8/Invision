@@ -35,8 +35,8 @@ class AdsScreen extends Component {
     this.props.getAdsList();
   }
 
-  showProductDetail = () => {
-    this.props.navigation.navigate('ProductDetail');
+  showProductDetail = productId => {
+    this.props.navigation.navigate('ProductDetail', { productId: productId });
   };
 
   renderBottomPaginator = () => (

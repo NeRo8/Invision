@@ -8,9 +8,14 @@ import {
   SafeAreaView,
   Image,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
+import Moment from 'moment';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
+
+import { connect } from 'react-redux';
+import { getAd } from '../../../redux/actions/adsAction';
 
 import StarRating from 'react-native-star-rating';
 import SwiperFlatList from 'react-native-swiper-flatlist';
@@ -71,6 +76,7 @@ class ProductScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      productData: [],
       productImages: [
         {
           id: 0,
@@ -123,19 +129,16 @@ class ProductScreen extends Component {
           coment: 'Lorem Ipsum is simply dummy text of the printing.',
         },
       ],
-      data: [
-        {
-          id: 1,
-          title: 1,
-          active: true,
-        },
-        { id: 2, title: 2, active: false },
-        { id: 3, title: 1, active: true },
-        { id: 4, title: 2, active: false },
-      ],
 
       modalShow: false,
     };
+  }
+
+  componentDidMount() {
+    const prodId = this.props.navigation.getParam('productId', null);
+    this.props.getAdData(prodId);
+
+    console.log('RES', this.props.productData);
   }
 
   handlePressWriteOwnComment = () => {
@@ -149,13 +152,22 @@ class ProductScreen extends Component {
   };
 
   render() {
+    const { productData } = this.props;
+    if (productData.length === 0) {
+      return (
+        <View
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator size="large" color={colors.HEADER} />
+        </View>
+      );
+    }
     return (
       <View style={{ flex: 1 }}>
         <HeaderProduct onPressShere={this.onPressShere} />
         <ScrollView>
           <View style={styles.container}>
             <SwiperFlatList
-              data={this.state.productImages}
+              data={productData.adimage_set}
               showPagination
               renderItem={items => (
                 <View style={styles.container}>
@@ -163,7 +175,7 @@ class ProductScreen extends Component {
                     <Image
                       resizeMode="cover"
                       style={styles.swiperImage}
-                      source={items.item.productImage}
+                      source={items.item.image}
                     />
                   </View>
                 </View>
@@ -172,12 +184,12 @@ class ProductScreen extends Component {
           </View>
           <View style={styles.head}>
             <Text style={[globalStyles.gothamBook, styles.title]}>
-              iPhone X 16Gb
+              {productData.title}
             </Text>
 
             <View style={styles.properties}>
               <Text style={[globalStyles.gothamBook, styles.price]}>
-                10,000 KWD
+                {productData.price} {productData.currency.toUpperCase()}
               </Text>
 
               <View style={styles.vdView}>
@@ -193,7 +205,7 @@ class ProductScreen extends Component {
                       globalStyles.gothamBook,
                       { fontSize: 15, lineHeight: 26, color: colors.UNACTIVE },
                     ]}>
-                    100
+                    {productData.views}
                   </Text>
                 </View>
                 <View style={styles.vd}>
@@ -203,12 +215,13 @@ class ProductScreen extends Component {
                     type="material-community"
                     size={16}
                   />
+
                   <Text
                     style={[
                       globalStyles.gothamBook,
                       { color: colors.UNACTIVE, fontSize: 15, lineHeight: 26 },
                     ]}>
-                    01.01.18
+                    {Moment(productData.publish_date).format('YYYY.MM.DD')}
                   </Text>
                 </View>
               </View>
@@ -243,10 +256,7 @@ class ProductScreen extends Component {
             </View>
             <View>
               <Text style={[globalStyles.gothamBook, styles.description]}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make.
+                {productData.description}
               </Text>
               <TouchableOpacity style={{ marginTop: 8 }}>
                 <Text
@@ -270,7 +280,7 @@ class ProductScreen extends Component {
                   style={{
                     marginHorizontal: 15,
                     alignItems: 'center',
-                    justifyContent: 'center',
+
                     height: 48,
                     justifyContent: 'space-between',
                     flexDirection: 'row',
@@ -283,7 +293,11 @@ class ProductScreen extends Component {
                     }}>
                     <Avatar
                       rounded
-                      source={require('../../../assets/icons/userIcons/man.jpg')}
+                      source={
+                        productData.user.avatar === null
+                          ? require('../../../assets/icons/userIcons/man.jpg')
+                          : { uri: productData.user.avatar }
+                      }
                       imageProps={{ resizeMode: 'cover' }}
                       size={25}
                     />
@@ -292,7 +306,7 @@ class ProductScreen extends Component {
                         globalStyles.gothamBold,
                         { marginLeft: 10, lineHeight: 20, fontSize: 15 },
                       ]}>
-                      Lucas Unknown
+                      {productData.user.full_name}
                     </Text>
                   </View>
                   <View>
@@ -373,11 +387,11 @@ class ProductScreen extends Component {
               <SafeAreaView style={styles.flatListView}>
                 <FlatList
                   numColumns={2}
-                  data={this.state.data}
+                  data={this.props.productData.recommended}
                   renderItem={({ item }) => (
                     <ElementList item={item} onPressProduct={() => {}} />
                   )}
-                  keyExtractor={(item, index) => item.id}
+                  keyExtractor={(item, index) => item.pk}
                 />
               </SafeAreaView>
             </View>
@@ -459,4 +473,18 @@ class ProductScreen extends Component {
   }
 }
 
-export default ProductScreen;
+const mapStateToProps = state => {
+  return {
+    productData: state.ads.adData,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAdData: prodId => {
+      dispatch(getAd(prodId));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductScreen);

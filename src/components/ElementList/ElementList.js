@@ -8,7 +8,9 @@ import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
 
 const ElementList = ({ item, onPressProduct }) => (
-  <TouchableOpacity style={styles.container} onPress={() => onPressProduct()}>
+  <TouchableOpacity
+    style={styles.container}
+    onPress={() => onPressProduct(item.pk)}>
     <View style={{ flex: 1 }}>
       <View style={styles.pictureBlock}>
         <Image

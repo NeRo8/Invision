@@ -2,12 +2,17 @@
 const ADS = 'https://staging.masaha.app/api/v1/ads/';
 
 export const SET_ADS_ADS = 'SET_ADS_ADS';
+export const SET_ADS_AD = 'SET_ADS_AD';
 export const SET_ADS_CATEGORIES = 'SET_ADS_CATEGORIES';
 export const SET_ADS_FAVORITES = 'SET_ADS_FAVORITES';
 
 const setAdsAds = ads => ({
   type: SET_ADS_ADS,
   ads,
+});
+const setAdsAd = ad => ({
+  type: SET_ADS_AD,
+  ad,
 });
 const setCategories = categories => ({
   type: SET_ADS_CATEGORIES,
@@ -26,6 +31,19 @@ export const getAds = filters => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAds(responseJson.results));
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+export const getAd = productId => dispatch => {
+  fetch(`${ADS}ad/${productId}`, {
+    method: 'GET',
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setAdsAd(responseJson));
+      console.log(responseJson);
     })
     .catch(error => {
       console.error(error);

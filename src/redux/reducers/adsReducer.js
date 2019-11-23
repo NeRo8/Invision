@@ -2,12 +2,14 @@ import {
   SET_ADS_ADS,
   SET_ADS_FAVORITES,
   SET_ADS_CATEGORIES,
+  SET_ADS_AD,
 } from '../actions/adsAction';
 
 const initState = {
   adsList: [],
   categoriesList: [],
   adsFavoritesList: [],
+  adData: [],
 };
 
 const adsReducer = (state = initState, action) => {
@@ -16,6 +18,12 @@ const adsReducer = (state = initState, action) => {
       return {
         ...state,
         adsList: action.ads,
+      };
+    }
+    case SET_ADS_AD: {
+      return {
+        ...state,
+        adData: action.ad,
       };
     }
     case SET_ADS_CATEGORIES: {
