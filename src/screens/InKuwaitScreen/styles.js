@@ -45,4 +45,8 @@ export default StyleSheet.create({
     color: colors.HEADER,
     fontSize: 13,
   },
+  containerBody: {
+    flex: 1,
+    justifyContent: 'space-around',
+  },
 });

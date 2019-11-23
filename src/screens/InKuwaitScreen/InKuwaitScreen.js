@@ -7,26 +7,37 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { connect } from 'react-redux';
+
+import { getCountList } from '../../redux/actions/inKuwaitAction';
 
 import styles from './styles';
 
-import { get_categories_count } from '../../api';
+const ElementCategory = ({ label, count, backgroundImage, onPressElement }) => (
+  <TouchableOpacity onPress={() => onPressElement()}>
+    <ImageBackground source={backgroundImage} style={styles.elementContainer}>
+      <View style={styles.element}>
+        <Text style={styles.titleElement}>{label}</Text>
+        <View style={styles.roundView}>
+          <Text style={styles.roundText}>{count}</Text>
+        </View>
+      </View>
+    </ImageBackground>
+  </TouchableOpacity>
+);
 
 class InKuwaitScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      categoriesCount: [],
-    };
   }
 
   componentDidMount() {
-    get_categories_count().then(responce => {
-      this.setState({ categoriesCount: responce });
-    });
+    this.props.getCountCategory();
   }
 
   render() {
+    const { countList, navigation } = this.props;
+
     return (
       <ScrollView style={styles.container}>
         <StatusBar
@@ -35,77 +46,51 @@ class InKuwaitScreen extends Component {
           translucent
         />
         <Text style={styles.headerTitle}>CHOOSE ONE OF CATEGORY</Text>
-        <View style={{ flex: 1, justifyContent: 'space-around' }}>
-          <TouchableOpacity
-            onPress={() =>
-              this.props.navigation.navigate('OrganisationAndServices')
-            }>
-            <ImageBackground
-              source={require('../../assets/images/organisation.jpg')}
-              style={styles.elementContainer}>
-              <View style={styles.element}>
-                <Text style={styles.titleElement}>
-                  {'Organisation \n & services'}
-                </Text>
-                <View style={styles.roundView}>
-                  <Text style={styles.roundText}>
-                    {this.state.categoriesCount.services}
-                  </Text>
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('InKuwaitFAQ')}>
-            <ImageBackground
-              source={require('../../assets/images/faq.jpg')}
-              style={styles.elementContainer}>
-              <View style={styles.element}>
-                <Text style={styles.titleElement}>{'FAQ'}</Text>
-                <View style={styles.roundView}>
-                  <Text style={styles.roundText}>
-                    {this.state.categoriesCount.faqs}
-                  </Text>
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('EventsNavigation')}>
-            <ImageBackground
-              source={require('../../assets/images/events.jpg')}
-              style={styles.elementContainer}>
-              <View style={styles.element}>
-                <Text style={styles.titleElement}>{'Events'}</Text>
-                <View style={styles.roundView}>
-                  <Text style={styles.roundText}>
-                    {this.state.categoriesCount.events}
-                  </Text>
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('InKuwaitNews');
-            }}>
-            <ImageBackground
-              source={require('../../assets/images/news.jpg')}
-              style={styles.elementContainer}>
-              <View style={styles.element}>
-                <Text style={styles.titleElement}>{'News'}</Text>
-                <View style={styles.roundView}>
-                  <Text style={styles.roundText}>
-                    {this.state.categoriesCount.news}
-                  </Text>
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
+        <View style={styles.containerBody}>
+          <ElementCategory
+            label={'Organisation \n & services'}
+            count={countList.services}
+            backgroundImage={require('../../assets/images/organisation.jpg')}
+            onPressElement={() =>
+              navigation.navigate('OrganisationAndServices')
+            }
+          />
+          <ElementCategory
+            label="FAQ"
+            count={countList.faqs}
+            backgroundImage={require('../../assets/images/faq.jpg')}
+            onPressElement={() => navigation.navigate('InKuwaitFAQ')}
+          />
+          <ElementCategory
+            label="Events"
+            count={countList.events}
+            backgroundImage={require('../../assets/images/events.jpg')}
+            onPressElement={() => navigation.navigate('EventsNavigation')}
+          />
+          <ElementCategory
+            label="News"
+            count={countList.news}
+            backgroundImage={require('../../assets/images/news.jpg')}
+            onPressElement={() => navigation.navigate('InKuwaitNews')}
+          />
         </View>
       </ScrollView>
     );
   }
 }
 
-export default InKuwaitScreen;
+const mapStateToProps = state => {
+  return {
+    countList: state.inKuwait.countList,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCountCategory: () => {
+      dispatch(getCountList());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InKuwaitScreen);
