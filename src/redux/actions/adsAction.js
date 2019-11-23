@@ -1,3 +1,5 @@
+import { getData } from '../../utils/AsyncStorage';
+
 //URL FOR ACTION
 const ADS = 'https://staging.masaha.app/api/v1/ads/';
 
@@ -36,9 +38,14 @@ export const getAds = filters => dispatch => {
       console.error(error);
     });
 };
-export const getAd = productId => dispatch => {
+export const getAd = (productId, token) => dispatch => {
+  console.log('TOKEN', token);
   fetch(`${ADS}ad/${productId}`, {
     method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
   })
     .then(response => response.json())
     .then(responseJson => {

@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
+import { colors } from '../../constants/colors';
+
 import styles from './styles';
 
 class HeaderProduct extends Component {
@@ -11,6 +13,7 @@ class HeaderProduct extends Component {
     this.state = {};
   }
   render() {
+    const { item } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -44,11 +47,12 @@ class HeaderProduct extends Component {
           />
           <Icon
             containerStyle={styles.icons}
-            name="heart-outline"
+            name={item.is_favorite ? 'heart' : 'heart-outline'}
+            color={item.is_favorite ? colors.HEART_ACTIVE : 'white'}
             type="material-community"
-            color="white"
             size={24}
           />
+          {console.log('FAVORITE', item)}
         </View>
       </View>
     );

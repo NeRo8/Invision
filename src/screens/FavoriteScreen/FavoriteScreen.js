@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+//For token
 import { getData } from '../../utils/AsyncStorage';
 
 import ElementList from '../../components/ElementList';
@@ -139,6 +140,7 @@ class FavoriteScreen extends Component {
   }
 
   async componentDidMount() {
+    //FOR TOKEN
     const token = await getData('token');
 
     this.props.getFavorites(token);
