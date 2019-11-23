@@ -46,7 +46,6 @@ class FavoriteScreen extends Component {
         },
       ],
 
-      dataAds: [],
       dataOrg: [
         {
           id: 0,
@@ -185,7 +184,7 @@ class FavoriteScreen extends Component {
             ) : this.state.activeFilter === 'org' ? (
               <FlatList
                 numColumns={2}
-                data={this.state.dataOrg}
+                data={[]}
                 renderItem={({ item }) => (
                   <ElementListOrganisation
                     element={item}
@@ -198,7 +197,7 @@ class FavoriteScreen extends Component {
             ) : (
               <FlatList
                 numColumns={2}
-                data={this.state.dataEvents}
+                data={[]}
                 renderItem={({ item }) => (
                   <ElementEvents element={item} onPressProduct={() => {}} />
                 )}

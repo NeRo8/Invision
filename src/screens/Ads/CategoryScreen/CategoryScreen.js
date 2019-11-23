@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import styles from './styles';
 import globalStyles from '../../../constants/globalStyles';
 
-import { get_category } from '../../../api';
 import { getCategories } from '../../../redux/actions/adsAction';
 
 const ElementFlatList = ({ item }) => (
