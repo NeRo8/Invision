@@ -13,21 +13,21 @@ import {
 import Moment from 'moment';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
-
 import { connect } from 'react-redux';
-import { getAd } from '../../../redux/actions/adsAction';
-
 import StarRating from 'react-native-star-rating';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
+import { getAd } from '../../../redux/actions/adsAction';
+import { getData } from '../../../utils/AsyncStorage';
+
+import globalStyles from '../../../constants/globalStyles';
 import { colors } from '../../../constants/colors';
 
 import styles from './styles';
-import globalStyles from '../../../constants/globalStyles';
 
+import HeaderProduct from '../../../components/HeaderProduct';
 import ElementList from '../../../components/ElementList/ElementList';
 import ModalShare from './ModalShare';
-import HeaderProduct from '../../../components/HeaderProduct';
 
 const ElementFlatList = ({ item }) => (
   <View style={styles.elementContainer}>
@@ -134,11 +134,13 @@ class ProductScreen extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const token = await getData('token');
     const prodId = this.props.navigation.getParam('productId', null);
-    this.props.getAdData(prodId);
+    this.props.getAdData(prodId, token);
 
     console.log('RES', this.props.productData);
+    console.log('Token', token);
   }
 
   handlePressWriteOwnComment = () => {
@@ -153,7 +155,7 @@ class ProductScreen extends Component {
 
   render() {
     const { productData } = this.props;
-    if (productData.length === 0) {
+    if (productData.lenght === 0) {
       return (
         <View
           style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -163,11 +165,11 @@ class ProductScreen extends Component {
     }
     return (
       <View style={{ flex: 1 }}>
-        <HeaderProduct onPressShere={this.onPressShere} />
+        <HeaderProduct item={productData} onPressShere={this.onPressShere} />
         <ScrollView>
           <View style={styles.container}>
             <SwiperFlatList
-              data={productData.adimage_set}
+              data={productData.adimage_set.reverse()}
               showPagination
               renderItem={items => (
                 <View style={styles.container}>
@@ -481,8 +483,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdData: prodId => {
-      dispatch(getAd(prodId));
+    getAdData: (prodId, token) => {
+      dispatch(getAd(prodId, token));
     },
   };
 };

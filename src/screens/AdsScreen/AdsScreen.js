@@ -27,7 +27,7 @@ class AdsScreen extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     SplashScreen.hide();
     this.props.getAdsList();
   }
