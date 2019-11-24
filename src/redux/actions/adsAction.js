@@ -8,6 +8,9 @@ export const SET_ADS_AD = 'SET_ADS_AD';
 export const SET_ADS_CATEGORIES = 'SET_ADS_CATEGORIES';
 export const SET_ADS_FAVORITES = 'SET_ADS_FAVORITES';
 
+export const SET_ERROR = 'SET_ERROR';
+export const SET_LOADING = 'SET_LOADING';
+
 const setAdsAds = ads => ({
   type: SET_ADS_ADS,
   ads,
@@ -25,17 +28,30 @@ const setFavorites = ads => ({
   ads,
 });
 
+const setError = error => ({
+  type: SET_ERROR,
+  error,
+});
+
+const setLoading = loading => ({
+  type: SET_LOADING,
+  loading,
+});
+
 //API REDUX
 export const getAds = filters => dispatch => {
+  dispatch(setLoading(true));
+
   fetch(`${ADS}ads/`, {
     method: 'GET',
   })
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAds(responseJson.results));
+      dispatch(setLoading(false));
     })
     .catch(error => {
-      console.error(error);
+      dispatch(setError(error));
     });
 };
 export const getAd = (productId, token) => dispatch => {

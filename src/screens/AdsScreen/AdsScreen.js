@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StatusBar, SafeAreaView } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StatusBar,
+  ActivityIndicator,
+} from 'react-native';
 import { ElementListAds } from '../../components/ElementLists';
 import SplashScreen from 'react-native-splash-screen';
 //REDUX
 import { connect } from 'react-redux';
 import { getAds } from '../../redux/actions/adsAction';
 
-import styles from './styles';
-
 import { colors } from '../../constants';
+import styles from './styles';
 
 class AdsScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [],
-    };
+    this.state = {};
   }
 
   async componentDidMount() {
@@ -34,36 +37,45 @@ class AdsScreen extends Component {
   );
 
   render() {
+    const { loading, adsList } = this.props;
+
     return (
-      <SafeAreaView style={styles.flatListView}>
+      <View style={styles.flatListView}>
         <StatusBar
           translucent
           barStyle="light-content"
           backgroundColor="transparent"
         />
 
-        <FlatList
-          numColumns={2}
-          data={this.props.data}
-          renderItem={({ item }) => (
-            <ElementListAds
-              item={item}
-              onPressProduct={this.showProductDetail}
-            />
-          )}
-          contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-          keyExtractor={(item, index) => item.pk}
-        />
-
-        {this.renderBottomPaginator()}
-      </SafeAreaView>
+        {loading ? (
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <ActivityIndicator size="large" color={colors.HEADER} />
+          </View>
+        ) : (
+          <FlatList
+            numColumns={2}
+            data={adsList}
+            renderItem={({ item }) => (
+              <ElementListAds
+                item={item}
+                onPressProduct={this.showProductDetail}
+              />
+            )}
+            contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+            keyExtractor={item => item.pk}
+          />
+        )}
+      </View>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    data: state.ads.adsList,
+    adsList: state.ads.adsList,
+    loading: state.ads.loading,
+    error: state.ads.error,
   };
 };
 
