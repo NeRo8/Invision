@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 
-import globalStyles from '../../../constants/globalStyles';
+import { globalStyles } from '../../../constants';
 
 import ModalSuccess from './ModalSuccess';
 

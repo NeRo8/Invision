@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 import { getServices } from '../../../../redux/actions/inKuwaitAction';
 
-import ElementListOrganisation from '../../../../components/ElementListOrganisation';
+import ElementListOrganisation from '../../../../components/ElementLists';
 
 import styles from './styles';
 
-import { colors } from '../../../../constants/colors';
+import { colors } from '../../../../constants';
 
 class OrganisationAndServicesScreen extends Component {
   constructor(props) {

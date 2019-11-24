@@ -3,7 +3,7 @@ import { View, Text, Platform, StatusBar } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { RNCamera } from 'react-native-camera';
 
-import { colors } from '../../../constants/colors';
+import { colors } from '../../../constants';
 
 import styles from './styles';
 

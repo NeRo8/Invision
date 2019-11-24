@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-import { colors } from '../../constants/colors';
-import globalStyles from '../../constants/globalStyles';
+import { colors, globalStyles } from '../../constants';
+
 import styles from './styles';
 
 class HeaderPay extends Component {

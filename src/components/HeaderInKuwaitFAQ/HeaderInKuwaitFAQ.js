@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Icon, Input } from 'react-native-elements';
 
-import { colors } from '../../constants/colors';
+import { colors, globalStyles } from '../../constants';
 
 import styles from './styles';
-import globalStyles from '../../constants/globalStyles';
 
 class HeaderInKuwaitFAQ extends Component {
   constructor(props) {

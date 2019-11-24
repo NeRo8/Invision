@@ -13,8 +13,7 @@ import { Icon, Button } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
 
 import styles from './styles';
-import globalStyles from '../../../../constants/globalStyles';
-import { colors } from '../../../../constants/colors';
+import { colors, globalStyles } from '../../../../constants';
 
 const imgWidth = 1000;
 const imgHeight = 750;

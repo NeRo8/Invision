@@ -2,12 +2,11 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-import { colors } from '../../constants/colors';
+import { colors, globalStyles } from '../../../constants';
 
-import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
 
-const ElementList = ({ item, onPressProduct }) => (
+const ElementListAds = ({ item, onPressProduct }) => (
   <TouchableOpacity
     style={styles.container}
     onPress={() => onPressProduct(item.pk)}>
@@ -41,4 +40,4 @@ const ElementList = ({ item, onPressProduct }) => (
   </TouchableOpacity>
 );
 
-export default ElementList;
+export default ElementListAds;

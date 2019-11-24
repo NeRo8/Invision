@@ -1,5 +1,5 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native';
-import { colors } from '../../../../constants/colors';
+import { colors } from '../../../../constants';
 
 const imgWidth = 1600;
 const imgHeight = 750;

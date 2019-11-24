@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StatusBar,
-  SafeAreaView,
-  ActivityIndicator,
-} from 'react-native';
-import ElementList from '../../components/ElementList';
+import { View, Text, FlatList, StatusBar, SafeAreaView } from 'react-native';
+import { ElementListAds } from '../../components/ElementLists';
 import SplashScreen from 'react-native-splash-screen';
 //REDUX
 import { connect } from 'react-redux';
@@ -15,9 +8,7 @@ import { getAds } from '../../redux/actions/adsAction';
 
 import styles from './styles';
 
-import { colors } from '../../constants/colors';
-
-//import { get_ads } from '../../api';
+import { colors } from '../../constants';
 
 class AdsScreen extends Component {
   constructor(props) {
@@ -55,7 +46,10 @@ class AdsScreen extends Component {
           numColumns={2}
           data={this.props.data}
           renderItem={({ item }) => (
-            <ElementList item={item} onPressProduct={this.showProductDetail} />
+            <ElementListAds
+              item={item}
+              onPressProduct={this.showProductDetail}
+            />
           )}
           contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
           keyExtractor={(item, index) => item.pk}

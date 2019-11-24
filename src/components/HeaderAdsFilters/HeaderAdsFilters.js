@@ -3,8 +3,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
+import { globalStyles } from '../../constants';
+
 import styles from './styles';
-import globalStyles from '../../constants/globalStyles';
 
 class HeaderAdsFilters extends Component {
   constructor(props) {

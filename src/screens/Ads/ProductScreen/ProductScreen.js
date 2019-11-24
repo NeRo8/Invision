@@ -7,7 +7,6 @@ import {
   FlatList,
   SafeAreaView,
   Image,
-  StatusBar,
   ActivityIndicator,
 } from 'react-native';
 import Moment from 'moment';
@@ -20,13 +19,12 @@ import SwiperFlatList from 'react-native-swiper-flatlist';
 import { getAd } from '../../../redux/actions/adsAction';
 import { getData } from '../../../utils/AsyncStorage';
 
-import globalStyles from '../../../constants/globalStyles';
-import { colors } from '../../../constants/colors';
+import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
 
 import HeaderProduct from '../../../components/HeaderProduct';
-import ElementList from '../../../components/ElementList/ElementList';
+import ElementList from '../../../components/ElementLists';
 import ModalShare from './ModalShare';
 
 const ElementFlatList = ({ item }) => (

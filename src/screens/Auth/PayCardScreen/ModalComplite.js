@@ -2,8 +2,7 @@ import React from 'react';
 import { Modal, View, Text, StyleSheet, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { colors } from '../../../constants/colors';
-import globalStyles from '../../../constants/globalStyles';
+import { colors, globalStyles } from '../../../constants';
 
 const ModalComplite = ({ show, onClose }) => (
   <Modal visible={show}>

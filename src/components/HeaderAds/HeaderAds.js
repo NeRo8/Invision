@@ -3,9 +3,8 @@ import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { Input, Icon, Button } from 'react-native-elements';
 
-import { colors } from '../../constants/colors';
+import { colors, globalStyles } from '../../constants';
 
-import globalStyles from '../../constants/globalStyles';
 import styles from './styles';
 
 class HeaderAds extends Component {

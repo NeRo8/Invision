@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Icon, CheckBox, Input, Button } from 'react-native-elements';
 
-import globalStyles from '../../../../constants/globalStyles';
+import { colors, globalStyles } from '../../../../constants';
+
 import styles from './styles';
-import { colors } from '../../../../constants/colors';
 
 class Step1Screen extends Component {
   constructor(props) {

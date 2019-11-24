@@ -4,8 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 import { Icon, Input } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
 
-import { colors } from '../../../../constants/colors';
-import globalStyles from '../../../../constants/globalStyles';
+import { colors, globalStyles } from '../../../../constants';
 import styles from './styles';
 
 const CustomMarker = ({ title }) => (

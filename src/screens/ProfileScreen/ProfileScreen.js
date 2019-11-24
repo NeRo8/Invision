@@ -13,8 +13,7 @@ import { Grayscale } from 'react-native-color-matrix-image-filters';
 import ModalProfile from '../../components/ModalProfile';
 import TextPicker from '../../components/TextPicker';
 
-import globalStyles from '../../constants/globalStyles';
-import { colors } from '../../constants/colors';
+import { colors, globalStyles } from '../../constants';
 
 import styles from './styles';
 

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-import { colors } from '../../../constants/colors';
-import globalStyles from '../../../constants/globalStyles';
+import { colors, globalStyles } from '../../../constants';
 
 class HeaderChooseCategory extends Component {
   constructor(props) {

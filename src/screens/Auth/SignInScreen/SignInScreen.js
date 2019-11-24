@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { Input, Icon, Button } from 'react-native-elements';
-import { colors } from '../../../constants/colors';
-import styles from './styles';
-import globalStyles from '../../../constants/globalStyles';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import { DefaultInput } from '../../../components/Inputs';
 
 import { login } from '../../../redux/actions/authAction';
+
+import { colors, globalStyles } from '../../../constants';
+import styles from './styles';
 
 class SignInScreen extends Component {
   constructor(props) {

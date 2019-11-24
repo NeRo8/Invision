@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Modal, StyleSheet } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
-import globalStyles from '../../../constants/globalStyles';
-import { colors } from '../../../constants/colors';
+import { colors, globalStyles } from '../../../constants';
 
 const ModalSuccess = ({ show, onPressSubmit }) => (
   <Modal transparent visible={show}>

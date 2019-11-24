@@ -24,8 +24,7 @@ import HeaderSignIn from '../components/HeaderSignIn/HeaderSignIn';
 import HeaderCreateAccount from '../components/HeaderCreateAccount';
 import HeaderPay from '../components/HeaderPay';
 
-import { colors } from '../constants/colors';
-import globalStyles from '../constants/globalStyles';
+import { colors, globalStyles } from '../constants';
 
 const HeaderLeft = ({ onBack }) => (
   <Icon

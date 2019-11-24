@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-import globalStyles from '../../constants/globalStyles';
+
+import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
 
 const ElementListNews = ({ item, onPressProduct }) => (

@@ -9,7 +9,7 @@ import AuthNavigation from './AuthNavigation';
 import FavoriteNavigation from './FavoriteNavigation';
 import ProfileNavigation from './ProfileNavigation';
 
-import { colors } from '../constants/colors';
+import { colors } from '../constants';
 
 const Navigation = createBottomTabNavigator(
   {

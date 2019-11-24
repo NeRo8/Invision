@@ -1,4 +1,4 @@
-export const colors = {
+const colors = {
   HEADER: '#0A68EF',
   HEADER_BUTTON: '#3F7FE9',
   UNACTIVE: '#9DA9BC',
@@ -31,3 +31,5 @@ export const colors = {
   CHAT_DATE: '#2C3440',
   CHAT_DATE_BORDER_COLOR: '#EBEEF0',
 };
+
+export default colors;

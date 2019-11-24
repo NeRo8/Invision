@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Modal, View, ImageBackground, Text, Switch } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import globalStyles from '../../constants/globalStyles';
-import { colors } from '../../constants/colors';
+import { colors, globalStyles } from '../../constants';
+
 import styles from './styles';
 
 class ModalProfile extends Component {

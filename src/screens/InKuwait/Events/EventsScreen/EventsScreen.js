@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
-import ElementListEvents from '../../../../components/ElementListEvents';
+import ElementListEvents from '../../../../components/ElementLists';
 import TextPicker from '../../../../components/TextPicker';
-import { colors } from '../../../../constants/colors';
+
+import { colors } from '../../../../constants';
 import styles from './styles';
 
-import { connect } from 'react-redux';
 import { getEvents } from '../../../../redux/actions/inKuwaitAction';
 
 class EventsScreen extends Component {

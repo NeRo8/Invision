@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { Input, Icon, Button, CheckBox } from 'react-native-elements';
-import { colors } from '../../../constants/colors';
+import { View, Text, ScrollView } from 'react-native';
+import { Input, Button, CheckBox } from 'react-native-elements';
+
+import { colors, globalStyles } from '../../../constants';
+
 import styles from './styles';
-import globalStyles from '../../../constants/globalStyles';
 
 class SignUpScreen extends Component {
   constructor(props) {

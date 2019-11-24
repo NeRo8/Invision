@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Modal, View, Text, ImageBackground } from 'react-native';
-
 import { Icon, Button, Divider } from 'react-native-elements';
 
-import { colors } from '../../../constants/colors';
+import { colors, globalStyles } from '../../../constants';
+
 import styles from './styles';
-import globalStyles from '../../../constants/globalStyles';
 
 class ModalShare extends Component {
   constructor(props) {

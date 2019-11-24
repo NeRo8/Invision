@@ -13,8 +13,7 @@ import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
 
-import { colors } from '../constants/colors';
-import globalStyles from '../constants/globalStyles';
+import { colors, globalStyles } from '../constants';
 
 const styles = StyleSheet.create({
   btnCancel: {

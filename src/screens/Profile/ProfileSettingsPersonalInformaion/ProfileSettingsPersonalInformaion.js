@@ -8,8 +8,8 @@ import {
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
-import { colors } from '../../../constants/colors';
-import globalStyles from '../../../constants/globalStyles';
+
+import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
 

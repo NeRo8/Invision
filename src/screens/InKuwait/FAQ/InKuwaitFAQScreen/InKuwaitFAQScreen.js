@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
+
 import { getQuestions } from '../../../../redux/actions/inKuwaitAction';
 
-import globalStyles from '../../../../constants/globalStyles';
+import { colors, globalStyles } from '../../../../constants';
 import styles from './styles';
-import { colors } from '../../../../constants/colors';
 
 const ElementFlatList = ({ item, onPressElement }) => (
   <TouchableOpacity style={styles.elementFL} onPress={() => onPressElement()}>

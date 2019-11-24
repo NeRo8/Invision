@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { CheckBox, Button, Input } from 'react-native-elements';
 
-import globalStyles from '../../../../constants/globalStyles';
+import { colors, globalStyles } from '../../../../constants';
+
 import styles from './styles';
-import { colors } from '../../../../constants/colors';
 
 const ElementFl = ({ element, onChange }) => (
   <View style={styles.elementContainer}>

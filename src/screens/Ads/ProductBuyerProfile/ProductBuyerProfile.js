@@ -9,12 +9,12 @@ import {
 } from 'react-native';
 import { Avatar, Icon } from 'react-native-elements';
 
-import globalStyles from '../../../constants/globalStyles';
-import { colors } from '../../../constants/colors';
-import styles from './styles';
-
-import ElementList from '../../../components/ElementList/ElementList';
+import ElementList from '../../../components/ElementLists';
 import ComplainModal from './ComplainModal';
+
+import { colors, globalStyles } from '../../../constants';
+
+import styles from './styles';
 
 class ProductBuyerProfile extends Component {
   constructor(props) {

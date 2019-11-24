@@ -3,9 +3,9 @@ import { Modal, View, Text } from 'react-native';
 
 import { Button, Divider, CheckBox, Icon } from 'react-native-elements';
 
-import { colors } from '../../../constants/colors';
+import { colors, globalStyles } from '../../../constants';
+
 import styles from './styles';
-import globalStyles from '../../../constants/globalStyles';
 
 class ComplainModal extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-import { colors } from '../constants/colors';
+import colors from './colors';
 
 export default StyleSheet.create({
   gothamBold: {

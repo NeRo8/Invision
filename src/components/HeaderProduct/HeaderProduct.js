@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
-import { colors } from '../../constants/colors';
+import { colors } from '../../constants';
 
 import styles from './styles';
 

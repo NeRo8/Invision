@@ -1,14 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '../../constants/colors';
-
 export default StyleSheet.create({
   container: {
     flex: 1,
-    height: 234,
-    marginHorizontal: 5,
-    marginVertical: 5,
+    height: 200,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     backgroundColor: 'white',
+    justifyContent: 'space-between',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -18,14 +17,10 @@ export default StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+    margin: 5,
   },
   pictureBlock: {
     flex: 1,
-  },
-  textBlock: {
-    flex: 1,
-    padding: 10,
-    justifyContent: 'space-between',
   },
   picture: {
     flex: 1,
@@ -34,13 +29,11 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: 13,
+    lineHeight: 24,
   },
-  price: {
-    color: colors.HEADER,
-    fontSize: 13,
-  },
-  status: {
-    color: colors.UNACTIVE,
-    fontSize: 13,
+  date: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

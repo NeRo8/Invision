@@ -35,8 +35,8 @@ import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
 import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
 import HeaderInKuwaitEvents from '../components/HeaderInKuwaitEvents';
 
-import { colors } from '../constants/colors';
-import globalStyles from '../constants/globalStyles';
+import { colors, globalStyles } from '../constants';
+
 const HeaderLeftIcon = ({ goBack }) => (
   <Icon
     name="chevron-left"

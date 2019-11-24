@@ -11,8 +11,7 @@ import {
 import { Icon, Button } from 'react-native-elements';
 
 import styles from './styles';
-import globalStyles from '../../../../constants/globalStyles';
-import { colors } from '../../../../constants/colors';
+import { colors, globalStyles } from '../../../../constants';
 
 const imgWidth = 1600;
 const imgHeight = 750;

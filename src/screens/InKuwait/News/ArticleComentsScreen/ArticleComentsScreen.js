@@ -11,8 +11,7 @@ import {
 import { Icon, Button, Divider } from 'react-native-elements';
 
 import styles from './styles';
-import globalStyles from '../../../../constants/globalStyles';
-import { colors } from '../../../../constants/colors';
+import { colors, globalStyles } from '../../../../constants';
 
 const ElementFlatList = ({ item }) => (
   <View>

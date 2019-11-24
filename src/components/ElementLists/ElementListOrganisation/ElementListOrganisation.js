@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-
-import globalStyles from '../../constants/globalStyles';
-import styles from './styles';
-import { colors } from '../../constants/colors';
-
 import StarRating from 'react-native-star-rating';
+
+import { colors, globalStyles } from '../../../constants';
+
+import styles from './styles';
 
 const ElementListOrganisation = ({ element, onPressOrganizationOrService }) => (
   <TouchableOpacity

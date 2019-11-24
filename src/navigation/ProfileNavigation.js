@@ -4,7 +4,6 @@ import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import ProfileScreen from '../screens/ProfileScreen';
-
 import ProfileSettings from '../screens/Profile/ProfileSettings';
 import ProfileSettingsChangePassword from '../screens/Profile/ProfileSettingsChangePassword';
 import ProfileSettingsPersonalInformaion from '../screens/Profile/ProfileSettingsPersonalInformaion';
@@ -14,9 +13,7 @@ import ProfilePaymentHistory from '../screens/Profile/ProfilePaymentHistory';
 import ProfileNotifications from '../screens/Profile/ProfileNotifications';
 import ProfileNotificationsChat from '../screens/Profile/ProfileNotificationsChat';
 
-import { colors } from '../constants/colors';
-
-import globalStyles from '../constants/globalStyles';
+import { colors, globalStyles } from '../constants';
 
 const styles = StyleSheet.create({
   btnCancel: {

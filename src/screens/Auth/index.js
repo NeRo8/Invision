@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { colors } from '../../constants/colors';
-import globalStyles from '../../constants/globalStyles';
+import { colors, globalStyles } from '../../constants';
 
 class index extends Component {
   constructor(props) {

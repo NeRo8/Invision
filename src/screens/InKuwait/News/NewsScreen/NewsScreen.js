@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
-
-import ElementListNews from '../../../../components/ElementListNews';
-import { getNews } from '../../../../redux/actions/inKuwaitAction';
 import { connect } from 'react-redux';
+
+import ElementListNews from '../../../../components/ElementLists';
+import { getNews } from '../../../../redux/actions/inKuwaitAction';
+
 import styles from './styles';
 
 class NewsScreen extends Component {

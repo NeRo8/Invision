@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-//For token
-import { getData } from '../../utils/AsyncStorage';
 
-import ElementList from '../../components/ElementList';
-import ElementEvents from '../../components/ElementListEvents';
-import ElementListOrganisation from '../../components/ElementListOrganisation';
-
-import styles from './styles';
-import { colors } from '../../constants/colors';
-
+import {
+  ElementListAds,
+  ElementListEvents,
+  ElementListOrganisation,
+} from '../../components/ElementLists';
 import TextPicker from '../../components/TextPicker';
 
 import { getAdsFavorites } from '../../redux/actions/adsAction';
+//For token
+import { getData } from '../../utils/AsyncStorage';
+
+import { colors } from '../../constants';
+
+import styles from './styles';
 
 class FavoriteScreen extends Component {
   constructor(props) {
@@ -178,7 +180,7 @@ class FavoriteScreen extends Component {
                 numColumns={2}
                 data={this.props.adsFavorites}
                 renderItem={({ item }) => (
-                  <ElementList item={item.ad} onPressProduct={() => {}} />
+                  <ElementListAds item={item.ad} onPressProduct={() => {}} />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
                 keyExtractor={(item, index) => item.id}
@@ -201,7 +203,7 @@ class FavoriteScreen extends Component {
                 numColumns={2}
                 data={[]}
                 renderItem={({ item }) => (
-                  <ElementEvents element={item} onPressProduct={() => {}} />
+                  <ElementListEvents element={item} onPressProduct={() => {}} />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
                 keyExtractor={(item, index) => item.id}

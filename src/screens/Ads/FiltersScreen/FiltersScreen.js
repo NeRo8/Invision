@@ -6,14 +6,14 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  FlatList,
 } from 'react-native';
 import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-import { colors } from '../../../constants/colors';
-import globalStyles from '../../../constants/globalStyles';
+import { colors, globalStyles } from '../../../constants';
+
 import styles from './styles';
-import { FlatList } from 'react-native-gesture-handler';
 
 class FiltersScreen extends Component {
   constructor(props) {

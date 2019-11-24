@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import globalStyles from '../../../constants/globalStyles';
 import { Icon } from 'react-native-elements';
 
-import { colors } from '../../../constants/colors';
+import { colors } from '../../../constants';
 import styles from './styles';
 
 class ProfileSettingsPrivacyPolicy extends Component {

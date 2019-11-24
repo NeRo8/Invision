@@ -4,8 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import FavoriteScreen from '../screens/FavoriteScreen';
 
-import globalStyles from '../constants/globalStyles';
-import { colors } from '../constants/colors';
+import { colors, globalStyles } from '../constants';
 
 const styles = StyleSheet.create({
   clearAllButton: {
