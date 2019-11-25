@@ -1,6 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 import { colors } from '../../../constants';
+import {
+  gothamBold,
+  gothamBook,
+  gothamMediumRegular,
+} from '../../../constants/fonts';
 
 export const { width, height } = Dimensions.get('window');
 
@@ -20,8 +25,16 @@ export default StyleSheet.create({
     height: null,
   },
   title: {
+    ...gothamBook,
     fontSize: 22,
     lineHeight: 30,
+  },
+  showMoreText: {
+    ...gothamBook,
+    color: colors.UNACTIVE,
+    fontSize: 17,
+    lineHeight: 32,
+    textDecorationLine: 'underline',
   },
   price: {
     color: colors.HEADER,

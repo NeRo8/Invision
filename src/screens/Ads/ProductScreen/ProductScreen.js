@@ -183,9 +183,7 @@ class ProductScreen extends Component {
               />
             </View>
             <View style={styles.head}>
-              <Text style={[globalStyles.gothamBook, styles.title]}>
-                {productData.title}
-              </Text>
+              <Text style={styles.title}>{productData.title}</Text>
 
               <View style={styles.properties}>
                 <Text style={[globalStyles.gothamBook, styles.price]}>
@@ -267,18 +265,7 @@ class ProductScreen extends Component {
                   {productData.description}
                 </Text>
                 <TouchableOpacity style={{ marginTop: 8 }}>
-                  <Text
-                    style={[
-                      globalStyles.gothamBook,
-                      {
-                        color: colors.UNACTIVE,
-                        fontSize: 17,
-                        lineHeight: 32,
-                        textDecorationLine: 'underline',
-                      },
-                    ]}>
-                    Show more
-                  </Text>
+                  <Text style={styles.showMoreText}>Show more</Text>
                 </TouchableOpacity>
                 <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
                   <TouchableOpacity
@@ -398,7 +385,7 @@ class ProductScreen extends Component {
                   ]}>
                   SIMILAR ADS
                 </Text>
-                <SafeAreaView style={styles.flatListView}>
+                <View style={styles.flatListView}>
                   <FlatList
                     numColumns={2}
                     data={this.props.productData.recommended}
@@ -407,7 +394,7 @@ class ProductScreen extends Component {
                     )}
                     keyExtractor={(item, index) => item.pk}
                   />
-                </SafeAreaView>
+                </View>
               </View>
               <Button
                 title="Show more ads"
