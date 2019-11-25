@@ -57,7 +57,7 @@ export const getAds = filters => dispatch => {
 };
 
 export const getAd = (productId, token) => dispatch => {
-  dispatch(setLoading(true, true));
+  dispatch(setLoading(false, true));
 
   fetch(`${ADS}ad/${productId}`, {
     method: 'GET',
@@ -69,7 +69,7 @@ export const getAd = (productId, token) => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAd(responseJson));
-      dispatch(setLoading(true, false));
+      dispatch(setLoading(false, false));
     })
     .catch(error => {
       dispatch(setError(error));
