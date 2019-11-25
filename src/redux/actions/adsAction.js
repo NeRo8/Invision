@@ -56,6 +56,8 @@ export const getAds = filters => dispatch => {
 };
 export const getAd = (productId, token) => dispatch => {
   console.log('TOKEN', token);
+  dispatch(setLoading(true));
+
   fetch(`${ADS}ad/${productId}`, {
     method: 'GET',
     headers: {
@@ -66,10 +68,11 @@ export const getAd = (productId, token) => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAd(responseJson));
+      dispatch(setLoading(false));
       console.log(responseJson);
     })
     .catch(error => {
-      console.error(error);
+      dispatch(setError(error));
     });
 };
 
