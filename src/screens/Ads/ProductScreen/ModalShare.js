@@ -11,6 +11,7 @@ class ModalShare extends Component {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <Modal visible={this.props.show} transparent>
@@ -28,7 +29,7 @@ class ModalShare extends Component {
             <View>
               <View style={{ height: 178 }}>
                 <ImageBackground
-                  source={require('../../../assets/images/productImages/iphone.jpg')}
+                  source={{ uri: this.props.imageS }}
                   style={styles.shareBackgroundImage}
                   imageStyle={{
                     borderTopLeftRadius: 3,

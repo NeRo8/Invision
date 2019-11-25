@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Input, Icon } from 'react-native-elements';
+import { View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import { colors } from '../../constants';
@@ -52,7 +52,6 @@ class HeaderProduct extends Component {
             type="material-community"
             size={24}
           />
-          {console.log('FAVORITE', item)}
         </View>
       </View>
     );

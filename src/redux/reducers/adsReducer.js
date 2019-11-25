@@ -14,6 +14,7 @@ const initState = {
   adData: [],
   error: null,
   loading: true,
+  loadingAd: true,
 };
 
 const adsReducer = (state = initState, action) => {
@@ -40,6 +41,7 @@ const adsReducer = (state = initState, action) => {
       return {
         ...state,
         loading: action.loading,
+        loadingAd: action.loadingAd,
       };
     }
     case SET_ADS_CATEGORIES: {

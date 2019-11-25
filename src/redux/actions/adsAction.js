@@ -33,14 +33,15 @@ const setError = error => ({
   error,
 });
 
-const setLoading = loading => ({
+const setLoading = (loading, loadingAd) => ({
   type: SET_LOADING,
   loading,
+  loadingAd,
 });
 
 //API REDUX
 export const getAds = filters => dispatch => {
-  dispatch(setLoading(true));
+  dispatch(setLoading(true, true));
 
   fetch(`${ADS}ads/`, {
     method: 'GET',
@@ -48,15 +49,15 @@ export const getAds = filters => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAds(responseJson.results));
-      dispatch(setLoading(false));
+      dispatch(setLoading(false, true));
     })
     .catch(error => {
       dispatch(setError(error));
     });
 };
+
 export const getAd = (productId, token) => dispatch => {
-  console.log('TOKEN', token);
-  dispatch(setLoading(true));
+  dispatch(setLoading(false, true));
 
   fetch(`${ADS}ad/${productId}`, {
     method: 'GET',
@@ -68,8 +69,7 @@ export const getAd = (productId, token) => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAd(responseJson));
-      dispatch(setLoading(false));
-      console.log(responseJson);
+      dispatch(setLoading(false, false));
     })
     .catch(error => {
       dispatch(setError(error));
