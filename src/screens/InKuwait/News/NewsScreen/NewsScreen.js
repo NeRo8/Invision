@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
-import ElementListNews from '../../../../components/ElementLists';
+import { ElementListNews } from '../../../../components/ElementLists';
 import { getNews } from '../../../../redux/actions/inKuwaitAction';
 
 import styles from './styles';
