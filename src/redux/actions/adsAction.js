@@ -43,7 +43,13 @@ const setLoading = (loading, loadingAd) => ({
 export const getAds = filters => dispatch => {
   dispatch(setLoading(true, true));
 
-  fetch(`${ADS}ads/`, {
+  var requestString = `${ADS}ads/`;
+
+  if (filters !== undefined && filters.categories !== undefined) {
+    requestString += `?category=${filters.categories}`;
+  }
+
+  fetch(requestString, {
     method: 'GET',
   })
     .then(response => response.json())
