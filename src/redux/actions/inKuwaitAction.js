@@ -10,6 +10,8 @@ export const SET_EVENTS = 'SET_EVENTS';
 export const SET_SERVICES = 'SET_SERVICES';
 export const SET_COUNT_LIST = 'SET_COUNT_LIST';
 
+export const SET_LOADING = 'SET_LOADING';
+
 const setNews = news => ({
   type: SET_NEWS,
   news,
@@ -34,6 +36,11 @@ const setServices = services => ({
 const setCountList = countList => ({
   type: SET_COUNT_LIST,
   countList,
+});
+
+const setLoading = loadingNewsArticle => ({
+  type: SET_LOADING,
+  loadingNewsArticle,
 });
 
 export const getCountList = () => dispatch => {
@@ -64,12 +71,15 @@ export const getNews = filters => dispatch => {
 };
 
 export const getNewsArticle = articleId => dispatch => {
+  dispatch(setLoading(true));
+
   fetch(`${IN_KUWAIT}blog/news/${articleId}`, {
     method: 'GET',
   })
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setNewsArticle(responseJson));
+      dispatch(setLoading(false));
     })
     .catch(error => {
       console.error(error);

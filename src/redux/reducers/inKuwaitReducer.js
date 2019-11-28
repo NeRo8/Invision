@@ -5,6 +5,7 @@ import {
   SET_EVENTS,
   SET_COUNT_LIST,
   SET_SERVICES,
+  SET_LOADING,
 } from '../actions/inKuwaitAction';
 
 const initState = {
@@ -14,6 +15,7 @@ const initState = {
   questionsList: [],
   eventsList: [],
   servicesList: [],
+  loadingNewsArticle: true,
 };
 const inKuwaitReducer = (state = initState, action) => {
   switch (action.type) {
@@ -53,7 +55,12 @@ const inKuwaitReducer = (state = initState, action) => {
         servicesList: action.services,
       };
     }
-
+    case SET_LOADING: {
+      return {
+        ...state,
+        loadingNewsArticle: action.loadingNewsArticle,
+      };
+    }
     default:
       return state;
   }

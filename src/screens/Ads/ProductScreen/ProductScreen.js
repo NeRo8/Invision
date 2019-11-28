@@ -127,9 +127,9 @@ class ProductScreen extends Component {
       ],
 
       modalShow: false,
-      imageSource: this.props.productData.adimage_set.filter(
-        item => item.is_primary === true,
-      ),
+      // imageSource: this.props.productData.adimage_set.filter(
+      //   item => item.is_primary === true,
+      // ),
     };
   }
 
@@ -360,7 +360,7 @@ class ProductScreen extends Component {
             </View>
             <ModalShare
               show={this.state.modalShow}
-              imageS={this.state.imageSource[0].image}
+              // imageS={this.state.imageSource[0].image}
               onPressClose={this.onPressShere}
             />
           </ScrollView>
