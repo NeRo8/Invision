@@ -8,9 +8,6 @@ import {
 } from 'react-native';
 import { ElementListAds } from '../../components/ElementLists';
 import SplashScreen from 'react-native-splash-screen';
-//REDUX
-import { connect } from 'react-redux';
-import { getAds } from '../../redux/actions/adsAction';
 
 import { colors } from '../../constants';
 import styles from './styles';
@@ -75,20 +72,4 @@ class AdsScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    adsList: state.ads.adsList,
-    loading: state.ads.loading,
-    error: state.ads.error,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getAdsList: () => {
-      dispatch(getAds());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AdsScreen);
+export default AdsScreen;
