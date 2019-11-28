@@ -3,7 +3,7 @@ import { View, Text, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-import ElementListEvents from '../../../../components/ElementLists';
+import { ElementListEvents } from '../../../../components/ElementLists';
 import TextPicker from '../../../../components/TextPicker';
 
 import { colors } from '../../../../constants';

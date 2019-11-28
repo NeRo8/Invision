@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { getServices } from '../../../../redux/actions/inKuwaitAction';
 
-import ElementListOrganisation from '../../../../components/ElementLists';
+import { ElementListOrganisation } from '../../../../components/ElementLists';
 
 import styles from './styles';
 
