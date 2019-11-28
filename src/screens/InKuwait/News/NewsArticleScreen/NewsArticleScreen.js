@@ -41,8 +41,8 @@ class NewsArticleScreen extends Component {
 
   componentDidMount() {
     const { getNews } = this.props;
-
-    getNews();
+    const id = this.props.navigation.getParam('id', null);
+    getNews(id);
 
     Image.getSize(this.state.imgURL, (width, height) => {
       this.setState({
@@ -65,8 +65,6 @@ class NewsArticleScreen extends Component {
 
     const remoteImage =
       this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
-
-    console.log(loading);
 
     if (loading) {
       return (
