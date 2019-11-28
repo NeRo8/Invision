@@ -1,5 +1,6 @@
 import {
   SET_NEWS,
+  SET_NEWS_ARTICLE,
   SET_QUESTIONS,
   SET_EVENTS,
   SET_COUNT_LIST,
@@ -9,6 +10,7 @@ import {
 const initState = {
   countList: [],
   newsList: [],
+  newsArticleData: [],
   questionsList: [],
   eventsList: [],
   servicesList: [],
@@ -25,6 +27,12 @@ const inKuwaitReducer = (state = initState, action) => {
       return {
         ...state,
         newsList: action.news,
+      };
+    }
+    case SET_NEWS_ARTICLE: {
+      return {
+        ...state,
+        newsArticleData: action.newsArticle,
       };
     }
     case SET_QUESTIONS: {

@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 
+import { connect } from 'react-redux';
+import { getNewsArticle } from '../../../../redux/actions/inKuwaitAction';
+
 import styles from './styles';
 import { colors, globalStyles } from '../../../../constants';
 
@@ -20,6 +23,7 @@ class NewsArticleScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      newsData: [],
       iWidth: 0,
       iHeight: 0,
       imgURL:
@@ -27,7 +31,10 @@ class NewsArticleScreen extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const currentNewsId = this.props.navigation.getParam('newsId', null);
+    this.props.getNewsArticleData(currentNewsId);
+    console.log('NEWSARTICLE', this.props.currentNewsArticleData);
     Image.getSize(this.state.imgURL, (width, height) => {
       this.setState({
         iWidth: width,
@@ -45,6 +52,8 @@ class NewsArticleScreen extends Component {
   };
 
   render() {
+    const newsData = this.state;
+    console.log(this.props.newsData.cover);
     const remoteImage =
       this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
 
@@ -78,7 +87,7 @@ class NewsArticleScreen extends Component {
               height: imgHeight / (imgWidth / Dimensions.get('window').width),
             }}>
             <Image
-              source={require('../../../../assets/images/Event.jpg')}
+              source={{ uri: newsData.cover }}
               style={styles.imageContainer}
               resizeMode="contain"
             />
@@ -217,4 +226,18 @@ class NewsArticleScreen extends Component {
   }
 }
 
-export default NewsArticleScreen;
+const mapStateToProps = state => {
+  return {
+    newsData: state.inKuwait.newsArticleData,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getNewsArticleData: (prodId, token) => {
+      dispatch(getNewsArticle(prodId, token));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsArticleScreen);

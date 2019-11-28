@@ -6,7 +6,9 @@ import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
 
 const ElementListNews = ({ item, onPressProduct }) => (
-  <TouchableOpacity style={styles.container} onPress={() => onPressProduct()}>
+  <TouchableOpacity
+    style={styles.container}
+    onPress={() => onPressProduct(item.pk)}>
     <View style={styles.pictureBlock}>
       <Image
         resizeMode="cover"

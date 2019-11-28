@@ -15,12 +15,12 @@ class NewsScreen extends Component {
     };
   }
 
-  componentDidMount = () => {
+  async componentDidMount() {
     this.props.getNewsList();
-  };
+  }
 
-  onPressNews = () => {
-    this.props.navigation.navigate('NewsArticle');
+  onPressNews = newsId => {
+    this.props.navigation.navigate('NewsArticle', { newsId: newsId });
   };
 
   render() {

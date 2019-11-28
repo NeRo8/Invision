@@ -4,6 +4,7 @@ const IN_KUWAIT_COMMON =
   'https://staging.masaha.app/api/v1/common/living-in-kuwait/';
 
 export const SET_NEWS = 'SET_NEWS';
+export const SET_NEWS_ARTICLE = 'SET_NEWS_ARTICLE';
 export const SET_QUESTIONS = 'SET_QUESTIONS';
 export const SET_EVENTS = 'SET_EVENTS';
 export const SET_SERVICES = 'SET_SERVICES';
@@ -12,6 +13,10 @@ export const SET_COUNT_LIST = 'SET_COUNT_LIST';
 const setNews = news => ({
   type: SET_NEWS,
   news,
+});
+const setNewsArticle = newsArticle => ({
+  type: SET_NEWS_ARTICLE,
+  newsArticle,
 });
 const setQuestions = questions => ({
   type: SET_QUESTIONS,
@@ -52,6 +57,19 @@ export const getNews = filters => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setNews(responseJson.results));
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+
+export const getNewsArticle = articleId => dispatch => {
+  fetch(`${IN_KUWAIT}blog/news/${articleId}`, {
+    method: 'GET',
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setNewsArticle(responseJson));
     })
     .catch(error => {
       console.error(error);
