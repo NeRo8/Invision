@@ -65,13 +65,24 @@ export const getAds = filters => dispatch => {
 export const getAd = (productId, token) => dispatch => {
   dispatch(setLoading(false, true));
 
-  fetch(`${ADS}ad/${productId}`, {
+  let head = {
     method: 'GET',
     headers: {
-      Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
     },
-  })
+  };
+
+  if (token !== null) {
+    head = {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json',
+      },
+    };
+  }
+
+  fetch(`${ADS}ad/${productId}`, head)
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAd(responseJson));

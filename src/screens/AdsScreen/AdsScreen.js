@@ -23,7 +23,7 @@ class AdsScreen extends Component {
     SplashScreen.hide();
 
     if (adsList.length === 0) {
-      this.props.getAdsList();
+      getAdsList();
     }
   }
 
