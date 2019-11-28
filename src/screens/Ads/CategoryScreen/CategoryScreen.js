@@ -5,12 +5,11 @@ import { Divider, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import styles from './styles';
-import globalStyles from '../../../constants/globalStyles';
 
-import { getCategories } from '../../../redux/actions/adsAction';
+import { getCategories, getAds } from '../../../redux/actions/adsAction';
 
-const ElementFlatList = ({ item }) => (
-  <TouchableOpacity onPress={() => {}}>
+const ElementCategoryList = ({ item, onPressElement }) => (
+  <TouchableOpacity onPress={() => onPressElement({ categories: item.name })}>
     <View style={styles.elementContainer}>
       <View style={styles.elementIcon}>
         <Image
@@ -18,14 +17,13 @@ const ElementFlatList = ({ item }) => (
           style={{ width: null, height: null, flex: 1 }}
         />
       </View>
-      <Text style={[globalStyles.gothamBook, styles.elementTitle]}>
-        {item.name}
-      </Text>
+      <Text style={styles.elementTitle}>{item.name}</Text>
       <Icon
         name="chevron-right"
         type="material-community"
         color="silver"
         size={32}
+        underlayColor="transparent"
       />
     </View>
   </TouchableOpacity>
@@ -38,15 +36,30 @@ class CategoryScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.getCategoriesList();
+    const { getCategoriesList } = this.props;
+
+    getCategoriesList();
   }
+
+  getAdsListByCategoryName = categories => {
+    const { getAdsList, navigation } = this.props;
+
+    getAdsList(categories);
+
+    navigation.goBack();
+  };
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.props.data}
-          renderItem={({ item }) => <ElementFlatList item={item} />}
+          renderItem={({ item }) => (
+            <ElementCategoryList
+              item={item}
+              onPressElement={this.getAdsListByCategoryName}
+            />
+          )}
           keyExtractor={item => item.pk.toString()}
           ItemSeparatorComponent={() => (
             <Divider style={styles.elementDivider} />
@@ -67,6 +80,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getCategoriesList: () => {
       dispatch(getCategories());
+    },
+    getAdsList: filter => {
+      dispatch(getAds(filter));
     },
   };
 };

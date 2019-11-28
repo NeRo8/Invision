@@ -14,7 +14,8 @@ import Moment from 'moment';
 import HTML from 'react-native-render-html';
 
 import { connect } from 'react-redux';
-import { getNewsArticle } from '../../../../redux/actions/inKuwaitAction';
+import { getNewsById } from '../../../../redux/actions/inKuwaitAction';
+import PropTypes from 'prop-types';
 
 import styles from './styles';
 import { colors, globalStyles } from '../../../../constants';
@@ -23,6 +24,14 @@ const imgWidth = 1600;
 const imgHeight = 750;
 
 class NewsArticleScreen extends Component {
+  static propTypes = {
+    loading: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    loading: true,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -33,9 +42,11 @@ class NewsArticleScreen extends Component {
     };
   }
 
-  async componentDidMount() {
-    const currentNewsId = this.props.navigation.getParam('newsId', null);
-    this.props.getNewsArticleData(currentNewsId);
+  componentDidMount() {
+    const { getNews } = this.props;
+    const currentNewsId = this.props.navigation.getParam('id', null);
+    getNews(currentNewsId);
+
     Image.getSize(this.state.imgURL, (width, height) => {
       this.setState({
         iWidth: width,
@@ -54,14 +65,21 @@ class NewsArticleScreen extends Component {
 
   render() {
     const { loading, newsData } = this.props;
-    console.log('Load', loading);
+
     const remoteImage =
       this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
-    if (loading === undefined || loading === true) {
+
+    console.log(loading);
+
+    if (loading) {
       return (
         <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <ActivityIndicator size="large" color={colors.HEADER} />
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <ActivityIndicator size="large" color="blue" />
         </View>
       );
     } else
@@ -238,15 +256,15 @@ class NewsArticleScreen extends Component {
 
 const mapStateToProps = state => {
   return {
+    loading: state.inKuwait.loadingNews,
     newsData: state.inKuwait.newsArticleData,
-    loading: state.inKuwait.loadingNewsArticle,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getNewsArticleData: (prodId, token) => {
-      dispatch(getNewsArticle(prodId, token));
+    getNews: id => {
+      dispatch(getNewsById(id));
     },
   };
 };

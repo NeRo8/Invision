@@ -22,8 +22,12 @@ class AdsScreen extends Component {
   }
 
   async componentDidMount() {
+    const { adsList, getAdsList } = this.props;
     SplashScreen.hide();
-    this.props.getAdsList();
+
+    if (adsList.length === 0) {
+      this.props.getAdsList();
+    }
   }
 
   showProductDetail = productId => {

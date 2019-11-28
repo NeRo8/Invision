@@ -1,22 +1,26 @@
 import {
   SET_NEWS,
-  SET_NEWS_ARTICLE,
   SET_QUESTIONS,
   SET_EVENTS,
   SET_COUNT_LIST,
   SET_SERVICES,
   SET_LOADING,
+  SET_NEWS_DETAIL,
+  SET_ERROR,
 } from '../actions/inKuwaitAction';
 
 const initState = {
-  countList: [],
   newsList: [],
-  newsArticleData: [],
+  newsDetail: [],
+  countList: [],
+
   questionsList: [],
   eventsList: [],
   servicesList: [],
-  loadingNewsArticle: true,
+  loadingNews: true,
+  error: null,
 };
+
 const inKuwaitReducer = (state = initState, action) => {
   switch (action.type) {
     case SET_COUNT_LIST: {
@@ -31,12 +35,7 @@ const inKuwaitReducer = (state = initState, action) => {
         newsList: action.news,
       };
     }
-    case SET_NEWS_ARTICLE: {
-      return {
-        ...state,
-        newsArticleData: action.newsArticle,
-      };
-    }
+
     case SET_QUESTIONS: {
       return {
         ...state,
@@ -55,10 +54,22 @@ const inKuwaitReducer = (state = initState, action) => {
         servicesList: action.services,
       };
     }
+    case SET_NEWS_DETAIL: {
+      return {
+        ...state,
+        newsDetail: action.payload,
+      };
+    }
     case SET_LOADING: {
       return {
         ...state,
-        loadingNewsArticle: action.loadingNewsArticle,
+        loadingNews: action.payload,
+      };
+    }
+    case SET_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
       };
     }
     default:

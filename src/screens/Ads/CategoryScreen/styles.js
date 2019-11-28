@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { gothamBook } from '../../../constants/fonts';
+
 export default StyleSheet.create({
   elementContainer: {
     marginHorizontal: 10,
@@ -17,6 +19,7 @@ export default StyleSheet.create({
     backgroundColor: 'silver',
   },
   elementTitle: {
+    ...gothamBook,
     flex: 1,
     marginLeft: 10,
   },
