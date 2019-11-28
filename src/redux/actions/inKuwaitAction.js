@@ -84,10 +84,11 @@ export const getNewsById = id => dispatch => {
 
   fetch(`${IN_KUWAIT}/blog/news/${id}/`)
     .then(response => response.json())
-    .then(responseJson => dispatch(setNewsDetail(responseJson)))
+    .then(responseJson => {
+      dispatch(setNewsDetail(responseJson));
+      dispatch(setLoading(false));
+    })
     .catch(error => dispatch(setError(error)));
-
-  dispatch(setLoading(false));
 };
 
 export const getQuestions = filters => dispatch => {
