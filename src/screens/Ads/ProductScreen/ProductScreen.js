@@ -137,9 +137,6 @@ class ProductScreen extends Component {
     const token = await getData('token');
     const prodId = this.props.navigation.getParam('productId', null);
     this.props.getAdData(prodId, token);
-
-    console.log('AAAAAAAA', this.state.imageSource[0].image);
-    console.log('Token', token);
   }
 
   handlePressWriteOwnComment = () => {
@@ -360,7 +357,9 @@ class ProductScreen extends Component {
             </View>
             <ModalShare
               show={this.state.modalShow}
-              // imageS={this.state.imageSource[0].image}
+              imageUrl={productData.adimage_set.find(
+                el => el.is_primary === true,
+              )}
               onPressClose={this.onPressShere}
             />
           </ScrollView>

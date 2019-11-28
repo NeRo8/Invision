@@ -3,7 +3,7 @@ import { colors } from '../../../../constants';
 
 export default StyleSheet.create({
   wraper: {
-    marginHorizontal: 15,
+    minHeight: '100%',
   },
   topOfComent: {
     flexDirection: 'row',

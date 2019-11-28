@@ -44,8 +44,8 @@ class NewsArticleScreen extends Component {
 
   componentDidMount() {
     const { getNews } = this.props;
-    const currentNewsId = this.props.navigation.getParam('id', null);
-    getNews(currentNewsId);
+    const id = this.props.navigation.getParam('id', null);
+    getNews(id);
 
     Image.getSize(this.state.imgURL, (width, height) => {
       this.setState({
@@ -56,7 +56,9 @@ class NewsArticleScreen extends Component {
   }
 
   onPressArticleComents = () => {
-    this.props.navigation.navigate('ArticleComents');
+    this.props.navigation.navigate('ArticleComents', {
+      comments: this.props.newsData.comments,
+    });
   };
 
   onPressWriteComment = () => {
@@ -65,11 +67,8 @@ class NewsArticleScreen extends Component {
 
   render() {
     const { loading, newsData } = this.props;
-
     const remoteImage =
       this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
-
-    console.log(loading);
 
     if (loading) {
       return (
@@ -233,7 +232,7 @@ class NewsArticleScreen extends Component {
                         styles.blockBottomText,
                         { color: 'black' },
                       ]}>
-                      3
+                      {newsData.comment_count}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -257,7 +256,7 @@ class NewsArticleScreen extends Component {
 const mapStateToProps = state => {
   return {
     loading: state.inKuwait.loadingNews,
-    newsData: state.inKuwait.newsArticleData,
+    newsData: state.inKuwait.newsDetail,
   };
 };
 

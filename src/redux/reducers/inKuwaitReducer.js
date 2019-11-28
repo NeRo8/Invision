@@ -13,7 +13,6 @@ const initState = {
   newsList: [],
   newsDetail: [],
   countList: [],
-
   questionsList: [],
   eventsList: [],
   servicesList: [],

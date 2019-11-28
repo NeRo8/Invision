@@ -82,12 +82,13 @@ export const getNews = filters => dispatch => {
 export const getNewsById = id => dispatch => {
   dispatch(setLoading(true));
 
-  fetch(`${IN_KUWAIT}/blog/news/${id}`)
+  fetch(`${IN_KUWAIT}/blog/news/${id}/`)
     .then(response => response.json())
-    .then(responseJson => dispatch(setNewsDetail(responseJson)))
+    .then(responseJson => {
+      dispatch(setNewsDetail(responseJson));
+      dispatch(setLoading(false));
+    })
     .catch(error => dispatch(setError(error)));
-
-  dispatch(setLoading(false));
 };
 
 export const getQuestions = filters => dispatch => {

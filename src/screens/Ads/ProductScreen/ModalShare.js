@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, View, Text, ImageBackground } from 'react-native';
+import { Modal, View, Text, ImageBackground, StatusBar } from 'react-native';
 import { Icon, Button, Divider } from 'react-native-elements';
 
 import { colors, globalStyles } from '../../../constants';
@@ -15,6 +15,7 @@ class ModalShare extends Component {
   render() {
     return (
       <Modal visible={this.props.show} transparent>
+        <StatusBar backgroundColor="rgba(0,0,0, 0.5)" />
         <View
           style={{
             flex: 1,
@@ -29,7 +30,7 @@ class ModalShare extends Component {
             <View>
               <View style={{ height: 178 }}>
                 <ImageBackground
-                  source={{ uri: this.props.imageS }}
+                  source={{ uri: this.props.imageUrl.image }}
                   style={styles.shareBackgroundImage}
                   imageStyle={{
                     borderTopLeftRadius: 3,
