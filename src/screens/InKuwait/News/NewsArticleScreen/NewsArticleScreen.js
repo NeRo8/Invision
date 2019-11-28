@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
+import Moment from 'moment';
 
 import { connect } from 'react-redux';
 import { getNewsArticle } from '../../../../redux/actions/inKuwaitAction';
@@ -34,7 +35,6 @@ class NewsArticleScreen extends Component {
   async componentDidMount() {
     const currentNewsId = this.props.navigation.getParam('newsId', null);
     this.props.getNewsArticleData(currentNewsId);
-    console.log('NEWSARTICLE', this.props.currentNewsArticleData);
     Image.getSize(this.state.imgURL, (width, height) => {
       this.setState({
         iWidth: width,
@@ -52,8 +52,8 @@ class NewsArticleScreen extends Component {
   };
 
   render() {
-    const newsData = this.state;
-    console.log(this.props.newsData.cover);
+    //const regex = /(<([^>]+)>)/gi;
+    const newsData = this.props.newsData;
     const remoteImage =
       this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
 
@@ -100,7 +100,7 @@ class NewsArticleScreen extends Component {
             <View style={styles.wraperView}>
               <View style={styles.titleView}>
                 <Text style={[globalStyles.gothamMediumRegular, styles.title]}>
-                  Is there a cheaper Private english school in Kuwait ?
+                  {newsData.title}
                 </Text>
               </View>
               <View
@@ -128,7 +128,7 @@ class NewsArticleScreen extends Component {
                     iconStyle={{ marginRight: 10 }}
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                    Since 2017
+                    Since {Moment(newsData.created).format('YYYY')}
                   </Text>
                 </View>
               </View>
@@ -146,7 +146,7 @@ class NewsArticleScreen extends Component {
                     iconStyle={{ marginRight: 10 }}
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                    100
+                    {newsData.hit_count}
                   </Text>
                 </View>
                 <View style={styles.block}>
@@ -160,19 +160,14 @@ class NewsArticleScreen extends Component {
                     }}
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                    Education
+                    {newsData.category.name}
                   </Text>
                 </View>
               </View>
               <View style={styles.descriptionView}>
                 <Text style={[globalStyles.gotham, styles.description]}>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with.
+                  {/* {newsData.description.replace(regex, '')} */}
+                  {newsData.description}
                 </Text>
               </View>
 
