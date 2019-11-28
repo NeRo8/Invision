@@ -9,6 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 import { Icon, Button, Divider } from 'react-native-elements';
+import Moment from 'moment';
 
 import styles from './styles';
 import { colors, globalStyles } from '../../../../constants';
@@ -18,7 +19,7 @@ const ElementFlatList = ({ item }) => (
     <View style={styles.comentView}>
       <View style={styles.topOfComent}>
         <Text style={[globalStyles.gothamMediumRegular, styles.userName]}>
-          {item.userName}
+          {item.user__first_name} {item.user__last_name}
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Icon
@@ -29,12 +30,12 @@ const ElementFlatList = ({ item }) => (
             containerStyle={{ marginRight: 8 }}
           />
           <Text style={[globalStyles.gothamBook, styles.date]}>
-            {item.date}
+            {Moment(item.created).format('DD.MM.YY')}
           </Text>
         </View>
       </View>
       <View style={{ marginTop: 10 }}>
-        <Text style={styles.coment}>{item.coment}</Text>
+        <Text style={styles.coment}>{item.description}</Text>
       </View>
       <View style={styles.buttonsView}>
         <Button
@@ -123,22 +124,26 @@ class ArticleComentsScreen extends Component {
       ],
     };
   }
-
+  async componentDidMount() {
+    const { navigation } = this.props;
+  }
   onPressWriteComment = () => {
     this.props.navigation.navigate('NewsWriteComment');
   };
 
   render() {
+    const { navigation } = this.props;
     return (
       <View>
-        <ScrollView>
-          <View style={styles.wraper}>
-            <FlatList
-              data={this.state.coments}
-              renderItem={({ item }) => <ElementFlatList item={item} />}
-            />
-          </View>
-        </ScrollView>
+        <View style={styles.wraper}>
+          <FlatList
+            contentContainerStyle={{ paddingHorizontal: 15 }}
+            data={navigation.getParam('comments')}
+            renderItem={({ item }) => <ElementFlatList item={item} />}
+            keyExtractor={item => item.pk}
+          />
+        </View>
+
         <Button
           titleStyle={[
             globalStyles.gothamBold,

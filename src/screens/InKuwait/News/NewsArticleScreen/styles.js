@@ -1,5 +1,10 @@
 import { StyleSheet, Platform } from 'react-native';
 import { colors } from '../../../../constants';
+import {
+  gothamBold,
+  gothamBook,
+  gothamMediumRegular,
+} from '../../../../constants/fonts';
 
 export default StyleSheet.create({
   header: {
@@ -26,6 +31,7 @@ export default StyleSheet.create({
   },
 
   description: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 27,
     fontWeight: '300',

@@ -13,7 +13,6 @@ const initState = {
   newsList: [],
   newsDetail: [],
   countList: [],
-
   questionsList: [],
   eventsList: [],
   servicesList: [],
@@ -35,6 +34,7 @@ const inKuwaitReducer = (state = initState, action) => {
         newsList: action.news,
       };
     }
+
     case SET_QUESTIONS: {
       return {
         ...state,

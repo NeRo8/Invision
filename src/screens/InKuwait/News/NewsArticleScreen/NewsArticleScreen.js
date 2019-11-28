@@ -10,12 +10,15 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
+import Moment from 'moment';
+import HTML from 'react-native-render-html';
+
 import { connect } from 'react-redux';
+import { getNewsById } from '../../../../redux/actions/inKuwaitAction';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
 import { colors, globalStyles } from '../../../../constants';
-import { getNewsById } from '../../../../redux/actions/inKuwaitAction';
 
 const imgWidth = 1600;
 const imgHeight = 750;
@@ -53,7 +56,9 @@ class NewsArticleScreen extends Component {
   }
 
   onPressArticleComents = () => {
-    this.props.navigation.navigate('ArticleComents');
+    this.props.navigation.navigate('ArticleComents', {
+      comments: this.props.newsData.comments,
+    });
   };
 
   onPressWriteComment = () => {
@@ -61,8 +66,7 @@ class NewsArticleScreen extends Component {
   };
 
   render() {
-    const { loading } = this.props;
-
+    const { loading, newsData } = this.props;
     const remoteImage =
       this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
 
@@ -108,7 +112,7 @@ class NewsArticleScreen extends Component {
                 height: imgHeight / (imgWidth / Dimensions.get('window').width),
               }}>
               <Image
-                source={require('../../../../assets/images/Event.jpg')}
+                source={{ uri: newsData.cover }}
                 style={styles.imageContainer}
                 resizeMode="contain"
               />
@@ -122,7 +126,7 @@ class NewsArticleScreen extends Component {
                 <View style={styles.titleView}>
                   <Text
                     style={[globalStyles.gothamMediumRegular, styles.title]}>
-                    Is there a cheaper Private english school in Kuwait ?
+                    {newsData.title}
                   </Text>
                 </View>
                 <View
@@ -150,7 +154,7 @@ class NewsArticleScreen extends Component {
                       iconStyle={{ marginRight: 10 }}
                     />
                     <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                      Since 2017
+                      Since {Moment(newsData.created).format('YYYY')}
                     </Text>
                   </View>
                 </View>
@@ -168,7 +172,7 @@ class NewsArticleScreen extends Component {
                       iconStyle={{ marginRight: 10 }}
                     />
                     <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                      100
+                      {newsData.hit_count}
                     </Text>
                   </View>
                   <View style={styles.block}>
@@ -182,23 +186,24 @@ class NewsArticleScreen extends Component {
                       }}
                     />
                     <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                      Education
+                      {newsData.category.name}
                     </Text>
                   </View>
                 </View>
                 <View style={styles.descriptionView}>
-                  <Text style={[globalStyles.gotham, styles.description]}>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with.
-                  </Text>
+                  <HTML
+                    containerStyle={styles.descriptionView}
+                    html={newsData.description}
+                    baseFontStyle={styles.description}
+                    imagesInitialDimensions={{
+                      width: '100%',
+                      height:
+                        imgHeight / (imgWidth / Dimensions.get('window').width),
+                    }}
+                  />
                 </View>
 
-                <View
+                {/* <View
                   style={{
                     marginTop: 30,
                     width: '100%',
@@ -210,7 +215,7 @@ class NewsArticleScreen extends Component {
                     style={styles.imageContainer}
                     resizeMode="contain"
                   />
-                </View>
+                </View> */}
                 <TouchableOpacity onPress={this.onPressArticleComents}>
                   <View
                     style={[
@@ -227,7 +232,7 @@ class NewsArticleScreen extends Component {
                         styles.blockBottomText,
                         { color: 'black' },
                       ]}>
-                      3
+                      {newsData.comment_count}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -251,6 +256,7 @@ class NewsArticleScreen extends Component {
 const mapStateToProps = state => {
   return {
     loading: state.inKuwait.loadingNews,
+    newsData: state.inKuwait.newsDetail,
   };
 };
 

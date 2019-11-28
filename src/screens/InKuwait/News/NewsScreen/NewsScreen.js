@@ -15,9 +15,9 @@ class NewsScreen extends Component {
     };
   }
 
-  componentDidMount = () => {
+  async componentDidMount() {
     this.props.getNewsList();
-  };
+  }
 
   onPressNews = idNews => {
     this.props.navigation.navigate('NewsArticle', { id: idNews });

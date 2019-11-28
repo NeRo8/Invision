@@ -40,9 +40,7 @@ const ElementFlatList = ({ item }) => (
           />
         </View>
         <View style={{ justifyContent: 'space-between' }}>
-          <Text style={[styles.userName, globalStyles.gothamBold]}>
-            {item.userName}
-          </Text>
+          <Text style={styles.userNameComents}>{item.userName}</Text>
           <StarRating
             disabled
             maxStars={5}
@@ -129,6 +127,9 @@ class ProductScreen extends Component {
       ],
 
       modalShow: false,
+      // imageSource: this.props.productData.adimage_set.filter(
+      //   item => item.is_primary === true,
+      // ),
     };
   }
 
@@ -136,9 +137,6 @@ class ProductScreen extends Component {
     const token = await getData('token');
     const prodId = this.props.navigation.getParam('productId', null);
     this.props.getAdData(prodId, token);
-
-    console.log('RES', this.props.productData);
-    console.log('Token', token);
   }
 
   handlePressWriteOwnComment = () => {
@@ -168,7 +166,9 @@ class ProductScreen extends Component {
             <View style={styles.container}>
               <SwiperFlatList
                 data={productData.adimage_set.reverse()}
-                showPagination
+                showPagination={
+                  productData.adimage_set.length === 1 ? false : true
+                }
                 renderItem={items => (
                   <View style={styles.container}>
                     <View style={styles.child}>
@@ -198,17 +198,7 @@ class ProductScreen extends Component {
                       type="material-community"
                       size={16}
                     />
-                    <Text
-                      style={[
-                        globalStyles.gothamBook,
-                        {
-                          fontSize: 15,
-                          lineHeight: 26,
-                          color: colors.UNACTIVE,
-                        },
-                      ]}>
-                      {productData.views}
-                    </Text>
+                    <Text style={styles.viewsAndDate}>{productData.views}</Text>
                   </View>
                   <View style={styles.vd}>
                     <Icon
@@ -218,15 +208,7 @@ class ProductScreen extends Component {
                       size={16}
                     />
 
-                    <Text
-                      style={[
-                        globalStyles.gothamBook,
-                        {
-                          color: colors.UNACTIVE,
-                          fontSize: 15,
-                          lineHeight: 26,
-                        },
-                      ]}>
+                    <Text style={styles.viewsAndDate}>
                       {Moment(productData.publish_date).format('YYYY.MM.DD')}
                     </Text>
                   </View>
@@ -235,18 +217,9 @@ class ProductScreen extends Component {
 
               <View style={styles.tagsView}>
                 <FlatList
-                  style={{
-                    borderBottomWidth: 0.5,
-                    borderTopWidth: 0.5,
-                    borderColor: '#EAEAEA',
-                  }}
+                  style={styles.tagsFlatList}
                   showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{
-                    minWidth: '90%',
-                    height: 45,
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
+                  contentContainerStyle={styles.tagsFlatListContainer}
                   keyExtractor={item => item.id}
                   horizontal
                   data={this.state.tags}
@@ -272,20 +245,8 @@ class ProductScreen extends Component {
                     onPress={() =>
                       this.props.navigation.navigate('ProductBuyerProfile')
                     }
-                    style={{
-                      marginHorizontal: 15,
-                      alignItems: 'center',
-
-                      height: 48,
-                      justifyContent: 'space-between',
-                      flexDirection: 'row',
-                    }}>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}>
+                    style={styles.userTouchable}>
+                    <View style={styles.userLeftBlock}>
                       <Avatar
                         rounded
                         source={
@@ -296,26 +257,12 @@ class ProductScreen extends Component {
                         imageProps={{ resizeMode: 'cover' }}
                         size={25}
                       />
-                      <Text
-                        style={[
-                          globalStyles.gothamBold,
-                          { marginLeft: 10, lineHeight: 20, fontSize: 15 },
-                        ]}>
+                      <Text style={styles.userName}>
                         {productData.user.full_name}
                       </Text>
                     </View>
                     <View>
-                      <Text
-                        style={[
-                          globalStyles.gothamBook,
-                          {
-                            color: colors.HEADER,
-                            fontSize: 15,
-                            lineHeight: 23,
-                          },
-                        ]}>
-                        Other ads
-                      </Text>
+                      <Text style={styles.otherAds}>Other ads</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -340,18 +287,7 @@ class ProductScreen extends Component {
                 </View>
               </View>
               <View>
-                <Text
-                  style={[
-                    globalStyles.gothamBold,
-                    {
-                      marginTop: 25,
-                      fontSize: 15,
-                      lineHeight: 23,
-                      letterSpacing: 1,
-                    },
-                  ]}>
-                  REVIEWS
-                </Text>
+                <Text style={styles.reviews}>REVIEWS</Text>
                 <FlatList
                   data={this.state.coments}
                   renderItem={({ item }) => <ElementFlatList item={item} />}
@@ -373,18 +309,7 @@ class ProductScreen extends Component {
                 />
               </View>
               <View>
-                <Text
-                  style={[
-                    globalStyles.gothamBold,
-                    {
-                      marginTop: 48,
-                      fontSize: 15,
-                      lineHeight: 23,
-                      letterSpacing: 1,
-                    },
-                  ]}>
-                  SIMILAR ADS
-                </Text>
+                <Text style={styles.similarAds}>SIMILAR ADS</Text>
                 <View style={styles.flatListView}>
                   <FlatList
                     numColumns={2}
@@ -404,45 +329,19 @@ class ProductScreen extends Component {
                 onPress={null}
               />
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-
-                backgroundColor: '#F8F8F9',
-                marginHorizontal: 15,
-                marginBottom: 15,
-              }}>
+            <View style={styles.bottomView}>
               <View style={{ flex: 1 }}>
                 <Icon
                   name="phone"
                   type="font-awesome"
                   color="white"
-                  containerStyle={{
-                    backgroundColor: '#9BA9BE',
-                    width: 55,
-                    height: 50,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 2,
-                  }}
+                  containerStyle={styles.iconPhoneContainer}
                 />
               </View>
               <View style={{ flex: 6 }}>
                 <Input
-                  inputStyle={[
-                    globalStyles.gothamBook,
-                    {
-                      fontSize: 17,
-                      lineHeight: 24,
-                      backgroundColor: 'white',
-                      height: 50,
-                    },
-                  ]}
-                  inputContainerStyle={{
-                    maxWidth: '100%',
-                    backgroundColor: 'white',
-                    borderBottomWidth: 0,
-                  }}
+                  inputStyle={styles.bottomInput}
+                  inputContainerStyle={styles.bottomInputContainer}
                   backgroundColor="white"
                   placeholder="Write massage"
                   rightIcon={
@@ -450,15 +349,7 @@ class ProductScreen extends Component {
                       name="send"
                       type="material-comunity"
                       color="white"
-                      containerStyle={{
-                        backgroundColor: colors.HEADER,
-                        width: 55,
-                        height: 50,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 2,
-                        marginRight: -10,
-                      }}
+                      containerStyle={styles.iconSendContainer}
                     />
                   }
                 />
@@ -466,6 +357,9 @@ class ProductScreen extends Component {
             </View>
             <ModalShare
               show={this.state.modalShow}
+              imageUrl={productData.adimage_set.find(
+                el => el.is_primary === true,
+              )}
               onPressClose={this.onPressShere}
             />
           </ScrollView>
