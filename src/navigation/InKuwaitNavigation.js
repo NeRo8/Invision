@@ -26,7 +26,6 @@ import NewsWriteComment from '../screens/InKuwait/News/NewsWriteComment';
 import NewsFilterScreen from '../screens/InKuwait/News/NewsFilterScreen';
 
 import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesScreen';
-import HeaderOrganisationAndServices from '../components/HeaderOrganisationAndServices/HeaderOrganisationAndServices';
 import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter';
 import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail';
 import OrganisationMap from '../screens/InKuwait/OrganisationAndServices/OrganisationMap/OrganisationMap';
@@ -111,6 +110,62 @@ const EventsNavigation = createStackNavigator({
     },
   },
 });
+
+const ServicesNavigation = createStackNavigator(
+  {
+    OrganisationAndServices: {
+      screen: OrganisationAndServicesScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    OrganisationAndServicesFilter: {
+      screen: OrganisationAndServicesFilter,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Filter"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    OrganisationServiceDetail: {
+      screen: OrganisationServiceDetail,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    OrganisationServiceMap: {
+      screen: OrganisationMap,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Organisation & Services"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
+    },
+  },
+);
 
 const InKuwaitNavigation = createStackNavigator(
   {
@@ -411,108 +466,10 @@ const InKuwaitNavigation = createStackNavigator(
         };
       },
     },
-    OrganisationAndServices: {
-      screen: OrganisationAndServicesScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: (
-            <HeaderOrganisationAndServices
-              onPressBack={() => navigation.goBack()}
-              onPressOrganizationAndServicesFilter={() =>
-                navigation.navigate('OrganisationAndServicesFilter')
-              }
-            />
-          ),
-          headerStyle: {
-            paddingTop: 30,
-            height: Platform.OS === 'ios' ? 100 : 132,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-          headerRight: null,
-        };
-      },
-    },
-    OrganisationAndServicesFilter: {
-      screen: OrganisationAndServicesFilter,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: 'Filter',
-          headerTitleStyle: {
-            textAlign: 'center',
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            lineHeight: 24,
-            color: 'white',
-            width: '100%',
-            paddingRight: 60,
-          },
-          headerLeft: (
-            <Icon
-              name="chevron-left"
-              type="feather"
-              size={32}
-              color="white"
-              containerStyle={{
-                width: 50,
-              }}
-              onPress={() => navigation.goBack()}
-            />
-          ),
-          headerStyle: {
-            paddingTop: 15,
-            height: Platform.OS === 'ios' ? 64 : 64,
-            backgroundColor: colors.HEADER,
-          },
-          headerTitleContainerStyle: {
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-        };
-      },
-    },
-    OrganisationServiceDetail: {
-      screen: OrganisationServiceDetail,
+    ServicesNavigation: {
+      screen: ServicesNavigation,
       navigationOptions: {
         header: null,
-      },
-    },
-    OrganisationServiceMap: {
-      screen: OrganisationMap,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: 'Organisations & Services',
-          headerTitleStyle: {
-            textAlign: 'center',
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            lineHeight: 24,
-            color: 'white',
-            width: '100%',
-            paddingRight: 60,
-          },
-          headerLeft: (
-            <Icon
-              name="chevron-left"
-              type="feather"
-              size={32}
-              color="white"
-              containerStyle={{
-                width: 50,
-              }}
-              onPress={() => navigation.goBack()}
-            />
-          ),
-          headerStyle: {
-            paddingTop: 15,
-            height: Platform.OS === 'ios' ? 64 : 64,
-            backgroundColor: colors.HEADER,
-          },
-          headerTitleContainerStyle: {
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-        };
       },
     },
   },

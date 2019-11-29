@@ -10,6 +10,8 @@ import { ElementListOrganisation } from '../../../../components/ElementLists';
 import styles from './styles';
 
 import { colors } from '../../../../constants';
+import HeaderInKuwaitCategory from '../../../../components/Headers/HeaderInKuwaitCategory';
+import { Header } from 'react-navigation-stack';
 
 class OrganisationAndServicesScreen extends Component {
   constructor(props) {
@@ -32,30 +34,49 @@ class OrganisationAndServicesScreen extends Component {
   };
 
   render() {
-    return (
-      <View style={styles.wraper}>
-        <StatusBar backgroundColor={'transparent'} />
+    const { navigation } = this.props;
 
-        <FlatList
-          numColumns={2}
-          data={this.props.servicesList}
-          renderItem={({ item }) => (
-            <ElementListOrganisation
-              element={item}
-              onPressOrganizationOrService={this.onPressOrganizationOrService}
+    return (
+      <View style={{ flex: 1 }}>
+        <HeaderInKuwaitCategory
+          title="Organisation & Services"
+          leftIcon={true}
+          onPressLeftIcon={() => navigation.navigate('InKuwait')}
+          rightIcon={
+            <Icon
+              name="filter"
+              type="material-community"
+              color="white"
+              underlayColor="transparent"
+              onPress={() =>
+                navigation.navigate('OrganisationAndServicesFilter')
+              }
             />
-          )}
-          keyExtractor={(item, index) => item.id}
-          contentContainerStyle={{ flex: 1 }}
+          }
         />
-        <Icon
-          raised
-          name="map-pin"
-          type="feather"
-          containerStyle={styles.mapPin}
-          color={colors.HEADER}
-          onPress={this.onPressChoodeLocation}
-        />
+        <View style={styles.wraper}>
+          <StatusBar backgroundColor={'transparent'} />
+          <FlatList
+            numColumns={2}
+            data={this.props.servicesList}
+            renderItem={({ item }) => (
+              <ElementListOrganisation
+                element={item}
+                onPressOrganizationOrService={this.onPressOrganizationOrService}
+              />
+            )}
+            keyExtractor={(item, index) => item.id}
+            contentContainerStyle={{ flex: 1 }}
+          />
+          <Icon
+            raised
+            name="map-pin"
+            type="feather"
+            containerStyle={styles.mapPin}
+            color={colors.HEADER}
+            onPress={this.onPressChoodeLocation}
+          />
+        </View>
       </View>
     );
   }

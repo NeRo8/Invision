@@ -51,9 +51,7 @@ class InKuwaitScreen extends Component {
             label={'Organisation \n & services'}
             count={countList.services}
             backgroundImage={require('../../assets/images/organisation.jpg')}
-            onPressElement={() =>
-              navigation.navigate('OrganisationAndServices')
-            }
+            onPressElement={() => navigation.navigate('ServicesNavigation')}
           />
           <ElementCategory
             label="FAQ"
