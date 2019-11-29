@@ -3,22 +3,21 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
+import TextPicker from '../../../../components/TextPicker';
+
 import { getQuestions } from '../../../../redux/actions/inKuwaitAction';
 
-import { colors, globalStyles } from '../../../../constants';
+import { colors } from '../../../../constants';
 import styles from './styles';
+import HeaderInKuwaitCategory from '../../../../components/Headers/HeaderInKuwaitCategory';
 
 const ElementFlatList = ({ item, onPressElement }) => (
   <TouchableOpacity style={styles.elementFL} onPress={() => onPressElement()}>
     <View style={styles.roundView}>
-      <Text style={[globalStyles.gothamBook, styles.roundText]}>
-        {item.answer_count}
-      </Text>
+      <Text style={styles.roundText}>{item.answer_count}</Text>
     </View>
     <View style={{ flex: 1, marginLeft: 10 }}>
-      <Text style={[globalStyles.gothamBook, styles.textElement]}>
-        {item.title}
-      </Text>
+      <Text style={styles.textElement}>{item.title}</Text>
     </View>
   </TouchableOpacity>
 );
@@ -27,11 +26,25 @@ class InKuwaitFAQScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      filters: {
-        topQuestion: true,
-        recentQuestion: false,
-      },
+      activeFilter: 'top',
+      filters: [
+        {
+          id: 0,
+          title: 'Top Question',
+          active: true,
+          func: () => {
+            this.setState({ activeFilter: 'top' });
+          },
+        },
+        {
+          id: 1,
+          title: 'Recent Questions',
+          active: false,
+          func: () => {
+            this.setState({ activeFilter: 'recent' });
+          },
+        },
+      ],
     };
   }
 
@@ -39,13 +52,15 @@ class InKuwaitFAQScreen extends Component {
     this.props.getQuestionsList();
   };
 
-  handleChangeFilter = name => {
+  handlePressElementFilter = id => {
+    const { filters } = this.state;
+
+    const newFilters = filters.map(item =>
+      item.id === id ? { ...item, active: true } : { ...item, active: false },
+    );
+
     this.setState({
-      filters: {
-        topQuestion: false,
-        recentQuestion: false,
-        [name]: true,
-      },
+      filters: newFilters,
     });
   };
 
@@ -55,59 +70,39 @@ class InKuwaitFAQScreen extends Component {
 
   render() {
     const { filters } = this.state;
+    const { data, navigation } = this.props;
+
     return (
       <View style={styles.container}>
+        <HeaderInKuwaitCategory
+          title="FAQ"
+          leftIcon={true}
+          onPressLeftIcon={() => navigation.navigate('InKuwait')}
+          rightIcon={
+            <Icon
+              name="filter"
+              type="material-community"
+              color="white"
+              underlayColor="transparent"
+              onPress={() => navigation.navigate('InKuwaitFilter')}
+            />
+          }
+        />
         <View style={styles.headerBlock}>
-          <TouchableOpacity
-            onPress={() => {
-              this.handleChangeFilter('topQuestion');
-            }}
-            style={
-              filters.topQuestion
-                ? styles.selectBlockActive
-                : styles.selectBlock
-            }>
-            <Text
-              style={[
-                globalStyles.gothamMediumRegular,
-                filters.topQuestion ? styles.textActive : styles.textUnactive,
-              ]}>
-              Top Questions
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              this.handleChangeFilter('recentQuestion');
-            }}
-            style={
-              filters.recentQuestion
-                ? styles.selectBlockActive
-                : styles.selectBlock
-            }>
-            <Text
-              style={[
-                globalStyles.gothamMediumRegular,
-                filters.recentQuestion
-                  ? styles.textActive
-                  : styles.textUnactive,
-              ]}>
-              Recent Questions
-            </Text>
-          </TouchableOpacity>
+          <TextPicker
+            dataList={filters}
+            onPressElement={this.handlePressElementFilter}
+          />
         </View>
         <FlatList
-          data={this.props.data}
+          data={data}
           renderItem={({ item }) => (
             <ElementFlatList
               item={item}
               onPressElement={this.handlePressElement}
             />
           )}
-          keyExtractor={(item, index) => item.pk}
-          contentContainerStyle={{
-            flexGrow: 1,
-            paddingHorizontal: 10,
-          }}
+          keyExtractor={item => item.pk}
         />
         <Icon
           name="ios-add"

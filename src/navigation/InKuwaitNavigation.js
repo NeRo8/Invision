@@ -49,6 +49,128 @@ const HeaderLeftIcon = ({ goBack }) => (
   />
 );
 
+const ServicesNavigation = createStackNavigator(
+  {
+    OrganisationAndServices: {
+      screen: OrganisationAndServicesScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    OrganisationAndServicesFilter: {
+      screen: OrganisationAndServicesFilter,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Filter"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    OrganisationServiceDetail: {
+      screen: OrganisationServiceDetail,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    OrganisationServiceMap: {
+      screen: OrganisationMap,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Organisation & Services"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
+    },
+  },
+);
+
+const FaqNavigation = createStackNavigator(
+  {
+    InKuwaitFAQ: {
+      screen: InKuwaitFAQScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    InKuwaitFilter: {
+      screen: InKuwaitFilterScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Filter"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    InKuwaitAsk: {
+      screen: InKuwaitAskScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Ask question"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    InKuwaitDetail: {
+      screen: InKuwaitDetailScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="FAQ"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
+    },
+  },
+);
+
 const EventsNavigation = createStackNavigator({
   InKuwaitEvents: {
     screen: EventsScreen,
@@ -111,62 +233,6 @@ const EventsNavigation = createStackNavigator({
   },
 });
 
-const ServicesNavigation = createStackNavigator(
-  {
-    OrganisationAndServices: {
-      screen: OrganisationAndServicesScreen,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    OrganisationAndServicesFilter: {
-      screen: OrganisationAndServicesFilter,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: (
-            <DefaultHeader
-              title="Filter"
-              leftIcon={true}
-              onPressLeftIcon={() => navigation.goBack()}
-            />
-          ),
-          headerLeft: null,
-          headerRight: null,
-        };
-      },
-    },
-    OrganisationServiceDetail: {
-      screen: OrganisationServiceDetail,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    OrganisationServiceMap: {
-      screen: OrganisationMap,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: (
-            <DefaultHeader
-              title="Organisation & Services"
-              leftIcon={true}
-              onPressLeftIcon={() => navigation.goBack()}
-            />
-          ),
-          headerLeft: null,
-          headerRight: null,
-        };
-      },
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: colors.HEADER,
-      },
-    },
-  },
-);
-
 const InKuwaitNavigation = createStackNavigator(
   {
     InKuwait: {
@@ -175,67 +241,7 @@ const InKuwaitNavigation = createStackNavigator(
         headerTitle: <DefaultHeader title={'Living In Kuwait'} />,
       },
     },
-    InKuwaitFAQ: {
-      screen: InKuwaitFAQScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: (
-            <HeaderInKuwaitFAQ
-              onPressBack={() => navigation.goBack()}
-              navigation={navigation}
-            />
-          ),
-          headerStyle: {
-            paddingTop: 30,
-            height: Platform.OS === 'ios' ? 90 : 120,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-          headerRight: null,
-        };
-      },
-    },
-    InKuwaitFilter: {
-      screen: InKuwaitFilterScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: 'Filter',
-          headerTitleStyle: {
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            color: 'white',
-            flex: 1,
-            marginRight: 70,
-            textAlign: 'center',
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-            paddingTop: 15,
-          },
-          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-        };
-      },
-    },
-    InKuwaitAsk: {
-      screen: InKuwaitAskScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: 'Ask question',
-          headerTitleStyle: {
-            flex: 1,
-            textAlign: 'center',
-            marginRight: 70,
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            color: 'white',
-          },
-          headerStyle: {
-            paddingTop: 15,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-        };
-      },
-    },
+
     InKuwaitNews: {
       screen: NewsScreen,
       navigationOptions: ({ navigation }) => {
@@ -256,27 +262,7 @@ const InKuwaitNavigation = createStackNavigator(
         };
       },
     },
-    InKuwaitDetail: {
-      screen: InKuwaitDetailScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: 'FAQ',
-          headerTitleStyle: {
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            color: 'white',
-            flex: 1,
-            marginRight: 70,
-            textAlign: 'center',
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-            paddingTop: 15,
-          },
-          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-        };
-      },
-    },
+
     InKuwaitAnswers: {
       screen: InKuwaitAnswersScreen,
       navigationOptions: ({ navigation }) => {
@@ -316,33 +302,6 @@ const InKuwaitNavigation = createStackNavigator(
             paddingTop: 15,
           },
           headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-        };
-      },
-    },
-    EventsNavigation: {
-      screen: EventsNavigation,
-      navigationOptions: ({ navigation }) => {
-        let routeName =
-          navigation.state.routes[navigation.state.index].routeName;
-        if (routeName !== 'InKuwaitEvents') {
-          return {
-            header: null,
-          };
-        }
-        return {
-          headerTitle: (
-            <HeaderInKuwaitEvents
-              onPressBack={() => navigation.goBack()}
-              navigation={navigation}
-            />
-          ),
-          headerStyle: {
-            paddingTop: 30,
-            height: Platform.OS === 'ios' ? 90 : 120,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-          headerRight: null,
         };
       },
     },
@@ -468,6 +427,18 @@ const InKuwaitNavigation = createStackNavigator(
     },
     ServicesNavigation: {
       screen: ServicesNavigation,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    FaqNavigation: {
+      screen: FaqNavigation,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    EventsNavigation: {
+      screen: EventsNavigation,
       navigationOptions: {
         header: null,
       },

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../../constants';
+import { gothamBook, gothamBold } from '../../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -40,14 +41,14 @@ export default StyleSheet.create({
     backgroundColor: colors.BACKGROUND,
   },
   elementFL: {
-    marginVertical: 10,
     height: 78,
+    marginVertical: 10,
     backgroundColor: 'white',
-    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 15,
     justifyContent: 'space-between',
+    marginHorizontal: 10,
+    paddingHorizontal: 5,
   },
   roundView: {
     height: 50,
@@ -59,10 +60,12 @@ export default StyleSheet.create({
     borderColor: 'silver',
   },
   roundText: {
+    ...gothamBook,
     fontSize: 13,
     color: colors.HEADER,
   },
   textElement: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 26,
   },

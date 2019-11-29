@@ -37,7 +37,7 @@ class HeaderInKuwaitCategory extends Component {
             )}
           </View>
           <View>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title}>{title}...</Text>
           </View>
           <View style={styles.rightIcon}>{rightIcon}</View>
         </View>

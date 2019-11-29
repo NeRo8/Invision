@@ -57,7 +57,7 @@ class InKuwaitScreen extends Component {
             label="FAQ"
             count={countList.faqs}
             backgroundImage={require('../../assets/images/faq.jpg')}
-            onPressElement={() => navigation.navigate('InKuwaitFAQ')}
+            onPressElement={() => navigation.navigate('FaqNavigation')}
           />
           <ElementCategory
             label="Events"
