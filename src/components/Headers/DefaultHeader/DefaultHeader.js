@@ -20,15 +20,17 @@ class DefaultHeader extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.leftIcon}>
-          <Icon
-            name="chevron-left"
-            type="feather"
-            size={32}
-            color="white"
-            underlayColor="transparent"
-            containerStyle={styles.leftIcon}
-            onPress={() => onPressLeftIcon()}
-          />
+          {leftIcon === null ? null : (
+            <Icon
+              name="chevron-left"
+              type="feather"
+              size={32}
+              color="white"
+              underlayColor="transparent"
+              containerStyle={styles.leftIcon}
+              onPress={() => onPressLeftIcon()}
+            />
+          )}
         </View>
         <View>
           <Text style={styles.title}>{title}</Text>

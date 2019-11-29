@@ -63,19 +63,7 @@ const AdsNavigation = createStackNavigator(
       screen: CategoryScreen,
       navigationOptions: ({ navigation }) => {
         return {
-          headerTitle: 'Filters',
-          headerStyle: {
-            paddingTop: 10,
-            backgroundColor: colors.HEADER,
-          },
-          headerTitleStyle: {
-            textAlign: 'center',
-            flex: 1,
-            marginRight: Platform.OS === 'ios' ? 0 : 60,
-            color: 'white',
-            fontFamily: 'Gotham-Bold',
-            fontSize: 17,
-          },
+          headerTitle: <DefaultHeader title="Filters" />,
           headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
           headerRight: null,
         };
@@ -110,6 +98,7 @@ const AdsNavigation = createStackNavigator(
           headerTitle: (
             <DefaultHeader
               title="Write comment"
+              leftIcon={true}
               onPressLeftIcon={() => navigation.goBack()}
             />
           ),

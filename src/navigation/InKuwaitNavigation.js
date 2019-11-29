@@ -37,6 +37,8 @@ import HeaderInKuwaitEvents from '../components/HeaderInKuwaitEvents';
 
 import { colors, globalStyles } from '../constants';
 
+import { DefaultHeader } from '../components/Headers';
+
 const HeaderLeftIcon = ({ goBack }) => (
   <Icon
     name="chevron-left"
@@ -110,420 +112,417 @@ const EventsNavigation = createStackNavigator({
   },
 });
 
-const InKuwaitNavigation = createStackNavigator({
-  InKuwait: {
-    screen: InKuwaitScreen,
-    navigationOptions: {
-      title: 'Living In Kuwait',
-      headerTitleStyle: {
-        marginTop: 10,
-        marginLeft: 0,
-        textAlign: 'center',
-        width: '100%',
-        fontSize: 17,
-        fontFamily: globalStyles.gothamBold.fontFamily,
-        color: 'white',
+const InKuwaitNavigation = createStackNavigator(
+  {
+    InKuwait: {
+      screen: InKuwaitScreen,
+      navigationOptions: {
+        headerTitle: <DefaultHeader title={'Living In Kuwait'} />,
       },
+    },
+    InKuwaitFAQ: {
+      screen: InKuwaitFAQScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <HeaderInKuwaitFAQ
+              onPressBack={() => navigation.goBack()}
+              navigation={navigation}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 30,
+            height: Platform.OS === 'ios' ? 90 : 120,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    InKuwaitFilter: {
+      screen: InKuwaitFilterScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Filter',
+          headerTitleStyle: {
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            color: 'white',
+            flex: 1,
+            marginRight: 70,
+            textAlign: 'center',
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+            paddingTop: 15,
+          },
+          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+        };
+      },
+    },
+    InKuwaitAsk: {
+      screen: InKuwaitAskScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Ask question',
+          headerTitleStyle: {
+            flex: 1,
+            textAlign: 'center',
+            marginRight: 70,
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            color: 'white',
+          },
+          headerStyle: {
+            paddingTop: 15,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+        };
+      },
+    },
+    InKuwaitNews: {
+      screen: NewsScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <HeaderInKuwaitNews
+              onPressBack={() => navigation.goBack()}
+              onPressFilter={() => navigation.navigate('NewsFilter')}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 30,
+            height: Platform.OS === 'ios' ? 90 : 120,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    InKuwaitDetail: {
+      screen: InKuwaitDetailScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'FAQ',
+          headerTitleStyle: {
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            color: 'white',
+            flex: 1,
+            marginRight: 70,
+            textAlign: 'center',
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+            paddingTop: 15,
+          },
+          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+        };
+      },
+    },
+    InKuwaitAnswers: {
+      screen: InKuwaitAnswersScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Answers',
+          headerTitleStyle: {
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            color: 'white',
+            flex: 1,
+            marginRight: 70,
+            textAlign: 'center',
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+            paddingTop: 15,
+          },
+          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+        };
+      },
+    },
+    InKuwaitCreateComment: {
+      screen: InKuwaitCreateCommentScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Write comment',
+          headerTitleStyle: {
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            color: 'white',
+            flex: 1,
+            marginRight: 70,
+            textAlign: 'center',
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+            paddingTop: 15,
+          },
+          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+        };
+      },
+    },
+    EventsNavigation: {
+      screen: EventsNavigation,
+      navigationOptions: ({ navigation }) => {
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+        if (routeName !== 'InKuwaitEvents') {
+          return {
+            header: null,
+          };
+        }
+        return {
+          headerTitle: (
+            <HeaderInKuwaitEvents
+              onPressBack={() => navigation.goBack()}
+              navigation={navigation}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 30,
+            height: Platform.OS === 'ios' ? 90 : 120,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    NewsArticle: {
+      screen: NewsArticleScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    ArticleComents: {
+      screen: ArticleComentsScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Coments',
+          headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            lineHeight: 24,
+            color: 'white',
+            width: '100%',
+            paddingRight: 60,
+          },
+          headerLeft: (
+            <Icon
+              name="chevron-left"
+              type="feather"
+              size={32}
+              color="white"
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 15,
+            height: Platform.OS === 'ios' ? 64 : 64,
+            backgroundColor: colors.HEADER,
+          },
+          headerTitleContainerStyle: {
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        };
+      },
+    },
+    NewsWriteComment: {
+      screen: NewsWriteComment,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Write comment',
+          headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            lineHeight: 24,
+            color: 'white',
+            width: '100%',
+            paddingRight: 60,
+          },
+          headerLeft: (
+            <Icon
+              name="chevron-left"
+              type="feather"
+              size={32}
+              color="white"
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 15,
+            height: Platform.OS === 'ios' ? 64 : 64,
+            backgroundColor: colors.HEADER,
+          },
+          headerTitleContainerStyle: {
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        };
+      },
+    },
+    NewsFilter: {
+      screen: NewsFilterScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Filter',
+          headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            lineHeight: 24,
+            color: 'white',
+            width: '100%',
+            paddingRight: 60,
+          },
+          headerLeft: (
+            <Icon
+              name="chevron-left"
+              type="feather"
+              size={32}
+              color="white"
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 15,
+            height: Platform.OS === 'ios' ? 64 : 64,
+            backgroundColor: colors.HEADER,
+          },
+          headerTitleContainerStyle: {
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        };
+      },
+    },
+    OrganisationAndServices: {
+      screen: OrganisationAndServicesScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <HeaderOrganisationAndServices
+              onPressBack={() => navigation.goBack()}
+              onPressOrganizationAndServicesFilter={() =>
+                navigation.navigate('OrganisationAndServicesFilter')
+              }
+            />
+          ),
+          headerStyle: {
+            paddingTop: 30,
+            height: Platform.OS === 'ios' ? 100 : 132,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    OrganisationAndServicesFilter: {
+      screen: OrganisationAndServicesFilter,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Filter',
+          headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            lineHeight: 24,
+            color: 'white',
+            width: '100%',
+            paddingRight: 60,
+          },
+          headerLeft: (
+            <Icon
+              name="chevron-left"
+              type="feather"
+              size={32}
+              color="white"
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 15,
+            height: Platform.OS === 'ios' ? 64 : 64,
+            backgroundColor: colors.HEADER,
+          },
+          headerTitleContainerStyle: {
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        };
+      },
+    },
+    OrganisationServiceDetail: {
+      screen: OrganisationServiceDetail,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    OrganisationServiceMap: {
+      screen: OrganisationMap,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Organisations & Services',
+          headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            lineHeight: 24,
+            color: 'white',
+            width: '100%',
+            paddingRight: 60,
+          },
+          headerLeft: (
+            <Icon
+              name="chevron-left"
+              type="feather"
+              size={32}
+              color="white"
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          headerStyle: {
+            paddingTop: 15,
+            height: Platform.OS === 'ios' ? 64 : 64,
+            backgroundColor: colors.HEADER,
+          },
+          headerTitleContainerStyle: {
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        };
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: {
       headerStyle: {
-        height: 64,
         backgroundColor: colors.HEADER,
       },
     },
   },
-  InKuwaitFAQ: {
-    screen: InKuwaitFAQScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: (
-          <HeaderInKuwaitFAQ
-            onPressBack={() => navigation.goBack()}
-            navigation={navigation}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 30,
-          height: Platform.OS === 'ios' ? 90 : 120,
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: null,
-        headerRight: null,
-      };
-    },
-  },
-  InKuwaitFilter: {
-    screen: InKuwaitFilterScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Filter',
-        headerTitleStyle: {
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          color: 'white',
-          flex: 1,
-          marginRight: 70,
-          textAlign: 'center',
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-          paddingTop: 15,
-        },
-        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  InKuwaitAsk: {
-    screen: InKuwaitAskScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Ask question',
-        headerTitleStyle: {
-          flex: 1,
-          textAlign: 'center',
-          marginRight: 70,
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          color: 'white',
-        },
-        headerStyle: {
-          paddingTop: 15,
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  InKuwaitNews: {
-    screen: NewsScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: (
-          <HeaderInKuwaitNews
-            onPressBack={() => navigation.goBack()}
-            onPressFilter={() => navigation.navigate('NewsFilter')}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 30,
-          height: Platform.OS === 'ios' ? 90 : 120,
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: null,
-        headerRight: null,
-      };
-    },
-  },
-  InKuwaitDetail: {
-    screen: InKuwaitDetailScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'FAQ',
-        headerTitleStyle: {
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          color: 'white',
-          flex: 1,
-          marginRight: 70,
-          textAlign: 'center',
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-          paddingTop: 15,
-        },
-        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  InKuwaitAnswers: {
-    screen: InKuwaitAnswersScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Answers',
-        headerTitleStyle: {
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          color: 'white',
-          flex: 1,
-          marginRight: 70,
-          textAlign: 'center',
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-          paddingTop: 15,
-        },
-        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  InKuwaitCreateComment: {
-    screen: InKuwaitCreateCommentScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Write comment',
-        headerTitleStyle: {
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          color: 'white',
-          flex: 1,
-          marginRight: 70,
-          textAlign: 'center',
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-          paddingTop: 15,
-        },
-        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  EventsNavigation: {
-    screen: EventsNavigation,
-    navigationOptions: ({ navigation }) => {
-      let routeName = navigation.state.routes[navigation.state.index].routeName;
-      if (routeName !== 'InKuwaitEvents') {
-        return {
-          header: null,
-        };
-      }
-      return {
-        headerTitle: (
-          <HeaderInKuwaitEvents
-            onPressBack={() => navigation.goBack()}
-            navigation={navigation}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 30,
-          height: Platform.OS === 'ios' ? 90 : 120,
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: null,
-        headerRight: null,
-      };
-    },
-  },
-  NewsArticle: {
-    screen: NewsArticleScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  ArticleComents: {
-    screen: ArticleComentsScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Coments',
-        headerTitleStyle: {
-          textAlign: 'center',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-          color: 'white',
-          width: '100%',
-          paddingRight: 60,
-        },
-        headerLeft: (
-          <Icon
-            name="chevron-left"
-            type="feather"
-            size={32}
-            color="white"
-            containerStyle={{
-              width: 50,
-            }}
-            onPress={() => navigation.goBack()}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 15,
-          height: Platform.OS === 'ios' ? 64 : 64,
-          backgroundColor: colors.HEADER,
-        },
-        headerTitleContainerStyle: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      };
-    },
-  },
-  NewsWriteComment: {
-    screen: NewsWriteComment,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Write comment',
-        headerTitleStyle: {
-          textAlign: 'center',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-          color: 'white',
-          width: '100%',
-          paddingRight: 60,
-        },
-        headerLeft: (
-          <Icon
-            name="chevron-left"
-            type="feather"
-            size={32}
-            color="white"
-            containerStyle={{
-              width: 50,
-            }}
-            onPress={() => navigation.goBack()}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 15,
-          height: Platform.OS === 'ios' ? 64 : 64,
-          backgroundColor: colors.HEADER,
-        },
-        headerTitleContainerStyle: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      };
-    },
-  },
-  NewsFilter: {
-    screen: NewsFilterScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Filter',
-        headerTitleStyle: {
-          textAlign: 'center',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-          color: 'white',
-          width: '100%',
-          paddingRight: 60,
-        },
-        headerLeft: (
-          <Icon
-            name="chevron-left"
-            type="feather"
-            size={32}
-            color="white"
-            containerStyle={{
-              width: 50,
-            }}
-            onPress={() => navigation.goBack()}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 15,
-          height: Platform.OS === 'ios' ? 64 : 64,
-          backgroundColor: colors.HEADER,
-        },
-        headerTitleContainerStyle: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      };
-    },
-  },
-  OrganisationAndServices: {
-    screen: OrganisationAndServicesScreen,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: (
-          <HeaderOrganisationAndServices
-            onPressBack={() => navigation.goBack()}
-            onPressOrganizationAndServicesFilter={() =>
-              navigation.navigate('OrganisationAndServicesFilter')
-            }
-          />
-        ),
-        headerStyle: {
-          paddingTop: 30,
-          height: Platform.OS === 'ios' ? 100 : 132,
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: null,
-        headerRight: null,
-      };
-    },
-  },
-  OrganisationAndServicesFilter: {
-    screen: OrganisationAndServicesFilter,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Filter',
-        headerTitleStyle: {
-          textAlign: 'center',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-          color: 'white',
-          width: '100%',
-          paddingRight: 60,
-        },
-        headerLeft: (
-          <Icon
-            name="chevron-left"
-            type="feather"
-            size={32}
-            color="white"
-            containerStyle={{
-              width: 50,
-            }}
-            onPress={() => navigation.goBack()}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 15,
-          height: Platform.OS === 'ios' ? 64 : 64,
-          backgroundColor: colors.HEADER,
-        },
-        headerTitleContainerStyle: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      };
-    },
-  },
-  OrganisationServiceDetail: {
-    screen: OrganisationServiceDetail,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  OrganisationServiceMap: {
-    screen: OrganisationMap,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Organisations & Services',
-        headerTitleStyle: {
-          textAlign: 'center',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-          color: 'white',
-          width: '100%',
-          paddingRight: 60,
-        },
-        headerLeft: (
-          <Icon
-            name="chevron-left"
-            type="feather"
-            size={32}
-            color="white"
-            containerStyle={{
-              width: 50,
-            }}
-            onPress={() => navigation.goBack()}
-          />
-        ),
-        headerStyle: {
-          paddingTop: 15,
-          height: Platform.OS === 'ios' ? 64 : 64,
-          backgroundColor: colors.HEADER,
-        },
-        headerTitleContainerStyle: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      };
-    },
-  },
-});
+);
 
 export default InKuwaitNavigation;
