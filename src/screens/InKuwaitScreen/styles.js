@@ -2,13 +2,16 @@ import { StyleSheet } from 'react-native';
 
 import { colors, globalStyles } from '../../constants';
 
+import { gothamBold } from '../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    marginBottom: 15,
   },
   headerTitle: {
-    fontFamily: globalStyles.gothamBold.fontFamily,
+    ...gothamBold,
     fontSize: 12,
     marginVertical: 10,
   },
@@ -27,7 +30,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleElement: {
-    fontFamily: globalStyles.gothamBold.fontFamily,
+    ...gothamBold,
     fontSize: 17,
   },
   roundView: {
@@ -40,7 +43,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   roundText: {
-    fontFamily: globalStyles.gothamBold.fontFamily,
+    ...gothamBold,
     color: colors.HEADER,
     fontSize: 13,
   },

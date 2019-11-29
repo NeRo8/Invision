@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import {
-  View,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  Platform,
-  TextInput,
-} from 'react-native';
+import { View, KeyboardAvoidingView, Platform, TextInput } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 
-import globalStyles from '../../../constants/globalStyles';
+import { globalStyles } from '../../../constants';
 import styles from './styles';
 
 class CreateCommentScreen extends Component {
@@ -22,42 +16,36 @@ class CreateCommentScreen extends Component {
         style={{ flex: 1 }}
         behavior="padding"
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}>
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
           <Input
             placeholder="Enter youre Full name"
-            inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
+            inputStyle={styles.inputStyles}
             inputContainerStyle={styles.inputContainerStyle}
-            containerStyle={{ marginTop: 25, paddingHorizontal: 0 }}
+            containerStyle={styles.inputContainer}
           />
           <Input
             placeholder="Enter your email address"
-            inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
-            containerStyle={styles.inputContainer}
+            inputStyle={styles.inputStyles}
             inputContainerStyle={styles.inputContainerStyle}
+            containerStyle={styles.inputContainer}
           />
-          <View style={{ flex: 1, marginTop: 15 }}>
+          <View style={{ flex: 1, paddingVertical: 15 }}>
             <Input
               multiline
               placeholder="Enter description of your question"
-              inputStyle={[
-                globalStyles.gothamBook,
-                styles.inputStyles,
-                { textAlignVertical: 'top', paddingTop: 12 },
-              ]}
-              inputContainerStyle={[
-                styles.inputContainerStyle,
-                { height: '100%' },
-              ]}
+              inputStyle={styles.textField}
+              inputContainerStyle={styles.textContainerStyle}
               containerStyle={{ paddingHorizontal: 0 }}
             />
           </View>
+
           <Button
             title="Send comment"
-            titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
+            titleStyle={styles.btnTitle}
             buttonStyle={styles.btnStyle}
-            containerStyle={{ marginTop: 25 }}
+            containerStyle={{ marginBottom: 25 }}
           />
-        </SafeAreaView>
+        </View>
       </KeyboardAvoidingView>
     );
   }

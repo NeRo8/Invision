@@ -1,5 +1,11 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+  View,
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -12,6 +18,8 @@ import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
+
+import { DefaultHeader } from '../components/Headers';
 
 import { colors, globalStyles } from '../constants';
 
@@ -99,28 +107,14 @@ const AdsNavigation = createStackNavigator(
       screen: CreateCommentScreen,
       navigationOptions: ({ navigation }) => {
         return {
-          title: 'Write comment',
-          headerTitleStyle: {
-            textAlign: 'center',
-            fontFamily: 'Gotham-Bold',
-            color: 'white',
-            paddingTop: 15,
-            width: '100%',
-            paddingRight: 60,
-          },
-          headerLeft: (
-            <Icon
-              name="chevron-left"
-              type="feather"
-              size={32}
-              color="white"
-              containerStyle={{
-                paddingTop: 15,
-                width: 50,
-              }}
-              onPress={() => navigation.goBack()}
+          headerTitle: (
+            <DefaultHeader
+              title="Write comment"
+              onPressLeftIcon={() => navigation.goBack()}
             />
           ),
+          headerLeft: null,
+          headerRight: null,
         };
       },
     },
@@ -131,7 +125,6 @@ const AdsNavigation = createStackNavigator(
       },
     },
   },
-
   {
     defaultNavigationOptions: {
       headerStyle: {

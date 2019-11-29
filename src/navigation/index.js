@@ -17,16 +17,11 @@ const Navigation = createBottomTabNavigator(
       screen: AdsNavigation,
       navigationOptions: ({ navigation }) => {
         //title: 'Ads',
-        let tabBarVisible = true;
+        let tabBarVisible = false;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
-        if (
-          routeName === 'Filters' ||
-          routeName === 'Category' ||
-          routeName === 'ProductDetail' ||
-          routeName === 'ProductBuyerProfile'
-        ) {
-          tabBarVisible = false;
+        if (routeName === 'Home') {
+          tabBarVisible = true;
         }
         return {
           tabBarVisible,
