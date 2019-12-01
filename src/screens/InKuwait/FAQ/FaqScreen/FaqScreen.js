@@ -65,7 +65,7 @@ class FaqScreen extends Component {
   };
 
   handlePressElement = () => {
-    this.props.navigation.navigate('InKuwaitDetail');
+    this.props.navigation.navigate('FaqDetail');
   };
 
   render() {

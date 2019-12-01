@@ -8,7 +8,7 @@ import InKuwaitScreen from '../screens/InKuwaitScreen';
 import FaqScreen from '../screens/InKuwait/FAQ/FaqScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
 import FaqAsk from '../screens/InKuwait/FAQ/FaqAsk';
-import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
+import FaqDetail from '../screens/InKuwait/FAQ/FaqDetail';
 import FaqAnswers from '../screens/InKuwait/FAQ/FaqAnswers';
 import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateCommentScreen';
 
@@ -159,8 +159,8 @@ const FaqNavigation = createStackNavigator(
         };
       },
     },
-    InKuwaitDetail: {
-      screen: InKuwaitDetailScreen,
+    FaqDetail: {
+      screen: FaqDetail,
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (

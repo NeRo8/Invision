@@ -5,7 +5,7 @@ import { Icon, Button } from 'react-native-elements';
 import styles from './styles';
 import globalStyles from '../../../../constants/globalStyles';
 
-class InKuwaitDetailScreen extends Component {
+class FaqDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -109,4 +109,4 @@ class InKuwaitDetailScreen extends Component {
   }
 }
 
-export default InKuwaitDetailScreen;
+export default FaqDetail;
