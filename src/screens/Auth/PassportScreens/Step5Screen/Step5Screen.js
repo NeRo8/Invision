@@ -20,6 +20,7 @@ class Step5Screen extends Component {
       showModal: !this.state.showModal,
     });
     if (!this.state.showModal === false) {
+      this.props.navigation.navigate('StepOne');
       this.props.navigation.navigate('Profile');
     }
   };
