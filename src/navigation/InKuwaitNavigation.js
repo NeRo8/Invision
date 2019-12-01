@@ -49,6 +49,7 @@ const HeaderLeftIcon = ({ goBack }) => (
   />
 );
 
+// Organisation and services
 const ServicesNavigation = createStackNavigator(
   {
     OrganisationAndServices: {
@@ -105,6 +106,7 @@ const ServicesNavigation = createStackNavigator(
   },
 );
 
+// FAQ
 const FaqNavigation = createStackNavigator(
   {
     InKuwaitFAQ: {
@@ -145,6 +147,22 @@ const FaqNavigation = createStackNavigator(
         };
       },
     },
+    InKuwaitAnswers: {
+      screen: InKuwaitAnswersScreen,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Answers"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
     InKuwaitDetail: {
       screen: InKuwaitDetailScreen,
       navigationOptions: ({ navigation }) => {
@@ -170,118 +188,69 @@ const FaqNavigation = createStackNavigator(
     },
   },
 );
-
-const EventsNavigation = createStackNavigator({
-  InKuwaitEvents: {
-    screen: EventsScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  InKuwaitEventsFilter: {
-    screen: EventsFilter,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Filter',
-        headerTitleStyle: {
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          color: 'white',
-          flex: 1,
-          marginRight: 70,
-          textAlign: 'center',
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-          paddingTop: 15,
-        },
-        headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  InKuwaitEventsMap: {
-    screen: EventsMap,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: 'Events',
-        headerTitleStyle: {
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          color: 'white',
-          width: '100%',
-          textAlign: 'center',
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-          paddingTop: 15,
-        },
-        headerLeft: (
-          <HeaderLeftIcon
-            goBack={() => {
-              navigation.goBack();
-            }}
-          />
-        ),
-      };
-    },
-  },
-  InKuwaitEventsDetail: {
-    screen: EventsDetail,
-    navigationOptions: {
-      header: null,
-    },
-  },
-});
-
-const InKuwaitNavigation = createStackNavigator(
+//Events
+const EventsNavigation = createStackNavigator(
   {
-    InKuwait: {
-      screen: InKuwaitScreen,
+    InKuwaitEvents: {
+      screen: EventsScreen,
       navigationOptions: {
-        headerTitle: <DefaultHeader title={'Living In Kuwait'} />,
+        header: null,
       },
     },
-
-    InKuwaitNews: {
-      screen: NewsScreen,
+    InKuwaitEventsFilter: {
+      screen: EventsFilter,
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (
-            <HeaderInKuwaitNews
-              onPressBack={() => navigation.goBack()}
-              onPressFilter={() => navigation.navigate('NewsFilter')}
+            <DefaultHeader
+              title="Filter"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
             />
           ),
-          headerStyle: {
-            paddingTop: 30,
-            height: Platform.OS === 'ios' ? 90 : 120,
-            backgroundColor: colors.HEADER,
-          },
           headerLeft: null,
           headerRight: null,
         };
       },
     },
-
-    InKuwaitAnswers: {
-      screen: InKuwaitAnswersScreen,
+    InKuwaitEventsMap: {
+      screen: EventsMap,
       navigationOptions: ({ navigation }) => {
         return {
-          title: 'Answers',
-          headerTitleStyle: {
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            color: 'white',
-            flex: 1,
-            marginRight: 70,
-            textAlign: 'center',
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-            paddingTop: 15,
-          },
-          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+          headerTitle: (
+            <DefaultHeader
+              title="Events"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
         };
+      },
+    },
+    InKuwaitEventsDetail: {
+      screen: EventsDetail,
+      navigationOptions: {
+        header: null,
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
+    },
+  },
+);
+
+const NewsNavigation = createStackNavigator(
+  {
+    InKuwaitNews: {
+      screen: NewsScreen,
+      navigationOptions: {
+        header: null,
       },
     },
     InKuwaitCreateComment: {
@@ -311,41 +280,20 @@ const InKuwaitNavigation = createStackNavigator(
         header: null,
       },
     },
+    //News answars
     ArticleComents: {
       screen: ArticleComentsScreen,
       navigationOptions: ({ navigation }) => {
         return {
-          title: 'Coments',
-          headerTitleStyle: {
-            textAlign: 'center',
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            lineHeight: 24,
-            color: 'white',
-            width: '100%',
-            paddingRight: 60,
-          },
-          headerLeft: (
-            <Icon
-              name="chevron-left"
-              type="feather"
-              size={32}
-              color="white"
-              containerStyle={{
-                width: 50,
-              }}
-              onPress={() => navigation.goBack()}
+          headerTitle: (
+            <DefaultHeader
+              title="Comments"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
             />
           ),
-          headerStyle: {
-            paddingTop: 15,
-            height: Platform.OS === 'ios' ? 64 : 64,
-            backgroundColor: colors.HEADER,
-          },
-          headerTitleContainerStyle: {
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
+          headerLeft: null,
+          headerRight: null,
         };
       },
     },
@@ -353,37 +301,15 @@ const InKuwaitNavigation = createStackNavigator(
       screen: NewsWriteComment,
       navigationOptions: ({ navigation }) => {
         return {
-          title: 'Write comment',
-          headerTitleStyle: {
-            textAlign: 'center',
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            lineHeight: 24,
-            color: 'white',
-            width: '100%',
-            paddingRight: 60,
-          },
-          headerLeft: (
-            <Icon
-              name="chevron-left"
-              type="feather"
-              size={32}
-              color="white"
-              containerStyle={{
-                width: 50,
-              }}
-              onPress={() => navigation.goBack()}
+          headerTitle: (
+            <DefaultHeader
+              title="Write comment"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
             />
           ),
-          headerStyle: {
-            paddingTop: 15,
-            height: Platform.OS === 'ios' ? 64 : 64,
-            backgroundColor: colors.HEADER,
-          },
-          headerTitleContainerStyle: {
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
+          headerLeft: null,
+          headerRight: null,
         };
       },
     },
@@ -391,38 +317,34 @@ const InKuwaitNavigation = createStackNavigator(
       screen: NewsFilterScreen,
       navigationOptions: ({ navigation }) => {
         return {
-          title: 'Filter',
-          headerTitleStyle: {
-            textAlign: 'center',
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            lineHeight: 24,
-            color: 'white',
-            width: '100%',
-            paddingRight: 60,
-          },
-          headerLeft: (
-            <Icon
-              name="chevron-left"
-              type="feather"
-              size={32}
-              color="white"
-              containerStyle={{
-                width: 50,
-              }}
-              onPress={() => navigation.goBack()}
+          headerTitle: (
+            <DefaultHeader
+              title="Filter"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
             />
           ),
-          headerStyle: {
-            paddingTop: 15,
-            height: Platform.OS === 'ios' ? 64 : 64,
-            backgroundColor: colors.HEADER,
-          },
-          headerTitleContainerStyle: {
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
+          headerLeft: null,
+          headerRight: null,
         };
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
+    },
+  },
+);
+
+const InKuwaitNavigation = createStackNavigator(
+  {
+    InKuwait: {
+      screen: InKuwaitScreen,
+      navigationOptions: {
+        headerTitle: <DefaultHeader title={'Living In Kuwait'} />,
       },
     },
     ServicesNavigation: {
@@ -439,6 +361,12 @@ const InKuwaitNavigation = createStackNavigator(
     },
     EventsNavigation: {
       screen: EventsNavigation,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    NewsNavigation: {
+      screen: NewsNavigation,
       navigationOptions: {
         header: null,
       },

@@ -92,7 +92,7 @@ class InKuwaitDetailScreen extends Component {
               styles.blockBottomText,
               { color: 'black' },
             ]}>
-            3
+            13
           </Text>
         </TouchableOpacity>
 

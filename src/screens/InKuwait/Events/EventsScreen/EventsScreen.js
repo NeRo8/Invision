@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 
 import { ElementListEvents } from '../../../../components/ElementLists';
 import TextPicker from '../../../../components/TextPicker';
+import { HeaderInKuwaitCategory } from '../../../../components/Headers';
 
 import { colors } from '../../../../constants';
 import styles from './styles';
 
 import { getEvents } from '../../../../redux/actions/inKuwaitAction';
-import HeaderInKuwaitCategory from '../../../../components/Headers/HeaderInKuwaitCategory';
 
 class EventsScreen extends Component {
   constructor(props) {
@@ -121,6 +121,15 @@ class EventsScreen extends Component {
           title="Events"
           leftIcon={true}
           onPressLeftIcon={() => navigation.navigate('InKuwait')}
+          rightIcon={
+            <Icon
+              name="filter"
+              type="material-community"
+              color="white"
+              underlayColor="transparent"
+              onPress={() => navigation.navigate('InKuwaitEventsFilter')}
+            />
+          }
         />
         <View style={styles.container}>
           <View style={styles.headerPicker}>

@@ -1,3 +1,4 @@
 import DefaultHeader from './DefaultHeader';
+import HeaderInKuwaitCategory from './HeaderInKuwaitCategory';
 
-export { DefaultHeader };
+export { DefaultHeader, HeaderInKuwaitCategory };
