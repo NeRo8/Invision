@@ -84,7 +84,7 @@ class FaqScreen extends Component {
               type="material-community"
               color="white"
               underlayColor="transparent"
-              onPress={() => navigation.navigate('InKuwaitFilter')}
+              onPress={() => navigation.navigate('FaqFilter')}
             />
           }
         />

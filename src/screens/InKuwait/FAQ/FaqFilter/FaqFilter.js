@@ -28,7 +28,7 @@ const ElementFl = ({ element, onChange }) => (
   </View>
 );
 
-class InKuwaitFilterScreen extends Component {
+class FaqFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -131,4 +131,4 @@ class InKuwaitFilterScreen extends Component {
   }
 }
 
-export default InKuwaitFilterScreen;
+export default FaqFilter;
