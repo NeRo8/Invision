@@ -6,9 +6,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 //FAQ
 import FaqScreen from '../screens/InKuwait/FAQ/FaqScreen';
+import FaqDetail from '../screens/InKuwait/FAQ/FaqDetail';
 import FaqFilter from '../screens/InKuwait/FAQ/FaqFilter';
 import FaqAsk from '../screens/InKuwait/FAQ/FaqAsk';
-import FaqDetail from '../screens/InKuwait/FAQ/FaqDetail';
 import FaqAnswers from '../screens/InKuwait/FAQ/FaqAnswers';
 import FaqCreateComment from '../screens/InKuwait/FAQ/FaqCreateComment';
 
@@ -20,7 +20,7 @@ import EventsDetail from '../screens/InKuwait/Events/EventsDetail';
 
 //News
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
-import NewsArticleScreen from '../screens/InKuwait/News/NewsArticleScreen/';
+import NewsDetail from '../screens/InKuwait/News/NewsDetail';
 import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
 import NewsWriteComment from '../screens/InKuwait/News/NewsWriteComment';
 import NewsFilterScreen from '../screens/InKuwait/News/NewsFilterScreen';
@@ -264,15 +264,15 @@ const EventsNavigation = createStackNavigator(
 
 const NewsNavigation = createStackNavigator(
   {
-    InKuwaitNews: {
+    NewsScreen: {
       screen: NewsScreen,
       navigationOptions: {
         header: null,
       },
     },
 
-    NewsArticle: {
-      screen: NewsArticleScreen,
+    NewsDetail: {
+      screen: NewsDetail,
       navigationOptions: {
         header: null,
       },

@@ -23,7 +23,7 @@ class NewsScreen extends Component {
   }
 
   onPressNews = idNews => {
-    this.props.navigation.navigate('NewsArticle', { id: idNews });
+    this.props.navigation.navigate('NewsDetail', { id: idNews });
   };
 
   render() {

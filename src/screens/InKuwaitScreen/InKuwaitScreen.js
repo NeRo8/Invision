@@ -69,7 +69,7 @@ class InKuwaitScreen extends Component {
             label="News"
             count={countList.news}
             backgroundImage={require('../../assets/images/news.jpg')}
-            onPressElement={() => navigation.navigate('InKuwaitNews')}
+            onPressElement={() => navigation.navigate('NewsScreen')}
           />
         </View>
       </ScrollView>

@@ -23,7 +23,7 @@ import { colors, globalStyles } from '../../../../constants';
 const imgWidth = 1600;
 const imgHeight = 750;
 
-class NewsArticleScreen extends Component {
+class NewsDetail extends Component {
   static propTypes = {
     loading: PropTypes.bool,
   };
@@ -268,4 +268,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsArticleScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsDetail);
