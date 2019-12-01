@@ -17,8 +17,10 @@ export default StyleSheet.create({
   },
   leftIcon: {
     width: 100,
+    alignItems: 'flex-start',
   },
   rightIcon: {
     width: 100,
+    alignItems: 'flex-end',
   },
 });

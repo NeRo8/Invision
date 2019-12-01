@@ -48,7 +48,7 @@ const ElementFl = ({ element }) => (
   </View>
 );
 
-class InKuwaitAnswersScreen extends Component {
+class FaqAnswers extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,4 +89,4 @@ class InKuwaitAnswersScreen extends Component {
   }
 }
 
-export default InKuwaitAnswersScreen;
+export default FaqAnswers;

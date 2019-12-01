@@ -81,7 +81,7 @@ class InKuwaitDetailScreen extends Component {
         </View>
 
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('InKuwaitAnswers')}
+          onPress={() => this.props.navigation.navigate('FaqAnswers')}
           style={styles.pickerBlock}>
           <Text style={[globalStyles.gothamBook, styles.blockBottomText]}>
             Answers
