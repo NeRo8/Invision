@@ -18,6 +18,7 @@ export default StyleSheet.create({
     fontSize: 17,
     lineHeight: 26,
     backgroundColor: 'white',
+    paddingHorizontal: 10,
   },
   inputContainerStyle: {
     height: 50,

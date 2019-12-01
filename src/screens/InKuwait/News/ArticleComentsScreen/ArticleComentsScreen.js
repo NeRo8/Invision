@@ -37,48 +37,28 @@ const ElementFlatList = ({ item }) => (
       <View style={{ marginTop: 10 }}>
         <Text style={styles.coment}>{item.description}</Text>
       </View>
-      <View style={styles.buttonsView}>
+      <View style={{ flexDirection: 'row' }}>
         <Button
-          containerStyle={styles.button}
-          buttonStyle={{
-            backgroundColor: 'rgba(240,91,136,0.1)',
-            borderRadius: 0,
+          icon={{
+            name: 'ios-flag',
+            type: 'ionicon',
+            color: '#F05B88',
           }}
           title="Report"
-          titleStyle={[
-            globalStyles.gothamBook,
-            { fontSize: 13, lineHeight: 24, color: colors.NOTIF_ICON },
-          ]}
-          icon={
-            <Icon
-              name="md-flag"
-              type="ionicon"
-              color={colors.NOTIF_ICON}
-              containerStyle={{ marginRight: 8 }}
-            />
-          }
-          style={styles.button}
+          titleStyle={[globalStyles.gothamBook, styles.btnTitleReport]}
+          buttonStyle={styles.btnStyleReport}
+          containerStyle={styles.btnContainer}
         />
         <Button
-          containerStyle={styles.button}
-          buttonStyle={{
-            backgroundColor: 'rgba(10,104,239,0.1)',
-            borderRadius: 0,
+          icon={{
+            name: 'ios-undo',
+            type: 'ionicon',
+            color: '#0A68EF',
           }}
           title="Reply"
-          titleStyle={[
-            globalStyles.gothamBook,
-            { fontSize: 13, lineHeight: 24, color: colors.HEADER },
-          ]}
-          icon={
-            <Icon
-              name="reply"
-              type="material-community"
-              color={colors.HEADER}
-              containerStyle={{ marginRight: 8 }}
-            />
-          }
-          style={styles.button}
+          titleStyle={[globalStyles.gothamBook, styles.btnTitleReply]}
+          buttonStyle={styles.btnStyleReply}
+          containerStyle={styles.btnContainer}
         />
       </View>
     </View>

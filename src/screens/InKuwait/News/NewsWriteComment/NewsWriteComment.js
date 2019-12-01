@@ -22,7 +22,7 @@ class NewsWriteComment extends Component {
         style={{ flex: 1 }}
         behavior="padding"
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}>
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
           <Input
             placeholder="Enter youre Full name"
             inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
@@ -57,7 +57,7 @@ class NewsWriteComment extends Component {
             buttonStyle={styles.btnStyle}
             containerStyle={{ marginTop: 25 }}
           />
-        </SafeAreaView>
+        </View>
       </KeyboardAvoidingView>
     );
   }
