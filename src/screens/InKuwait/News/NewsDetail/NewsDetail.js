@@ -56,13 +56,13 @@ class NewsDetail extends Component {
   }
 
   onPressArticleComents = () => {
-    this.props.navigation.navigate('ArticleComents', {
+    this.props.navigation.navigate('NewsAnswers', {
       comments: this.props.newsData.comments,
     });
   };
 
   onPressWriteComment = () => {
-    this.props.navigation.navigate('NewsWriteComment');
+    this.props.navigation.navigate('NewsCreateComment');
   };
 
   render() {

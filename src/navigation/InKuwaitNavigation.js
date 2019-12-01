@@ -21,8 +21,8 @@ import EventsDetail from '../screens/InKuwait/Events/EventsDetail';
 //News
 import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsDetail from '../screens/InKuwait/News/NewsDetail';
-import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
-import NewsWriteComment from '../screens/InKuwait/News/NewsWriteComment';
+import NewsAnswers from '../screens/InKuwait/News/NewsAnswers';
+import NewsCreateComment from '../screens/InKuwait/News/NewsCreateComment';
 import NewsFilter from '../screens/InKuwait/News/NewsFilter';
 
 import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesScreen';
@@ -277,8 +277,8 @@ const NewsNavigation = createStackNavigator(
       },
     },
     //News answars
-    ArticleComents: {
-      screen: ArticleComentsScreen,
+    NewsAnswers: {
+      screen: NewsAnswers,
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (
@@ -293,8 +293,8 @@ const NewsNavigation = createStackNavigator(
         };
       },
     },
-    NewsWriteComment: {
-      screen: NewsWriteComment,
+    NewsCreateComment: {
+      screen: NewsCreateComment,
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (

@@ -68,7 +68,7 @@ const ElementFlatList = ({ item }) => (
   </View>
 );
 
-class ArticleComentsScreen extends Component {
+class NewsAnswers extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -108,7 +108,7 @@ class ArticleComentsScreen extends Component {
     const { navigation } = this.props;
   }
   onPressWriteComment = () => {
-    this.props.navigation.navigate('NewsWriteComment');
+    this.props.navigation.navigate('NewsCreateComment');
   };
 
   render() {
@@ -138,4 +138,4 @@ class ArticleComentsScreen extends Component {
   }
 }
 
-export default ArticleComentsScreen;
+export default NewsAnswers;

@@ -11,7 +11,7 @@ import { Button, Input } from 'react-native-elements';
 import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
 
-class NewsWriteComment extends Component {
+class NewsCreateComment extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -63,4 +63,4 @@ class NewsWriteComment extends Component {
   }
 }
 
-export default NewsWriteComment;
+export default NewsCreateComment;
