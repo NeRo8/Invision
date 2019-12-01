@@ -26,11 +26,11 @@ class OrganisationAndServicesScreen extends Component {
   }
 
   onPressOrganizationOrService = () => {
-    this.props.navigation.navigate('OrganisationServiceDetail');
+    this.props.navigation.navigate('OrganisationAndServicesDetail');
   };
 
   onPressChoodeLocation = () => {
-    this.props.navigation.navigate('OrganisationServiceMap');
+    this.props.navigation.navigate('OrganisationAndServicesMap');
   };
 
   render() {

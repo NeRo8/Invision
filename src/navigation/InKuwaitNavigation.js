@@ -27,8 +27,8 @@ import NewsFilter from '../screens/InKuwait/News/NewsFilter';
 
 import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesScreen';
 import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter';
-import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail';
-import OrganisationMap from '../screens/InKuwait/OrganisationAndServices/OrganisationMap/OrganisationMap';
+import OrganisationAndServicesDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesDetail';
+import OrganisationAndServicesMap from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesMap';
 
 import { colors, globalStyles } from '../constants';
 
@@ -70,14 +70,14 @@ const ServicesNavigation = createStackNavigator(
         };
       },
     },
-    OrganisationServiceDetail: {
-      screen: OrganisationServiceDetail,
+    OrganisationAndServicesDetail: {
+      screen: OrganisationAndServicesDetail,
       navigationOptions: {
         header: null,
       },
     },
-    OrganisationServiceMap: {
-      screen: OrganisationMap,
+    OrganisationAndServicesMap: {
+      screen: OrganisationAndServicesMap,
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (

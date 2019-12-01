@@ -18,7 +18,7 @@ import { colors, globalStyles } from '../../../../constants';
 const imgWidth = 1000;
 const imgHeight = 750;
 
-class OrganisationServiceDetail extends Component {
+class OrganisationAndServicesDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,14 +37,6 @@ class OrganisationServiceDetail extends Component {
       });
     });
   }
-
-  onPressArticleComents = () => {
-    this.props.navigation.navigate('ArticleComents');
-  };
-
-  onPressWriteComment = () => {
-    this.props.navigation.navigate('NewsWriteComment');
-  };
 
   render() {
     const remoteImage =
@@ -193,4 +185,4 @@ class OrganisationServiceDetail extends Component {
   }
 }
 
-export default OrganisationServiceDetail;
+export default OrganisationAndServicesDetail;

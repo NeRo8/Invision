@@ -51,7 +51,7 @@ const MapFlatList = ({ element }) => (
   </ImageBackground>
 );
 
-class OrganisationMap extends Component {
+class OrganisationAndServicesMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -180,4 +180,4 @@ class OrganisationMap extends Component {
   }
 }
 
-export default OrganisationMap;
+export default OrganisationAndServicesMap;
