@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 //FAQ
 import InKuwaitScreen from '../screens/InKuwaitScreen';
-import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
+import FaqScreen from '../screens/InKuwait/FAQ/FaqScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
 import FaqAsk from '../screens/InKuwait/FAQ/FaqAsk';
 import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
@@ -29,10 +29,6 @@ import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndSe
 import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter';
 import OrganisationServiceDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationServiceDetail';
 import OrganisationMap from '../screens/InKuwait/OrganisationAndServices/OrganisationMap/OrganisationMap';
-
-import HeaderInKuwaitFAQ from '../components/HeaderInKuwaitFAQ';
-import HeaderInKuwaitNews from '../components/HeaderInKuwaitNews';
-import HeaderInKuwaitEvents from '../components/HeaderInKuwaitEvents';
 
 import { colors, globalStyles } from '../constants';
 
@@ -109,8 +105,8 @@ const ServicesNavigation = createStackNavigator(
 // FAQ
 const FaqNavigation = createStackNavigator(
   {
-    InKuwaitFAQ: {
-      screen: InKuwaitFAQScreen,
+    FaqScreen: {
+      screen: FaqScreen,
       navigationOptions: {
         header: null,
       },

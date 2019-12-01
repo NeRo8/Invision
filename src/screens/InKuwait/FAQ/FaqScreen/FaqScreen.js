@@ -22,7 +22,7 @@ const ElementFlatList = ({ item, onPressElement }) => (
   </TouchableOpacity>
 );
 
-class InKuwaitFAQScreen extends Component {
+class FaqScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -135,4 +135,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InKuwaitFAQScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FaqScreen);
