@@ -29,7 +29,7 @@ const ElementFl = ({ element, onChange }) => (
   </View>
 );
 
-class NewsFilterScreen extends Component {
+class NewsFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -132,4 +132,4 @@ class NewsFilterScreen extends Component {
   }
 }
 
-export default NewsFilterScreen;
+export default NewsFilter;

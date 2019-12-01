@@ -23,7 +23,7 @@ import NewsScreen from '../screens/InKuwait/News/NewsScreen';
 import NewsDetail from '../screens/InKuwait/News/NewsDetail';
 import ArticleComentsScreen from '../screens/InKuwait/News/ArticleComentsScreen/';
 import NewsWriteComment from '../screens/InKuwait/News/NewsWriteComment';
-import NewsFilterScreen from '../screens/InKuwait/News/NewsFilterScreen';
+import NewsFilter from '../screens/InKuwait/News/NewsFilter';
 
 import OrganisationAndServicesScreen from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesScreen';
 import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesFilter';
@@ -270,7 +270,6 @@ const NewsNavigation = createStackNavigator(
         header: null,
       },
     },
-
     NewsDetail: {
       screen: NewsDetail,
       navigationOptions: {
@@ -311,7 +310,7 @@ const NewsNavigation = createStackNavigator(
       },
     },
     NewsFilter: {
-      screen: NewsFilterScreen,
+      screen: NewsFilter,
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (
