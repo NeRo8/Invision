@@ -16,9 +16,9 @@ export default StyleSheet.create({
     paddingTop: 5,
   },
   leftIcon: {
-    width: 50,
+    width: 100,
   },
   rightIcon: {
-    width: 50,
+    width: 100,
   },
 });

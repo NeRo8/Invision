@@ -1,46 +1,51 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import FavoriteScreen from '../screens/FavoriteScreen';
 
-import { colors, globalStyles } from '../constants';
+import { DefaultHeader } from '../components/Headers';
 
-const styles = StyleSheet.create({
-  clearAllButton: {
-    color: 'white',
-    fontSize: 17,
-    marginRight: 10,
-    fontFamily: globalStyles.gothamBook.fontFamily,
-  },
-});
+import { colors } from '../constants';
+import { gothamBook } from '../constants/fonts';
 
-const RightButton = () => (
-  <TouchableOpacity>
-    <Text style={styles.clearAllButton}>Clear all</Text>
-  </TouchableOpacity>
-);
-
-const FavoriteNavigation = createStackNavigator({
-  Home: {
-    screen: FavoriteScreen,
-    navigationOptions: {
-      headerTitle: 'Favorites',
-      headerTitleStyle: {
-        fontSize: 17,
-        fontFamily: globalStyles.gothamBold.fontFamily,
-        lineHeight: 24,
-        color: 'white',
-        width: '100%',
-        textAlign: 'center',
+const FavoriteNavigation = createStackNavigator(
+  {
+    Home: {
+      screen: FavoriteScreen,
+      navigationOptions: {
+        headerTitle: (
+          <DefaultHeader
+            title="Favorites"
+            rightIcon={
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    ...gothamBook,
+                    color: 'white',
+                    fontSize: 17,
+                    paddingTop: 5,
+                    textAlign: 'right',
+                    marginRight: 10,
+                  }}>
+                  Clear all
+                </Text>
+              </TouchableOpacity>
+            }
+          />
+        ),
+        headerLeft: null,
+        headerRight: null,
       },
-      headerStyle: {
-        backgroundColor: colors.HEADER,
-        paddingTop: 10,
-      },
-      headerRight: <RightButton />,
     },
   },
-});
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
+    },
+  },
+);
 
 export default FavoriteNavigation;
