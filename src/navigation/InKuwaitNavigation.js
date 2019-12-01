@@ -7,7 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import InKuwaitScreen from '../screens/InKuwaitScreen';
 import InKuwaitFAQScreen from '../screens/InKuwait/FAQ/InKuwaitFAQScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
-import InKuwaitAskScreen from '../screens/InKuwait/FAQ/InKuwaitAskScreen';
+import FaqAsk from '../screens/InKuwait/FAQ/FaqAsk';
 import InKuwaitDetailScreen from '../screens/InKuwait/FAQ/InKuwaitDetailScreen';
 import FaqAnswers from '../screens/InKuwait/FAQ/FaqAnswers';
 import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateCommentScreen';
@@ -131,8 +131,8 @@ const FaqNavigation = createStackNavigator(
         };
       },
     },
-    InKuwaitAsk: {
-      screen: InKuwaitAskScreen,
+    FaqAsk: {
+      screen: FaqAsk,
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (

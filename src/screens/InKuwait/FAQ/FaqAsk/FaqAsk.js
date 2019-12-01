@@ -5,7 +5,7 @@ import { Input, Icon, Button } from 'react-native-elements';
 import { colors, globalStyles } from '../../../../constants';
 import styles from './styles';
 
-class InKuwaitAskScreen extends Component {
+class FaqAsk extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -92,4 +92,4 @@ class InKuwaitAskScreen extends Component {
   }
 }
 
-export default InKuwaitAskScreen;
+export default FaqAsk;
