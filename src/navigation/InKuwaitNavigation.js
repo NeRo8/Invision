@@ -3,14 +3,14 @@ import { Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
-//FAQ
 import InKuwaitScreen from '../screens/InKuwaitScreen';
+//FAQ
 import FaqScreen from '../screens/InKuwait/FAQ/FaqScreen';
 import InKuwaitFilterScreen from '../screens/InKuwait/FAQ/InKuwaitFilterScreen';
 import FaqAsk from '../screens/InKuwait/FAQ/FaqAsk';
 import FaqDetail from '../screens/InKuwait/FAQ/FaqDetail';
 import FaqAnswers from '../screens/InKuwait/FAQ/FaqAnswers';
-import InKuwaitCreateCommentScreen from '../screens/InKuwait/FAQ/InKuwaitCreateCommentScreen';
+import FaqCreateComment from '../screens/InKuwait/FAQ/FaqCreateComment';
 
 //Events
 import EventsScreen from '../screens/InKuwait/Events/EventsScreen';
@@ -175,6 +175,27 @@ const FaqNavigation = createStackNavigator(
         };
       },
     },
+    FaqCreateComment: {
+      screen: FaqCreateComment,
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: 'Write comment',
+          headerTitleStyle: {
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            color: 'white',
+            flex: 1,
+            marginRight: 70,
+            textAlign: 'center',
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+            paddingTop: 15,
+          },
+          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+        };
+      },
+    },
   },
   {
     defaultNavigationOptions: {
@@ -249,27 +270,7 @@ const NewsNavigation = createStackNavigator(
         header: null,
       },
     },
-    InKuwaitCreateComment: {
-      screen: InKuwaitCreateCommentScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: 'Write comment',
-          headerTitleStyle: {
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            color: 'white',
-            flex: 1,
-            marginRight: 70,
-            textAlign: 'center',
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-            paddingTop: 15,
-          },
-          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
-        };
-      },
-    },
+
     NewsArticle: {
       screen: NewsArticleScreen,
       navigationOptions: {
