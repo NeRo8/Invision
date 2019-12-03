@@ -25,6 +25,9 @@ class FiltersScreen extends Component {
       max: 1000000,
       multiSliderValue: [0, 400000],
 
+      query: null,
+      location: null,
+
       activeFilterTypeAd: 'private',
       typeOfAd: [
         {
@@ -68,7 +71,7 @@ class FiltersScreen extends Component {
           title: 'b/a',
           active: false,
           func: () => {
-            this.setState({ activeFilterProduct: 'b/a' });
+            this.setState({ activeFilterProduct: 'used' });
           },
         },
         {
@@ -120,6 +123,20 @@ class FiltersScreen extends Component {
   onMultiSliderValueChange = values =>
     this.setState({ multiSliderValue: values });
 
+  onChangeMinValue = min => {
+    const { multiSliderValue } = this.state;
+    this.setState({
+      multiSliderValue: [parseInt(min), multiSliderValue[1]],
+    });
+  };
+
+  onChangeMaxValue = max => {
+    const { multiSliderValue } = this.state;
+    this.setState({
+      multiSliderValue: [multiSliderValue[0], parseInt(max)],
+    });
+  };
+
   render() {
     const { min, max, multiSliderValue, typeOfAd, stateOfProduct } = this.state;
     const { categoriesList } = this.props;
@@ -158,21 +175,25 @@ class FiltersScreen extends Component {
             <View>
               <View style={styles.blockPrice}>
                 <Input
+                  value={this.state.multiSliderValue[0].toString()}
                   placeholder="0"
                   label="From"
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
+                  onChangeText={minValue => this.onChangeMinValue(minValue)}
                 />
                 <View style={{ width: 10 }} />
                 <Input
+                  value={this.state.multiSliderValue[1].toString()}
                   placeholder="0"
                   label="To"
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
+                  onChangeText={maxValue => this.onChangeMaxValue(maxValue)}
                 />
               </View>
               <View>
@@ -196,10 +217,10 @@ class FiltersScreen extends Component {
                     justifyContent: 'space-between',
                   }}>
                   <Text style={styles.textElement}>
-                    {this.state.multiSliderValue[0]}
+                    {this.state.multiSliderValue[0].toLocaleString()}
                   </Text>
                   <Text style={styles.textElement}>
-                    {this.state.multiSliderValue[1]}
+                    {this.state.multiSliderValue[1].toLocaleString()}
                   </Text>
                 </View>
               </View>
