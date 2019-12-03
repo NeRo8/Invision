@@ -51,15 +51,13 @@ class InKuwaitScreen extends Component {
             label={'Organisation \n & services'}
             count={countList.services}
             backgroundImage={require('../../assets/images/organisation.jpg')}
-            onPressElement={() =>
-              navigation.navigate('OrganisationAndServices')
-            }
+            onPressElement={() => navigation.navigate('ServicesNavigation')}
           />
           <ElementCategory
             label="FAQ"
             count={countList.faqs}
             backgroundImage={require('../../assets/images/faq.jpg')}
-            onPressElement={() => navigation.navigate('InKuwaitFAQ')}
+            onPressElement={() => navigation.navigate('FaqNavigation')}
           />
           <ElementCategory
             label="Events"
@@ -71,7 +69,7 @@ class InKuwaitScreen extends Component {
             label="News"
             count={countList.news}
             backgroundImage={require('../../assets/images/news.jpg')}
-            onPressElement={() => navigation.navigate('InKuwaitNews')}
+            onPressElement={() => navigation.navigate('NewsScreen')}
           />
         </View>
       </ScrollView>

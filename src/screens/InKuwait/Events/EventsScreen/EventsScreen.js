@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { ElementListEvents } from '../../../../components/ElementLists';
 import TextPicker from '../../../../components/TextPicker';
+import { HeaderInKuwaitCategory } from '../../../../components/Headers';
 
 import { colors } from '../../../../constants';
 import styles from './styles';
@@ -113,40 +114,57 @@ class EventsScreen extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-        <View style={styles.headerPicker}>
-          <TextPicker
-            dataList={this.state.filters}
-            onPressElement={this.handlePressFilter}
-          />
-        </View>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          numColumns={2}
-          data={this.props.dataEvents}
-          renderItem={({ item }) => (
-            <ElementListEvents
-              element={item}
-              onPressProduct={() => {
-                this.props.navigation.navigate('InKuwaitEventsDetail');
-              }}
-              onPressHeart={this.handlePressHeart}
-              grayscale={this.state.grayscale}
+      <View style={{ flex: 1 }}>
+        <HeaderInKuwaitCategory
+          title="Events"
+          leftIcon={true}
+          onPressLeftIcon={() => navigation.navigate('InKuwait')}
+          rightIcon={
+            <Icon
+              name="filter"
+              type="material-community"
+              color="white"
+              underlayColor="transparent"
+              onPress={() => navigation.navigate('InKuwaitEventsFilter')}
             />
-          )}
-          keyExtractor={(item, index) => item.id}
+          }
         />
-        <View style={styles.btnLContainer}>
-          <Icon
-            name="map-pin"
-            type="feather"
-            color={colors.HEADER}
-            iconStyle={styles.icon}
-            onPress={() => {
-              this.props.navigation.navigate('InKuwaitEventsMap');
-            }}
+        <View style={styles.container}>
+          <View style={styles.headerPicker}>
+            <TextPicker
+              dataList={this.state.filters}
+              onPressElement={this.handlePressFilter}
+            />
+          </View>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            numColumns={2}
+            data={this.props.dataEvents}
+            renderItem={({ item }) => (
+              <ElementListEvents
+                element={item}
+                onPressProduct={() => {
+                  this.props.navigation.navigate('InKuwaitEventsDetail');
+                }}
+                onPressHeart={this.handlePressHeart}
+                grayscale={this.state.grayscale}
+              />
+            )}
+            keyExtractor={(item, index) => item.id}
           />
+          <View style={styles.btnLContainer}>
+            <Icon
+              name="map-pin"
+              type="feather"
+              color={colors.HEADER}
+              iconStyle={styles.icon}
+              onPress={() => {
+                this.props.navigation.navigate('InKuwaitEventsMap');
+              }}
+            />
+          </View>
         </View>
       </View>
     );

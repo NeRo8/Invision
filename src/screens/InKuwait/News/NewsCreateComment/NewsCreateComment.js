@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView, Platform, TextInput } from 'react-native';
+import {
+  View,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  Platform,
+  TextInput,
+} from 'react-native';
 import { Button, Input } from 'react-native-elements';
 
-import { globalStyles } from '../../../constants';
+import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
 
-class CreateCommentScreen extends Component {
+class NewsCreateComment extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -19,31 +25,37 @@ class CreateCommentScreen extends Component {
         <View style={styles.container}>
           <Input
             placeholder="Enter youre Full name"
-            inputStyle={styles.inputStyles}
+            inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
             inputContainerStyle={styles.inputContainerStyle}
-            containerStyle={styles.inputContainer}
+            containerStyle={{ marginTop: 25, paddingHorizontal: 0 }}
           />
           <Input
             placeholder="Enter your email address"
-            inputStyle={styles.inputStyles}
-            inputContainerStyle={styles.inputContainerStyle}
+            inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
             containerStyle={styles.inputContainer}
+            inputContainerStyle={styles.inputContainerStyle}
           />
-          <View style={{ flex: 1, paddingVertical: 15 }}>
+          <View style={{ flex: 1, marginTop: 15 }}>
             <Input
               multiline
               placeholder="Enter description of your question"
-              inputStyle={styles.textField}
-              inputContainerStyle={styles.textContainerStyle}
+              inputStyle={[
+                globalStyles.gothamBook,
+                styles.inputStyles,
+                { textAlignVertical: 'top', paddingTop: 12 },
+              ]}
+              inputContainerStyle={[
+                styles.inputContainerStyle,
+                { height: '100%' },
+              ]}
               containerStyle={{ paddingHorizontal: 0 }}
             />
           </View>
-
           <Button
             title="Send comment"
-            titleStyle={styles.btnTitle}
+            titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
             buttonStyle={styles.btnStyle}
-            containerStyle={{ marginBottom: 25 }}
+            containerStyle={{ marginTop: 25 }}
           />
         </View>
       </KeyboardAvoidingView>
@@ -51,4 +63,4 @@ class CreateCommentScreen extends Component {
   }
 }
 
-export default CreateCommentScreen;
+export default NewsCreateComment;
