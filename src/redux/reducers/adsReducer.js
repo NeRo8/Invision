@@ -5,6 +5,8 @@ import {
   SET_ADS_AD,
   SET_LOADING,
   SET_ERROR,
+  SET_PAGE,
+  DIV_PAGE,
 } from '../actions/adsAction';
 
 const initState = {
@@ -15,6 +17,7 @@ const initState = {
   error: null,
   loading: true,
   loadingAd: true,
+  page: 0,
 };
 
 const adsReducer = (state = initState, action) => {
@@ -54,6 +57,18 @@ const adsReducer = (state = initState, action) => {
       return {
         ...state,
         adsFavoritesList: action.ads,
+      };
+    }
+    case SET_PAGE: {
+      return {
+        ...state,
+        page: action.page,
+      };
+    }
+    case DIV_PAGE: {
+      return {
+        ...state,
+        page: state.page - 1,
       };
     }
     default:

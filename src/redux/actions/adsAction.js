@@ -10,19 +10,24 @@ export const SET_ADS_FAVORITES = 'SET_ADS_FAVORITES';
 
 export const SET_ERROR = 'SET_ERROR';
 export const SET_LOADING = 'SET_LOADING';
+export const SET_PAGE = 'SET_PAGE';
+export const DIV_PAGE = 'DIV_PAGE';
 
 const setAdsAds = ads => ({
   type: SET_ADS_ADS,
   ads,
 });
+
 const setAdsAd = ad => ({
   type: SET_ADS_AD,
   ad,
 });
+
 const setCategories = categories => ({
   type: SET_ADS_CATEGORIES,
   categories,
 });
+
 const setFavorites = ads => ({
   type: SET_ADS_FAVORITES,
   ads,
@@ -37,6 +42,15 @@ const setLoading = (loading, loadingAd) => ({
   type: SET_LOADING,
   loading,
   loadingAd,
+});
+
+const setPage = page => ({
+  type: SET_PAGE,
+  page,
+});
+
+const divPage = () => ({
+  type: DIV_PAGE,
 });
 
 //API REDUX
@@ -54,7 +68,53 @@ export const getAds = filters => dispatch => {
   })
     .then(response => response.json())
     .then(responseJson => {
-      dispatch(setAdsAds(responseJson.results));
+      dispatch(setAdsAds(responseJson));
+
+      const getPage = responseJson.next.match(/offset=(.*)/);
+      if (getPage !== null) {
+        dispatch(setPage(getPage[1] / 15));
+      }
+      dispatch(setLoading(false, true));
+    })
+    .catch(error => {
+      dispatch(setError(error));
+    });
+};
+
+export const getNextAds = url => dispatch => {
+  dispatch(setLoading(true, true));
+
+  const getPage = url.match(/offset=(.*)/);
+  if (getPage !== null) {
+    const page = (parseInt(getPage[1]) + 15) / 15;
+
+    dispatch(setPage(page));
+  }
+
+  fetch(url, {
+    method: 'GET',
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setAdsAds(responseJson));
+      dispatch(setLoading(false, true));
+    })
+    .catch(error => {
+      dispatch(setError(error));
+    });
+};
+
+export const getPreviousAds = url => dispatch => {
+  dispatch(setLoading(true, true));
+
+  dispatch(divPage());
+
+  fetch(url, {
+    method: 'GET',
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setAdsAds(responseJson));
       dispatch(setLoading(false, true));
     })
     .catch(error => {
