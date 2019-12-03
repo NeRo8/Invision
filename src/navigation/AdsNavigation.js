@@ -21,30 +21,7 @@ import HeaderAdsFilters from '../components/HeaderAdsFilters';
 
 import { DefaultHeader } from '../components/Headers';
 
-import { colors, globalStyles } from '../constants';
-
-const styles = StyleSheet.create({
-  btnCancel: {
-    color: 'white',
-    fontSize: 17,
-    marginHorizontal: 10,
-  },
-});
-
-const HeaderLeft = ({ onPressCancel }) => (
-  <TouchableOpacity
-    onPress={() => {
-      onPressCancel();
-    }}>
-    <Text style={[globalStyles.gothamBook, styles.btnCancel]}>Cancel</Text>
-  </TouchableOpacity>
-);
-
-const HeaderRight = ({ onPressConfirm }) => (
-  <TouchableOpacity onPress={() => {}}>
-    <Text style={styles.btnCancel}>Done</Text>
-  </TouchableOpacity>
-);
+import { colors } from '../constants';
 
 const AdsNavigation = createStackNavigator(
   {
@@ -63,8 +40,14 @@ const AdsNavigation = createStackNavigator(
       screen: CategoryScreen,
       navigationOptions: ({ navigation }) => {
         return {
-          headerTitle: <DefaultHeader title="Filters" />,
-          headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+          headerTitle: (
+            <DefaultHeader
+              title="Filters"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
           headerRight: null,
         };
       },
