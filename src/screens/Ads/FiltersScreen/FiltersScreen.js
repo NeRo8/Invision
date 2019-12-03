@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import TextPicker from '../../../components/TextPicker';
 
 import { colors, globalStyles } from '../../../constants';
 
@@ -24,85 +25,92 @@ class FiltersScreen extends Component {
       max: 1000000,
       multiSliderValue: [0, 400000],
 
-      typeOfAd: {
-        private: true,
-        buisnes: false,
-        all: false,
-      },
-
-      stateOfProduct: {
-        newProduct: false,
-        bA: true,
-        all: false,
-      },
-      categoryList: [
+      activeFilterTypeAd: 'private',
+      typeOfAd: [
+        {
+          id: 0,
+          title: 'Private',
+          active: true,
+          func: () => {
+            this.setState({ activeFilterTypeAd: 'private' });
+          },
+        },
         {
           id: 1,
-          title: 'CARS',
-          icon: require('../../../assets/icons/car.png'),
+          title: 'Business',
+          active: false,
+          func: () => {
+            this.setState({ activeFilterTypeAd: 'business' });
+          },
         },
         {
           id: 2,
-          title: 'FOR SALE',
-          icon: require('../../../assets/icons/sale.png'),
-        },
-        {
-          id: 3,
-          title: 'SERVICES',
-          icon: require('../../../assets/icons/tool.png'),
-        },
-        {
-          id: 4,
-          title: 'Jobs',
-          icon: require('../../../assets/icons/job.png'),
-        },
-        {
-          id: 5,
-          title: 'PROPERTIES',
-          icon: require('../../../assets/icons/property.png'),
-        },
-        {
-          id: 6,
-          title: 'PETS',
-          icon: require('../../../assets/icons/pets.png'),
+          title: 'All',
+          active: false,
+          func: () => {
+            this.setState({ activeFilterTypeAd: 'all' });
+          },
         },
       ],
+
+      activeFilterProduct: 'new',
+      stateOfProduct: [
+        {
+          id: 0,
+          title: 'New',
+          active: true,
+          func: () => {
+            this.setState({ activeFilterProduct: 'new' });
+          },
+        },
+        {
+          id: 1,
+          title: 'b/a',
+          active: false,
+          func: () => {
+            this.setState({ activeFilterProduct: 'b/a' });
+          },
+        },
+        {
+          id: 2,
+          title: 'All',
+          active: false,
+          func: () => {
+            this.setState({ activeFilterProduct: 'all' });
+          },
+        },
+      ],
+
+      activeCategory: null,
     };
   }
 
-  componentDidUpdate() {
-    console.log(this.state.typeOfAd);
+  componentDidMount() {
+    const { getCategoryList } = this.props;
+    getCategoryList();
   }
 
-  handlePressTypeOfAdd = name => {
+  handlePressTypeAd = id => {
     const { typeOfAd } = this.state;
 
-    const newTypeOfAd = {
-      ...typeOfAd,
-      private: false,
-      all: false,
-      buisnes: false,
-      [name]: true,
-    };
+    const newFilters = typeOfAd.map(item =>
+      item.id === id ? { ...item, active: true } : { ...item, active: false },
+    );
 
     this.setState({
-      typeOfAd: newTypeOfAd,
+      typeOfAd: newFilters,
     });
   };
 
-  handlePressStateOfProduct = name => {
+  handlePressFilterProduct = id => {
     const { stateOfProduct } = this.state;
 
-    const newStateOfProduct = {
-      ...stateOfProduct,
-      all: false,
-      bA: false,
-      newProduct: false,
-      [name]: true,
-    };
+    const newFilters = stateOfProduct.map(item =>
+      item.id === id ? { ...item, active: true } : { ...item, active: false },
+    );
 
     this.setState({
-      stateOfProduct: newStateOfProduct,
+      stateOfProduct: newFilters,
     });
   };
 
@@ -114,6 +122,7 @@ class FiltersScreen extends Component {
 
   render() {
     const { min, max, multiSliderValue, typeOfAd, stateOfProduct } = this.state;
+    const { categoriesList } = this.props;
 
     return (
       <ScrollView
@@ -125,40 +134,10 @@ class FiltersScreen extends Component {
               TYPE OF AD
             </Text>
             <View style={styles.selectBlock}>
-              <TouchableOpacity
-                style={typeOfAd.private ? styles.elementActive : styles.element}
-                onPress={() => this.handlePressTypeOfAdd('private')}>
-                <Text
-                  style={
-                    typeOfAd.private
-                      ? styles.textElementActive
-                      : styles.textElement
-                  }>
-                  Private
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={typeOfAd.buisnes ? styles.elementActive : styles.element}
-                onPress={() => this.handlePressTypeOfAdd('buisnes')}>
-                <Text
-                  style={
-                    typeOfAd.buisnes
-                      ? styles.textElementActive
-                      : styles.textElement
-                  }>
-                  Business
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={typeOfAd.all ? styles.elementActive : styles.element}
-                onPress={() => this.handlePressTypeOfAdd('all')}>
-                <Text
-                  style={
-                    typeOfAd.all ? styles.textElementActive : styles.textElement
-                  }>
-                  All
-                </Text>
-              </TouchableOpacity>
+              <TextPicker
+                dataList={typeOfAd}
+                onPressElement={this.handlePressTypeAd}
+              />
             </View>
           </View>
           <View style={styles.filterElement}>
@@ -166,50 +145,10 @@ class FiltersScreen extends Component {
               STATE OF PRODUCT
             </Text>
             <View style={styles.selectBlock}>
-              <TouchableOpacity
-                style={
-                  stateOfProduct.newProduct
-                    ? styles.elementActive
-                    : styles.element
-                }
-                onPress={() => this.handlePressStateOfProduct('newProduct')}>
-                <Text
-                  style={
-                    stateOfProduct.newProduct
-                      ? styles.textElementActive
-                      : styles.textElement
-                  }>
-                  New
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={
-                  stateOfProduct.bA ? styles.elementActive : styles.element
-                }
-                onPress={() => this.handlePressStateOfProduct('bA')}>
-                <Text
-                  style={
-                    stateOfProduct.bA
-                      ? styles.textElementActive
-                      : styles.textElement
-                  }>
-                  b/a
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={
-                  stateOfProduct.all ? styles.elementActive : styles.element
-                }
-                onPress={() => this.handlePressStateOfProduct('all')}>
-                <Text
-                  style={
-                    stateOfProduct.all
-                      ? styles.textElementActive
-                      : styles.textElement
-                  }>
-                  All
-                </Text>
-              </TouchableOpacity>
+              <TextPicker
+                dataList={stateOfProduct}
+                onPressElement={this.handlePressFilterProduct}
+              />
             </View>
           </View>
           <View style={styles.filterElement}>
@@ -274,15 +213,20 @@ class FiltersScreen extends Component {
               horizontal
               contentContainerStyle={styles.blockPrice}
               showsHorizontalScrollIndicator={false}
-              data={this.state.categoryList}
-              renderItem={items => (
-                <View style={styles.categoryElement}>
+              data={categoriesList}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.categoryElement}
+                  onPress={() => this.setState({ activeCategory: item.name })}>
+                  {/**
                   <Image
-                    source={items.item.icon}
+                    source={}
                     style={{ width: 30, height: 30 }}
                   />
-                  <Text style={styles.titleCategory}>{items.item.title}</Text>
-                </View>
+                   */}
+                  <View style={{ width: 30, height: 30 }}></View>
+                  <Text style={styles.titleCategory}>{item.name}</Text>
+                </TouchableOpacity>
               )}
               keyExtractor={items => items.id}
             />
