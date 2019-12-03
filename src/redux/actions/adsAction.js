@@ -63,6 +63,10 @@ export const getAds = filters => dispatch => {
     requestString += `?category=${filters.categories}`;
   }
 
+  if (filters !== undefined && filters.query !== undefined) {
+    requestString += `?q=${filters.query}`;
+  }
+
   fetch(requestString, {
     method: 'GET',
   })
@@ -70,7 +74,7 @@ export const getAds = filters => dispatch => {
     .then(responseJson => {
       dispatch(setAdsAds(responseJson));
 
-      const getPage = responseJson.next.match(/offset=(.*)/);
+      const getPage = responseJson.next.match(/offset=(\d+)/);
       if (getPage !== null) {
         dispatch(setPage(getPage[1] / 15));
       }
@@ -84,7 +88,7 @@ export const getAds = filters => dispatch => {
 export const getNextAds = url => dispatch => {
   dispatch(setLoading(true, true));
 
-  const getPage = url.match(/offset=(.*)/);
+  const getPage = url.match(/offset=(\d+)/);
   if (getPage !== null) {
     const page = (parseInt(getPage[1]) + 15) / 15;
 
