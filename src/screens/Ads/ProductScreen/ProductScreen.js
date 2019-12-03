@@ -27,20 +27,22 @@ import HeaderProduct from '../../../components/HeaderProduct';
 import { ElementListAds } from '../../../components/ElementLists';
 import ModalShare from './ModalShare';
 
-const ElementFlatList = ({ item }) => (
+const CommentsFlatList = ({ item }) => (
   <View style={styles.elementContainer}>
     <View style={{ flexDirection: 'row', flex: 1, height: 40 }}>
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <View style={{ paddingRight: 10 }}>
           <Avatar
             rounded
-            source={item.userIcon}
+            source={item.user__avatar}
             imageProps={{ resizeMode: 'cover' }}
             size={40}
           />
         </View>
         <View style={{ justifyContent: 'space-between' }}>
-          <Text style={styles.userNameComents}>{item.userName}</Text>
+          <Text style={styles.userNameComents}>
+            {item.user__first_name} {item.user__last_name}
+          </Text>
           <StarRating
             disabled
             maxStars={5}
@@ -57,12 +59,14 @@ const ElementFlatList = ({ item }) => (
         </View>
       </View>
       <View>
-        <Text style={[globalStyles.gothamBook, styles.date]}>{item.date}</Text>
+        <Text style={[globalStyles.gothamBook, styles.date]}>
+          {Moment(item.created).format('DD.MM.YYYY')}
+        </Text>
       </View>
     </View>
     <View style={{ marginTop: 15 }}>
       <Text style={[globalStyles.gothamBook, styles.coment]}>
-        {item.coment}
+        {item.description}
       </Text>
     </View>
   </View>
@@ -73,24 +77,7 @@ class ProductScreen extends Component {
     super(props);
     this.state = {
       productData: [],
-      productImages: [
-        {
-          id: 0,
-          productImage: require('../../../assets/images/productImages/iphone.jpg'),
-        },
-        {
-          id: 1,
-          productImage: require('../../../assets/images/productImages/iphone2.jpg'),
-        },
-        {
-          id: 2,
-          productImage: require('../../../assets/images/productImages/iphone3.jpg'),
-        },
-        {
-          id: 3,
-          productImage: require('../../../assets/images/productImages/iphone4.jpg'),
-        },
-      ],
+
       tags: [
         { id: 0, title: 'Privat' },
         { id: 1, title: 'New' },
@@ -127,9 +114,6 @@ class ProductScreen extends Component {
       ],
 
       modalShow: false,
-      // imageSource: this.props.productData.adimage_set.filter(
-      //   item => item.is_primary === true,
-      // ),
     };
   }
 
@@ -147,6 +131,12 @@ class ProductScreen extends Component {
     this.setState({
       modalShow: !this.state.modalShow,
     });
+  };
+
+  showProductDetail = async productId => {
+    const token = await getData('token');
+
+    this.props.getAdData(productId, token);
   };
 
   render() {
@@ -289,8 +279,11 @@ class ProductScreen extends Component {
               <View>
                 <Text style={styles.reviews}>REVIEWS</Text>
                 <FlatList
-                  data={this.state.coments}
-                  renderItem={({ item }) => <ElementFlatList item={item} />}
+                  initialNumToRender={1}
+                  maxToRenderPerBatch={1}
+                  data={productData.comments}
+                  renderItem={({ item }) => <CommentsFlatList item={item} />}
+                  keyExtractor={item => item.pk}
                 />
                 <Button
                   title="Rear all 100 reviews"
@@ -315,9 +308,12 @@ class ProductScreen extends Component {
                     numColumns={2}
                     data={this.props.productData.recommended}
                     renderItem={({ item }) => (
-                      <ElementListAds item={item} onPressProduct={() => {}} />
+                      <ElementListAds
+                        item={item}
+                        onPressProduct={this.showProductDetail}
+                      />
                     )}
-                    keyExtractor={(item, index) => item.pk}
+                    keyExtractor={item => item.pk}
                   />
                 </View>
               </View>
