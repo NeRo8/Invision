@@ -1,7 +1,6 @@
 import {
   SET_ADS_ADS,
   SET_ADS_FAVORITES,
-  SET_ADS_CATEGORIES,
   SET_ADS_AD,
   SET_LOADING,
   SET_ERROR,
@@ -11,7 +10,6 @@ import {
 
 const initState = {
   adsList: [],
-  categoriesList: [],
   adsFavoritesList: [],
   adData: [],
   error: null,
@@ -45,12 +43,6 @@ const adsReducer = (state = initState, action) => {
         ...state,
         loading: action.loading,
         loadingAd: action.loadingAd,
-      };
-    }
-    case SET_ADS_CATEGORIES: {
-      return {
-        ...state,
-        categoriesList: action.categories,
       };
     }
     case SET_ADS_FAVORITES: {

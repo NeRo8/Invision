@@ -1,17 +1,17 @@
 import FiltersScreen from './FiltersScreen';
 import { connect } from 'react-redux';
-import { getCategories } from '../../../redux/actions/adsAction';
+import { setFilter } from '../../../redux/actions/filtersAction';
 
 const mapStateToProps = state => {
   return {
-    categoriesList: state.ads.categoriesList,
+    filters: state.filters.filters,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCategoryList: () => {
-      dispatch(getCategories());
+    onChangeFilter: (name, value) => {
+      dispatch(setFilter(name, value));
     },
   };
 };

@@ -88,10 +88,7 @@ class FiltersScreen extends Component {
     };
   }
 
-  componentDidMount() {
-    const { getCategoryList } = this.props;
-    getCategoryList();
-  }
+  componentDidMount() {}
 
   handlePressTypeAd = id => {
     const { typeOfAd } = this.state;
@@ -139,7 +136,7 @@ class FiltersScreen extends Component {
 
   render() {
     const { min, max, multiSliderValue, typeOfAd, stateOfProduct } = this.state;
-    const { categoriesList } = this.props;
+    const {} = this.props;
 
     return (
       <ScrollView
@@ -217,10 +214,10 @@ class FiltersScreen extends Component {
                     justifyContent: 'space-between',
                   }}>
                   <Text style={styles.textElement}>
-                    {this.state.multiSliderValue[0].toLocaleString()}
+                    {this.state.multiSliderValue[0]}
                   </Text>
                   <Text style={styles.textElement}>
-                    {this.state.multiSliderValue[1].toLocaleString()}
+                    {this.state.multiSliderValue[1]}
                   </Text>
                 </View>
               </View>
@@ -234,7 +231,7 @@ class FiltersScreen extends Component {
               horizontal
               contentContainerStyle={styles.blockPrice}
               showsHorizontalScrollIndicator={false}
-              data={categoriesList}
+              data={[]}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.categoryElement}

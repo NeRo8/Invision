@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
 
-import { connect } from 'react-redux';
-
 import styles from './styles';
-
-import { getCategories, getAds } from '../../../redux/actions/adsAction';
 
 const ElementCategoryList = ({ item, onPressElement }) => (
   <TouchableOpacity onPress={() => onPressElement({ categories: item.name })}>
@@ -70,21 +66,4 @@ class CategoryScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    data: state.ads.categoriesList,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getCategoriesList: () => {
-      dispatch(getCategories());
-    },
-    getAdsList: filter => {
-      dispatch(getAds(filter));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen);
+export default CategoryScreen;

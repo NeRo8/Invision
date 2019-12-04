@@ -78,7 +78,7 @@ class AdsScreen extends Component {
               refreshing={false}
               onRefresh={() => this.onEndAds(adsConfig.previous)}
               onEndReached={() => this.onNextAds(adsConfig.next)}
-              onEndReachedThreshold={0.05}
+              onEndReachedThreshold={0.5}
             />
             <View style={styles.pagination}>
               <Text style={{ fontWeight: 'bold' }}>
