@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Image,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 import Moment from 'moment';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
@@ -27,20 +28,22 @@ import HeaderProduct from '../../../components/HeaderProduct';
 import { ElementListAds } from '../../../components/ElementLists';
 import ModalShare from './ModalShare';
 
-const ElementFlatList = ({ item }) => (
+const CommentsFlatList = ({ item }) => (
   <View style={styles.elementContainer}>
     <View style={{ flexDirection: 'row', flex: 1, height: 40 }}>
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <View style={{ paddingRight: 10 }}>
           <Avatar
             rounded
-            source={item.userIcon}
+            source={item.user__avatar}
             imageProps={{ resizeMode: 'cover' }}
             size={40}
           />
         </View>
         <View style={{ justifyContent: 'space-between' }}>
-          <Text style={styles.userNameComents}>{item.userName}</Text>
+          <Text style={styles.userNameComents}>
+            {item.user__first_name} {item.user__last_name}
+          </Text>
           <StarRating
             disabled
             maxStars={5}
@@ -57,12 +60,14 @@ const ElementFlatList = ({ item }) => (
         </View>
       </View>
       <View>
-        <Text style={[globalStyles.gothamBook, styles.date]}>{item.date}</Text>
+        <Text style={[globalStyles.gothamBook, styles.date]}>
+          {Moment(item.created).format('DD.MM.YYYY')}
+        </Text>
       </View>
     </View>
     <View style={{ marginTop: 15 }}>
       <Text style={[globalStyles.gothamBook, styles.coment]}>
-        {item.coment}
+        {item.description}
       </Text>
     </View>
   </View>
@@ -73,63 +78,18 @@ class ProductScreen extends Component {
     super(props);
     this.state = {
       productData: [],
-      productImages: [
-        {
-          id: 0,
-          productImage: require('../../../assets/images/productImages/iphone.jpg'),
-        },
-        {
-          id: 1,
-          productImage: require('../../../assets/images/productImages/iphone2.jpg'),
-        },
-        {
-          id: 2,
-          productImage: require('../../../assets/images/productImages/iphone3.jpg'),
-        },
-        {
-          id: 3,
-          productImage: require('../../../assets/images/productImages/iphone4.jpg'),
-        },
-      ],
+
       tags: [
         { id: 0, title: 'Privat' },
         { id: 1, title: 'New' },
         { id: 2, title: 'Mobile phone' },
         { id: 3, title: 'iPhone x' },
       ],
-      coments: [
-        {
-          id: 0,
-          userName: 'Tyler Hicks',
-          date: '01.01.19',
-          raiting: 4,
-          userIcon: require('../../../assets/icons/userIcons/man.jpg'),
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-        },
-        {
-          id: 1,
-          userName: 'Billy Weaver',
-          date: '01.01.19',
-          raiting: 4,
-          userIcon: require('../../../assets/icons/userIcons/man2.jpg'),
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-        },
-        {
-          id: 2,
-          userName: 'Jordan Mann',
-          date: '01.01.19',
-          raiting: 5,
-          userIcon: require('../../../assets/icons/userIcons/man3.jpg'),
-          coment: 'Lorem Ipsum is simply dummy text of the printing.',
-        },
-      ],
 
       modalShow: false,
-      // imageSource: this.props.productData.adimage_set.filter(
-      //   item => item.is_primary === true,
-      // ),
+      showMore: false,
+      readAll: false,
+      moreAds: false,
     };
   }
 
@@ -147,6 +107,37 @@ class ProductScreen extends Component {
     this.setState({
       modalShow: !this.state.modalShow,
     });
+  };
+  onPressShowMore = () => {
+    const { productData } = this.props;
+    productData.description.length > 300
+      ? this.setState({
+          showMore: !this.state.showMore,
+        })
+      : null;
+  };
+  onPressReadAll = () => {
+    const { productData } = this.props;
+    productData.comments.length > 3
+      ? this.setState({
+          readAll: !this.state.readAll,
+        })
+      : null;
+  };
+  onPressMoreAds = () => {
+    const { productData } = this.props;
+    productData.recommended.length > 6
+      ? this.setState({
+          moreAds: !this.state.moreAds,
+        })
+      : null;
+    console.log(this.state.moreAds);
+  };
+
+  showProductDetail = async productId => {
+    const token = await getData('token');
+
+    this.props.getAdData(productId, token);
   };
 
   render() {
@@ -234,10 +225,16 @@ class ProductScreen extends Component {
                 />
               </View>
               <View>
-                <Text style={[globalStyles.gothamBook, styles.description]}>
-                  {productData.description}
+                <Text
+                  ellipsizeMode={'tail'}
+                  style={[globalStyles.gothamBook, styles.description]}>
+                  {this.state.showMore === true
+                    ? productData.description
+                    : productData.description.slice(0, 300)}
                 </Text>
-                <TouchableOpacity style={{ marginTop: 8 }}>
+                <TouchableOpacity
+                  onPress={() => this.onPressShowMore()}
+                  style={{ marginTop: 8 }}>
                   <Text style={styles.showMoreText}>Show more</Text>
                 </TouchableOpacity>
                 <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
@@ -289,15 +286,21 @@ class ProductScreen extends Component {
               <View>
                 <Text style={styles.reviews}>REVIEWS</Text>
                 <FlatList
-                  data={this.state.coments}
-                  renderItem={({ item }) => <ElementFlatList item={item} />}
+                  data={
+                    this.state.readAll === true
+                      ? productData.comments
+                      : productData.comments.slice(0, 3)
+                  }
+                  renderItem={({ item }) => <CommentsFlatList item={item} />}
+                  keyExtractor={item => item.pk}
                 />
                 <Button
-                  title="Rear all 100 reviews"
-                  titleStyle={[globalStyles.gothamBold, styles.titleRear]}
-                  buttonStyle={styles.btnStyleRear}
+                  disabled={productData.comments.length <= 3 ? true : false}
+                  title={['Read all ', productData.comments.length, ' reviews']}
+                  titleStyle={[globalStyles.gothamBold, styles.titleRead]}
+                  buttonStyle={styles.btnStyleRead}
                   containerStyle={styles.btnContainer}
-                  onPress={null}
+                  onPress={() => this.onPressReadAll()}
                 />
                 <Button
                   title="Write own comment"
@@ -313,29 +316,51 @@ class ProductScreen extends Component {
                 <View style={styles.flatListView}>
                   <FlatList
                     numColumns={2}
-                    data={this.props.productData.recommended}
+                    data={
+                      this.state.moreAds === true
+                        ? productData.recommended
+                        : productData.recommended.slice(0, 6)
+                    }
                     renderItem={({ item }) => (
-                      <ElementListAds item={item} onPressProduct={() => {}} />
+                      <ElementListAds
+                        item={item}
+                        onPressProduct={this.showProductDetail}
+                      />
                     )}
-                    keyExtractor={(item, index) => item.pk}
+                    keyExtractor={item => item.pk}
                   />
                 </View>
               </View>
               <Button
+                disabled={productData.recommended.length <= 6 ? true : false}
                 title="Show more ads"
-                titleStyle={[globalStyles.gothamBold, styles.titleRear]}
-                buttonStyle={styles.btnStyleRear}
+                titleStyle={[globalStyles.gothamBold, styles.titleRead]}
+                buttonStyle={styles.btnStyleRead}
                 containerStyle={styles.btnContainer}
-                onPress={null}
+                onPress={() => this.onPressMoreAds()}
               />
             </View>
             <View style={styles.bottomView}>
-              <View style={{ flex: 1 }}>
+              <View
+                style={{
+                  flex: 1,
+                }}>
                 <Icon
                   name="phone"
                   type="font-awesome"
                   color="white"
                   containerStyle={styles.iconPhoneContainer}
+                  iconStyle={{
+                    width: 55,
+                    height: 50,
+                    textAlign: 'center',
+                    textAlignVertical: 'center',
+                  }}
+                  onPress={() => {
+                    productData.phone_number !== null || undefined
+                      ? Linking.openURL(`tel:${productData.phone_number}`)
+                      : null;
+                  }}
                 />
               </View>
               <View style={{ flex: 6 }}>

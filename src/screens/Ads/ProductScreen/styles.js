@@ -157,7 +157,7 @@ export default StyleSheet.create({
     fontWeight: '300',
     textAlign: 'justify',
   },
-  titleRear: {
+  titleRead: {
     fontSize: 15,
     lineHeight: 24,
     color: colors.HEADER,
@@ -168,7 +168,7 @@ export default StyleSheet.create({
     color: 'white',
   },
 
-  btnStyleRear: {
+  btnStyleRead: {
     height: 50,
     borderRadius: 2,
     backgroundColor: 'white',
