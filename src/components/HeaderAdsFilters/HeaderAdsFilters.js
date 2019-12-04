@@ -13,6 +13,8 @@ class HeaderAdsFilters extends Component {
     this.state = {};
   }
   render() {
+    const { city, query, onChangeFilter, onPressDone, filters } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -20,17 +22,18 @@ class HeaderAdsFilters extends Component {
             name="chevron-left"
             type="feather"
             color="white"
+            underlayColor="transparent"
             size={32}
             onPress={() => this.props.navigation.goBack()}
             containerStyle={{ width: 50 }}
           />
-          <Text style={[globalStyles.gothamBold, styles.headerText]}>
-            Filters
-          </Text>
-          <TouchableOpacity onPress={() => {}}>
-            <Text style={[globalStyles.gothamBook, styles.headerRight]}>
-              Done
-            </Text>
+          <Text style={styles.headerText}>Filters</Text>
+          <TouchableOpacity
+            onPress={() => {
+              onPressDone(filters);
+              this.props.navigation.goBack();
+            }}>
+            <Text style={styles.headerRight}>Done</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bodyBlock}>
@@ -38,21 +41,25 @@ class HeaderAdsFilters extends Component {
             leftIcon={
               <Icon name="ios-search" type="ionicon" color="white" size={20} />
             }
+            value={query}
             placeholder="Search ad..."
             placeholderTextColor="white"
-            inputStyle={[globalStyles.gothamBook, styles.inputStyle]}
+            inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStl}
             containerStyle={styles.inputContainer}
+            onChangeText={text => onChangeFilter('query', text)}
           />
           <Input
             leftIcon={
               <Icon name="ios-pin" type="ionicon" color="white" size={20} />
             }
+            value={city}
             placeholder="Choose location"
             placeholderTextColor="white"
-            inputStyle={[globalStyles.gothamBook, styles.inputStyle]}
+            inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStl}
             containerStyle={styles.inputContainer}
+            onChangeText={text => onChangeFilter('city', text)}
           />
         </View>
       </View>

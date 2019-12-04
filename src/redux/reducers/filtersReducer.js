@@ -7,7 +7,7 @@ const initialState = {
     typeOfAd: 'private',
     stateOfProduct: 'new',
     minPrice: 0,
-    maxPrice: 40000,
+    maxPrice: 900000,
     category: null,
     categories: null,
   },

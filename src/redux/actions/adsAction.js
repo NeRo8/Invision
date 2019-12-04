@@ -51,15 +51,38 @@ const divPage = () => ({
 export const getAds = filters => dispatch => {
   dispatch(setLoading(true, true));
 
-  var requestString = `${ADS}ads/`;
+  var requestString = `${ADS}ads/?`;
 
-  if (filters !== undefined && filters.categories !== undefined) {
-    requestString += `?category=${filters.categories}`;
+  if (filters !== undefined) {
+    //seller_type
+    if (filters.typeOfAd !== undefined && filters.typeOfAd !== null) {
+      requestString += `&seller_type=${filters.typeOfAd}`;
+    }
+    //state
+    if (
+      filters.stateOfProduct !== undefined &&
+      filters.stateOfProduct !== null
+    ) {
+      requestString += `&state=${filters.stateOfProduct}`;
+    } //q
+    if (filters.query !== undefined && filters.query !== null) {
+      requestString += `&q=${filters.query}`;
+    } //price_min
+    if (filters.minPrice !== undefined && filters.minPrice !== null) {
+      requestString += `&price_min=${parseInt(filters.minPrice)}`;
+    } //price_max
+    if (filters.maxPrice !== undefined && filters.maxPrice !== null) {
+      requestString += `&price_max=${parseInt(filters.maxPrice)}`;
+    } //city
+    if (filters.city !== undefined && filters.city !== null) {
+      requestString += `&city=${filters.city}`;
+    } //category
+    if (filters.category !== undefined && filters.category !== null) {
+      requestString += `&category=${filters.category}`;
+    }
   }
 
-  if (filters !== undefined && filters.query !== undefined) {
-    requestString += `?q=${filters.query}`;
-  }
+  console.log('URL', requestString);
 
   fetch(requestString, {
     method: 'GET',
@@ -68,9 +91,11 @@ export const getAds = filters => dispatch => {
     .then(responseJson => {
       dispatch(setAdsAds(responseJson));
 
-      const getPage = responseJson.next.match(/offset=(\d+)/);
-      if (getPage !== null) {
-        dispatch(setPage(getPage[1] / 15));
+      if (responseJson.next !== null) {
+        const getPage = responseJson.next.match(/offset=(\d+)/);
+        if (getPage !== null) {
+          dispatch(setPage(getPage[1] / 15));
+        }
       }
       dispatch(setLoading(false, true));
     })
@@ -80,8 +105,6 @@ export const getAds = filters => dispatch => {
 };
 
 export const getNextAds = url => dispatch => {
-  dispatch(setLoading(true, true));
-
   const getPage = url.match(/offset=(\d+)/);
   if (getPage !== null) {
     const page = (parseInt(getPage[1]) + 15) / 15;
@@ -95,7 +118,6 @@ export const getNextAds = url => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAds(responseJson));
-      dispatch(setLoading(false, true));
     })
     .catch(error => {
       dispatch(setError(error));
@@ -103,8 +125,6 @@ export const getNextAds = url => dispatch => {
 };
 
 export const getPreviousAds = url => dispatch => {
-  dispatch(setLoading(true, true));
-
   dispatch(divPage());
 
   fetch(url, {
@@ -113,7 +133,6 @@ export const getPreviousAds = url => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAds(responseJson));
-      dispatch(setLoading(false, true));
     })
     .catch(error => {
       dispatch(setError(error));

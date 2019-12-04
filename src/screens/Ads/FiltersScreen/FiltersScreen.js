@@ -39,7 +39,7 @@ class FiltersScreen extends Component {
       min: 0,
       max: 1000000,
 
-      activeFilterTypeAd: 'private',
+      activeFilterTypeAd: null,
       typeOfAd: [
         {
           id: 0,
@@ -70,7 +70,7 @@ class FiltersScreen extends Component {
         },
       ],
 
-      activeFilterProduct: 'new',
+      activeFilterProduct: null,
       stateOfProduct: [
         {
           id: 0,
@@ -142,6 +142,7 @@ class FiltersScreen extends Component {
     onChangeFilter('minPrice', values[0]);
     onChangeFilter('maxPrice', values[1]);
   };
+
   render() {
     const { min, max, typeOfAd, stateOfProduct } = this.state;
     const { categories, onChangeFilter, filters } = this.props;
@@ -181,6 +182,7 @@ class FiltersScreen extends Component {
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
+                  onChangeText={text => onChangeFilter('minPrice', text)}
                 />
                 <View style={{ width: 10 }} />
                 <Input
@@ -191,6 +193,7 @@ class FiltersScreen extends Component {
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
+                  onChangeText={text => onChangeFilter('maxPrice', text)}
                 />
               </View>
               <View>

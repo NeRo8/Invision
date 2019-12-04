@@ -5,7 +5,7 @@ import { Divider, Icon } from 'react-native-elements';
 import styles from './styles';
 
 const ElementCategoryList = ({ item, onPressElement }) => (
-  <TouchableOpacity onPress={() => onPressElement({ categories: item.name })}>
+  <TouchableOpacity onPress={() => onPressElement({ category: item.name })}>
     <View style={styles.elementContainer}>
       <View style={styles.elementIcon}>
         <Image
