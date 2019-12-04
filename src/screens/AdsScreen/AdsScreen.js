@@ -19,26 +19,35 @@ class AdsScreen extends Component {
   }
 
   async componentDidMount() {
-    const { adsList, getAdsList } = this.props;
+    const { getAdsList } = this.props;
     SplashScreen.hide();
 
-    if (adsList.length === 0) {
-      getAdsList();
-    }
+    getAdsList();
   }
 
   showProductDetail = productId => {
     this.props.navigation.navigate('ProductDetail', { productId: productId });
   };
 
-  renderBottomPaginator = () => (
-    <View style={styles.pagination}>
-      <Text style={{ fontWeight: 'bold' }}>1/30</Text>
-    </View>
-  );
+  onEndAds = url => {
+    const { onLoadPreviousAds } = this.props;
+    if (url !== null) {
+      onLoadPreviousAds(url);
+      this.setState({
+        page: this.state.page - 1,
+      });
+    }
+  };
+
+  onNextAds = url => {
+    const { onRefreshAds } = this.props;
+    if (url !== null) {
+      onRefreshAds(url);
+    }
+  };
 
   render() {
-    const { loading, adsList } = this.props;
+    const { loading, adsList, adsConfig, page } = this.props;
 
     return (
       <View style={styles.flatListView}>
@@ -54,18 +63,29 @@ class AdsScreen extends Component {
             <ActivityIndicator size="large" color={colors.HEADER} />
           </View>
         ) : (
-          <FlatList
-            numColumns={2}
-            data={adsList}
-            renderItem={({ item }) => (
-              <ElementListAds
-                item={item}
-                onPressProduct={this.showProductDetail}
-              />
-            )}
-            contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-            keyExtractor={item => item.pk}
-          />
+          <View>
+            <FlatList
+              numColumns={2}
+              data={adsList}
+              renderItem={({ item }) => (
+                <ElementListAds
+                  item={item}
+                  onPressProduct={this.showProductDetail}
+                />
+              )}
+              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
+              keyExtractor={item => item.pk.toString()}
+              refreshing={false}
+              onRefresh={() => this.onEndAds(adsConfig.previous)}
+              onEndReached={() => this.onNextAds(adsConfig.next)}
+              onEndReachedThreshold={0.5}
+            />
+            <View style={styles.pagination}>
+              <Text style={{ fontWeight: 'bold' }}>
+                {page}/{Math.round(adsConfig.count / 15)}
+              </Text>
+            </View>
+          </View>
         )}
       </View>
     );

@@ -86,156 +86,150 @@ const PayNavigation = createStackNavigator(
   },
 );
 
-const AuthNavigation = createStackNavigator(
-  {
-    Home: {
-      screen: Auth,
-      navigationOptions: {
-        header: null,
-      },
+const AuthNavigation = createStackNavigator({
+  Home: {
+    screen: Auth,
+    navigationOptions: {
+      header: null,
     },
-    SignIn: {
-      screen: SignInScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: <HeaderSignIn activeScreen={true} />,
-          headerStyle: {
-            height: Platform.OS === 'ios' ? 80 : 100,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-          headerRight: null,
-        };
-      },
-    },
-    SignUp: {
-      screen: SignUpScreen,
-      navigationOptions: {
-        headerTitle: <HeaderSignIn activeScreen={false} />,
+  },
+  SignIn: {
+    screen: SignInScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: <HeaderSignIn activeScreen={true} />,
         headerStyle: {
           height: Platform.OS === 'ios' ? 80 : 100,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
         headerRight: null,
-      },
+      };
     },
-    ForgotPassword: {
-      screen: ForgotPasswordScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          title: 'Forgot password',
-          headerTitleStyle: {
-            fontFamily: 'Gotham-Bold',
-            color: 'white',
-            paddingTop: 10,
-            flex: 1,
-            textAlign: 'center',
-            marginRight: 40,
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: <HeaderLeft onBack={navigation.goBack} />,
-        };
+  },
+  SignUp: {
+    screen: SignUpScreen,
+    navigationOptions: {
+      headerTitle: <HeaderSignIn activeScreen={false} />,
+      headerStyle: {
+        height: Platform.OS === 'ios' ? 80 : 100,
+        backgroundColor: colors.HEADER,
       },
+      headerLeft: null,
+      headerRight: null,
     },
-    NewPassword: {
-      screen: NewPasswordScreen,
-      navigationOptions: {
-        title: 'New password',
+  },
+  ForgotPassword: {
+    screen: ForgotPasswordScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Forgot password',
         headerTitleStyle: {
-          marginHorizontal: 0,
-          width: '100%',
-          textAlign: 'center',
           fontFamily: 'Gotham-Bold',
-          fontSize: 17,
           color: 'white',
+          paddingTop: 10,
+          flex: 1,
+          textAlign: 'center',
+          marginRight: 40,
         },
         headerStyle: {
-          paddingTop: 15,
+          backgroundColor: colors.HEADER,
+        },
+        headerLeft: <HeaderLeft onBack={navigation.goBack} />,
+      };
+    },
+  },
+  NewPassword: {
+    screen: NewPasswordScreen,
+    navigationOptions: {
+      title: 'New password',
+      headerTitleStyle: {
+        marginHorizontal: 0,
+        width: '100%',
+        textAlign: 'center',
+        fontFamily: 'Gotham-Bold',
+        fontSize: 17,
+        color: 'white',
+      },
+      headerStyle: {
+        paddingTop: 15,
+        backgroundColor: colors.HEADER,
+      },
+      headerLeft: null,
+    },
+  },
+  CreateAccount: {
+    screen: PassportNavigation,
+    navigationOptions: ({ navigation }) => {
+      let index = 1;
+      let headerVisible = null;
+      let routeName = navigation.state.routes[navigation.state.index].routeName;
+
+      switch (routeName) {
+        case 'StepOne': {
+          index = 1;
+          break;
+        }
+        case 'StepTwo': {
+          index = 2;
+          break;
+        }
+        case 'StepThree': {
+          index = 3;
+          break;
+        }
+        case 'StepFour': {
+          index = 4;
+          break;
+        }
+        case 'StepFive': {
+          index = 5;
+          break;
+        }
+        case 'ChooseCategory': {
+          return {
+            headerTitle: <HeaderCreateAccount index={index} />,
+            headerLeft: null,
+            headerStyle: {
+              backgroundColor: colors.HEADER,
+              height: 65,
+            },
+            header: headerVisible,
+          };
+        }
+        default: {
+          index = 1;
+        }
+      }
+      return {
+        headerTitle: <HeaderCreateAccount index={index} />,
+        headerLeft: null,
+        headerStyle: {
+          backgroundColor: colors.HEADER,
+          height: 65,
+        },
+      };
+    },
+  },
+  Pay: {
+    screen: PayNavigation,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: <HeaderPay navigation={navigation} />,
+        headerStyle: {
+          height: 110,
           backgroundColor: colors.HEADER,
         },
         headerLeft: null,
-      },
-    },
-    CreateAccount: {
-      screen: PassportNavigation,
-      navigationOptions: ({ navigation }) => {
-        let index = 1;
-        let headerVisible = null;
-        let routeName =
-          navigation.state.routes[navigation.state.index].routeName;
-
-        switch (routeName) {
-          case 'StepOne': {
-            index = 1;
-            break;
-          }
-          case 'StepTwo': {
-            index = 2;
-            break;
-          }
-          case 'StepThree': {
-            index = 3;
-            break;
-          }
-          case 'StepFour': {
-            index = 4;
-            break;
-          }
-          case 'StepFive': {
-            index = 5;
-            break;
-          }
-          case 'ChooseCategory': {
-            return {
-              headerTitle: <HeaderCreateAccount index={index} />,
-              headerLeft: null,
-              headerStyle: {
-                backgroundColor: colors.HEADER,
-                height: 65,
-              },
-              header: headerVisible,
-            };
-          }
-          default: {
-            index = 1;
-          }
-        }
-        return {
-          headerTitle: <HeaderCreateAccount index={index} />,
-          headerLeft: null,
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-            height: 65,
-          },
-        };
-      },
-    },
-    Pay: {
-      screen: PayNavigation,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: <HeaderPay navigation={navigation} />,
-          headerStyle: {
-            height: 110,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-        };
-      },
-    },
-    MakePicture: {
-      screen: MakePictureScreen,
-      navigationOptions: {
-        header: null,
-      },
+      };
     },
   },
-  {
-    headerMode: 'float',
+  MakePicture: {
+    screen: MakePictureScreen,
+    navigationOptions: {
+      header: null,
+    },
   },
-);
+});
 
 export default AuthNavigation;

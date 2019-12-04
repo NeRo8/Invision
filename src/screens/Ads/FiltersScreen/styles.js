@@ -66,6 +66,7 @@ export default StyleSheet.create({
     borderWidth: 0.5,
     borderColor: 'silver',
     height: 40,
+    backgroundColor: 'white',
     //borderBottomWidth: 0,
   },
   inputS: {
@@ -86,6 +87,7 @@ export default StyleSheet.create({
     height: 14,
   },
   categoryElement: {
+    backgroundColor: 'white',
     marginHorizontal: 10,
     height: 100,
     width: 100,

@@ -1,20 +1,21 @@
 import {
   SET_ADS_ADS,
   SET_ADS_FAVORITES,
-  SET_ADS_CATEGORIES,
   SET_ADS_AD,
   SET_LOADING,
   SET_ERROR,
+  SET_PAGE,
+  DIV_PAGE,
 } from '../actions/adsAction';
 
 const initState = {
   adsList: [],
-  categoriesList: [],
   adsFavoritesList: [],
   adData: [],
   error: null,
   loading: true,
   loadingAd: true,
+  page: 0,
 };
 
 const adsReducer = (state = initState, action) => {
@@ -44,16 +45,22 @@ const adsReducer = (state = initState, action) => {
         loadingAd: action.loadingAd,
       };
     }
-    case SET_ADS_CATEGORIES: {
-      return {
-        ...state,
-        categoriesList: action.categories,
-      };
-    }
     case SET_ADS_FAVORITES: {
       return {
         ...state,
         adsFavoritesList: action.ads,
+      };
+    }
+    case SET_PAGE: {
+      return {
+        ...state,
+        page: action.page,
+      };
+    }
+    case DIV_PAGE: {
+      return {
+        ...state,
+        page: state.page - 1,
       };
     }
     default:

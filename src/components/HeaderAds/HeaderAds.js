@@ -21,6 +21,12 @@ class HeaderAds extends Component {
     this.props.navigation.navigate('Filters');
   };
 
+  handlePressSubmit = event => {
+    const { getAdsByQuery } = this.props;
+
+    getAdsByQuery(event.text);
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -40,6 +46,10 @@ class HeaderAds extends Component {
             leftIconContainerStyle={styles.leftIconContainer}
             inputContainerStyle={styles.inputContainerS}
             containerStyle={styles.inputContainer}
+            returnKeyType="search"
+            onSubmitEditing={({ nativeEvent }) =>
+              this.handlePressSubmit(nativeEvent)
+            }
           />
         </View>
         <View style={styles.filtersContainer}>
