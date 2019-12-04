@@ -12,9 +12,24 @@ import { Input } from 'react-native-elements';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import TextPicker from '../../../components/TextPicker';
 
-import { colors, globalStyles } from '../../../constants';
+import { colors } from '../../../constants';
 
 import styles from './styles';
+
+const ElementCategories = ({ element, onPressElement }) => (
+  <TouchableOpacity
+    style={styles.categoryElement}
+    onPress={() => onPressElement('category', element.name)}>
+    {/**
+      <Image
+        source={}
+        style={{ width: 30, height: 30 }}
+      />
+       */}
+    <View style={{ width: 30, height: 30 }}></View>
+    <Text style={styles.titleCategory}>{element.name}</Text>
+  </TouchableOpacity>
+);
 
 class FiltersScreen extends Component {
   constructor(props) {
@@ -23,10 +38,6 @@ class FiltersScreen extends Component {
       scrollEnabled: true,
       min: 0,
       max: 1000000,
-      multiSliderValue: [0, 400000],
-
-      query: null,
-      location: null,
 
       activeFilterTypeAd: 'private',
       typeOfAd: [
@@ -36,6 +47,7 @@ class FiltersScreen extends Component {
           active: true,
           func: () => {
             this.setState({ activeFilterTypeAd: 'private' });
+            this.props.onChangeFilter('typeOfAd', 'private');
           },
         },
         {
@@ -44,6 +56,7 @@ class FiltersScreen extends Component {
           active: false,
           func: () => {
             this.setState({ activeFilterTypeAd: 'business' });
+            this.props.onChangeFilter('typeOfAd', 'business');
           },
         },
         {
@@ -52,6 +65,7 @@ class FiltersScreen extends Component {
           active: false,
           func: () => {
             this.setState({ activeFilterTypeAd: 'all' });
+            this.props.onChangeFilter('typeOfAd', 'all');
           },
         },
       ],
@@ -64,6 +78,7 @@ class FiltersScreen extends Component {
           active: true,
           func: () => {
             this.setState({ activeFilterProduct: 'new' });
+            this.props.onChangeFilter('stateOfProduct', 'new');
           },
         },
         {
@@ -72,6 +87,7 @@ class FiltersScreen extends Component {
           active: false,
           func: () => {
             this.setState({ activeFilterProduct: 'used' });
+            this.props.onChangeFilter('stateOfProduct', 'used');
           },
         },
         {
@@ -80,15 +96,18 @@ class FiltersScreen extends Component {
           active: false,
           func: () => {
             this.setState({ activeFilterProduct: 'all' });
+            this.props.onChangeFilter('stateOfProduct', 'all');
           },
         },
       ],
-
-      activeCategory: null,
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { loadCategories } = this.props;
+
+    loadCategories();
+  }
 
   handlePressTypeAd = id => {
     const { typeOfAd } = this.state;
@@ -117,26 +136,15 @@ class FiltersScreen extends Component {
   enableScroll = () => this.setState({ scrollEnabled: true });
   disableScroll = () => this.setState({ scrollEnabled: false });
 
-  onMultiSliderValueChange = values =>
-    this.setState({ multiSliderValue: values });
+  onMultiSliderValueChange = values => {
+    const { onChangeFilter } = this.props;
 
-  onChangeMinValue = min => {
-    const { multiSliderValue } = this.state;
-    this.setState({
-      multiSliderValue: [parseInt(min), multiSliderValue[1]],
-    });
+    onChangeFilter('minPrice', values[0]);
+    onChangeFilter('maxPrice', values[1]);
   };
-
-  onChangeMaxValue = max => {
-    const { multiSliderValue } = this.state;
-    this.setState({
-      multiSliderValue: [multiSliderValue[0], parseInt(max)],
-    });
-  };
-
   render() {
-    const { min, max, multiSliderValue, typeOfAd, stateOfProduct } = this.state;
-    const {} = this.props;
+    const { min, max, typeOfAd, stateOfProduct } = this.state;
+    const { categories, onChangeFilter, filters } = this.props;
 
     return (
       <ScrollView
@@ -144,9 +152,7 @@ class FiltersScreen extends Component {
         scrollEnabled={this.state.scrollEnabled}>
         <View style={styles.container}>
           <View style={styles.filterElement}>
-            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
-              TYPE OF AD
-            </Text>
+            <Text style={styles.textBlock}>TYPE OF AD</Text>
             <View style={styles.selectBlock}>
               <TextPicker
                 dataList={typeOfAd}
@@ -155,9 +161,7 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
-              STATE OF PRODUCT
-            </Text>
+            <Text style={styles.textBlock}>STATE OF PRODUCT</Text>
             <View style={styles.selectBlock}>
               <TextPicker
                 dataList={stateOfProduct}
@@ -166,38 +170,34 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
-              Price
-            </Text>
+            <Text style={styles.textBlock}>Price</Text>
             <View>
               <View style={styles.blockPrice}>
                 <Input
-                  value={this.state.multiSliderValue[0].toString()}
+                  value={filters.minPrice.toString()}
                   placeholder="0"
                   label="From"
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
-                  onChangeText={minValue => this.onChangeMinValue(minValue)}
                 />
                 <View style={{ width: 10 }} />
                 <Input
-                  value={this.state.multiSliderValue[1].toString()}
+                  value={filters.maxPrice.toString()}
                   placeholder="0"
                   label="To"
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
-                  onChangeText={maxValue => this.onChangeMaxValue(maxValue)}
                 />
               </View>
               <View>
                 <MultiSlider
                   min={min}
                   max={max}
-                  values={multiSliderValue}
+                  values={[filters.minPrice, filters.maxPrice]}
                   sliderLength={Dimensions.get('window').width - 20}
                   markerStyle={styles.markerStyle}
                   pressedMarkerStyle={styles.markerStyle}
@@ -213,40 +213,26 @@ class FiltersScreen extends Component {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                   }}>
-                  <Text style={styles.textElement}>
-                    {this.state.multiSliderValue[0]}
-                  </Text>
-                  <Text style={styles.textElement}>
-                    {this.state.multiSliderValue[1]}
-                  </Text>
+                  <Text style={styles.textElement}>{filters.minPrice}</Text>
+                  <Text style={styles.textElement}>{filters.maxPrice}</Text>
                 </View>
               </View>
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={[globalStyles.gothamBold, styles.textBlock]}>
-              CHOOSE CATEGORY
-            </Text>
+            <Text style={styles.textBlock}>CHOOSE CATEGORY</Text>
             <FlatList
               horizontal
               contentContainerStyle={styles.blockPrice}
               showsHorizontalScrollIndicator={false}
-              data={[]}
+              data={categories}
               renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.categoryElement}
-                  onPress={() => this.setState({ activeCategory: item.name })}>
-                  {/**
-                  <Image
-                    source={}
-                    style={{ width: 30, height: 30 }}
-                  />
-                   */}
-                  <View style={{ width: 30, height: 30 }}></View>
-                  <Text style={styles.titleCategory}>{item.name}</Text>
-                </TouchableOpacity>
+                <ElementCategories
+                  element={item}
+                  onPressElement={onChangeFilter}
+                />
               )}
-              keyExtractor={items => items.id}
+              keyExtractor={items => items.pk.toString()}
             />
           </View>
         </View>

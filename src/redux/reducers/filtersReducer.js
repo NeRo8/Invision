@@ -2,10 +2,13 @@ import { SET_FILTER } from '../actions/filtersAction';
 
 const initialState = {
   filters: {
+    query: null,
+    city: null,
     typeOfAd: 'private',
     stateOfProduct: 'new',
     minPrice: 0,
     maxPrice: 40000,
+    category: null,
     categories: null,
   },
 };
