@@ -6,11 +6,10 @@ const ADS = 'https://staging.masaha.app/api/v1/ads/';
 export const SET_ADS_ADS = 'SET_ADS_ADS';
 export const SET_ADS_AD = 'SET_ADS_AD';
 export const SET_ADS_FAVORITES = 'SET_ADS_FAVORITES';
+export const ADD_NEXT_ADS = 'ADD_NEXT_ADS';
 
 export const SET_ERROR = 'SET_ERROR';
 export const SET_LOADING = 'SET_LOADING';
-export const SET_PAGE = 'SET_PAGE';
-export const DIV_PAGE = 'DIV_PAGE';
 
 const setAdsAds = ads => ({
   type: SET_ADS_ADS,
@@ -27,6 +26,11 @@ const setFavorites = ads => ({
   ads,
 });
 
+const addNextAds = ads => ({
+  type: ADD_NEXT_ADS,
+  payload: ads,
+});
+
 const setError = error => ({
   type: SET_ERROR,
   error,
@@ -36,15 +40,6 @@ const setLoading = (loading, loadingAd) => ({
   type: SET_LOADING,
   loading,
   loadingAd,
-});
-
-const setPage = page => ({
-  type: SET_PAGE,
-  page,
-});
-
-const divPage = () => ({
-  type: DIV_PAGE,
 });
 
 //API REDUX
@@ -82,21 +77,12 @@ export const getAds = filters => dispatch => {
     }
   }
 
-  console.log('URL', requestString);
-
   fetch(requestString, {
     method: 'GET',
   })
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsAds(responseJson));
-
-      if (responseJson.next !== null) {
-        const getPage = responseJson.next.match(/offset=(\d+)/);
-        if (getPage !== null) {
-          dispatch(setPage(getPage[1] / 15));
-        }
-      }
       dispatch(setLoading(false, true));
     })
     .catch(error => {
@@ -105,34 +91,12 @@ export const getAds = filters => dispatch => {
 };
 
 export const getNextAds = url => dispatch => {
-  const getPage = url.match(/offset=(\d+)/);
-  if (getPage !== null) {
-    const page = (parseInt(getPage[1]) + 15) / 15;
-
-    dispatch(setPage(page));
-  }
-
   fetch(url, {
     method: 'GET',
   })
     .then(response => response.json())
     .then(responseJson => {
-      dispatch(setAdsAds(responseJson));
-    })
-    .catch(error => {
-      dispatch(setError(error));
-    });
-};
-
-export const getPreviousAds = url => dispatch => {
-  dispatch(divPage());
-
-  fetch(url, {
-    method: 'GET',
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setAdsAds(responseJson));
+      dispatch(addNextAds(responseJson));
     })
     .catch(error => {
       dispatch(setError(error));

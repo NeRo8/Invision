@@ -1,11 +1,7 @@
 import { connect } from 'react-redux';
 import AdsScreen from './AdsScreen';
 
-import {
-  getAds,
-  getNextAds,
-  getPreviousAds,
-} from '../../redux/actions/adsAction';
+import { getAds, getNextAds } from '../../redux/actions/adsAction';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +9,6 @@ const mapStateToProps = state => {
     adsList: state.ads.adsList.results,
     loading: state.ads.loading,
     error: state.ads.error,
-    page: state.ads.page,
   };
 };
 
@@ -24,9 +19,6 @@ const mapDispatchToProps = dispatch => {
     },
     onRefreshAds: url => {
       dispatch(getNextAds(url));
-    },
-    onLoadPreviousAds: url => {
-      dispatch(getPreviousAds(url));
     },
   };
 };

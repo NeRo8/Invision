@@ -75,14 +75,12 @@ class AdsScreen extends Component {
               )}
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
               keyExtractor={item => item.pk.toString()}
-              refreshing={false}
-              onRefresh={() => this.onEndAds(adsConfig.previous)}
               onEndReached={() => this.onNextAds(adsConfig.next)}
               onEndReachedThreshold={0.5}
             />
             <View style={styles.pagination}>
               <Text style={{ fontWeight: 'bold' }}>
-                {page}/{Math.round(adsConfig.count / 15)}
+                {adsList.length}/{adsConfig.count}
               </Text>
             </View>
           </View>
