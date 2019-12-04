@@ -4,8 +4,8 @@ const initialState = {
   filters: {
     query: null,
     city: null,
-    typeOfAd: 'private',
-    stateOfProduct: 'new',
+    typeOfAd: 'all',
+    stateOfProduct: 'all',
     minPrice: 0,
     maxPrice: 900000,
     category: null,

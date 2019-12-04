@@ -47,7 +47,7 @@ class AdsScreen extends Component {
   };
 
   render() {
-    const { loading, adsList, adsConfig, page } = this.props;
+    const { loading, adsList, adsConfig, getAdsList } = this.props;
 
     return (
       <View style={styles.flatListView}>
@@ -75,6 +75,8 @@ class AdsScreen extends Component {
               )}
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
               keyExtractor={item => item.pk.toString()}
+              refreshing={loading}
+              onRefresh={() => getAdsList(this.props.filters)}
               onEndReached={() => this.onNextAds(adsConfig.next)}
               onEndReachedThreshold={0.5}
             />

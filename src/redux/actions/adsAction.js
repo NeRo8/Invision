@@ -77,6 +77,8 @@ export const getAds = filters => dispatch => {
     }
   }
 
+  console.log('URL', requestString);
+
   fetch(requestString, {
     method: 'GET',
   })
