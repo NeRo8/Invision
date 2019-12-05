@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-} from 'react-native';
+import { ScrollView, View, Text, Image, Dimensions } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 
 import StarRating from 'react-native-star-rating';
@@ -39,9 +31,6 @@ class OrganisationAndServicesDetail extends Component {
   }
 
   render() {
-    const remoteImage =
-      this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
-
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.header}>

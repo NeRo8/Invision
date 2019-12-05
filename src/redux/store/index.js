@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 
 import authReducer from '../reducers/authReducer';
 import adsReducer from '../reducers/adsReducer';
-import inKuwaitReducer from '../reducers/inKuwaitReducer';
+import inKuwaitReducer from '../reducers/inKuwait';
 import filtersReducer from '../reducers/filtersReducer';
 
 const rootReducer = combineReducers({

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { CheckBox, Button } from 'react-native-elements';
 
 import styles from './styles';
-import { colors, globalStyles } from '../../../../constants';
+import { colors } from '../../../../constants';
 
 const ElementFl = ({ element, onChange }) => (
   <View style={styles.elementContainer}>
@@ -18,13 +18,8 @@ const ElementFl = ({ element, onChange }) => (
         onChange(element.title);
       }}
     />
-    <Text style={[globalStyles.gothamBook, styles.textElement]}>
-      {' '}
-      {element.title}
-    </Text>
-    <Text style={[globalStyles.gothamBook, styles.textCount]}>
-      {element.count}
-    </Text>
+    <Text style={styles.textElement}>{element.title}</Text>
+    <Text style={styles.textCount}>{element.count}</Text>
   </View>
 );
 
@@ -33,7 +28,7 @@ class FaqFilter extends Component {
     super(props);
     this.state = {
       category: [
-        { id: 0, title: 'Education', count: 10, checked: false },
+        { id: 0, title: 'Education1', count: 10, checked: false },
         { id: 1, title: 'Health', count: 3, checked: false },
         { id: 2, title: 'Personal life', count: 5, checked: false },
         { id: 3, title: 'Adventures', count: 3, checked: false },
@@ -73,18 +68,13 @@ class FaqFilter extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={[globalStyles.gothamBold, styles.textHeader]}>
-            SORTING BY
-          </Text>
+          <Text style={styles.textHeader}>SORTING BY</Text>
           <View style={styles.containerRow}>
             <TouchableOpacity
               onPress={() => this.handleChangeSorting('date')}
               style={filters.date ? styles.activeBlock : styles.unactiveBlock}>
               <Text
-                style={[
-                  globalStyles.gothamMediumRegular,
-                  filters.date ? styles.activeText : styles.unactiveText,
-                ]}>
+                style={filters.date ? styles.activeText : styles.unactiveText}>
                 Date
               </Text>
             </TouchableOpacity>
@@ -94,19 +84,16 @@ class FaqFilter extends Component {
                 filters.answers ? styles.activeBlock : styles.unactiveBlock
               }>
               <Text
-                style={[
-                  globalStyles.gothamMediumRegular,
-                  filters.answers ? styles.activeText : styles.unactiveText,
-                ]}>
+                style={
+                  filters.answers ? styles.activeText : styles.unactiveText
+                }>
                 Answers
               </Text>
             </TouchableOpacity>
           </View>
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={[globalStyles.gothamBold, styles.textHeader]}>
-            SELECT CATEGORY
-          </Text>
+          <Text style={styles.textHeader}>SELECT CATEGORY</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
             data={this.state.category}
@@ -114,14 +101,12 @@ class FaqFilter extends Component {
               <ElementFl element={item} onChange={this.handleChangeChecked} />
             )}
             contentContainerStyle={{ marginTop: 10 }}
-            ItemSeparatorComponent={() => (
-              <View style={{ borderWidth: 0.3, borderColor: 'silver' }} />
-            )}
+            ItemSeparatorComponent={() => <View style={styles.divider} />}
           />
         </View>
         <Button
           title="Done"
-          titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
+          titleStyle={styles.btnTitle}
           buttonStyle={styles.btnStyle}
           containerStyle={styles.btnContainer}
           onPress={() => this.props.navigation.goBack()}

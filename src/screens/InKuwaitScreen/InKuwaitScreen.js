@@ -7,9 +7,6 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
-import { connect } from 'react-redux';
-
-import { getCountList } from '../../redux/actions/inKuwaitAction';
 
 import styles from './styles';
 
@@ -32,7 +29,9 @@ class InKuwaitScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.getCountCategory();
+    const { getCountCategory } = this.props;
+
+    getCountCategory();
   }
 
   render() {
@@ -45,6 +44,7 @@ class InKuwaitScreen extends Component {
           barStyle={'light-content'}
           translucent
         />
+
         <Text style={styles.headerTitle}>CHOOSE ONE OF CATEGORY</Text>
         <View style={styles.containerBody}>
           <ElementCategory
@@ -77,18 +77,4 @@ class InKuwaitScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    countList: state.inKuwait.countList,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getCountCategory: () => {
-      dispatch(getCountList());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(InKuwaitScreen);
+export default InKuwaitScreen;

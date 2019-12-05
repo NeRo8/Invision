@@ -18,7 +18,8 @@ class HeaderInKuwaitCategory extends Component {
       onPressLeftIcon,
       rightIcon = null,
       title,
-      onSearch = null,
+      onSearchQuery = null,
+      onSubmitQuery = null,
     } = this.props;
     return (
       <View style={styles.container}>
@@ -57,6 +58,8 @@ class HeaderInKuwaitCategory extends Component {
             inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStyle}
             containerStyle={styles.inputContainer}
+            onChangeText={text => onSearchQuery(text)}
+            onSubmitEditing={() => onSubmitQuery()}
           />
         </View>
       </View>
