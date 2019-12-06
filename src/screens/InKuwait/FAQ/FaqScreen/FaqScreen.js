@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { connect } from 'react-redux';
 
 import TextPicker from '../../../../components/TextPicker';
-
-import { getQuestions } from '../../../../redux/actions/inKuwaitAction';
+import HeaderInKuwaitCategory from '../../../../components/Headers/HeaderInKuwaitCategory';
 
 import { colors } from '../../../../constants';
 import styles from './styles';
-import HeaderInKuwaitCategory from '../../../../components/Headers/HeaderInKuwaitCategory';
-
 const ElementFlatList = ({ item, onPressElement }) => (
-  <TouchableOpacity style={styles.elementFL} onPress={() => onPressElement()}>
+  <TouchableOpacity
+    style={styles.elementFL}
+    onPress={() => onPressElement(item.pk)}>
     <View style={styles.roundView}>
       <Text style={styles.roundText}>{item.answer_count}</Text>
     </View>
@@ -49,7 +47,9 @@ class FaqScreen extends Component {
   }
 
   componentDidMount = () => {
-    this.props.getQuestionsList();
+    const { getFaqsList } = this.props;
+
+    getFaqsList();
   };
 
   handlePressElementFilter = id => {
@@ -64,13 +64,13 @@ class FaqScreen extends Component {
     });
   };
 
-  handlePressElement = () => {
-    this.props.navigation.navigate('FaqDetail');
+  handlePressElement = elementId => {
+    this.props.navigation.navigate('FaqDetail', { id: elementId });
   };
 
   render() {
     const { filters } = this.state;
-    const { data, navigation } = this.props;
+    const { data, navigation, onSearch, getFaqsList, filtersFaq } = this.props;
 
     return (
       <View style={styles.container}>
@@ -87,7 +87,10 @@ class FaqScreen extends Component {
               onPress={() => navigation.navigate('FaqFilter')}
             />
           }
+          onSearchQuery={onSearch}
+          onSubmitQuery={() => getFaqsList(filtersFaq)}
         />
+
         <View style={styles.headerBlock}>
           <TextPicker
             dataList={filters}
@@ -102,7 +105,7 @@ class FaqScreen extends Component {
               onPressElement={this.handlePressElement}
             />
           )}
-          keyExtractor={item => item.pk}
+          keyExtractor={item => item.pk.toString()}
         />
         <Icon
           name="ios-add"
@@ -121,18 +124,4 @@ class FaqScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    data: state.inKuwait.questionsList,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getQuestionsList: () => {
-      dispatch(getQuestions());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FaqScreen);
+export default FaqScreen;

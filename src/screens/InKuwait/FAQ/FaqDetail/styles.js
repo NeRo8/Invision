@@ -1,6 +1,12 @@
 import { StyleSheet, Platform } from 'react-native';
 import { colors } from '../../../../constants';
 
+import {
+  gothamMediumRegular,
+  gothamBook,
+  gothamBold,
+} from '../../../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -8,6 +14,7 @@ export default StyleSheet.create({
     padding: 15,
   },
   titleHeader: {
+    ...gothamMediumRegular,
     fontSize: 17,
     lineHeight: 30,
     marginBottom: 15,
@@ -28,10 +35,12 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   blockText: {
+    ...gothamBook,
     fontSize: 13,
     lineHeight: 26,
   },
   description: {
+    ...gothamBook,
     marginTop: 20,
     fontSize: 15,
     lineHeight: 27,
@@ -49,12 +58,14 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
   },
   blockBottomText: {
+    ...gothamBook,
     fontSize: 17,
     lineHeight: 26,
     fontWeight: '300',
     color: colors.LABEL_GREY_COLOR,
   },
   btnTitle: {
+    ...gothamBold,
     color: 'white',
     fontSize: 15,
     lineHeight: 24,

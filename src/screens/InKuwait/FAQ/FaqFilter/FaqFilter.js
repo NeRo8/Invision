@@ -5,20 +5,18 @@ import { CheckBox, Button } from 'react-native-elements';
 import styles from './styles';
 import { colors } from '../../../../constants';
 
-const ElementFl = ({ element, onChange }) => (
+const ElementFl = ({ element, activeElement, onPressElement }) => (
   <View style={styles.elementContainer}>
     <CheckBox
-      checked={element.checked}
+      checked={activeElement === element.pk ? true : false}
       iconType="ionicon"
       checkedIcon="ios-checkmark-circle"
       uncheckedIcon="ios-radio-button-off"
       checkedColor={colors.HEADER}
       containerStyle={{ marginRight: 15 }}
-      onPress={() => {
-        onChange(element.title);
-      }}
+      onPress={() => onPressElement(element.pk)}
     />
-    <Text style={styles.textElement}>{element.title}</Text>
+    <Text style={styles.textElement}>{element.name}</Text>
     <Text style={styles.textCount}>{element.count}</Text>
   </View>
 );
@@ -27,19 +25,18 @@ class FaqFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: [
-        { id: 0, title: 'Education1', count: 10, checked: false },
-        { id: 1, title: 'Health', count: 3, checked: false },
-        { id: 2, title: 'Personal life', count: 5, checked: false },
-        { id: 3, title: 'Adventures', count: 3, checked: false },
-        { id: 4, title: 'Childs', count: 13, checked: false },
-        { id: 5, title: 'Love', count: 6, checked: false },
-      ],
       filters: {
         date: true,
         answers: false,
       },
+      activeCategory: null,
     };
+  }
+
+  componentDidMount() {
+    const { getCategoriesList } = this.props;
+
+    getCategoriesList();
   }
 
   handleChangeSorting = name => {
@@ -52,19 +49,28 @@ class FaqFilter extends Component {
     });
   };
 
-  handleChangeChecked = elementName => {
-    const newCategory = this.state.category.map(item =>
-      item.title === elementName
-        ? { ...item, checked: !item.checked }
-        : { ...item },
-    );
+  handlePressElement = id => {
+    const { setFilters } = this.props;
+
     this.setState({
-      category: newCategory,
+      activeCategory: id,
     });
+
+    setFilters('category', id);
+  };
+
+  handlePressDone = () => {
+    const { filters, getFaqsList, navigation } = this.props;
+
+    getFaqsList(filters);
+
+    navigation.goBack();
   };
 
   render() {
-    const { filters } = this.state;
+    const { filters, activeCategory } = this.state;
+    const { categories } = this.props;
+
     return (
       <View style={styles.container}>
         <View>
@@ -96,9 +102,13 @@ class FaqFilter extends Component {
           <Text style={styles.textHeader}>SELECT CATEGORY</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={this.state.category}
+            data={categories}
             renderItem={({ item }) => (
-              <ElementFl element={item} onChange={this.handleChangeChecked} />
+              <ElementFl
+                element={item}
+                activeElement={activeCategory}
+                onPressElement={this.handlePressElement}
+              />
             )}
             contentContainerStyle={{ marginTop: 10 }}
             ItemSeparatorComponent={() => <View style={styles.divider} />}
@@ -109,7 +119,7 @@ class FaqFilter extends Component {
           titleStyle={styles.btnTitle}
           buttonStyle={styles.btnStyle}
           containerStyle={styles.btnContainer}
-          onPress={() => this.props.navigation.goBack()}
+          onPress={this.handlePressDone}
         />
       </View>
     );

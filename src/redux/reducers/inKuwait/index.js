@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import servicesReducer from './servicesReducer';
+import faqReducer from './faqReducer';
 
 import {
   SET_COUNT_LIST,
@@ -42,4 +43,5 @@ const mainReducer = (state = initialState, action) => {
 export default combineReducers({
   main: mainReducer,
   services: servicesReducer,
+  faq: faqReducer,
 });

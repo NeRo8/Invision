@@ -179,20 +179,15 @@ const FaqNavigation = createStackNavigator(
       screen: FaqCreateComment,
       navigationOptions: ({ navigation }) => {
         return {
-          title: 'Write comment',
-          headerTitleStyle: {
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            color: 'white',
-            flex: 1,
-            marginRight: 70,
-            textAlign: 'center',
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-            paddingTop: 15,
-          },
-          headerLeft: <HeaderLeftIcon goBack={() => navigation.goBack()} />,
+          headerTitle: (
+            <DefaultHeader
+              title="Write comment"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
         };
       },
     },
