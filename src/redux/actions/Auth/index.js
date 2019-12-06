@@ -1,26 +1,31 @@
-import { storeData } from '../../utils/AsyncStorage';
-
 const USERS = 'https://staging.masaha.app/api/v1/users';
 
 export const SIGN_IN = 'SIGN_IN';
 export const LOGOUT = 'LOGOUT';
-export const SET_ERROR = 'SET_ERROR';
+export const SET_LOADING = 'SET_USER_LOADING';
+export const SET_ERROR = 'SET_USER_ERROR';
 
-const setProfile = profile => ({
+const setUser = user => ({
   type: SIGN_IN,
-  profile,
+  payload: user,
 });
 
 const logout = () => ({
   type: LOGOUT,
 });
 
+const setLoading = loading => ({
+  type: SET_LOADING,
+  payload: loading,
+});
+
 const setError = error => ({
   type: SET_ERROR,
-  error,
+  payload: error,
 });
 
 export const login = (emailIncome, paswordIncome) => dispatch => {
+  dispatch(setLoading(true));
   fetch(`${USERS}/login/`, {
     method: 'POST',
     headers: {
@@ -33,8 +38,8 @@ export const login = (emailIncome, paswordIncome) => dispatch => {
   })
     .then(response => response.json())
     .then(responseJson => {
-      dispatch(setProfile(responseJson));
-      storeData('token', responseJson.access_token);
+      dispatch(setUser(responseJson));
+      dispatch(setLoading(false));
     })
     .catch(error => dispatch(setError(error)));
 };

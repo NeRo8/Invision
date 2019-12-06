@@ -1,24 +1,25 @@
-import { SIGN_IN, LOGOUT } from '../actions/authAction';
+import { SIGN_IN, LOGOUT } from '../../actions/Auth';
 
 const initState = {
-  profile: null,
+  user: null,
   authStatus: false,
+  loading: false,
   error: null,
 };
 
-const signInReducer = (state = initState, action) => {
+const authReducer = (state = initState, action) => {
   switch (action.type) {
     case SIGN_IN: {
       return {
         ...state,
-        profile: action.profile,
+        user: action.payload,
         authStatus: true,
       };
     }
     case LOGOUT: {
       return {
         ...state,
-        profile: null,
+        user: null,
         authStatus: false,
       };
     }
@@ -28,4 +29,4 @@ const signInReducer = (state = initState, action) => {
   }
 };
 
-export default signInReducer;
+export default authReducer;
