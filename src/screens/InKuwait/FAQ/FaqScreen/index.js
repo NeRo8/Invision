@@ -9,8 +9,10 @@ import {
 
 const mapStateToProps = state => {
   return {
+    loading: state.inKuwait.faq.loading,
     data: state.inKuwait.faq.faqList.results,
     filtersFaq: state.inKuwait.faq.filters,
+    authStatus: state.auth.authStatus,
   };
 };
 

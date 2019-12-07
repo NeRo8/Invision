@@ -7,6 +7,7 @@ import { getFaqDetail } from '../../../../redux/actions/inKuwait/faqAction';
 const mapStateToProps = state => {
   return {
     questionDetail: state.inKuwait.faq.faqDetail,
+    authStatus: state.auth.authStatus,
   };
 };
 

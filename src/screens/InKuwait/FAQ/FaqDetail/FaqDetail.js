@@ -20,7 +20,7 @@ class FaqDetail extends Component {
   }
 
   render() {
-    const { questionDetail } = this.props;
+    const { questionDetail, authStatus } = this.props;
 
     return (
       <ScrollView contentContainerStyle={styles.container}>
@@ -90,6 +90,7 @@ class FaqDetail extends Component {
         </TouchableOpacity>
 
         <Button
+          disabled={!authStatus}
           title="Write comment"
           titleStyle={styles.btnTitle}
           buttonStyle={styles.buttonSend}

@@ -85,3 +85,28 @@ export const getFaqDetail = id => dispatch => {
     })
     .catch(error => dispatch(setError(error)));
 };
+
+export const setQuestion = (token, data) => dispatch => {
+  const requestData = new FormData();
+
+  for (const key in data) {
+    requestData.append(key, data[key]);
+  }
+
+  dispatch(setLoading(true));
+
+  fetch(`${DEFAULT_URL}/ask-question/`, {
+    method: 'post',
+
+    headers: {
+      Authorization: `Token ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+    body: requestData,
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setLoading(false));
+    })
+    .catch(error => dispatch(setError(error)));
+};

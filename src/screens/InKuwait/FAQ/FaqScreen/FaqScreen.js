@@ -68,9 +68,23 @@ class FaqScreen extends Component {
     this.props.navigation.navigate('FaqDetail', { id: elementId });
   };
 
+  onRefresh = () => {
+    const { getFaqsList, filtersFaq } = this.props;
+
+    getFaqsList(filtersFaq);
+  };
+
   render() {
     const { filters } = this.state;
-    const { data, navigation, onSearch, getFaqsList, filtersFaq } = this.props;
+    const {
+      data,
+      navigation,
+      onSearch,
+      getFaqsList,
+      filtersFaq,
+      loading,
+      authStatus,
+    } = this.props;
 
     return (
       <View style={styles.container}>
@@ -106,19 +120,23 @@ class FaqScreen extends Component {
             />
           )}
           keyExtractor={item => item.pk.toString()}
+          refreshing={loading}
+          onRefresh={this.onRefresh}
         />
-        <Icon
-          name="ios-add"
-          type="ionicon"
-          color={colors.HEADER}
-          iconStyle={{
-            width: '100%',
-          }}
-          containerStyle={styles.iconAddContainer}
-          onPress={() => {
-            this.props.navigation.navigate('FaqAsk');
-          }}
-        />
+        {authStatus ? (
+          <Icon
+            name="ios-add"
+            type="ionicon"
+            color={colors.HEADER}
+            iconStyle={{
+              width: '100%',
+            }}
+            containerStyle={styles.iconAddContainer}
+            onPress={() => {
+              this.props.navigation.navigate('FaqAsk');
+            }}
+          />
+        ) : null}
       </View>
     );
   }
