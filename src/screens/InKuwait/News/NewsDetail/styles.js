@@ -22,6 +22,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   title: {
+    ...gothamMediumRegular,
     fontSize: 17,
     lineHeight: 30,
   },
@@ -35,7 +36,7 @@ export default StyleSheet.create({
     fontSize: 15,
     lineHeight: 27,
     fontWeight: '300',
-    textAlign: 'justify',
+    //textAlign: 'justify',
     color: colors.TITLE,
   },
   descriptionView: {
@@ -61,10 +62,12 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   blockText: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 26,
   },
   blockBottomText: {
+    ...gothamBook,
     fontSize: 17,
     lineHeight: 26,
     fontWeight: '300',
@@ -79,5 +82,11 @@ export default StyleSheet.create({
     backgroundColor: colors.HEADER,
     height: 50,
     marginVertical: 15,
+  },
+  btnStyle: {
+    ...gothamBold,
+    color: 'white',
+    fontSize: 15,
+    lineHeight: 24,
   },
 });

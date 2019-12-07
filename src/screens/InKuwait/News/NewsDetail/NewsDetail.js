@@ -5,70 +5,39 @@ import {
   Text,
   Image,
   Dimensions,
-  StatusBar,
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
-import Moment from 'moment';
+import moment from 'moment';
 import HTML from 'react-native-render-html';
-
-import { connect } from 'react-redux';
-import { getNewsById } from '../../../../redux/actions/inKuwaitAction';
-import PropTypes from 'prop-types';
 
 import styles from './styles';
 import { colors, globalStyles } from '../../../../constants';
 
 const imgWidth = 1600;
 const imgHeight = 750;
-
 class NewsDetail extends Component {
-  static propTypes = {
-    loading: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    loading: true,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
       iWidth: 0,
       iHeight: 0,
-      imgURL:
-        'https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/north-america/united-states/newyork/newyork_NationalGeographic_2328428.adapt.1900.1.jpg',
     };
   }
 
   componentDidMount() {
-    const { getNews } = this.props;
-    const id = this.props.navigation.getParam('id', null);
-    getNews(id);
+    const { getNews, setLoad } = this.props;
 
-    Image.getSize(this.state.imgURL, (width, height) => {
-      this.setState({
-        iWidth: width,
-        iHeight: height,
-      });
-    });
+    setLoad(true);
+
+    const id = this.props.navigation.getParam('id', null);
+
+    getNews(id);
   }
 
-  onPressArticleComents = () => {
-    this.props.navigation.navigate('NewsAnswers', {
-      comments: this.props.newsData.comments,
-    });
-  };
-
-  onPressWriteComment = () => {
-    this.props.navigation.navigate('NewsCreateComment');
-  };
-
   render() {
-    const { loading, newsData } = this.props;
-    const remoteImage =
-      this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
+    const { loading, newsDetail, authStatus, navigation } = this.props;
 
     if (loading) {
       return (
@@ -112,7 +81,7 @@ class NewsDetail extends Component {
                 height: imgHeight / (imgWidth / Dimensions.get('window').width),
               }}>
               <Image
-                source={{ uri: newsData.cover }}
+                source={{ uri: newsDetail.cover }}
                 style={styles.imageContainer}
                 resizeMode="contain"
               />
@@ -124,10 +93,7 @@ class NewsDetail extends Component {
               }}>
               <View style={styles.wraperView}>
                 <View style={styles.titleView}>
-                  <Text
-                    style={[globalStyles.gothamMediumRegular, styles.title]}>
-                    {newsData.title}
-                  </Text>
+                  <Text style={styles.title}>{newsDetail.title}</Text>
                 </View>
                 <View
                   style={{
@@ -142,9 +108,7 @@ class NewsDetail extends Component {
                       color={'#63A3FF'}
                       iconStyle={{ marginRight: 10 }}
                     />
-                    <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                      01567 23040
-                    </Text>
+                    <Text style={styles.blockText}></Text>
                   </View>
                   <View style={styles.block}>
                     <Icon
@@ -153,8 +117,8 @@ class NewsDetail extends Component {
                       color={'#63A3FF'}
                       iconStyle={{ marginRight: 10 }}
                     />
-                    <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                      Since {Moment(newsData.created).format('YYYY')}
+                    <Text style={styles.blockText}>
+                      {moment(newsDetail.created).format('YYYY-MM-DD')}
                     </Text>
                   </View>
                 </View>
@@ -171,9 +135,7 @@ class NewsDetail extends Component {
                       color={'#63A3FF'}
                       iconStyle={{ marginRight: 10 }}
                     />
-                    <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                      {newsData.hit_count}
-                    </Text>
+                    <Text style={styles.blockText}>{newsDetail.hit_count}</Text>
                   </View>
                   <View style={styles.block}>
                     <Icon
@@ -185,15 +147,15 @@ class NewsDetail extends Component {
                         transform: [{ rotate: '90deg' }],
                       }}
                     />
-                    <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                      {newsData.category.name}
+                    <Text style={styles.blockText}>
+                      {newsDetail.category.name}
                     </Text>
                   </View>
                 </View>
                 <View style={styles.descriptionView}>
                   <HTML
                     containerStyle={styles.descriptionView}
-                    html={newsData.description}
+                    html={newsDetail.description}
                     baseFontStyle={styles.description}
                     imagesInitialDimensions={{
                       width: '100%',
@@ -202,48 +164,26 @@ class NewsDetail extends Component {
                     }}
                   />
                 </View>
-
-                {/* <View
-                  style={{
-                    marginTop: 30,
-                    width: '100%',
-                    height:
-                      imgHeight / (imgWidth / Dimensions.get('window').width),
-                  }}>
-                  <Image
-                    source={require('../../../../assets/images/Event.jpg')}
-                    style={styles.imageContainer}
-                    resizeMode="contain"
-                  />
-                </View> */}
                 <TouchableOpacity onPress={this.onPressArticleComents}>
                   <View
                     style={[
                       styles.block,
                       { justifyContent: 'space-between', marginTop: 20 },
                     ]}>
-                    <Text
-                      style={[globalStyles.gothamBook, styles.blockBottomText]}>
-                      Answers
-                    </Text>
-                    <Text
-                      style={[
-                        globalStyles.gothamBook,
-                        styles.blockBottomText,
-                        { color: 'black' },
-                      ]}>
-                      {newsData.comment_count}
+                    <Text style={styles.blockBottomText}>Answers</Text>
+                    <Text style={[styles.blockBottomText, { color: 'black' }]}>
+                      {newsDetail.comment_count}
                     </Text>
                   </View>
                 </TouchableOpacity>
                 <Button
-                  titleStyle={[
-                    globalStyles.gothamBold,
-                    { color: 'white', fontSize: 15, lineHeight: 24 },
-                  ]}
+                  disabled={authStatus ? false : true}
+                  titleStyle={styles.btnStyle}
                   buttonStyle={styles.buttonSend}
                   title="Write comment"
-                  onPress={this.onPressWriteComment}
+                  onPress={() => {
+                    navigation.navigate('NewsCreateComment');
+                  }}
                 />
               </View>
             </View>
@@ -253,19 +193,4 @@ class NewsDetail extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.inKuwait.loadingNews,
-    newsData: state.inKuwait.newsDetail,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getNews: id => {
-      dispatch(getNewsById(id));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewsDetail);
+export default NewsDetail;
