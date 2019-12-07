@@ -9,10 +9,6 @@ import {
 } from '../../components/ElementLists';
 import TextPicker from '../../components/TextPicker';
 
-import { getAdsFavorites } from '../../redux/actions/adsAction';
-//For token
-import { getData } from '../../utils/AsyncStorage';
-
 import { colors } from '../../constants';
 
 import styles from './styles';

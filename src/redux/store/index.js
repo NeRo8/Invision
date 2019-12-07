@@ -6,9 +6,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 import authReducer from '../reducers/Auth';
-import adsReducer from '../reducers/adsReducer';
+import adsReducer from '../reducers/Ads';
 import inKuwaitReducer from '../reducers/inKuwait';
-import filtersReducer from '../reducers/filtersReducer';
 
 const persistConfig = {
   key: 'root',
@@ -22,7 +21,6 @@ const rootReducer = combineReducers({
   auth: authReducer,
   ads: adsReducer,
   inKuwait: inKuwaitReducer,
-  filters: filtersReducer,
 });
 
 const pReducer = persistReducer(persistConfig, rootReducer);

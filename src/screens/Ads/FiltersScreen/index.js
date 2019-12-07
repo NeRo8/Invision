@@ -1,6 +1,5 @@
 import FiltersScreen from './FiltersScreen';
 import { connect } from 'react-redux';
-import { setFilter, getCategories } from '../../../redux/actions/filtersAction';
 
 const mapStateToProps = state => {
   return {

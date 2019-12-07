@@ -1,30 +1,39 @@
 import {
-  SET_ADS_ADS,
-  SET_ADS_FAVORITES,
-  SET_ADS_AD,
+  SET_LIST,
+  SET_DETAIL,
+  SET_LOAD_MORE,
+  SET_CATEGORIES,
+  SET_FILTER,
   SET_LOADING,
   SET_ERROR,
-  ADD_NEXT_ADS,
-} from '../actions/adsAction';
+} from '../../actions/Ads/types';
 
 const initState = {
   adsList: [],
-  adsFavoritesList: [],
   adData: [],
   error: null,
   loading: true,
-  loadingAd: true,
+  filters: {
+    seller_type: null,
+    state: null,
+    q: null,
+    price_min: null,
+    price_max: null,
+    city: null,
+    category: null,
+  },
+  categories: null,
 };
 
 const adsReducer = (state = initState, action) => {
   switch (action.type) {
-    case SET_ADS_ADS: {
+    case SET_LIST: {
       return {
         ...state,
-        adsList: action.ads,
+        adsList: action.payload,
       };
     }
-    case ADD_NEXT_ADS: {
+    case SET_LOAD_MORE: {
       return {
         ...state,
         adsList: {
@@ -35,31 +44,40 @@ const adsReducer = (state = initState, action) => {
         },
       };
     }
-    case SET_ADS_AD: {
+    case SET_DETAIL: {
       return {
         ...state,
-        adData: action.ad,
+        adData: action.payload,
+      };
+    }
+    case SET_CATEGORIES: {
+      return {
+        ...state,
+        categories: action.payload,
+      };
+    }
+    case SET_FILTER: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [action.name]: action.value,
+        },
       };
     }
     case SET_ERROR: {
       return {
         ...state,
-        error: action.error,
+        error: action.payload,
       };
     }
     case SET_LOADING: {
       return {
         ...state,
-        loading: action.loading,
-        loadingAd: action.loadingAd,
+        loading: action.payload,
       };
     }
-    case SET_ADS_FAVORITES: {
-      return {
-        ...state,
-        adsFavoritesList: action.ads,
-      };
-    }
+
     default:
       return state;
   }

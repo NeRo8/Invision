@@ -8,20 +8,11 @@ import {
 } from 'react-native';
 import { ElementListAds } from '../../components/ElementLists';
 import SplashScreen from 'react-native-splash-screen';
-import PropTypes from 'prop-types';
 
 import { colors } from '../../constants';
 import styles from './styles';
 
 class AdsScreen extends Component {
-  static propTypes = {
-    loading: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    loading: true,
-  };
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -29,34 +20,18 @@ class AdsScreen extends Component {
 
   async componentDidMount() {
     const { getAdsList } = this.props;
+
     SplashScreen.hide();
 
     getAdsList();
   }
 
-  showProductDetail = productId => {
-    this.props.navigation.navigate('ProductDetail', { productId: productId });
-  };
-
-  onEndAds = url => {
-    const { onLoadPreviousAds } = this.props;
-    if (url !== null) {
-      onLoadPreviousAds(url);
-      this.setState({
-        page: this.state.page - 1,
-      });
-    }
-  };
-
-  onNextAds = url => {
-    const { onRefreshAds } = this.props;
-    if (url !== null) {
-      onRefreshAds(url);
-    }
+  showProductDetail = () => {
+    this.props.navigation.navigate('ProductDetail');
   };
 
   render() {
-    const { loading, adsList, adsConfig, getAdsList } = this.props;
+    const { loading, adsList, adsConfig, getNextAds } = this.props;
 
     return (
       <View style={styles.flatListView}>
@@ -84,9 +59,7 @@ class AdsScreen extends Component {
               )}
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
               keyExtractor={item => item.pk.toString()}
-              refreshing={loading !== undefined ? loading : true}
-              onRefresh={() => getAdsList(this.props.filters)}
-              onEndReached={() => this.onNextAds(adsConfig.next)}
+              onEndReached={() => getNextAds(adsConfig.next)}
               onEndReachedThreshold={0.5}
             />
             <View style={styles.pagination}>

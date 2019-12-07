@@ -17,9 +17,6 @@ import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
-import { getAd } from '../../../redux/actions/adsAction';
-import { getData } from '../../../utils/AsyncStorage';
-
 import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
