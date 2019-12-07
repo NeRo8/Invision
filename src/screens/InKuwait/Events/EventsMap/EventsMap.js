@@ -81,7 +81,6 @@ class EventsMap extends Component {
   };
 
   handlePressCurrentLocation = newCurrentLocation => {
-    console.log(this.state.currentLocation);
     this.setState({
       currentLocation: {
         latitude: newCurrentLocation.latitude,
@@ -91,32 +90,6 @@ class EventsMap extends Component {
         ...this.state.region,
         latitude: newCurrentLocation.latitude,
         longitude: newCurrentLocation.longitude,
-      },
-    });
-  };
-
-  handlePressMinus = () => {
-    const latDelta = this.state.region.latitudeDelta * 2;
-    const longDelta = this.state.region.longitudeDelta * 2;
-
-    this.setState({
-      region: {
-        ...this.state.region,
-        latitudeDelta: latDelta,
-        longitudeDelta: longDelta,
-      },
-    });
-  };
-
-  handlePressPlus = () => {
-    const latDelta = this.state.region.latitudeDelta / 2;
-    const longDelta = this.state.region.longitudeDelta / 2;
-
-    this.setState({
-      region: {
-        ...this.state.region,
-        latitudeDelta: latDelta,
-        longitudeDelta: longDelta,
       },
     });
   };
@@ -145,6 +118,7 @@ class EventsMap extends Component {
             </Marker>
           ))}
         </MapView>
+
         <Input
           placeholder="Select location..."
           leftIcon={{

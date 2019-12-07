@@ -205,6 +205,8 @@ PODS:
     - React-cxxreact (= 0.61.3)
     - React-jsi (= 0.61.3)
   - React-jsinspector (0.61.3)
+  - react-native-add-calendar-event (3.0.0):
+    - React
   - react-native-camera (3.11.1):
     - React
     - react-native-camera/RCT (= 3.11.1)
@@ -294,6 +296,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-add-calendar-event (from `../node_modules/react-native-add-calendar-event`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-google-maps (from `../node_modules/react-native-maps`)
@@ -356,6 +359,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-add-calendar-event:
+    :path: "../node_modules/react-native-add-calendar-event"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
   react-native-geolocation:
@@ -422,6 +427,7 @@ SPEC CHECKSUMS:
   React-jsi: 8bcf5836caa8a759c135ab9ef97f3e023a7b94af
   React-jsiexecutor: ae078e9df9c65bcdcf68f9a17656657932d95528
   React-jsinspector: a8939cc6909607eb5e8a5ecfff7c6226984e174d
+  react-native-add-calendar-event: d559051d40b9ced43ca2ae052aca7685a546e3e1
   react-native-camera: b7ad0c9648c3ea83f58a3ef4f815ab4acd88dc7e
   react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-google-maps: 2e2e697dab576abd5809d78cd74e775865b62bf7

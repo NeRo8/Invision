@@ -1,7 +1,10 @@
 import EventsScreen from './EventsScreen';
 
 import { connect } from 'react-redux';
-import { getEvents } from '../../../../redux/actions/inKuwait/eventsAction';
+import {
+  getEvents,
+  setLoading,
+} from '../../../../redux/actions/inKuwait/eventsAction';
 
 const mapStateToProps = state => {
   return {
@@ -13,6 +16,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getEventsList: filters => {
       dispatch(getEvents(filters));
+    },
+    setLoad: () => {
+      dispatch(setLoading(true));
     },
   };
 };

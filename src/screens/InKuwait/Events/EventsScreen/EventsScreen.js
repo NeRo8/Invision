@@ -93,7 +93,8 @@ class EventsScreen extends Component {
               <ElementListEvents
                 element={item}
                 onPressProduct={() => {
-                  navigation.navigate('InKuwaitEventsDetail');
+                  this.props.setLoad();
+                  navigation.navigate('InKuwaitEventsDetail', { id: item.pk });
                 }}
                 grayscale={this.state.grayscale}
               />

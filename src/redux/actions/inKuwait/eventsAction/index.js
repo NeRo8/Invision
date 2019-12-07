@@ -1,4 +1,9 @@
-import { SET_EVENTS_LIST, SET_LOADING, SET_ERROR } from './types';
+import {
+  SET_EVENTS_LIST,
+  SET_LOADING,
+  SET_ERROR,
+  SET_EVENTS_DETAIL,
+} from './types';
 
 const DEFAULT_URL = 'https://staging.masaha.app/api/v1/events';
 
@@ -7,12 +12,17 @@ const setList = events => ({
   payload: events,
 });
 
+const setEventsDetail = event => ({
+  type: SET_EVENTS_DETAIL,
+  payload: event,
+});
+
 const setCategories = categories => ({
   type: SET_CATEGORIES,
   payload: categories,
 });
 
-const setLoading = loading => ({
+export const setLoading = loading => ({
   type: SET_LOADING,
   payload: loading,
 });
@@ -62,13 +72,13 @@ export const getCategories = () => dispatch => {
     .catch(error => dispatch(setError(error)));
 };
 
-export const getFaqDetail = id => dispatch => {
+export const getEventsDetail = id => dispatch => {
   dispatch(setLoading(true));
 
-  fetch(`${DEFAULT_URL}/question/${id}/`)
+  fetch(`${DEFAULT_URL}/event/${id}/`)
     .then(response => response.json())
     .then(responseJson => {
-      dispatch(setQuestionDetail(responseJson));
+      dispatch(setEventsDetail(responseJson));
       dispatch(setLoading(false));
     })
     .catch(error => dispatch(setError(error)));
