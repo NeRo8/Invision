@@ -1,9 +1,9 @@
 const IN_KUWAIT_COMMON =
   'https://staging.masaha.app/api/v1/common/living-in-kuwait/';
 
-export const SET_COUNT_LIST = 'SET_COUNT_LIST';
-export const SET_LOADING = 'SET_LOADING';
-export const SET_ERROR = 'SET_ERROR';
+export const SET_COUNT_LIST = 'SET_INKUWAIT_COUNT_LIST';
+export const SET_LOADING = 'SET_INKUWAIT_LOADING';
+export const SET_ERROR = 'SET_INKUWAIT_ERROR';
 
 const setCountList = countList => ({
   type: SET_COUNT_LIST,

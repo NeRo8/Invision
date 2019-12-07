@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { connect } from 'react-redux';
 
 import { HeaderInKuwaitCategory } from '../../../../components/Headers';
 
 import { ElementListNews } from '../../../../components/ElementLists';
-import { getNews } from '../../../../redux/actions/inKuwaitAction';
 
 import styles from './styles';
 
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [],
-    };
+    this.state = {};
   }
 
   async componentDidMount() {
-    this.props.getNewsList();
+    const { getNewsList } = this.props;
+
+    getNewsList();
   }
 
   onPressNews = idNews => {
@@ -27,7 +25,13 @@ class NewsScreen extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
+    const {
+      navigation,
+      newsList,
+      setFilters,
+      getNewsList,
+      newsFilters,
+    } = this.props;
 
     return (
       <View style={{ flex: 1 }}>
@@ -45,11 +49,13 @@ class NewsScreen extends Component {
               onPress={() => navigation.navigate('NewsFilter')}
             />
           }
+          onSearchQuery={setFilters}
+          onSubmitQuery={() => getNewsList(newsFilters)}
         />
         <View style={styles.container}>
           <FlatList
             numColumns={2}
-            data={this.props.data}
+            data={newsList}
             renderItem={({ item }) => (
               <ElementListNews item={item} onPressProduct={this.onPressNews} />
             )}
@@ -61,18 +67,4 @@ class NewsScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    data: state.inKuwait.newsList,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getNewsList: () => {
-      dispatch(getNews());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewsScreen);
+export default NewsScreen;
