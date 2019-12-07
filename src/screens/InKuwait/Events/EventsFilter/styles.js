@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../../constants';
+import { gothamBold, gothamBook } from '../../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -13,6 +14,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   textHeader: {
+    ...gothamBold,
     fontSize: 12,
     lineHeight: 20,
     marginVertical: 15,
@@ -49,6 +51,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   textElement: {
+    ...gothamBook,
     flex: 1,
     fontSize: 17,
   },
@@ -56,6 +59,7 @@ export default StyleSheet.create({
     fontSize: 15,
   },
   btnTitle: {
+    ...gothamBold,
     color: 'white',
     fontSize: 15,
   },

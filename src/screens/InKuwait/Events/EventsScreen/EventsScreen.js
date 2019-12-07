@@ -16,6 +16,7 @@ class EventsScreen extends Component {
       filters: [
         {
           id: 0,
+          value: 'upcoming',
           title: 'Upcoming Events',
           active: true,
           func: () => {
@@ -26,6 +27,7 @@ class EventsScreen extends Component {
         },
         {
           id: 1,
+          value: 'previous',
           title: 'Previous Events',
           active: false,
           func: () => {
@@ -41,27 +43,37 @@ class EventsScreen extends Component {
   }
 
   componentDidMount = () => {
-    const { getEventsList } = this.props;
+    const { getEventsList, filters } = this.props;
 
-    getEventsList();
+    getEventsList(filters);
   };
 
-  handlePressHeart = id => {};
-
   handlePressFilter = id => {
-    const { filters } = this.state;
+    const { setFilters, getEventsList, filters } = this.props;
 
-    const newFilter = filters.map(item =>
+    const newFilter = this.state.filters.map(item =>
       item.id === id ? { ...item, active: true } : { ...item, active: false },
     );
+
+    newFilter.forEach(item => {
+      item.active === true ? setFilters(item.value) : null;
+    });
 
     this.setState({
       filters: newFilter,
     });
+
+    getEventsList(filters);
   };
 
   render() {
-    const { navigation, eventsList } = this.props;
+    const {
+      navigation,
+      eventsList,
+      onSearch,
+      getEventsList,
+      filters,
+    } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <HeaderInKuwaitCategory
@@ -74,9 +86,14 @@ class EventsScreen extends Component {
               type="material-community"
               color="white"
               underlayColor="transparent"
-              onPress={() => navigation.navigate('InKuwaitEventsFilter')}
+              onPress={() => {
+                this.props.setLoad();
+                navigation.navigate('InKuwaitEventsFilter');
+              }}
             />
           }
+          onSearchQuery={onSearch}
+          onSubmitQuery={() => getEventsList(filters)}
         />
         <View style={styles.container}>
           <View style={styles.headerPicker}>

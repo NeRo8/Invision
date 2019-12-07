@@ -1,8 +1,12 @@
+import moment from 'moment';
+
 import {
   SET_EVENTS_LIST,
   SET_LOADING,
   SET_ERROR,
   SET_EVENTS_DETAIL,
+  SET_FILTER,
+  SET_CATEGORIES,
 } from './types';
 
 const DEFAULT_URL = 'https://staging.masaha.app/api/v1/events';
@@ -46,7 +50,13 @@ export const getEvents = (filters = null) => dispatch => {
   if (filters !== null) {
     Object.keys(filters).forEach(item => {
       if (filters[item] !== null) {
-        requestUrl += `&${item}=${filters[item]}`;
+        if (item === 'date') {
+          requestUrl += `&${item}=${moment(filters[item]).format(
+            'YYYY-MM-DD',
+          )}`;
+        } else {
+          requestUrl += `&${item}=${filters[item]}`;
+        }
       }
     });
   }
@@ -79,31 +89,6 @@ export const getEventsDetail = id => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setEventsDetail(responseJson));
-      dispatch(setLoading(false));
-    })
-    .catch(error => dispatch(setError(error)));
-};
-
-export const setQuestion = (token, data) => dispatch => {
-  const requestData = new FormData();
-
-  for (const key in data) {
-    requestData.append(key, data[key]);
-  }
-
-  dispatch(setLoading(true));
-
-  fetch(`${DEFAULT_URL}/ask-question/`, {
-    method: 'post',
-
-    headers: {
-      Authorization: `Token ${token}`,
-      'Content-Type': 'multipart/form-data',
-    },
-    body: requestData,
-  })
-    .then(response => response.json())
-    .then(responseJson => {
       dispatch(setLoading(false));
     })
     .catch(error => dispatch(setError(error)));
