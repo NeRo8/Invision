@@ -45,7 +45,7 @@ const ElementFlatList = ({ item }) => (
             color: '#F05B88',
           }}
           title="Report"
-          titleStyle={[globalStyles.gothamBook, styles.btnTitleReport]}
+          titleStyle={styles.btnTitleReport}
           buttonStyle={styles.btnStyleReport}
           containerStyle={styles.btnContainer}
         />
@@ -56,7 +56,7 @@ const ElementFlatList = ({ item }) => (
             color: '#0A68EF',
           }}
           title="Reply"
-          titleStyle={[globalStyles.gothamBook, styles.btnTitleReply]}
+          titleStyle={styles.btnTitleReply}
           buttonStyle={styles.btnStyleReply}
           containerStyle={styles.btnContainer}
         />
@@ -71,64 +71,27 @@ const ElementFlatList = ({ item }) => (
 class NewsAnswers extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      coments: [
-        {
-          id: 0,
-          userName: 'Tyler Hicks',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-        {
-          id: 1,
-          userName: 'Billy Weaver',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-        {
-          id: 2,
-          userName: 'Jordan Mann',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-        {
-          id: 3,
-          userName: 'Alex Synth',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-      ],
-    };
+    this.state = {};
   }
-  async componentDidMount() {
-    const { navigation } = this.props;
-  }
+
   onPressWriteComment = () => {
     this.props.navigation.navigate('NewsCreateComment');
   };
 
   render() {
-    const { navigation } = this.props;
+    const { comments, authStatus } = this.props;
+
     return (
-      <View>
-        <View style={styles.wraper}>
-          <FlatList
-            contentContainerStyle={{ paddingHorizontal: 15 }}
-            data={navigation.getParam('comments')}
-            renderItem={({ item }) => <ElementFlatList item={item} />}
-            keyExtractor={item => item.pk}
-          />
-        </View>
+      <View style={styles.container}>
+        <FlatList
+          data={comments}
+          renderItem={({ item }) => <ElementFlatList item={item} />}
+          keyExtractor={item => item.pk}
+        />
 
         <Button
-          titleStyle={[
-            globalStyles.gothamBold,
-            { color: 'white', fontSize: 15, lineHeight: 24 },
-          ]}
+          disabled={authStatus ? false : true}
+          titleStyle={styles.btnTitle}
           buttonStyle={styles.buttonWrite}
           title="Write comment"
           onPress={this.onPressWriteComment}

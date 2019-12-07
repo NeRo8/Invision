@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../../../constants';
+import { gothamBold, gothamBook } from '../../../../constants/fonts';
 
 export default StyleSheet.create({
-  wraper: {
-    minHeight: '100%',
+  container: {
+    flex: 1,
+    paddingHorizontal: 15,
   },
   topOfComent: {
     flexDirection: 'row',
@@ -90,10 +92,12 @@ export default StyleSheet.create({
     paddingHorizontal: 3,
   },
   btnTitleReport: {
+    ...gothamBook,
     color: '#F05B88',
     fontSize: 13,
   },
   btnTitleReply: {
+    ...gothamBook,
     color: '#0A68EF',
     fontSize: 13,
   },
@@ -102,5 +106,11 @@ export default StyleSheet.create({
     backgroundColor: 'silver',
     marginVertical: 15,
     marginHorizontal: 15,
+  },
+  btnTitle: {
+    ...gothamBold,
+    color: 'white',
+    fontSize: 15,
+    lineHeight: 24,
   },
 });

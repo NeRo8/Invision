@@ -159,12 +159,12 @@ class NewsDetail extends Component {
                     baseFontStyle={styles.description}
                     imagesInitialDimensions={{
                       width: '100%',
-                      height:
-                        imgHeight / (imgWidth / Dimensions.get('window').width),
+                      height: 300,
                     }}
                   />
                 </View>
-                <TouchableOpacity onPress={this.onPressArticleComents}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('NewsAnswers')}>
                   <View
                     style={[
                       styles.block,
