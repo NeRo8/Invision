@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { connect } from 'react-redux';
 
 import { ElementListEvents } from '../../../../components/ElementLists';
 import TextPicker from '../../../../components/TextPicker';
@@ -10,57 +9,10 @@ import { HeaderInKuwaitCategory } from '../../../../components/Headers';
 import { colors } from '../../../../constants';
 import styles from './styles';
 
-import { getEvents } from '../../../../redux/actions/inKuwaitAction';
-
 class EventsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataEvents: [
-        {
-          id: 0,
-          image: require('../../../../assets/images/element.jpg'),
-          title: 'Lorem ipsum is simply dummy text',
-          date: 'Oct 11-12',
-          favorite: false,
-        },
-        {
-          id: 1,
-          image: require('../../../../assets/images/element.jpg'),
-          title: 'Lorem ipsum is simply dummy text',
-          date: 'Oct 11-12',
-          favorite: false,
-        },
-        {
-          id: 2,
-          image: require('../../../../assets/images/element.jpg'),
-          title: 'Lorem ipsum is simply dummy text',
-          date: 'Oct 11-12',
-          favorite: false,
-        },
-        {
-          id: 3,
-          image: require('../../../../assets/images/element.jpg'),
-          title: 'Lorem ipsum is simply dummy text',
-          date: 'Oct 11-12',
-          favorite: false,
-        },
-        {
-          id: 4,
-          image: require('../../../../assets/images/element.jpg'),
-          title: 'Lorem ipsum is simply dummy text',
-          date: 'Oct 11-12',
-          favorite: false,
-        },
-        {
-          id: 5,
-          image: require('../../../../assets/images/element.jpg'),
-          title: 'Lorem ipsum is simply dummy text',
-          date: 'Oct 11-12',
-          favorite: false,
-        },
-      ],
-
       filters: [
         {
           id: 0,
@@ -88,14 +40,13 @@ class EventsScreen extends Component {
     };
   }
 
-  handlePressHeart = id => {
-    const newDataEve = this.state.dataEvents.map(item =>
-      item.id === id ? { ...item, favorite: !item.favorite } : { ...item },
-    );
-    this.setState({
-      dataEvents: newDataEve,
-    });
+  componentDidMount = () => {
+    const { getEventsList } = this.props;
+
+    getEventsList();
   };
+
+  handlePressHeart = id => {};
 
   handlePressFilter = id => {
     const { filters } = this.state;
@@ -109,12 +60,8 @@ class EventsScreen extends Component {
     });
   };
 
-  componentDidMount = () => {
-    this.props.getEventsList();
-  };
-
   render() {
-    const { navigation } = this.props;
+    const { navigation, eventsList } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <HeaderInKuwaitCategory
@@ -141,18 +88,17 @@ class EventsScreen extends Component {
           <FlatList
             showsVerticalScrollIndicator={false}
             numColumns={2}
-            data={this.props.dataEvents}
+            data={eventsList}
             renderItem={({ item }) => (
               <ElementListEvents
                 element={item}
                 onPressProduct={() => {
-                  this.props.navigation.navigate('InKuwaitEventsDetail');
+                  navigation.navigate('InKuwaitEventsDetail');
                 }}
-                onPressHeart={this.handlePressHeart}
                 grayscale={this.state.grayscale}
               />
             )}
-            keyExtractor={(item, index) => item.id}
+            keyExtractor={(item, index) => item.pk.toString()}
           />
           <View style={styles.btnLContainer}>
             <Icon
@@ -161,7 +107,7 @@ class EventsScreen extends Component {
               color={colors.HEADER}
               iconStyle={styles.icon}
               onPress={() => {
-                this.props.navigation.navigate('InKuwaitEventsMap');
+                navigation.navigate('InKuwaitEventsMap');
               }}
             />
           </View>
@@ -171,18 +117,4 @@ class EventsScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    dataEvents: state.inKuwait.eventsList,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getEventsList: () => {
-      dispatch(getEvents());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EventsScreen);
+export default EventsScreen;

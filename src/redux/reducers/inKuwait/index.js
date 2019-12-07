@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import servicesReducer from './servicesReducer';
 import faqReducer from './faqReducer';
+import eventsReducer from './eventsReducer';
 
 import {
   SET_COUNT_LIST,
@@ -44,4 +45,5 @@ export default combineReducers({
   main: mainReducer,
   services: servicesReducer,
   faq: faqReducer,
+  events: eventsReducer,
 });
