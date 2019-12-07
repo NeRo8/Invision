@@ -13,7 +13,7 @@ const initialState = {
   filters: {
     category: null,
     q: null,
-    order_by: null,
+    order_by: 'date',
   },
   categories: [],
   loading: true,

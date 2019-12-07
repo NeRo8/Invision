@@ -6,26 +6,20 @@ import { colors, globalStyles } from '../../../../constants';
 
 import styles from './styles';
 
-const ElementFl = ({ element, onChange }) => (
+const ElementFl = ({ element, activeElement, onPressElement }) => (
   <View style={styles.elementContainer}>
     <CheckBox
-      checked={element.checked}
+      checked={activeElement === element.pk ? true : false}
       iconType="ionicon"
       checkedIcon="ios-checkmark-circle"
       uncheckedIcon="ios-radio-button-off"
       checkedColor={colors.HEADER}
       containerStyle={{ marginRight: 15 }}
       onPress={() => {
-        onChange(element.title);
+        onPressElement(element.pk);
       }}
     />
-    <Text style={[globalStyles.gothamBook, styles.textElement]}>
-      {' '}
-      {element.title}
-    </Text>
-    <Text style={[globalStyles.gothamBook, styles.textCount]}>
-      {element.count}
-    </Text>
+    <Text style={styles.textElement}>{element.name}</Text>
   </View>
 );
 
@@ -33,14 +27,6 @@ class NewsFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: [
-        { id: 0, title: 'Education', count: 10, checked: false },
-        { id: 1, title: 'Health', count: 3, checked: false },
-        { id: 2, title: 'Personal life', count: 5, checked: false },
-        { id: 3, title: 'Adventures', count: 3, checked: false },
-        { id: 4, title: 'Childs', count: 13, checked: false },
-        { id: 5, title: 'Love', count: 6, checked: false },
-      ],
       filters: {
         date: true,
         answers: false,
@@ -48,7 +34,14 @@ class NewsFilter extends Component {
     };
   }
 
+  componentDidMount() {
+    const { getCategories } = this.props;
+
+    getCategories();
+  }
+
   handleChangeSorting = name => {
+    const { setFilters } = this.props;
     this.setState({
       filters: {
         date: false,
@@ -56,36 +49,31 @@ class NewsFilter extends Component {
         [name]: true,
       },
     });
+
+    setFilters('order_by', name);
   };
 
-  handleChangeChecked = elementName => {
-    const newCategory = this.state.category.map(item =>
-      item.title === elementName
-        ? { ...item, checked: !item.checked }
-        : { ...item },
-    );
-    this.setState({
-      category: newCategory,
-    });
+  handlePressCategory = id => {
+    const { setFilters } = this.props;
+
+    setFilters('category', id);
   };
 
   render() {
     const { filters } = this.state;
+
+    const { categories, newsFilters, getNewsList } = this.props;
+
     return (
       <View style={styles.container}>
         <View>
-          <Text style={[globalStyles.gothamBold, styles.textHeader]}>
-            SORTING BY
-          </Text>
+          <Text style={styles.textHeader}>SORTING BY</Text>
           <View style={styles.containerRow}>
             <TouchableOpacity
               onPress={() => this.handleChangeSorting('date')}
               style={filters.date ? styles.activeBlock : styles.unactiveBlock}>
               <Text
-                style={[
-                  globalStyles.gothamMediumRegular,
-                  filters.date ? styles.activeText : styles.unactiveText,
-                ]}>
+                style={filters.date ? styles.activeText : styles.unactiveText}>
                 Date
               </Text>
             </TouchableOpacity>
@@ -95,37 +83,42 @@ class NewsFilter extends Component {
                 filters.answers ? styles.activeBlock : styles.unactiveBlock
               }>
               <Text
-                style={[
-                  globalStyles.gothamMediumRegular,
-                  filters.answers ? styles.activeText : styles.unactiveText,
-                ]}>
+                style={
+                  filters.answers ? styles.activeText : styles.unactiveText
+                }>
                 Answers
               </Text>
             </TouchableOpacity>
           </View>
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={[globalStyles.gothamBold, styles.textHeader]}>
-            SELECT CATEGORY
-          </Text>
+          <Text style={styles.textHeader}>SELECT CATEGORY</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={this.state.category}
+            data={categories}
             renderItem={({ item }) => (
-              <ElementFl element={item} onChange={this.handleChangeChecked} />
+              <ElementFl
+                element={item}
+                activeElement={newsFilters.category}
+                onPressElement={this.handlePressCategory}
+              />
             )}
             contentContainerStyle={{ marginTop: 10 }}
             ItemSeparatorComponent={() => (
               <View style={{ borderWidth: 0.3, borderColor: 'silver' }} />
             )}
+            keyExtractor={item => item.pk.toString()}
           />
         </View>
         <Button
           title="Done"
-          titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
+          titleStyle={styles.btnTitle}
           buttonStyle={styles.btnStyle}
           containerStyle={styles.btnContainer}
-          onPress={() => this.props.navigation.goBack()}
+          onPress={() => {
+            getNewsList(newsFilters);
+            this.props.navigation.goBack();
+          }}
         />
       </View>
     );
