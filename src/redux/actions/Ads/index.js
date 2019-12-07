@@ -65,8 +65,8 @@ export const getAds = (filters = null) => dispatch => {
     });
 };
 
-export const getAdsDetail = (token, adsId) => dispatch => {
-  dispatch(setLoading(false));
+export const getAdsDetail = (token = null, id) => dispatch => {
+  dispatch(setLoading(true));
 
   let head = {
     method: 'GET',
@@ -85,7 +85,7 @@ export const getAdsDetail = (token, adsId) => dispatch => {
     };
   }
 
-  fetch(`${ADS}ad/${adsId}`, head)
+  fetch(`${ADS}ad/${id}`, head)
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsDetail(responseJson));

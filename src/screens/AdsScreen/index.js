@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AdsScreen from './AdsScreen';
 
-import { getAds, getAdsLoadMore } from '../../redux/actions/Ads';
+import { getAds, getAdsLoadMore, setLoading } from '../../redux/actions/Ads';
 
 const mapStateToProps = state => {
   return {
@@ -20,6 +20,9 @@ const mapDispatchToProps = dispatch => {
     },
     getNextAds: url => {
       dispatch(getAdsLoadMore(url));
+    },
+    setLoad: value => {
+      dispatch(setLoading(value));
     },
   };
 };

@@ -26,8 +26,10 @@ class AdsScreen extends Component {
     getAdsList();
   }
 
-  showProductDetail = () => {
-    this.props.navigation.navigate('ProductDetail');
+  onPressElement = pk => {
+    const { navigation, setLoad } = this.props;
+    setLoad(true);
+    navigation.navigate('ProductDetail', { id: pk });
   };
 
   render() {
@@ -54,7 +56,7 @@ class AdsScreen extends Component {
               renderItem={({ item }) => (
                 <ElementListAds
                   item={item}
-                  onPressProduct={this.showProductDetail}
+                  onPressProduct={this.onPressElement}
                 />
               )}
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}

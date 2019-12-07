@@ -171,9 +171,16 @@ export default StyleSheet.create({
   btnStyleRead: {
     height: 50,
     borderRadius: 2,
-    backgroundColor: 'white',
     borderWidth: 1,
     borderColor: colors.HEADER,
+    backgroundColor: 'white',
+    marginBottom: 10,
+  },
+  btnStyleShowMore: {
+    height: 50,
+    borderRadius: 2,
+
+    backgroundColor: 'white',
     marginBottom: 10,
   },
   btnStyleWrite: {
