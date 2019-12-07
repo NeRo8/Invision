@@ -13,7 +13,7 @@ const initialState = {
   filters: {
     category: null,
     q: null,
-    status: null,
+    status: 'top',
   },
   categories: [],
   loading: true,

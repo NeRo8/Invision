@@ -24,54 +24,52 @@ class FaqScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeFilter: 'top',
       filters: [
         {
           id: 0,
+          value: 'top',
           title: 'Top Question',
           active: true,
-          func: () => {
-            this.setState({ activeFilter: 'top' });
-          },
+          func: () => {},
         },
         {
           id: 1,
+          value: 'recent',
           title: 'Recent Questions',
           active: false,
-          func: () => {
-            this.setState({ activeFilter: 'recent' });
-          },
+          func: () => {},
         },
       ],
     };
   }
 
   componentDidMount = () => {
-    const { getFaqsList } = this.props;
+    const { getFaqsList, filtersFaq } = this.props;
 
-    getFaqsList();
+    getFaqsList(filtersFaq);
   };
 
   handlePressElementFilter = id => {
     const { filters } = this.state;
+    const { filtersFaq, getFaqsList, setFilters } = this.props;
 
     const newFilters = filters.map(item =>
       item.id === id ? { ...item, active: true } : { ...item, active: false },
     );
 
+    newFilters.forEach(item => {
+      item.active === true ? setFilters(item.value) : null;
+    });
+
     this.setState({
       filters: newFilters,
     });
+
+    getFaqsList(filtersFaq);
   };
 
   handlePressElement = elementId => {
     this.props.navigation.navigate('FaqDetail', { id: elementId });
-  };
-
-  onRefresh = () => {
-    const { getFaqsList, filtersFaq } = this.props;
-
-    getFaqsList(filtersFaq);
   };
 
   render() {

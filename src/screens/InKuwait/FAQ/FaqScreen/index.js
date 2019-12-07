@@ -24,6 +24,9 @@ const mapDispatchToProps = dispatch => {
     onSearch: value => {
       dispatch(setFilter('q', value));
     },
+    setFilters: value => {
+      dispatch(setFilter('status', value));
+    },
   };
 };
 
