@@ -87,7 +87,7 @@ export const getFaqDetail = id => dispatch => {
 };
 
 export const setQuestion = (token, data) => dispatch => {
-  const requestData = new FormData();
+  var requestData = new FormData();
 
   for (const key in data) {
     requestData.append(key, data[key]);

@@ -10,13 +10,15 @@ const mapStateToProps = state => {
     loading: state.ads.loading,
     error: state.ads.error,
     filters: state.ads.filters,
+    authStatus: state.auth.authStatus,
+    token: state.auth.user.access_token,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdsList: filters => {
-      dispatch(getAds(filters));
+    getAdsList: (filters, token) => {
+      dispatch(getAds(filters, token));
     },
     getNextAds: url => {
       dispatch(getAdsLoadMore(url));

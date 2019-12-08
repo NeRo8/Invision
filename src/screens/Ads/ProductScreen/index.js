@@ -8,13 +8,15 @@ const mapStateToProps = state => {
   return {
     productData: state.ads.adData,
     loading: state.ads.loading,
+    authStatus: state.auth.authStatus,
+    token: state.auth.user.access_token,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdData: (token, id) => {
-      dispatch(getAdsDetail((token = null), id));
+    getAdData: (id, token) => {
+      dispatch(getAdsDetail(id, token));
     },
     setLoad: value => {
       dispatch(setLoading(value));

@@ -19,11 +19,15 @@ class AdsScreen extends Component {
   }
 
   async componentDidMount() {
-    const { getAdsList } = this.props;
+    const { getAdsList, authStatus, token } = this.props;
 
     SplashScreen.hide();
 
-    getAdsList();
+    if (authStatus) {
+      getAdsList(null, token);
+    } else {
+      getAdsList();
+    }
   }
 
   onPressElement = pk => {

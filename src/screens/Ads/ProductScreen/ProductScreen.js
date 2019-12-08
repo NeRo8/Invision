@@ -87,11 +87,15 @@ class ProductScreen extends Component {
   }
 
   componentDidMount() {
-    const { navigation, getAdData, loading, productData } = this.props;
+    const { navigation, getAdData, token, authStatus } = this.props;
 
     const id = navigation.getParam('id', null);
 
-    getAdData(null, id);
+    if (authStatus) {
+      getAdData(id, token);
+    } else {
+      getAdData(id, null);
+    }
   }
 
   handlePressWriteOwnComment = () => {
@@ -132,13 +136,17 @@ class ProductScreen extends Component {
   };
 
   showProductDetail = id => {
-    const { getAdData } = this.props;
+    const { getAdData, token, authStatus } = this.props;
 
-    getAdData(null, id);
+    if (authStatus) {
+      getAdData(id, token);
+    } else {
+      getAdData(id, null);
+    }
   };
 
   render() {
-    const { productData, loading } = this.props;
+    const { productData, loading, authStatus } = this.props;
 
     if (loading) {
       return (
@@ -209,7 +217,7 @@ class ProductScreen extends Component {
                   style={styles.tagsFlatList}
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.tagsFlatListContainer}
-                  keyExtractor={item => item.id}
+                  keyExtractor={item => item.id.toString()}
                   horizontal
                   data={this.state.tags}
                   render
@@ -290,17 +298,18 @@ class ProductScreen extends Component {
                       : productData.comments.slice(0, 3)
                   }
                   renderItem={({ item }) => <CommentsFlatList item={item} />}
-                  keyExtractor={item => item.pk}
+                  keyExtractor={item => item.pk.toString()}
                 />
                 <Button
                   disabled={productData.comments.length <= 3 ? true : false}
-                  title={['Read all ', productData.comments.length, ' reviews']}
+                  title={`Read all ${productData.comments.length} reviews`}
                   titleStyle={[globalStyles.gothamBold, styles.titleRead]}
                   buttonStyle={styles.btnStyleRead}
                   containerStyle={styles.btnContainer}
                   onPress={() => this.onPressReadAll()}
                 />
                 <Button
+                  disabled={!authStatus}
                   title="Write own comment"
                   titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
                   buttonStyle={styles.btnStyleWrite}
@@ -325,7 +334,7 @@ class ProductScreen extends Component {
                         onPressProduct={this.showProductDetail}
                       />
                     )}
-                    keyExtractor={item => item.pk}
+                    keyExtractor={item => item.pk.toString()}
                   />
                 </View>
               </View>

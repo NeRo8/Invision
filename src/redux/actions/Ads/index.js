@@ -47,7 +47,7 @@ const setError = error => ({
 });
 
 //API REDUX
-export const getAds = (filters = null) => dispatch => {
+export const getAds = (filters = null, token = null) => dispatch => {
   dispatch(setLoading(true));
 
   var requestUrl = `${ADS}ads/?`;
@@ -60,10 +60,23 @@ export const getAds = (filters = null) => dispatch => {
     });
   }
 
-  fetch(requestUrl, {
+  let head = {
     method: 'GET',
-  })
-    .then(response => response.json())
+  };
+
+  if (token !== null) {
+    head = {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
+  }
+
+  fetch(requestUrl, head)
+    .then(response => {
+      return response.json();
+    })
     .then(responseJson => {
       dispatch(setAdsList(responseJson));
       dispatch(setLoading(false));
@@ -73,14 +86,11 @@ export const getAds = (filters = null) => dispatch => {
     });
 };
 
-export const getAdsDetail = (token = null, id) => dispatch => {
+export const getAdsDetail = (id, token = null) => dispatch => {
   dispatch(setLoading(true));
 
   let head = {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
   };
 
   if (token !== null) {
@@ -88,12 +98,10 @@ export const getAdsDetail = (token = null, id) => dispatch => {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json',
       },
     };
   }
-
-  fetch(`${ADS}ad/${id}`, head)
+  fetch(`${ADS}ad/${id}/?`, head)
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAdsDetail(responseJson));
@@ -137,4 +145,35 @@ export const getAdsLoadMore = url => dispatch => {
         dispatch(setError(error));
       });
   }
+};
+
+export const addToFavorite = (id, token) => dispatch => {
+  var requestData = new FormData();
+  requestData.append('ad_id', id);
+
+  fetch(`${ADS}/add-favorite/`, {
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+    body: requestData,
+  })
+    .then(response => response.json())
+    .then(responseJson => responseJson);
+
+  dispatch(getAdsDetail(id, token));
+};
+
+export const removeFromFavorite = (id, token) => dispatch => {
+  fetch(`${ADS}/delete-favorite/${id}/`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  })
+    .then(response => response.json())
+    .then(responseJson => responseJson);
+
+  dispatch(getAdsDetail(id, token));
 };
