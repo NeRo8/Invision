@@ -22,9 +22,13 @@ class HeaderAds extends Component {
   };
 
   handlePressSubmit = () => {
-    const { getAdsList, filters } = this.props;
+    const { getAdsList, filters, authStatus, token } = this.props;
 
-    getAdsList(filters);
+    if (authStatus) {
+      getAdsList(filters, token);
+    } else {
+      getAdsList(filters);
+    }
   };
 
   render() {
