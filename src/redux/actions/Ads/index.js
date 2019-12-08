@@ -50,9 +50,17 @@ const setError = error => ({
 export const getAds = (filters = null) => dispatch => {
   dispatch(setLoading(true));
 
-  var requestString = `${ADS}ads/?`;
+  var requestUrl = `${ADS}ads/?`;
 
-  fetch(requestString, {
+  if (filters !== null) {
+    Object.keys(filters).forEach(item => {
+      if (filters[item] !== null) {
+        requestUrl += `&${item}=${filters[item]}`;
+      }
+    });
+  }
+
+  fetch(requestUrl, {
     method: 'GET',
   })
     .then(response => response.json())
@@ -115,14 +123,18 @@ export const getCategories = () => dispatch => {
 };
 
 export const getAdsLoadMore = url => dispatch => {
-  fetch(url, {
-    method: 'GET',
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setAdsLoadMore(responseJson));
+  if (url === null) {
+    dispatch(setError('Next not exist'));
+  } else {
+    fetch(url, {
+      method: 'GET',
     })
-    .catch(error => {
-      dispatch(setError(error));
-    });
+      .then(response => response.json())
+      .then(responseJson => {
+        dispatch(setAdsLoadMore(responseJson));
+      })
+      .catch(error => {
+        dispatch(setError(error));
+      });
+  }
 };

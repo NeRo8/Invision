@@ -1,21 +1,24 @@
 import HeaderAdsFilters from './HeaderAdsFilters';
+
 import { connect } from 'react-redux';
+
+import { setFilter, getAds } from '../../redux/actions/Ads';
 
 const mapStateToProps = state => {
   return {
-    city: state.filters.filters.city,
-    query: state.filters.filters.query,
-    filters: state.filters.filters,
+    city: state.ads.filters.city,
+    query: state.ads.filters.q,
+    filters: state.ads.filters,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChangeFilter: (name, value) => {
-      dispatch(setFilter(name, value));
-    },
-    onPressDone: filters => {
+    getAdsList: filters => {
       dispatch(getAds(filters));
+    },
+    setFilters: (name, value) => {
+      dispatch(setFilter(name, value));
     },
   };
 };

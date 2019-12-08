@@ -1,10 +1,17 @@
 import FiltersScreen from './FiltersScreen';
 import { connect } from 'react-redux';
 
+import {
+  setFilter,
+  getCategories,
+  setLoading,
+} from '../../../redux/actions/Ads';
+
 const mapStateToProps = state => {
   return {
-    filters: state.filters.filters,
-    categories: state.filters.filters.categories,
+    filters: state.ads.filters,
+    categories: state.ads.categories.results,
+    loading: state.ads.loading,
   };
 };
 
@@ -13,8 +20,11 @@ const mapDispatchToProps = dispatch => {
     onChangeFilter: (name, value) => {
       dispatch(setFilter(name, value));
     },
-    loadCategories: () => {
+    getCategoriesList: () => {
       dispatch(getCategories());
+    },
+    setLoad: () => {
+      dispatch(setLoading(true));
     },
   };
 };

@@ -14,15 +14,15 @@ const initState = {
   error: null,
   loading: true,
   filters: {
-    seller_type: null,
-    state: null,
+    seller_type: 'all',
+    state: 'all',
     q: null,
-    price_min: null,
-    price_max: null,
+    price_min: 0,
+    price_max: 1000000,
     city: null,
     category: null,
   },
-  categories: null,
+  categories: [],
 };
 
 const adsReducer = (state = initState, action) => {

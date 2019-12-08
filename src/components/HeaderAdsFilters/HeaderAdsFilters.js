@@ -12,8 +12,17 @@ class HeaderAdsFilters extends Component {
     super(props);
     this.state = {};
   }
+
+  handlePressDone = () => {
+    const { filters, getAdsList, navigation } = this.props;
+
+    getAdsList(filters);
+
+    navigation.goBack();
+  };
+
   render() {
-    const { city, query, onChangeFilter, onPressDone, filters } = this.props;
+    const { city, query, setFilters, filters } = this.props;
 
     return (
       <View style={styles.container}>
@@ -28,11 +37,7 @@ class HeaderAdsFilters extends Component {
             containerStyle={{ width: 50 }}
           />
           <Text style={styles.headerText}>Filters</Text>
-          <TouchableOpacity
-            onPress={() => {
-              onPressDone(filters);
-              this.props.navigation.goBack();
-            }}>
+          <TouchableOpacity onPress={this.handlePressDone}>
             <Text style={styles.headerRight}>Done</Text>
           </TouchableOpacity>
         </View>
@@ -47,7 +52,7 @@ class HeaderAdsFilters extends Component {
             inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStl}
             containerStyle={styles.inputContainer}
-            onChangeText={text => onChangeFilter('query', text)}
+            onChangeText={text => setFilters('q', text)}
           />
           <Input
             leftIcon={
@@ -59,7 +64,7 @@ class HeaderAdsFilters extends Component {
             inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStl}
             containerStyle={styles.inputContainer}
-            onChangeText={text => onChangeFilter('city', text)}
+            onChangeText={text => setFilters('city', text)}
           />
         </View>
       </View>

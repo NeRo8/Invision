@@ -39,82 +39,101 @@ class FiltersScreen extends Component {
       min: 0,
       max: 1000000,
 
-      activeFilterTypeAd: null,
+      minPrice: 0,
+      maxPrice: 200000,
+
       typeOfAd: [
         {
           id: 0,
           title: 'Private',
+          value: 'privete',
           active: true,
-          func: () => {
-            this.setState({ activeFilterTypeAd: 'private' });
-            this.props.onChangeFilter('typeOfAd', 'private');
-          },
+          func: () => {},
         },
         {
           id: 1,
           title: 'Business',
+          value: 'business',
           active: false,
-          func: () => {
-            this.setState({ activeFilterTypeAd: 'business' });
-            this.props.onChangeFilter('typeOfAd', 'business');
-          },
+          func: () => {},
         },
         {
           id: 2,
           title: 'All',
+          value: 'all',
           active: false,
-          func: () => {
-            this.setState({ activeFilterTypeAd: 'all' });
-            this.props.onChangeFilter('typeOfAd', 'all');
-          },
+          func: () => {},
         },
       ],
 
-      activeFilterProduct: null,
       stateOfProduct: [
         {
           id: 0,
           title: 'New',
+          value: 'new',
           active: true,
-          func: () => {
-            this.setState({ activeFilterProduct: 'new' });
-            this.props.onChangeFilter('stateOfProduct', 'new');
-          },
+          func: () => {},
         },
         {
           id: 1,
           title: 'b/a',
+          value: 'used',
           active: false,
-          func: () => {
-            this.setState({ activeFilterProduct: 'used' });
-            this.props.onChangeFilter('stateOfProduct', 'used');
-          },
+          func: () => {},
         },
         {
           id: 2,
           title: 'All',
+          value: 'all',
           active: false,
-          func: () => {
-            this.setState({ activeFilterProduct: 'all' });
-            this.props.onChangeFilter('stateOfProduct', 'all');
-          },
+          func: () => {},
         },
       ],
     };
   }
 
   componentDidMount() {
-    const { loadCategories } = this.props;
+    const { getCategoriesList, setLoad } = this.props;
 
-    loadCategories();
+    const { filters } = this.props;
+    const { typeOfAd, stateOfProduct } = this.state;
+
+    const newTypeOfAd = typeOfAd.map(item =>
+      item.value === filters.seller_type
+        ? { ...item, active: true }
+        : { ...item, active: false },
+    );
+
+    const newStateOfProduct = stateOfProduct.map(item =>
+      item.value === filters.state
+        ? { ...item, active: true }
+        : { ...item, active: false },
+    );
+
+    this.setState({
+      minPrice: filters.price_min,
+      maxPrice: filters.price_max,
+      typeOfAd: newTypeOfAd,
+      stateOfProduct: newStateOfProduct,
+    });
+
+    setLoad();
+    getCategoriesList();
   }
 
   handlePressTypeAd = id => {
     const { typeOfAd } = this.state;
+    const { onChangeFilter } = this.props;
 
     const newFilters = typeOfAd.map(item =>
       item.id === id ? { ...item, active: true } : { ...item, active: false },
     );
+
+    newFilters.forEach(element => {
+      element.active === true
+        ? onChangeFilter('seller_type', element.value)
+        : null;
+    });
 
     this.setState({
       typeOfAd: newFilters,
@@ -123,10 +142,15 @@ class FiltersScreen extends Component {
 
   handlePressFilterProduct = id => {
     const { stateOfProduct } = this.state;
+    const { onChangeFilter } = this.props;
 
     const newFilters = stateOfProduct.map(item =>
       item.id === id ? { ...item, active: true } : { ...item, active: false },
     );
+
+    newFilters.forEach(element => {
+      element.active === true ? onChangeFilter('state', element.value) : null;
+    });
 
     this.setState({
       stateOfProduct: newFilters,
@@ -139,8 +163,8 @@ class FiltersScreen extends Component {
   onMultiSliderValueChange = values => {
     const { onChangeFilter } = this.props;
 
-    onChangeFilter('minPrice', values[0]);
-    onChangeFilter('maxPrice', values[1]);
+    onChangeFilter('price_min', values[0]);
+    onChangeFilter('price_max', values[1]);
   };
 
   render() {
@@ -175,32 +199,41 @@ class FiltersScreen extends Component {
             <View>
               <View style={styles.blockPrice}>
                 <Input
-                  value={filters.minPrice.toString()}
+                  value={this.state.minPrice.toString()}
                   placeholder="0"
                   label="From"
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
-                  onChangeText={text => onChangeFilter('minPrice', text)}
+                  onChangeText={text => this.setState({ minPrice: text })}
+                  onSubmitEditing={() =>
+                    onChangeFilter('price_min', this.state.minPrice)
+                  }
                 />
                 <View style={{ width: 10 }} />
                 <Input
-                  value={filters.maxPrice.toString()}
+                  value={this.state.maxPrice.toString()}
                   placeholder="0"
                   label="To"
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
                   containerStyle={styles.inputContainer}
-                  onChangeText={text => onChangeFilter('maxPrice', text)}
+                  onChangeText={text => this.setState({ maxPrice: text })}
+                  onSubmitEditing={() =>
+                    onChangeFilter('price_max', this.state.maxPrice)
+                  }
                 />
               </View>
               <View>
                 <MultiSlider
                   min={min}
                   max={max}
-                  values={[filters.minPrice, filters.maxPrice]}
+                  values={[
+                    parseInt(filters.price_min),
+                    parseInt(filters.price_max),
+                  ]}
                   sliderLength={Dimensions.get('window').width - 20}
                   markerStyle={styles.markerStyle}
                   pressedMarkerStyle={styles.markerStyle}
@@ -216,8 +249,8 @@ class FiltersScreen extends Component {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                   }}>
-                  <Text style={styles.textElement}>{filters.minPrice}</Text>
-                  <Text style={styles.textElement}>{filters.maxPrice}</Text>
+                  <Text style={styles.textElement}>{filters.price_min}</Text>
+                  <Text style={styles.textElement}>{filters.price_max}</Text>
                 </View>
               </View>
             </View>
