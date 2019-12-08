@@ -7,7 +7,7 @@ import { addToFavorite, removeFromFavorite } from '../../redux/actions/Ads';
 const mapStateToProps = state => {
   return {
     authStatus: state.auth.authStatus,
-    token: state.auth.user.access_token,
+    token: state.auth.user !== null ? state.auth.user.access_token : null,
   };
 };
 

@@ -8,7 +8,7 @@ const mapStateToProps = state => {
   return {
     adsFavoritesList: state.ads.adsFavoritesList.results,
     authStatus: state.auth.authStatus,
-    token: state.auth.user.access_token,
+    token: state.auth.user !== null ? state.auth.user.access_token : null,
   };
 };
 

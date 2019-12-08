@@ -8,8 +8,8 @@ import {
 
 const mapStatToProps = state => {
   return {
-    token: state.auth.user.access_token,
-    userProfile: state.auth.user.user,
+    token: state.auth.user !== null ? state.auth.user.access_token : null,
+    userProfile: state.auth.uset !== null ? state.auth.user.user : null,
     categories: state.inKuwait.faq.categories.results,
   };
 };
