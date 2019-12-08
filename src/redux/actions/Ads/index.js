@@ -8,6 +8,7 @@ import {
   SET_ERROR,
   SET_CATEGORIES,
   SET_LOAD_MORE,
+  SET_FAVORITES_LIST,
 } from './types';
 
 const setAdsList = ads => ({
@@ -44,6 +45,11 @@ export const setLoading = loading => ({
 const setError = error => ({
   type: SET_ERROR,
   payload: error,
+});
+
+const setAdsFavorites = favorites => ({
+  type: SET_FAVORITES_LIST,
+  payload: favorites,
 });
 
 //API REDUX
@@ -176,4 +182,21 @@ export const removeFromFavorite = (id, token) => dispatch => {
     .then(responseJson => responseJson);
 
   dispatch(getAdsDetail(id, token));
+};
+
+export const getAdsFavorites = token => dispatch => {
+  dispatch(setLoading(true));
+
+  fetch(`${ADS}favorites/`, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setAdsFavorites(responseJson));
+      dispatch(setLoading(false));
+    })
+    .catch(error => dispatch(setError(error)));
 };

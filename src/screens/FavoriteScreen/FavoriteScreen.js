@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, ActivityIndicator, FlatList } from 'react-native';
-import { connect } from 'react-redux';
+import { View, ActivityIndicator, FlatList, Text } from 'react-native';
 
 import {
   ElementListAds,
@@ -47,11 +46,12 @@ class FavoriteScreen extends Component {
     };
   }
 
-  async componentDidMount() {
-    //FOR TOKEN
-    const token = await getData('token');
+  componentDidMount() {
+    const { authStatus, token, getFavoriteAds } = this.props;
 
-    this.props.getFavorites(token);
+    if (authStatus) {
+      getFavoriteAds(token);
+    }
   }
 
   handlePressElement = id => {
@@ -67,6 +67,8 @@ class FavoriteScreen extends Component {
   };
 
   render() {
+    const { authStatus, adsFavoritesList } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -75,17 +77,18 @@ class FavoriteScreen extends Component {
             onPressElement={this.handlePressElement}
           />
         </View>
-        {this.props.adsFavorites === undefined ? (
+        {!authStatus ? (
           <View
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <ActivityIndicator size="large" color={colors.HEADER} />
+            <Text style={styles.loadingText}>First you need sign in ...</Text>
           </View>
         ) : (
           <View style={styles.bodyBlock}>
             {this.state.activeFilter === 'ads' ? (
               <FlatList
                 numColumns={2}
-                data={this.props.adsFavorites}
+                data={adsFavoritesList}
                 renderItem={({ item }) => (
                   <ElementListAds item={item.ad} onPressProduct={() => {}} />
                 )}
@@ -123,18 +126,4 @@ class FavoriteScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    adsFavorites: state.ads.adsFavoritesList,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getFavorites: token => {
-      dispatch(getAdsFavorites(token));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FavoriteScreen);
+export default FavoriteScreen;

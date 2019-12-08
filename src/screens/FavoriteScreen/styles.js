@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 
 import { colors, globalStyles } from '../../constants';
 
+import { gothamBook } from '../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -10,6 +12,11 @@ export default StyleSheet.create({
   selectorContainer: {
     width: '90%',
     flexDirection: 'row',
+  },
+  loadingText: {
+    ...gothamBook,
+    fontSize: 18,
+    marginTop: 20,
   },
   activeElement: {
     height: 40,

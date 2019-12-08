@@ -6,10 +6,12 @@ import {
   SET_FILTER,
   SET_LOADING,
   SET_ERROR,
+  SET_FAVORITES_LIST,
 } from '../../actions/Ads/types';
 
 const initState = {
   adsList: [],
+  adsFavoritesList: [],
   adData: [],
   error: null,
   loading: true,
@@ -42,6 +44,12 @@ const adsReducer = (state = initState, action) => {
           previous: action.payload.previous,
           results: state.adsList.results.concat(action.payload.results),
         },
+      };
+    }
+    case SET_FAVORITES_LIST: {
+      return {
+        ...state,
+        adsFavoritesList: action.payload,
       };
     }
     case SET_DETAIL: {

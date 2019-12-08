@@ -5,3 +5,4 @@ export const SET_FILTER = 'SET_ADS_FILTER';
 export const SET_LOADING = 'SET_ADS_LOADING';
 export const SET_ERROR = 'SET_ADS_ERROR';
 export const SET_LOAD_MORE = 'SET_ADS_LOAD_MORE';
+export const SET_FAVORITES_LIST = 'SET_ADS_FAVORITES_LIST';
