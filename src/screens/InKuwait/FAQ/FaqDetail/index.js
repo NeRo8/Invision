@@ -8,6 +8,7 @@ const mapStateToProps = state => {
   return {
     questionDetail: state.inKuwait.faq.faqDetail,
     authStatus: state.auth.authStatus,
+    loading: state.inKuwait.faq.loading,
   };
 };
 

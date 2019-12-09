@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {
   getNews,
   setFilter,
+  setLoading,
 } from '../../../../redux/actions/inKuwait/newsAction';
 
 const mapStateToProps = state => {
@@ -22,6 +23,9 @@ const mapDispatchToProps = dispatch => {
     },
     setFilters: value => {
       dispatch(setFilter('q', value));
+    },
+    setLoad: () => {
+      dispatch(setLoading(true));
     },
   };
 };

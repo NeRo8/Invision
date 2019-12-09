@@ -1,10 +1,7 @@
 import NewsDetail from './NewsDetail';
 
 import { connect } from 'react-redux';
-import {
-  getNewsDetail,
-  setLoading,
-} from '../../../../redux/actions/inKuwait/newsAction';
+import { getNewsDetail } from '../../../../redux/actions/inKuwait/newsAction';
 
 const mapStateToProps = state => {
   return {
@@ -18,9 +15,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getNews: id => {
       dispatch(getNewsDetail(id));
-    },
-    setLoad: () => {
-      dispatch(setLoading(true));
     },
   };
 };

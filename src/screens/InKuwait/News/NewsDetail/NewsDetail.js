@@ -27,9 +27,7 @@ class NewsDetail extends Component {
   }
 
   componentDidMount() {
-    const { getNews, setLoad } = this.props;
-
-    setLoad(true);
+    const { getNews } = this.props;
 
     const id = this.props.navigation.getParam('id', null);
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {
   getFaqs,
   setFilter,
+  setLoading,
 } from '../../../../redux/actions/inKuwait/faqAction';
 
 const mapStateToProps = state => {
@@ -26,6 +27,9 @@ const mapDispatchToProps = dispatch => {
     },
     setFilters: value => {
       dispatch(setFilter('status', value));
+    },
+    setLoad: () => {
+      dispatch(setLoading(true));
     },
   };
 };

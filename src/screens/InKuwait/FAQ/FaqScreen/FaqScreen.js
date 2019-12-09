@@ -69,6 +69,9 @@ class FaqScreen extends Component {
   };
 
   handlePressElement = elementId => {
+    const { setLoad } = this.props;
+
+    setLoad();
     this.props.navigation.navigate('FaqDetail', { id: elementId });
   };
 

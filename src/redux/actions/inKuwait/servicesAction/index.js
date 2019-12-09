@@ -18,7 +18,7 @@ const setCategories = categories => ({
   payload: categories,
 });
 
-const setLoading = loading => ({
+export const setLoading = loading => ({
   type: SET_LOADING,
   payload: loading,
 });
