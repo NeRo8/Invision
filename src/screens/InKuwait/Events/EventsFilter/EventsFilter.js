@@ -4,6 +4,8 @@ import { CheckBox, Button, Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 
+import { DefaultButton } from '../../../../components/Buttons';
+
 import { colors, globalStyles } from '../../../../constants';
 
 import styles from './styles';
@@ -40,6 +42,13 @@ class EventsFilter extends Component {
 
     getCategoriesList();
   }
+
+  handlePressDone = () => {
+    const { filters, getEventsList, navigation } = this.props;
+
+    getEventsList(filters);
+    navigation.goBack();
+  };
 
   render() {
     const { categories, setFilters, filters } = this.props;
@@ -99,16 +108,8 @@ class EventsFilter extends Component {
             )}
           />
         </View>
-        <Button
-          title="Done"
-          titleStyle={styles.btnTitle}
-          buttonStyle={styles.btnStyle}
-          containerStyle={styles.btnContainer}
-          onPress={() => {
-            this.props.getEventsList(filters);
-            this.props.navigation.goBack();
-          }}
-        />
+
+        <DefaultButton title="Done" onPress={this.handlePressDone} />
       </View>
     );
   }

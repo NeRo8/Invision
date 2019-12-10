@@ -8,6 +8,9 @@ import {
 } from '../../../../constants/fonts';
 
 export default StyleSheet.create({
+  containerGlobal: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     paddingHorizontal: 15,

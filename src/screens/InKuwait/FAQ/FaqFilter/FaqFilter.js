@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { CheckBox, Button } from 'react-native-elements';
 
+import { DefaultButton } from '../../../../components/Buttons';
+
 import styles from './styles';
 import { colors } from '../../../../constants';
 
@@ -114,13 +116,7 @@ class FaqFilter extends Component {
             ItemSeparatorComponent={() => <View style={styles.divider} />}
           />
         </View>
-        <Button
-          title="Done"
-          titleStyle={styles.btnTitle}
-          buttonStyle={styles.btnStyle}
-          containerStyle={styles.btnContainer}
-          onPress={this.handlePressDone}
-        />
+        <DefaultButton title="Done" onPress={this.handlePressDone} />
       </View>
     );
   }

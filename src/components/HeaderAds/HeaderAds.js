@@ -62,7 +62,7 @@ class HeaderAds extends Component {
           <View style={styles.btnContainer}>
             <Button
               title="Choose category"
-              titleStyle={[globalStyles.gothamBold, styles.btnTitleStyle]}
+              titleStyle={styles.btnTitleStyle}
               buttonStyle={styles.btnStyle}
               containerStyle={{ marginRight: 5 }}
               onPress={this.handlePressCategory}
@@ -78,7 +78,7 @@ class HeaderAds extends Component {
                 size: 20,
               }}
               title="Add filters"
-              titleStyle={[globalStyles.gothamBold, styles.btnTitleStyle]}
+              titleStyle={styles.btnTitleStyle}
               buttonStyle={styles.btnStyle}
               containerStyle={{ marginLeft: 5 }}
               onPress={this.handlePressFilters}

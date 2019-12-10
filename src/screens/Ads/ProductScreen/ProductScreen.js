@@ -18,6 +18,7 @@ import SwiperFlatList from 'react-native-swiper-flatlist';
 import HeaderProduct from '../../../components/HeaderProduct';
 import { ElementListAds } from '../../../components/ElementLists';
 import ModalShare from './ModalShare';
+import { DefaultButton } from '../../../components/Buttons';
 
 import { colors, globalStyles } from '../../../constants';
 
@@ -308,12 +309,10 @@ class ProductScreen extends Component {
                   containerStyle={styles.btnContainer}
                   onPress={() => this.onPressReadAll()}
                 />
-                <Button
+                <DefaultButton
                   disabled={!authStatus}
                   title="Write own comment"
-                  titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
-                  buttonStyle={styles.btnStyleWrite}
-                  onPress={() =>
+                  onPressButton={() =>
                     this.props.navigation.navigate('CreateComment')
                   }
                 />

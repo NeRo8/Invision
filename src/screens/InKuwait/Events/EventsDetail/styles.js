@@ -91,14 +91,8 @@ export default StyleSheet.create({
   },
   buttonAddGoogle: {
     backgroundColor: '#9BA9BE',
-    height: 50,
-    marginVertical: 5,
   },
-  buttonRegister: {
-    backgroundColor: colors.HEADER,
-    height: 50,
-    marginVertical: 5,
-  },
+
   icon: {
     width: 35,
     height: 35,
@@ -122,15 +116,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 25,
   },
-  bottomContainer: {
-    position: 'absolute',
-    alignItems: 'flex-end',
-    marginTop: 20,
-    bottom: 15,
-    left: 15,
-    right: 15,
-  },
-  btnTitle: { ...gothamBold, color: 'white', fontSize: 15, lineHeight: 24 },
+
   modalWindow: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -143,5 +129,9 @@ export default StyleSheet.create({
     color: 'white',
     lineHeight: 24,
     textAlign: 'center',
+  },
+  bottomContainer: {
+    flex: 2,
+    paddingHorizontal: 15,
   },
 });

@@ -19,6 +19,7 @@ class OrganisationAndServicesDetail extends Component {
       iHeight: 0,
       imgURL:
         'https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/north-america/united-states/newyork/newyork_NationalGeographic_2328428.adapt.1900.1.jpg',
+      shareModal: false,
     };
   }
 
@@ -27,7 +28,6 @@ class OrganisationAndServicesDetail extends Component {
       this.setState({
         iWidth: width,
         iHeight: height,
-        shareModal: false,
       });
     });
   }

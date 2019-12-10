@@ -7,13 +7,16 @@ import {
   Dimensions,
   TouchableOpacity,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import moment from 'moment';
 import HTML from 'react-native-render-html';
 
+import { DefaultButton } from '../../../../components/Buttons';
+
 import styles from './styles';
-import { colors, globalStyles } from '../../../../constants';
+import { colors } from '../../../../constants';
 
 const imgWidth = 1600;
 const imgHeight = 750;
@@ -50,7 +53,7 @@ class NewsDetail extends Component {
       );
     } else
       return (
-        <View>
+        <SafeAreaView>
           <View style={styles.header}>
             <View style={styles.container}>
               <Icon
@@ -174,19 +177,14 @@ class NewsDetail extends Component {
                     </Text>
                   </View>
                 </TouchableOpacity>
-                <Button
-                  disabled={authStatus ? false : true}
-                  titleStyle={styles.btnStyle}
-                  buttonStyle={styles.buttonSend}
+                <DefaultButton
                   title="Write comment"
-                  onPress={() => {
-                    navigation.navigate('NewsCreateComment');
-                  }}
+                  onPressButton={() => navigation.navigate('NewsCreateComment')}
                 />
               </View>
             </View>
           </ScrollView>
-        </View>
+        </SafeAreaView>
       );
   }
 }

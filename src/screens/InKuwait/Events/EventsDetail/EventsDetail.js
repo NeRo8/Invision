@@ -12,6 +12,8 @@ import { Icon, Button } from 'react-native-elements';
 import moment from 'moment';
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
+import { DefaultButton } from '../../../../components/Buttons';
+
 import { colors, globalStyles } from '../../../../constants';
 import styles from './styles';
 
@@ -105,16 +107,15 @@ class EventsDetail extends Component {
               />
             </View>
           </View>
+          <View style={{ flex: 8 }}>
+            <View style={styles.imageHeader}>
+              <Image
+                source={{ uri: eventsDetail.image }}
+                style={styles.imageContainer}
+                resizeMode="stretch"
+              />
+            </View>
 
-          <View style={styles.imageHeader}>
-            <Image
-              source={{ uri: eventsDetail.image }}
-              style={styles.imageContainer}
-              resizeMode="stretch"
-            />
-          </View>
-
-          <View style={{ flex: 1, paddingBottom: 150 }}>
             <View style={styles.wraperView}>
               <Text style={styles.title}>{eventsDetail.title}</Text>
 
@@ -182,11 +183,12 @@ class EventsDetail extends Component {
           </View>
 
           <View style={styles.bottomContainer}>
-            <View style={styles.btnLContainer}>
+            <View style={{ alignItems: 'flex-end' }}>
               <Icon
                 raised
                 name="ios-pin"
                 type="ionicon"
+                size={24}
                 color={colors.HEADER}
                 iconStyle={styles.icon}
                 onPress={() => {
@@ -194,19 +196,15 @@ class EventsDetail extends Component {
                 }}
               />
             </View>
-            <Button
-              titleStyle={styles.btnTitle}
-              buttonStyle={styles.buttonAddGoogle}
-              containerStyle={{ width: '100%' }}
+            <DefaultButton
               title="Add to Google or iOS Calendar"
-              onPress={() => this.handlePressAddEvent(eventsDetail)}
+              buttonStyle={styles.buttonAddGoogle}
+              onPressButton={() => this.handlePressAddEvent(eventsDetail)}
             />
-            <Button
-              titleStyle={styles.btnTitle}
-              buttonStyle={styles.buttonRegister}
-              containerStyle={{ width: '100%' }}
+
+            <DefaultButton
               title="Register to event"
-              onPress={() => this.onChangeModalVisible()}
+              onPressButton={this.onChangeModalVisible}
             />
           </View>
           <Modal visible={this.state.modalVisible} transparent>

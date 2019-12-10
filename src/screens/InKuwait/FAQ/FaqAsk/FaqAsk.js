@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { Input, Icon, Button } from 'react-native-elements';
 
+import { DefaultButton } from '../../../../components/Buttons';
+
 import { colors, globalStyles } from '../../../../constants';
 import styles from './styles';
 
@@ -143,16 +145,12 @@ class FaqAsk extends Component {
           containerStyle={styles.inputContainer}
           onChangeText={text => this.setData('author_email', text)}
         />
-        <Button
+
+        <DefaultButton
           title="Add question"
-          titleStyle={[
-            globalStyles.gothamBold,
-            { fontSize: 15, color: 'white' },
-          ]}
-          buttonStyle={styles.btnStyle}
-          containerStyle={{ marginVertical: 15 }}
-          onPress={this.handlePressSubmit}
+          onPressButton={this.handlePressSubmit}
         />
+
         <Modal visible={this.state.visible}>
           <View style={{ flex: 1, backgroundColor: colors.BACKGROUND }}>
             <View style={styles.modalHeader}></View>

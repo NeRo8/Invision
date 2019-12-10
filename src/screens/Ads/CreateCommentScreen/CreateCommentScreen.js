@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView, Platform, TextInput } from 'react-native';
+import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 
-import { globalStyles } from '../../../constants';
+import { DefaultButton } from '../../../components/Buttons';
+
 import styles from './styles';
 
 class CreateCommentScreen extends Component {
@@ -39,12 +40,7 @@ class CreateCommentScreen extends Component {
             />
           </View>
 
-          <Button
-            title="Send comment"
-            titleStyle={styles.btnTitle}
-            buttonStyle={styles.btnStyle}
-            containerStyle={{ marginBottom: 25 }}
-          />
+          <DefaultButton title="Send comment" />
         </View>
       </KeyboardAvoidingView>
     );

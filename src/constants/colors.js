@@ -31,6 +31,7 @@ const colors = {
   CHAT_BACKGROUND: '#FAFAFA',
   CHAT_DATE: '#2C3440',
   CHAT_DATE_BORDER_COLOR: '#EBEEF0',
+  DEFAULT_BUTTON: '#0A68EF',
 };
 
 export default colors;
