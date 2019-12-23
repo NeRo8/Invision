@@ -304,7 +304,7 @@ class ProductScreen extends Component {
                 <Button
                   disabled={productData.comments.length <= 3 ? true : false}
                   title={`Read all ${productData.comments.length} reviews`}
-                  titleStyle={[globalStyles.gothamBold, styles.titleRead]}
+                  titleStyle={styles.titleRead}
                   buttonStyle={styles.btnStyleRead}
                   containerStyle={styles.btnContainer}
                   onPress={() => this.onPressReadAll()}
@@ -347,28 +347,18 @@ class ProductScreen extends Component {
               />
             </View>
             <View style={styles.bottomView}>
-              <View
-                style={{
-                  flex: 1,
-                }}>
-                <Icon
-                  name="phone"
-                  type="font-awesome"
-                  color="white"
-                  containerStyle={styles.iconPhoneContainer}
-                  iconStyle={{
-                    width: 55,
-                    height: 50,
-                    textAlign: 'center',
-                    textAlignVertical: 'center',
-                  }}
-                  onPress={() => {
-                    productData.phone_number !== null || undefined
-                      ? Linking.openURL(`tel:${productData.phone_number}`)
-                      : null;
-                  }}
-                />
-              </View>
+              <Icon
+                name="phone"
+                type="font-awesome"
+                color="white"
+                containerStyle={styles.iconPhoneContainer}
+                onPress={() => {
+                  productData.phone_number !== null || undefined
+                    ? Linking.openURL(`tel:${productData.phone_number}`)
+                    : null;
+                }}
+              />
+
               <View style={{ flex: 6 }}>
                 <Input
                   inputStyle={styles.bottomInput}

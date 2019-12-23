@@ -158,6 +158,7 @@ export default StyleSheet.create({
     textAlign: 'justify',
   },
   titleRead: {
+    ...gothamBold,
     fontSize: 15,
     lineHeight: 24,
     color: colors.HEADER,
@@ -171,8 +172,6 @@ export default StyleSheet.create({
   btnStyleRead: {
     height: 50,
     borderRadius: 2,
-    borderWidth: 1,
-    borderColor: colors.HEADER,
     backgroundColor: 'white',
     marginBottom: 10,
   },
@@ -241,6 +240,7 @@ export default StyleSheet.create({
     lineHeight: 24,
     backgroundColor: 'white',
     height: 50,
+    paddingHorizontal: 10,
   },
   bottomInputContainer: {
     maxWidth: '100%',
@@ -251,9 +251,9 @@ export default StyleSheet.create({
     backgroundColor: '#9BA9BE',
     width: 55,
     height: 50,
+    borderRadius: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 2,
   },
   iconSendContainer: {
     backgroundColor: colors.HEADER,

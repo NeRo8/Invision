@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StatusBar,
-  SafeAreaView,
-  FlatList,
-} from 'react-native';
+import { View, Text, StatusBar, FlatList } from 'react-native';
 import { Avatar, Icon } from 'react-native-elements';
 
-import ElementList from '../../../components/ElementLists';
+import { ElementListAds } from '../../../components/ElementLists';
 import ComplainModal from './ComplainModal';
 
-import { colors, globalStyles } from '../../../constants';
+import moment from 'moment';
+
+import { colors } from '../../../constants';
 
 import styles from './styles';
 
@@ -20,12 +15,6 @@ class ProductBuyerProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        { id: 1, title: 1, active: true },
-        { id: 2, title: 2, active: false },
-        { id: 3, title: 1, active: true },
-        { id: 4, title: 2, active: false },
-      ],
       complainModalShow: false,
     };
   }
@@ -36,130 +25,133 @@ class ProductBuyerProfile extends Component {
     });
   };
 
+  onPressElement = pk => {
+    const { getAdData, token, setLoad, navigation } = this.props;
+    setLoad(true);
+    getAdData(pk, token);
+    navigation.navigate('ProductDetail');
+  };
+
   render() {
+    const { user, ads } = this.props;
+
     return (
-      <ScrollView style={{ backgroundColor: colors.BACKGROUND }}>
+      <View style={styles.container}>
         <StatusBar barStyle="dark-content" />
         <View style={styles.header}>
-          <Icon
-            name="chevron-left"
-            type="feather"
-            size={32}
-            color="black"
-            containerStyle={{
-              width: 50,
-            }}
-            onPress={() => this.props.navigation.goBack()}
-          />
-          <Icon
-            name="md-flag"
-            type="ionicon"
-            size={24}
-            color={colors.DEFAULT}
-            containerStyle={{
-              width: 50,
-            }}
-            onPress={() => this.onPressComplain()}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            backgroundColor: 'white',
-            paddingHorizontal: 15,
-            alignItems: 'center',
-            paddingTop: 15,
-          }}>
-          <Avatar
-            containerStyle={{ marginRight: 25 }}
-            size={64}
-            rounded
-            source={require('../../../assets/icons/userIcons/man.jpg')}
-          />
-          <View style={{ justifyContent: 'space-evenly', height: 83 }}>
-            <Text style={[globalStyles.gothamMediumRegular, styles.userName]}>
-              Lucas Unknown
-            </Text>
-            <View style={styles.location}>
+          <View style={styles.headerNavigation}>
+            <Icon
+              name="chevron-left"
+              type="feather"
+              size={32}
+              color="black"
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => this.props.navigation.goBack()}
+            />
+            <Icon
+              name="md-flag"
+              type="ionicon"
+              size={24}
+              color={colors.DEFAULT}
+              containerStyle={{
+                width: 50,
+              }}
+              onPress={() => this.onPressComplain()}
+            />
+          </View>
+          <View style={styles.headerProfile}>
+            {user.avatar === null ? (
               <Icon
-                name="map-pin"
-                type="feather"
-                color={colors.UNACTIVE}
-                size={20}
-                iconStyle={{ marginRight: 8 }}
+                name="ios-person"
+                type="ionicon"
+                color="white"
+                size={40}
+                containerStyle={styles.avatarIcon}
               />
-              <Text
-                style={[
-                  globalStyles.gothamBook,
-                  { fontSize: 15, lineHeight: 26, color: colors.UNACTIVE },
-                ]}>
-                Al Jabriya
-              </Text>
+            ) : (
+              <Avatar
+                containerStyle={{ marginRight: 25 }}
+                size={64}
+                rounded
+                source={{ uri: user.avatar }}
+              />
+            )}
+            <View style={{ justifyContent: 'space-evenly', height: 83 }}>
+              <Text style={styles.userName}>{user.full_name}</Text>
+              <View style={styles.location}>
+                <Icon
+                  name="map-pin"
+                  type="feather"
+                  color={colors.UNACTIVE}
+                  size={20}
+                  iconStyle={{ marginRight: 8 }}
+                />
+                <Text style={styles.userLocation}>Al Jabriya</Text>
+              </View>
             </View>
           </View>
         </View>
         <View style={styles.wraperView}>
-          <View
-            style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <View style={styles.block}>
+          <View style={styles.blockUserInfo}>
+            <View
+              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View style={styles.block}>
+                <Icon
+                  name="cellphone-text"
+                  type="material-community"
+                  color={'#63A3FF'}
+                  iconStyle={{ marginRight: 10 }}
+                />
+                <Text style={styles.blockText}>
+                  {user.phone_number !== null ? user.phone_number : 'Not found'}
+                </Text>
+              </View>
+              <View style={styles.block}>
+                <Icon
+                  name="clock"
+                  type="octicon"
+                  color={'#63A3FF'}
+                  iconStyle={{ marginRight: 10 }}
+                />
+                <Text style={styles.blockText}>
+                  Since {moment(user.date_joined).format('YYYY')}
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.blockEmail}>
               <Icon
-                name="cellphone-text"
+                name="email-outline"
                 type="material-community"
                 color={'#63A3FF'}
                 iconStyle={{ marginRight: 10 }}
               />
-              <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                01567 23040
-              </Text>
-            </View>
-            <View style={styles.block}>
-              <Icon
-                name="clock"
-                type="octicon"
-                color={'#63A3FF'}
-                iconStyle={{ marginRight: 10 }}
-              />
-              <Text style={[globalStyles.gothamBook, styles.blockText]}>
-                Since 2017
-              </Text>
+              <Text style={styles.blockText}>{user.email}</Text>
             </View>
           </View>
-          <View style={styles.blockEmail}>
-            <Icon
-              name="email-outline"
-              type="material-community"
-              color={'#63A3FF'}
-              iconStyle={{ marginRight: 10 }}
-            />
-            <Text style={[globalStyles.gothamBook, styles.blockText]}>
-              neha.ryan@gmail.com
-            </Text>
-          </View>
+
           <View style={styles.myAdsView}>
-            <Text
-              style={[
-                globalStyles.gothamBold,
-                { fontSize: 12, lineHeight: 20, letterSpacing: 1 },
-              ]}>
-              MY ADS
-            </Text>
-            <SafeAreaView style={styles.flatListView}>
-              <FlatList
-                numColumns={2}
-                data={this.state.data}
-                renderItem={({ item }) => (
-                  <ElementList item={item} onPressProduct={() => {}} />
-                )}
-                keyExtractor={(item, index) => item.id}
-              />
-            </SafeAreaView>
+            <Text style={styles.headerTag}>MY ADS</Text>
+            <FlatList
+              numColumns={2}
+              data={ads}
+              renderItem={({ item }) => (
+                <ElementListAds
+                  item={item}
+                  onPressProduct={this.onPressElement}
+                />
+              )}
+              keyExtractor={(item, index) => item.pk}
+            />
           </View>
         </View>
         <ComplainModal
           show={this.state.complainModalShow}
           onPressClose={this.onPressComplain}
         />
-      </ScrollView>
+      </View>
     );
   }
 }
