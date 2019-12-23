@@ -2,9 +2,16 @@ import { StyleSheet, Platform } from 'react-native';
 
 import { colors } from '../../constants';
 
+import { gothamBold, gothamBook } from '../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
+  },
+  containerLoading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   fontInsideImage: {
     fontSize: 11,
@@ -78,8 +85,14 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 15,
   },
-  headerTitleText: { fontSize: 20, color: 'white', marginVertical: 17 },
+  headerTitleText: {
+    ...gothamBold,
+    fontSize: 20,
+    color: 'white',
+    marginVertical: 17,
+  },
   headerText: {
+    ...gothamBold,
     fontSize: 12,
     fontWeight: 'bold',
     marginLeft: 10,
@@ -148,11 +161,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   btnSettingsTitle: {
+    ...gothamBold,
     color: 'white',
   },
   btnStyle: {
     borderRadius: 0,
     backgroundColor: colors.HEADER,
     height: 50,
+  },
+  elementLabel: {
+    ...gothamBook,
+    fontSize: 15,
   },
 });
