@@ -13,7 +13,11 @@ import {
 const initState = {
   adsList: [],
   adsFavoritesList: [],
-  adData: [],
+  adData: {
+    user: {
+      pk: null,
+    },
+  },
   sellerProfile: null,
   error: null,
   loading: true,

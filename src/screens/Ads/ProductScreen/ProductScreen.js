@@ -253,20 +253,12 @@ class ProductScreen extends Component {
                     }
                     style={styles.userTouchable}>
                     <View style={styles.userLeftBlock}>
-                      {productData.user.avatar !== null ? (
-                        <Image
-                          source={{ uri: productData.user.avatar }}
-                          style={{ width: 25, height: 25, borderRadius: 12 }}
-                        />
-                      ) : (
-                        <Icon
-                          name="ios-person"
-                          type="ionicon"
-                          color="silver"
-                          size={20}
-                          containerStyle={styles.iconAvatar}
-                        />
-                      )}
+                      <Avatar
+                        rounded
+                        source={productData.user.avatar}
+                        imageProps={{ resizeMode: 'cover' }}
+                        size={40}
+                      />
                       <Text style={styles.userName}>
                         {productData.user.full_name}
                       </Text>

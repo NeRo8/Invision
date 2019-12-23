@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../../../constants';
-import { gothamBold, gothamBook } from '../../../../constants/fonts';
+import {
+  gothamBold,
+  gothamBook,
+  gothamMediumRegular,
+} from '../../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -24,11 +28,13 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   userName: {
+    ...gothamMediumRegular,
     fontSize: 17,
     lineHeight: 26,
     color: colors.TITLE,
   },
   date: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 24,
     fontWeight: '300',
@@ -44,15 +50,7 @@ export default StyleSheet.create({
   buttonWrite: {
     backgroundColor: colors.HEADER,
     height: 50,
-    marginBottom: 15,
-    marginHorizontal: 15,
-    position: 'absolute',
-    zIndex: 1,
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
-
   containerElement: {
     padding: 15,
   },

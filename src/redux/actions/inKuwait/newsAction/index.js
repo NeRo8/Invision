@@ -85,3 +85,19 @@ export const getNewsDetail = id => dispatch => {
     })
     .catch(error => dispatch(setError(error)));
 };
+
+export const setReport = (commentId, token) => {
+  fetch(`${DEFAULT_URL}/report/${commentId}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify({
+      id: commentId,
+    }),
+  })
+    .then(response => response.json())
+    .then(responseJson => console.log(responseJson))
+    .catch(error => console.log(error));
+};

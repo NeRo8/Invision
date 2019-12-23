@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  StatusBar,
-  FlatList,
-} from 'react-native';
+import { SafeAreaView, View, Text, FlatList } from 'react-native';
 import { Icon, Button, Divider } from 'react-native-elements';
 import Moment from 'moment';
 
 import styles from './styles';
-import { colors, globalStyles } from '../../../../constants';
+import { colors } from '../../../../constants';
 
-const ElementFlatList = ({ item }) => (
+const ElementFlatList = ({ item, onPressElement, authStatus }) => (
   <View>
     <View style={styles.comentView}>
       <View style={styles.topOfComent}>
-        <Text style={[globalStyles.gothamMediumRegular, styles.userName]}>
+        <Text style={styles.userName}>
           {item.user__first_name} {item.user__last_name}
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -29,7 +21,7 @@ const ElementFlatList = ({ item }) => (
             color={colors.UNACTIVE}
             containerStyle={{ marginRight: 8 }}
           />
-          <Text style={[globalStyles.gothamBook, styles.date]}>
+          <Text style={styles.date}>
             {Moment(item.created).format('DD.MM.YY')}
           </Text>
         </View>
@@ -39,6 +31,7 @@ const ElementFlatList = ({ item }) => (
       </View>
       <View style={{ flexDirection: 'row' }}>
         <Button
+          disabled={authStatus}
           icon={{
             name: 'ios-flag',
             type: 'ionicon',
@@ -48,8 +41,10 @@ const ElementFlatList = ({ item }) => (
           titleStyle={styles.btnTitleReport}
           buttonStyle={styles.btnStyleReport}
           containerStyle={styles.btnContainer}
+          onPress={() => onPressElement(item.pk)}
         />
         <Button
+          disabled={authStatus}
           icon={{
             name: 'ios-undo',
             type: 'ionicon',
@@ -75,28 +70,43 @@ class NewsAnswers extends Component {
   }
 
   onPressWriteComment = () => {
-    this.props.navigation.navigate('NewsCreateComment');
+    const { navigation } = this.props;
+    navigation.navigate('NewsCreateComment');
+  };
+
+  handlePressReport = id => {
+    const { token, setAnswerReport } = this.props;
+
+    setAnswerReport(id, token);
   };
 
   render() {
     const { comments, authStatus } = this.props;
 
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={comments}
-          renderItem={({ item }) => <ElementFlatList item={item} />}
-          keyExtractor={item => item.pk}
-        />
+      <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+          <FlatList
+            data={comments}
+            renderItem={({ item }) => (
+              <ElementFlatList
+                item={item}
+                onPressElement={this.handlePressReport}
+                authStatus={authStatus ? false : true}
+              />
+            )}
+            keyExtractor={item => item.pk.toString()}
+          />
 
-        <Button
-          disabled={authStatus ? false : true}
-          titleStyle={styles.btnTitle}
-          buttonStyle={styles.buttonWrite}
-          title="Write comment"
-          onPress={this.onPressWriteComment}
-        />
-      </View>
+          <Button
+            disabled={authStatus ? false : true}
+            titleStyle={styles.btnTitle}
+            buttonStyle={styles.buttonWrite}
+            title="Write comment"
+            onPress={this.onPressWriteComment}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }

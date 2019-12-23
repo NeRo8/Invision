@@ -63,7 +63,7 @@ class NewsScreen extends Component {
             renderItem={({ item }) => (
               <ElementListNews item={item} onPressProduct={this.onPressNews} />
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.pk.toString()}
           />
         </View>
       </View>
