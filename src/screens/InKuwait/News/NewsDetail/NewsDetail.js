@@ -159,7 +159,7 @@ class NewsDetail extends Component {
                     html={newsDetail.description}
                     baseFontStyle={styles.description}
                     imagesInitialDimensions={{
-                      width: '100%',
+                      width: Dimensions.get('window').width - 50,
                       height: 300,
                     }}
                   />

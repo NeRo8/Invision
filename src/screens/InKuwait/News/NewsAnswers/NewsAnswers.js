@@ -6,8 +6,8 @@ import Moment from 'moment';
 import styles from './styles';
 import { colors } from '../../../../constants';
 
-const ElementFlatList = ({ item, onPressElement, authStatus }) => (
-  <View>
+const ElementFlatList = ({ item, onPressReport, onPressReply, authStatus }) => (
+  <View style={item.parent !== null ? { marginLeft: 20 } : null}>
     <View style={styles.comentView}>
       <View style={styles.topOfComent}>
         <Text style={styles.userName}>
@@ -41,7 +41,7 @@ const ElementFlatList = ({ item, onPressElement, authStatus }) => (
           titleStyle={styles.btnTitleReport}
           buttonStyle={styles.btnStyleReport}
           containerStyle={styles.btnContainer}
-          onPress={() => onPressElement(item.pk)}
+          onPress={() => onPressReport(item.pk)}
         />
         <Button
           disabled={authStatus}
@@ -54,6 +54,7 @@ const ElementFlatList = ({ item, onPressElement, authStatus }) => (
           titleStyle={styles.btnTitleReply}
           buttonStyle={styles.btnStyleReply}
           containerStyle={styles.btnContainer}
+          onPress={() => onPressReply(item.pk)}
         />
       </View>
     </View>
@@ -80,6 +81,14 @@ class NewsAnswers extends Component {
     setAnswerReport(id, token);
   };
 
+  handlePressReply = answerdId => {
+    const { navigation } = this.props;
+
+    navigation.navigate('NewsCreateComment', {
+      id: answerdId,
+    });
+  };
+
   render() {
     const { comments, authStatus } = this.props;
 
@@ -91,7 +100,8 @@ class NewsAnswers extends Component {
             renderItem={({ item }) => (
               <ElementFlatList
                 item={item}
-                onPressElement={this.handlePressReport}
+                onPressReport={this.handlePressReport}
+                onPressReply={this.handlePressReply}
                 authStatus={authStatus ? false : true}
               />
             )}

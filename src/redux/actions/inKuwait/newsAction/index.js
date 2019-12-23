@@ -94,3 +94,18 @@ export const setReport = (commentId, token) => dispatch => {
     },
   }).catch(error => console.log(error));
 };
+
+export const setComment = (data, token) => dispatch => {
+  fetch(`${DEFAULT_URL}/new-comment/`, {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(responseJson => console.log(responseJson))
+    .catch(error => console.log(error));
+};

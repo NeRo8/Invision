@@ -42,6 +42,7 @@ export default StyleSheet.create({
   descriptionView: {
     marginTop: 20,
     backgroundColor: 'rgba(255,255,265, 0.3)',
+    alignItems: 'center',
   },
   icons: {},
   rightBlock: {
