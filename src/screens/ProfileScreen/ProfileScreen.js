@@ -87,9 +87,10 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    const { getProfileInfo, token } = this.props;
+    const { getProfileInfo, getAds, token } = this.props;
 
     getProfileInfo(token);
+    getAds(token);
   }
 
   showOption = value => {
@@ -118,7 +119,7 @@ class ProfileScreen extends Component {
   };
 
   render() {
-    const { token, user, navigation } = this.props;
+    const { loading, token, user, navigation, ads } = this.props;
 
     if (token === null) {
       return (
@@ -127,9 +128,15 @@ class ProfileScreen extends Component {
           <Text style={styles.loadingText}>First you need sign in ...</Text>
         </View>
       );
+    } else if (loading === true) {
+      return (
+        <View style={styles.containerLoading}>
+          <ActivityIndicator size="large" color={colors.HEADER} />
+        </View>
+      );
     } else
       return (
-        <ScrollView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
           <LinearGradient
             colors={['rgb(45,118,233)', 'rgb(97,193,248)']}
             start={{ x: 0.0, y: 1 }}
@@ -237,19 +244,19 @@ class ProfileScreen extends Component {
                 onPressElement={this.handlePressFilter}
               />
             </View>
-            <View style={[styles.container, { marginTop: 10 }]}>
-              <FlatList
-                data={this.state.data}
-                renderItem={({ item }) => (
-                  <ElementFL
-                    item={item}
-                    showOption={this.showOption}
-                    grayscale={this.state.grayscale}
-                  />
-                )}
-                keyExtractor={(item, index) => index}
-              />
-            </View>
+
+            <FlatList
+              data={ads.results}
+              renderItem={({ item }) => (
+                <ElementFL
+                  item={item}
+                  showOption={this.showOption}
+                  grayscale={this.state.grayscale}
+                />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+
             <ModalProfile
               show={this.state.showOption}
               showOption={this.showOption}

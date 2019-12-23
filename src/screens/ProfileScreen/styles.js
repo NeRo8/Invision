@@ -2,11 +2,15 @@ import { StyleSheet, Platform } from 'react-native';
 
 import { colors } from '../../constants';
 
-import { gothamBold, gothamBook } from '../../constants/fonts';
+import {
+  gothamBold,
+  gothamBook,
+  gothamMediumRegular,
+} from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
   },
   containerLoading: {
     flex: 1,
@@ -17,12 +21,16 @@ export default StyleSheet.create({
     fontSize: 11,
     color: 'white',
   },
+  label: {
+    ...gothamBook,
+  },
   loadingText: {
     ...gothamBook,
     fontSize: 18,
     marginTop: 20,
   },
   fontDescription: {
+    ...gothamMediumRegular,
     fontSize: 15,
     color: 'white',
     textAlign: 'justify',
@@ -177,5 +185,13 @@ export default StyleSheet.create({
   elementLabel: {
     ...gothamBook,
     fontSize: 15,
+  },
+  bottomBlock: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
 });

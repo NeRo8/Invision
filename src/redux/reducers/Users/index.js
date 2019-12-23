@@ -1,7 +1,13 @@
-import { SET_PROFILE, SET_ERROR, SET_LOADING } from '../../actions/Users/types';
+import {
+  SET_PROFILE,
+  SET_ERROR,
+  SET_LOADING,
+  SET_PROFILE_ADS,
+} from '../../actions/Users/types';
 
 const initState = {
   user: null,
+  ads: null,
   loading: true,
   error: null,
 };
@@ -12,6 +18,12 @@ const usersReducer = (state = initState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    }
+    case SET_PROFILE_ADS: {
+      return {
+        ...state,
+        ads: action.payload,
       };
     }
     case SET_LOADING: {

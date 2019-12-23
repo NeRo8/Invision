@@ -1,12 +1,15 @@
 import ProfileScreen from './ProfileScreen';
 
-import { getProfile } from '../../redux/actions/Users';
+import { getProfile, getProfileAds } from '../../redux/actions/Users';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
     user: state.users.user,
+    ads: state.users.ads,
     token: state.auth.user !== null ? state.auth.user.access_token : null,
+    loading: state.users.loading,
+    error: state.users.error,
   };
 };
 
@@ -14,6 +17,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getProfileInfo: token => {
       dispatch(getProfile(token));
+    },
+    getAds: token => {
+      dispatch(getProfileAds(token));
     },
   };
 };
