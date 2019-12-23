@@ -247,20 +247,26 @@ class ProductScreen extends Component {
                 <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate('ProductBuyerProfile')
+                      this.props.navigation.navigate('ProductBuyerProfile', {
+                        id: this.props.userid,
+                      })
                     }
                     style={styles.userTouchable}>
                     <View style={styles.userLeftBlock}>
-                      <Avatar
-                        rounded
-                        source={
-                          productData.user.avatar === null
-                            ? require('../../../assets/icons/userIcons/man.jpg')
-                            : { uri: productData.user.avatar }
-                        }
-                        imageProps={{ resizeMode: 'cover' }}
-                        size={25}
-                      />
+                      {productData.user.avatar !== null ? (
+                        <Image
+                          source={{ uri: productData.user.avatar }}
+                          style={{ width: 25, height: 25, borderRadius: 12 }}
+                        />
+                      ) : (
+                        <Icon
+                          name="ios-person"
+                          type="ionicon"
+                          color="silver"
+                          size={20}
+                          containerStyle={styles.iconAvatar}
+                        />
+                      )}
                       <Text style={styles.userName}>
                         {productData.user.full_name}
                       </Text>

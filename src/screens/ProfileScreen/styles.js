@@ -17,6 +17,11 @@ export default StyleSheet.create({
     fontSize: 11,
     color: 'white',
   },
+  loadingText: {
+    ...gothamBook,
+    fontSize: 18,
+    marginTop: 20,
+  },
   fontDescription: {
     fontSize: 15,
     color: 'white',

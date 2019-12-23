@@ -9,6 +9,7 @@ import {
   SET_CATEGORIES,
   SET_LOAD_MORE,
   SET_FAVORITES_LIST,
+  SET_SELLER_PROFILE,
 } from './types';
 
 const setAdsList = ads => ({
@@ -50,6 +51,11 @@ const setError = error => ({
 const setAdsFavorites = favorites => ({
   type: SET_FAVORITES_LIST,
   payload: favorites,
+});
+
+const setSellerProfile = user => ({
+  type: SET_SELLER_PROFILE,
+  payload: user,
 });
 
 //API REDUX
@@ -199,4 +205,19 @@ export const getAdsFavorites = token => dispatch => {
       dispatch(setLoading(false));
     })
     .catch(error => dispatch(setError(error)));
+};
+
+export const getSellerProfile = userid => dispatch => {
+  setLoading(true);
+
+  fetch(`${ADS}seller/${userid}/`)
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setSellerProfile(responseJson));
+      dispatch(setLoading(false));
+    })
+    .then(error => {
+      dispatch(setError(error));
+      dispatch(setLoading(false));
+    });
 };

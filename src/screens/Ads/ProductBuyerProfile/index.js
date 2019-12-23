@@ -2,13 +2,20 @@ import ProductBuyerProfile from './ProductBuyerProfile';
 
 import { connect } from 'react-redux';
 
-import { setLoading, getAdsDetail } from '../../../redux/actions/Ads';
+import {
+  setLoading,
+  getAdsDetail,
+  getSellerProfile,
+} from '../../../redux/actions/Ads';
 
 const mapStateToProps = state => {
   return {
-    user: state.ads.adData.user,
-    ads: state.ads.adData.recommended,
+    user:
+      state.ads.sellerProfile !== null ? state.ads.sellerProfile.user : null,
+    ads: state.ads.sellerProfile !== null ? state.ads.sellerProfile.ads : null,
     token: state.auth.user !== null ? state.auth.user.access_token : null,
+    loading: state.ads.loading,
+    error: state.ads.error,
   };
 };
 
@@ -17,7 +24,9 @@ const mapDispatchToProps = dispatch => {
     setLoad: status => {
       dispatch(setLoading(status));
     },
-
+    getProfile: userid => {
+      dispatch(getSellerProfile(userid));
+    },
     getAdData: (id, token) => {
       dispatch(getAdsDetail(id, token));
     },

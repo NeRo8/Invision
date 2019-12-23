@@ -15,6 +15,11 @@ export default StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 40 : 20,
     backgroundColor: 'white',
   },
+  loadingView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   headerNavigation: {
     backgroundColor: 'white',
     alignItems: 'center',

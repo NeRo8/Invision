@@ -7,12 +7,14 @@ import {
   SET_LOADING,
   SET_ERROR,
   SET_FAVORITES_LIST,
+  SET_SELLER_PROFILE,
 } from '../../actions/Ads/types';
 
 const initState = {
   adsList: [],
   adsFavoritesList: [],
   adData: [],
+  sellerProfile: null,
   error: null,
   loading: true,
   filters: {
@@ -44,6 +46,12 @@ const adsReducer = (state = initState, action) => {
           previous: action.payload.previous,
           results: state.adsList.results.concat(action.payload.results),
         },
+      };
+    }
+    case SET_SELLER_PROFILE: {
+      return {
+        ...state,
+        sellerProfile: action.payload,
       };
     }
     case SET_FAVORITES_LIST: {

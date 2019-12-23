@@ -118,12 +118,13 @@ class ProfileScreen extends Component {
   };
 
   render() {
-    const { user, navigation } = this.props;
+    const { token, user, navigation } = this.props;
 
-    if (user === null) {
+    if (token === null) {
       return (
         <View style={styles.containerLoading}>
           <ActivityIndicator size="large" color={colors.HEADER} />
+          <Text style={styles.loadingText}>First you need sign in ...</Text>
         </View>
       );
     } else
@@ -246,6 +247,7 @@ class ProfileScreen extends Component {
                     grayscale={this.state.grayscale}
                   />
                 )}
+                keyExtractor={(item, index) => index}
               />
             </View>
             <ModalProfile

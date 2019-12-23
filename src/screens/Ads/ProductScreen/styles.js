@@ -1,11 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 import { colors } from '../../../constants';
-import {
-  gothamBold,
-  gothamBook,
-  gothamMediumRegular,
-} from '../../../constants/fonts';
+import { gothamBold, gothamBook } from '../../../constants/fonts';
 
 export const { width, height } = Dimensions.get('window');
 
@@ -174,6 +170,14 @@ export default StyleSheet.create({
     borderRadius: 2,
     backgroundColor: 'white',
     marginBottom: 10,
+  },
+  iconAvatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   btnStyleShowMore: {
     height: 50,

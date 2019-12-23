@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Alert } from 'react-native';
 import { Input, Button, CheckBox } from 'react-native-elements';
 
 import { colors, globalStyles } from '../../../constants';
@@ -9,9 +9,48 @@ import styles from './styles';
 class SignUpScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data: {
+        full_name: '',
+        email: '',
+        phone_number: '',
+        password: '',
+        confirm_password: '',
+      },
+      checked: false,
+    };
   }
+
+  onChangeState = (name, value) => {
+    const newData = {
+      ...this.state.data,
+      [name]: value,
+    };
+
+    this.setState({
+      data: newData,
+    });
+  };
+
+  handlePressSignUp = () => {
+    const { data, checked } = this.state;
+    const { createAccount } = this.props;
+
+    if (!checked) {
+      Alert.alert(
+        'First agree Terms of Service',
+        'For sign up, you must agree Terms of Service',
+      );
+    } else if (data.password !== data.confirm_password) {
+      Alert.alert('Passwords not correct', 'Passwords not correct');
+    } else {
+      createAccount(data);
+    }
+  };
+
   render() {
+    const { data } = this.state;
+
     return (
       <ScrollView>
         <View style={{ justifyContent: 'space-between', flex: 1 }}>
@@ -20,37 +59,56 @@ class SignUpScreen extends Component {
           </Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Input
-              inputStyle={[globalStyles.gothamBook, styles.Input]}
+              inputStyle={styles.Input}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="First & Last name"
+              value={data.full_name}
+              onChangeText={text => this.onChangeState('full_name', text)}
             />
             <Input
-              inputStyle={[globalStyles.gothamBook, styles.Input]}
+              autoCapitalize="none"
+              inputStyle={styles.Input}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Email"
+              value={data.email}
+              onChangeText={text => this.onChangeState('email', text)}
             />
             <Input
-              inputStyle={[globalStyles.gothamBook, styles.Input]}
+              inputStyle={styles.Input}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Phone number"
+              value={data.phone_number}
+              onChangeText={text => this.onChangeState('phone_number', text)}
             />
             <Input
-              inputStyle={[globalStyles.gothamBook, styles.Input]}
+              secureTextEntry={true}
+              inputStyle={styles.Input}
               inputContainerStyle={{ borderBottomWidth: 1 }}
               containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Password"
+              value={data.password}
+              onChangeText={text => this.onChangeState('password', text)}
+            />
+            <Input
+              secureTextEntry={true}
+              inputStyle={styles.Input}
+              inputContainerStyle={{ borderBottomWidth: 1 }}
+              containerStyle={{ paddingHorizontal: 30 }}
+              placeholder="Confirm password"
+              value={data.confirm_password}
+              onChangeText={text =>
+                this.onChangeState('confirm_password', text)
+              }
             />
             <Button
               title="Sign up"
-              titleStyle={[globalStyles.gothamBold, styles.title]}
-              buttonStyle={[
-                styles.btnSignUp,
-                { backgroundColor: colors.HEADER_BUTTON },
-              ]}
+              titleStyle={styles.title}
+              buttonStyle={styles.btnSignUp}
               containerStyle={styles.btnContainer}
+              onPress={this.handlePressSignUp}
             />
             <View
               style={{
@@ -62,30 +120,16 @@ class SignUpScreen extends Component {
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
                 checked={this.state.checked}
-                containerStyle={{
-                  paddingHorizontal: 0,
-                  marginHorizontal: 0,
-                  borderWidth: 0,
-                  backgroundColor: 'transparent',
-                }}
+                containerStyle={styles.checkBox}
+                onPress={() => this.setState({ checked: !this.state.checked })}
               />
-              <Text style={[globalStyles.gothamBook, styles.textOfTerms]}>
+              <Text style={styles.textOfTerms}>
                 By Signing up you agree to our {'\n'}
-                <Text
-                  style={[
-                    globalStyles.gothamBook,
-                    styles.textOfTerms,
-                    { color: colors.HEADER },
-                  ]}>
+                <Text style={[styles.textOfTerms, { color: colors.HEADER }]}>
                   Terms of Service
                 </Text>{' '}
                 &{' '}
-                <Text
-                  style={[
-                    globalStyles.gothamBook,
-                    styles.textOfTerms,
-                    { color: colors.HEADER },
-                  ]}>
+                <Text style={[styles.textOfTerms, { color: colors.HEADER }]}>
                   Privacy Policy
                 </Text>
                 .
@@ -93,7 +137,7 @@ class SignUpScreen extends Component {
             </View>
           </View>
           <View style={styles.bottomView}>
-            <Text style={[globalStyles.gothamBook, styles.OrUseText]}>
+            <Text style={styles.OrUseText}>
               Or use Sign in use social networks
             </Text>
             <View style={styles.btnSocialView}>

@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../constants';
 
+import { gothamBook, gothamBold } from '../../../constants/fonts';
+
 export default StyleSheet.create({
   SignUpText: {
     fontSize: 24,
@@ -10,6 +12,7 @@ export default StyleSheet.create({
     textAlign: 'left',
   },
   Input: {
+    ...gothamBook,
     fontSize: 17,
     marginTop: 20,
     textAlign: 'left',
@@ -19,17 +22,26 @@ export default StyleSheet.create({
     color: colors.HEADER,
   },
   title: {
+    ...gothamBold,
     color: 'white',
     fontSize: 15,
     textAlign: 'center',
   },
   OrUseText: {
+    ...gothamBook,
     fontSize: 14,
     lineHeight: 24,
     marginVertical: 25,
     textAlign: 'center',
   },
+  checkBox: {
+    paddingHorizontal: 0,
+    marginHorizontal: 0,
+    borderWidth: 0,
+    backgroundColor: 'transparent',
+  },
   textOfTerms: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 26,
     fontWeight: '100',
@@ -38,6 +50,7 @@ export default StyleSheet.create({
     height: 50,
     marginVertical: 35,
     marginHorizontal: 30,
+    backgroundColor: colors.HEADER_BUTTON,
   },
 
   btnSocialView: {

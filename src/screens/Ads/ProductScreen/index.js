@@ -7,6 +7,7 @@ import { getAdsDetail, setLoading } from '../../../redux/actions/Ads';
 const mapStateToProps = state => {
   return {
     productData: state.ads.adData,
+    userid: state.ads.adData.user.pk,
     loading: state.ads.loading,
     authStatus: state.auth.authStatus,
     token: state.auth.user !== null ? state.auth.user.access_token : null,

@@ -43,3 +43,30 @@ export const login = (emailIncome, paswordIncome) => dispatch => {
     })
     .catch(error => dispatch(setError(error)));
 };
+
+export const signUp = data => dispatch => {
+  dispatch(setLoading(true));
+
+  fetch(`${USERS}/signup/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: data.email,
+      password: data.password,
+      full_name: data.full_name,
+      phone_number: data.phone_number,
+    }),
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log(responseJson);
+      //dispatch(setUser(responseJson));
+      dispatch(setLoading(false));
+    })
+    .catch(error => {
+      dispatch(setError(error));
+      dispatch(setLoading(false));
+    });
+};
