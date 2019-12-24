@@ -221,3 +221,20 @@ export const getSellerProfile = userid => dispatch => {
       dispatch(setLoading(false));
     });
 };
+
+export const setComment = (data, token) => dispatch => {
+  fetch(`${ADS}/ad-comment/`, {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(responseJson => console.log(responseJson))
+    .catch(error => console.log(error));
+
+  dispatch(getAdsDetail(data.ad, token));
+};

@@ -5,12 +5,10 @@ import {
   SafeAreaView,
   Platform,
 } from 'react-native';
-import { Input } from 'react-native-elements';
 
 import { DefaultButton } from '../../../../components/Buttons';
 import { SmallInput, LargeInput } from '../../../../components/Inputs';
 
-import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
 
 class NewsCreateComment extends Component {
@@ -55,7 +53,6 @@ class NewsCreateComment extends Component {
             <SmallInput placeholder="Enter youre Full name" value={fullName} />
             <SmallInput placeholder="Enter your email address" value={email} />
             <LargeInput
-              multiline
               placeholder="Enter description of your question"
               value={comment}
               onChangeText={text => this.setState({ comment: text })}
