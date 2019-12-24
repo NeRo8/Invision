@@ -9,9 +9,9 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
 
-import ModalProfile from '../../components/ModalProfile';
 import TextPicker from '../../components/TextPicker';
 import ElementFL from './ProfileAds';
+import { ProfileAdsModal } from '../../components/Modals';
 
 import { colors, globalStyles } from '../../constants';
 
@@ -21,49 +21,6 @@ class ProfileScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          id: 1,
-          title:
-            'Affronting everything discretion men now own did. Still round match we to. ',
-          price: '150$',
-          date: '15.04.1995',
-          message: '13',
-        },
-        {
-          id: 2,
-          title:
-            'Affronting everything discretion men now own did. Still round match we to. ',
-          price: '150$',
-          date: '15.04.1995',
-          message: '13',
-        },
-        {
-          id: 3,
-          title:
-            'Affronting everything discretion men now own did. Still round match we to. ',
-          price: '150$',
-          date: '15.04.1995',
-          message: '13',
-        },
-        {
-          id: 4,
-          title:
-            'Affronting everything discretion men now own did. Still round match we to. ',
-          price: '150$',
-          date: '15.04.1995',
-          message: '13',
-        },
-        {
-          id: 5,
-          title:
-            'Affronting everything discretion men now own did. Still round match we to. ',
-          price: '150$',
-          date: '15.04.1995',
-          message: '13',
-        },
-      ],
-      showOption: false,
       filters: [
         {
           id: 0,
@@ -83,6 +40,8 @@ class ProfileScreen extends Component {
         },
       ],
       grayscale: false,
+      item: null,
+      showModal: false,
     };
   }
 
@@ -93,9 +52,10 @@ class ProfileScreen extends Component {
     getAds(token);
   }
 
-  showOption = value => {
+  showOption = (value, itemIncome) => {
     this.setState({
-      showOption: value,
+      showModal: value,
+      item: itemIncome,
     });
   };
 
@@ -257,10 +217,13 @@ class ProfileScreen extends Component {
               keyExtractor={(item, index) => index.toString()}
             />
 
-            <ModalProfile
-              show={this.state.showOption}
-              showOption={this.showOption}
-            />
+            {this.state.item !== null ? (
+              <ProfileAdsModal
+                item={this.state.item}
+                show={this.state.showModal}
+                showOption={this.showOption}
+              />
+            ) : null}
           </View>
         </ScrollView>
       );

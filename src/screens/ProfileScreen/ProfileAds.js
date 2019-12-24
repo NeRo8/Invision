@@ -33,7 +33,7 @@ const Element = ({ element, onPressDots }) => (
             name="dots-vertical"
             type="material-community"
             containerStyle={styles.iconDots}
-            onPress={() => onPressDots(true)}
+            onPress={() => onPressDots(true, element)}
           />
         </View>
       </View>

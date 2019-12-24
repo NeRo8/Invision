@@ -2,40 +2,31 @@ import React, { Component } from 'react';
 import { Modal, View, ImageBackground, Text, Switch } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../constants';
+import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
 
-class ModalProfile extends Component {
+class ProfileAdsModal extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
+    const { item, show, showOption } = this.props;
+
     return (
-      <Modal
-        style={styles.containerModal}
-        visible={this.props.show}
-        transparent>
+      <Modal style={styles.containerModal} visible={show} transparent>
         <View style={styles.container}>
           <View style={styles.header}>
             <ImageBackground
-              source={require('../../assets/images/element-background.jpg')}
+              source={{ uri: item.primary_image }}
               style={styles.imgBackground}>
               <View style={styles.imgBackgroundTextContainer}>
-                <Text
-                  style={[
-                    globalStyles.gothamMediumRegular,
-                    styles.imgBackText,
-                  ]}>
-                  Admiration we surrounded possession frequently he.
-                </Text>
+                <Text style={styles.imgBackText}>{item.title}</Text>
               </View>
             </ImageBackground>
             <View style={styles.blockAction}>
-              <Text style={[globalStyles.gothamBold, styles.blockHeader]}>
-                SELECT ONE OF ACTION
-              </Text>
+              <Text style={styles.blockHeader}>SELECT ONE OF ACTION</Text>
               <View>
                 <Button
                   icon={{
@@ -74,20 +65,15 @@ class ModalProfile extends Component {
             </View>
           </View>
           <View style={styles.blockStatus}>
-            <Text style={[globalStyles.gothamBook, { fontSize: 17 }]}>
-              Active or inactive
-            </Text>
+            <Text style={styles.labelSwitcher}>Active or inactive</Text>
             <Switch />
           </View>
           <Button
             title="Done"
-            titleStyle={[
-              globalStyles.gothamBold,
-              { fontSize: 17, color: 'white' },
-            ]}
+            titleStyle={styles.btnTitle}
             buttonStyle={styles.btnDoneStyle}
-            containerStyle={{ width: '95%', marginBottom: 40 }}
-            onPress={() => this.props.showOption(false)}
+            containerStyle={styles.btnContainer}
+            onPress={() => showOption(false, null)}
           />
         </View>
       </Modal>
@@ -95,4 +81,4 @@ class ModalProfile extends Component {
   }
 }
 
-export default ModalProfile;
+export default ProfileAdsModal;
