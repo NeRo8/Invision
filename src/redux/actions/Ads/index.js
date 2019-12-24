@@ -172,7 +172,7 @@ export const addToFavorite = (id, token) => dispatch => {
     body: requestData,
   })
     .then(response => response.json())
-    .then(responseJson => responseJson);
+    .then(responseJson => console.log(responseJson));
 
   dispatch(getAdsDetail(id, token));
 };
@@ -185,7 +185,7 @@ export const removeFromFavorite = (id, token) => dispatch => {
     },
   })
     .then(response => response.json())
-    .then(responseJson => responseJson);
+    .then(responseJson => console.log(responseJson));
 
   dispatch(getAdsDetail(id, token));
 };
