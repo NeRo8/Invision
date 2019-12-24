@@ -4,15 +4,15 @@ import { Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
-import globalStyles from '../../constants/globalStyles';
 
 class HeaderAdsFilters extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   render() {
-    const { activeScreen } = this.props;
+    const { activeScreen, navigation } = this.props;
 
     return (
       <View style={styles.container}>
@@ -22,11 +22,9 @@ class HeaderAdsFilters extends Component {
             type="feather"
             color="white"
             size={32}
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() => navigation.goBack()}
           />
-          <Text style={[globalStyles.gothamBold, styles.headerText]}>
-            Add ad
-          </Text>
+          <Text style={styles.headerText}>Add ad</Text>
         </View>
         <View style={styles.selectedBlock}>
           <View style={styles.simpleContainer}>
@@ -36,7 +34,7 @@ class HeaderAdsFilters extends Component {
                   ? styles.selectedElementActive
                   : styles.selectedElement
               }
-              onPress={() => this.props.navigation.navigate('SignIn')}>
+              onPress={() => navigation.navigate('SignIn')}>
               <Text
                 style={
                   activeScreen
@@ -52,7 +50,7 @@ class HeaderAdsFilters extends Component {
                   ? styles.selectedElementActive
                   : styles.selectedElement
               }
-              onPress={() => this.props.navigation.navigate('SignUp')}>
+              onPress={() => navigation.navigate('SignUp')}>
               <Text
                 style={
                   !activeScreen

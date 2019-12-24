@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Alert } from 'react-native';
-import { Input, Button, CheckBox } from 'react-native-elements';
+import { Button, CheckBox } from 'react-native-elements';
+import DropdownAlert from 'react-native-dropdownalert';
 
-import { colors, globalStyles } from '../../../constants';
+import { colors } from '../../../constants';
+
+import { DefaultInput } from '../../../components/Inputs';
+import { DefaultButton } from '../../../components/Buttons';
+
+import { signUp } from '../../../api/auth';
 
 import styles from './styles';
 
@@ -32,19 +38,29 @@ class SignUpScreen extends Component {
     });
   };
 
-  handlePressSignUp = () => {
+  handlePressSignUp = async () => {
     const { data, checked } = this.state;
-    const { createAccount } = this.props;
 
     if (!checked) {
-      Alert.alert(
-        'First agree Terms of Service',
+      this.dropDownAlertRef.alertWithType(
+        'warn',
+        'Warn',
         'For sign up, you must agree Terms of Service',
       );
     } else if (data.password !== data.confirm_password) {
-      Alert.alert('Passwords not correct', 'Passwords not correct');
+      this.dropDownAlertRef.alertWithType(
+        'error',
+        'Error',
+        'Passwords not correct',
+      );
     } else {
-      createAccount(data);
+      await signUp(data).then(response => {
+        this.dropDownAlertRef.alertWithType(
+          response.type === 'success' ? 'success' : 'error',
+          response.type === 'success' ? 'Success' : 'Error',
+          response.msg,
+        );
+      });
     }
   };
 
@@ -53,63 +69,48 @@ class SignUpScreen extends Component {
 
     return (
       <ScrollView>
-        <View style={{ justifyContent: 'space-between', flex: 1 }}>
-          <Text style={[styles.SignUpText, globalStyles.gothamBook]}>
-            Sign up
-          </Text>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flex: 1,
+          }}>
+          <Text style={styles.SignUpText}>Sign up</Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Input
-              inputStyle={styles.Input}
-              inputContainerStyle={{ borderBottomWidth: 1 }}
-              containerStyle={{ paddingHorizontal: 30 }}
+            <DefaultInput
               placeholder="First & Last name"
               value={data.full_name}
               onChangeText={text => this.onChangeState('full_name', text)}
             />
-            <Input
-              autoCapitalize="none"
-              inputStyle={styles.Input}
-              inputContainerStyle={{ borderBottomWidth: 1 }}
-              containerStyle={{ paddingHorizontal: 30 }}
+            <DefaultInput
               placeholder="Email"
               value={data.email}
               onChangeText={text => this.onChangeState('email', text)}
             />
-            <Input
-              inputStyle={styles.Input}
-              inputContainerStyle={{ borderBottomWidth: 1 }}
-              containerStyle={{ paddingHorizontal: 30 }}
+            <DefaultInput
               placeholder="Phone number"
               value={data.phone_number}
               onChangeText={text => this.onChangeState('phone_number', text)}
             />
-            <Input
+            <DefaultInput
               secureTextEntry={true}
-              inputStyle={styles.Input}
-              inputContainerStyle={{ borderBottomWidth: 1 }}
-              containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Password"
               value={data.password}
               onChangeText={text => this.onChangeState('password', text)}
             />
-            <Input
+            <DefaultInput
               secureTextEntry={true}
-              inputStyle={styles.Input}
-              inputContainerStyle={{ borderBottomWidth: 1 }}
-              containerStyle={{ paddingHorizontal: 30 }}
               placeholder="Confirm password"
               value={data.confirm_password}
               onChangeText={text =>
                 this.onChangeState('confirm_password', text)
               }
             />
-            <Button
+            <DefaultButton
               title="Sign up"
-              titleStyle={styles.title}
-              buttonStyle={styles.btnSignUp}
-              containerStyle={styles.btnContainer}
-              onPress={this.handlePressSignUp}
+              buttonStyle={{ marginHorizontal: 30, marginVertical: 20 }}
+              onPressButton={this.handlePressSignUp}
             />
+
             <View
               style={{
                 flexDirection: 'row',
@@ -125,14 +126,8 @@ class SignUpScreen extends Component {
               />
               <Text style={styles.textOfTerms}>
                 By Signing up you agree to our {'\n'}
-                <Text style={[styles.textOfTerms, { color: colors.HEADER }]}>
-                  Terms of Service
-                </Text>{' '}
-                &{' '}
-                <Text style={[styles.textOfTerms, { color: colors.HEADER }]}>
-                  Privacy Policy
-                </Text>
-                .
+                <Text style={styles.textLink}>Terms of Service</Text> &{' '}
+                <Text style={styles.textLink}>Privacy Policy</Text>.
               </Text>
             </View>
           </View>
@@ -184,6 +179,7 @@ class SignUpScreen extends Component {
             </View>
           </View>
         </View>
+        <DropdownAlert ref={ref => (this.dropDownAlertRef = ref)} />
       </ScrollView>
     );
   }

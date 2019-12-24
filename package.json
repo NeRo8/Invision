@@ -23,6 +23,7 @@
     "react-native-camera": "git+https://git@github.com/react-native-community/react-native-camera.git",
     "react-native-color-matrix-image-filters": "^5.2.0",
     "react-native-dropdown-autocomplete": "^1.0.17",
+    "react-native-dropdownalert": "^4.2.0",
     "react-native-elements": "^1.2.6",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-linear-gradient": "^2.5.6",

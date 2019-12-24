@@ -6,15 +6,10 @@ import { gothamBook, gothamBold } from '../../../constants/fonts';
 
 export default StyleSheet.create({
   SignUpText: {
+    ...gothamBook,
     fontSize: 24,
     marginLeft: 30,
     marginTop: 43,
-    textAlign: 'left',
-  },
-  Input: {
-    ...gothamBook,
-    fontSize: 17,
-    marginTop: 20,
     textAlign: 'left',
   },
   forgot: {
@@ -51,6 +46,13 @@ export default StyleSheet.create({
     marginVertical: 35,
     marginHorizontal: 30,
     backgroundColor: colors.HEADER_BUTTON,
+  },
+  textLink: {
+    ...gothamBook,
+    fontSize: 15,
+    lineHeight: 26,
+    fontWeight: '100',
+    color: colors.HEADER,
   },
 
   btnSocialView: {
