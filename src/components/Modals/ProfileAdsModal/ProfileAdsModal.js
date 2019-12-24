@@ -11,6 +11,13 @@ class ProfileAdsModal extends Component {
     super(props);
     this.state = {};
   }
+
+  handlePressDelete = () => {
+    const { item, token, deleteAd } = this.props;
+
+    deleteAd(item.pk, token);
+  };
+
   render() {
     const { item, show, showOption } = this.props;
 
@@ -60,6 +67,7 @@ class ProfileAdsModal extends Component {
                     { color: 'red', fontSize: 17 },
                   ]}
                   buttonStyle={styles.btnStyle}
+                  onPress={this.handlePressDelete}
                 />
               </View>
             </View>
