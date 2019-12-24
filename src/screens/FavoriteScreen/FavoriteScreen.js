@@ -15,6 +15,7 @@ import styles from './styles';
 class FavoriteScreen extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       activeFilter: 'ads',
       filters: [
@@ -47,11 +48,23 @@ class FavoriteScreen extends Component {
   }
 
   componentDidMount() {
-    const { authStatus, token, getFavoriteAds } = this.props;
+    const {
+      authStatus,
+      token,
+      getFavoriteAds,
+      navigation,
+      deleteAllFavorites,
+    } = this.props;
 
     if (authStatus) {
       getFavoriteAds(token);
     }
+
+    navigation.setParams({
+      deleteFavorites: () => {
+        deleteAllFavorites(token);
+      },
+    });
   }
 
   handlePressElement = id => {
@@ -93,7 +106,7 @@ class FavoriteScreen extends Component {
                   <ElementListAds item={item.ad} onPressProduct={() => {}} />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index}
               />
             ) : this.state.activeFilter === 'org' ? (
               <FlatList
@@ -106,7 +119,7 @@ class FavoriteScreen extends Component {
                   />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index}
               />
             ) : (
               <FlatList
@@ -116,7 +129,7 @@ class FavoriteScreen extends Component {
                   <ElementListEvents element={item} onPressProduct={() => {}} />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index}
               />
             )}
           </View>

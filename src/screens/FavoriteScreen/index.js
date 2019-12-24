@@ -2,7 +2,7 @@ import FavoriteScreen from './FavoriteScreen';
 
 import { connect } from 'react-redux';
 
-import { getAdsFavorites } from '../../redux/actions/Ads';
+import { getAdsFavorites, deleteFavorites } from '../../redux/actions/Ads';
 
 const mapStateToProps = state => {
   return {
@@ -16,6 +16,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getFavoriteAds: token => {
       dispatch(getAdsFavorites(token));
+    },
+    deleteAllFavorites: token => {
+      dispatch(deleteFavorites(token));
     },
   };
 };

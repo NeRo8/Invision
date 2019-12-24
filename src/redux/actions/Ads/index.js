@@ -238,3 +238,17 @@ export const setComment = (data, token) => dispatch => {
 
   dispatch(getAdsDetail(data.ad, token));
 };
+
+export const deleteFavorites = token => dispatch => {
+  fetch(`${ADS}delete-favorites/`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+
+  dispatch(getAdsFavorites(token));
+  dispatch(getAds(token));
+};

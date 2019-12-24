@@ -1,6 +1,10 @@
 import ProfileScreen from './ProfileScreen';
 
-import { getProfile, getProfileAds } from '../../redux/actions/Users';
+import {
+  getProfile,
+  getProfileAds,
+  deleteAds,
+} from '../../redux/actions/Users';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -20,6 +24,9 @@ const mapDispatchToProps = dispatch => {
     },
     getAds: token => {
       dispatch(getProfileAds(token));
+    },
+    deleteAd: (id, token) => {
+      dispatch(deleteAds(id, token));
     },
   };
 };
