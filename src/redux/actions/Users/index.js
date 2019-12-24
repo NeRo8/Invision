@@ -65,14 +65,7 @@ export const deleteAds = (id, token) => dispatch => {
     headers: {
       Authorization: 'Bearer ' + token,
     },
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      console.log(responseJson);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  });
 
   dispatch(getProfileAds(token));
 };

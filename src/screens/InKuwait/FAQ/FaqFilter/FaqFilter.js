@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
 import { CheckBox, Button } from 'react-native-elements';
 
 import { DefaultButton } from '../../../../components/Buttons';
@@ -74,50 +80,56 @@ class FaqFilter extends Component {
     const { categories } = this.props;
 
     return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.textHeader}>SORTING BY</Text>
-          <View style={styles.containerRow}>
-            <TouchableOpacity
-              onPress={() => this.handleChangeSorting('date')}
-              style={filters.date ? styles.activeBlock : styles.unactiveBlock}>
-              <Text
-                style={filters.date ? styles.activeText : styles.unactiveText}>
-                Date
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.handleChangeSorting('answers')}
-              style={
-                filters.answers ? styles.activeBlock : styles.unactiveBlock
-              }>
-              <Text
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.textHeader}>SORTING BY</Text>
+            <View style={styles.containerRow}>
+              <TouchableOpacity
+                onPress={() => this.handleChangeSorting('date')}
                 style={
-                  filters.answers ? styles.activeText : styles.unactiveText
+                  filters.date ? styles.activeBlock : styles.unactiveBlock
                 }>
-                Answers
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={
+                    filters.date ? styles.activeText : styles.unactiveText
+                  }>
+                  Date
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.handleChangeSorting('answers')}
+                style={
+                  filters.answers ? styles.activeBlock : styles.unactiveBlock
+                }>
+                <Text
+                  style={
+                    filters.answers ? styles.activeText : styles.unactiveText
+                  }>
+                  Answers
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.textHeader}>SELECT CATEGORY</Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={categories}
+              renderItem={({ item }) => (
+                <ElementFl
+                  element={item}
+                  activeElement={activeCategory}
+                  onPressElement={this.handlePressElement}
+                />
+              )}
+              contentContainerStyle={{ marginTop: 10 }}
+              ItemSeparatorComponent={() => <View style={styles.divider} />}
+            />
+          </View>
+          <DefaultButton title="Done" onPress={this.handlePressDone} />
         </View>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.textHeader}>SELECT CATEGORY</Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={categories}
-            renderItem={({ item }) => (
-              <ElementFl
-                element={item}
-                activeElement={activeCategory}
-                onPressElement={this.handlePressElement}
-              />
-            )}
-            contentContainerStyle={{ marginTop: 10 }}
-            ItemSeparatorComponent={() => <View style={styles.divider} />}
-          />
-        </View>
-        <DefaultButton title="Done" onPress={this.handlePressDone} />
-      </View>
+      </SafeAreaView>
     );
   }
 }
