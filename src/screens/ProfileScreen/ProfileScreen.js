@@ -202,7 +202,7 @@ class ProfileScreen extends Component {
                 containerStyle={{ marginHorizontal: 20 }}
               />
               <Text style={styles.elementLabel}>
-                {user.city !== null ? user.city : 'Not found'}
+                {user.city !== null ? user.city.name : 'Not found'}
               </Text>
             </View>
           </View>
@@ -225,7 +225,7 @@ class ProfileScreen extends Component {
                   grayscale={this.state.grayscale}
                 />
               )}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={(item, index) => index}
             />
 
             {this.state.item !== null ? (

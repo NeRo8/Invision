@@ -18,7 +18,7 @@ const setLoading = status => ({
   payload: status,
 });
 
-const setError = error => ({
+export const setError = error => ({
   type: SET_ERROR,
   payload: error,
 });
@@ -73,4 +73,29 @@ export const deleteAds = (id, token) => dispatch => {
   dispatch(getProfileAds(token));
 };
 
-export const changeProfile = newProfile => dispatch => {};
+export const changeProfile = (newProfile, token) => dispatch => {
+  fetch(`${DEFAULT_URL}profile-info/`, {
+    method: 'PUT',
+
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+
+    body: JSON.stringify({
+      full_name: newProfile.full_name,
+      email: newProfile.email,
+      phone_number: newProfile.phone_number,
+      city: newProfile.city,
+    }),
+  })
+    .then(response => response.json())
+    .then(response => {
+      if (response.full_name !== undefined) {
+        dispatch(setError(response));
+      } else {
+        dispatch(setError('Success'));
+      }
+    })
+    .catch(error => dispatch(setError(error)));
+};
