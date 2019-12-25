@@ -2,8 +2,9 @@ const USERS = 'https://staging.masaha.app/api/v1/users';
 
 export const SIGN_IN = 'SIGN_IN';
 export const LOGOUT = 'LOGOUT';
-export const SET_LOADING = 'SET_USER_LOADING';
-export const SET_ERROR = 'SET_USER_ERROR';
+export const SET_LOADING = 'SET_AUTH_LOADING';
+export const SET_ERROR = 'SET_AUTH_ERROR';
+export const REFRESH_TOKEN = 'REFRESH_AUTH_TOKEN';
 
 const setUser = user => ({
   type: SIGN_IN,
@@ -24,6 +25,11 @@ const setError = error => ({
   payload: error,
 });
 
+const setToken = token => ({
+  type: REFRESH_TOKEN,
+  payload: token,
+});
+
 export const login = (emailIncome, paswordIncome) => dispatch => {
   dispatch(setLoading(true));
   fetch(`${USERS}/login/`, {
@@ -42,4 +48,19 @@ export const login = (emailIncome, paswordIncome) => dispatch => {
       dispatch(setLoading(false));
     })
     .catch(error => dispatch(setError(error)));
+};
+
+export const refreshToken = oldToken => dispatch => {
+  fetch(`${USERS}/refresh-token/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      refresh: oldToken,
+    }),
+  })
+    .then(response => response.json())
+    .then(responseJson => dispatch(setToken(responseJson.access)))
+    .then(error => dispatch(setError(error)));
 };

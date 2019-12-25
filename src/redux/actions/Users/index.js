@@ -24,7 +24,7 @@ const setError = error => ({
 });
 
 export const getProfile = token => dispatch => {
-  setLoading(true);
+  dispatch(setLoading(true));
 
   fetch(`${DEFAULT_URL}profile-info/`, {
     method: 'GET',
@@ -36,6 +36,10 @@ export const getProfile = token => dispatch => {
     .then(responseJson => {
       dispatch(setProfile(responseJson));
     })
+    .then(() => {
+      dispatch(getProfileAds(token));
+    })
+    .then(() => dispatch(setLoading(false)))
     .catch(error => {
       dispatch(setError(error));
     });
@@ -51,11 +55,9 @@ export const getProfileAds = token => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAds(responseJson));
-      dispatch(setLoading(false));
     })
     .catch(error => {
       dispatch(setError(error));
-      dispatch(setLoading(false));
     });
 };
 

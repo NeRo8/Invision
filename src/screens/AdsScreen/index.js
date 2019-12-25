@@ -26,6 +26,9 @@ const mapDispatchToProps = dispatch => {
     setLoad: value => {
       dispatch(setLoading(value));
     },
+    refreshAuth: token => {
+      dispatch(refreshToken(token));
+    },
   };
 };
 

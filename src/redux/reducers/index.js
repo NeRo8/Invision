@@ -12,8 +12,8 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
-  whitelist: ['auth'],
-  blacklist: ['ads', 'inKuwait', 'filters', 'users'],
+  //whitelist: ['auth'],
+  blacklist: ['ads', 'inKuwait', 'filters', 'users', 'auth'],
 };
 
 const rootReducer = combineReducers({

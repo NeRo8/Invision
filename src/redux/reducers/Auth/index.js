@@ -1,4 +1,4 @@
-import { SIGN_IN, LOGOUT } from '../../actions/Auth';
+import { SIGN_IN, LOGOUT, REFRESH_TOKEN } from '../../actions/Auth';
 
 const initState = {
   user: null,
@@ -21,6 +21,15 @@ const authReducer = (state = initState, action) => {
         ...state,
         user: null,
         authStatus: false,
+      };
+    }
+    case REFRESH_TOKEN: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          access_token: action.payload,
+        },
       };
     }
     default: {

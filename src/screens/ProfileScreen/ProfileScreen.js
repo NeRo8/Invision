@@ -46,10 +46,22 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    const { getProfileInfo, getAds, token } = this.props;
+    const { getProfileInfo, token, navigation } = this.props;
 
-    getProfileInfo(token);
-    getAds(token);
+    this.focusListener = navigation.addListener('didFocus', () =>
+      this.componentDidFocus(),
+    );
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+  }
+
+  componentDidFocus() {
+    const { token, getProfileInfo } = this.props;
+    if (token !== null) {
+      getProfileInfo(token);
+    }
   }
 
   showOption = (value, itemIncome) => {
@@ -80,7 +92,6 @@ class ProfileScreen extends Component {
 
   render() {
     const { loading, token, user, navigation, ads } = this.props;
-
     if (token === null) {
       return (
         <View style={styles.containerLoading}>

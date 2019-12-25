@@ -22,9 +22,6 @@ const mapDispatchToProps = dispatch => {
     getProfileInfo: token => {
       dispatch(getProfile(token));
     },
-    getAds: token => {
-      dispatch(getProfileAds(token));
-    },
     deleteAd: (id, token) => {
       dispatch(deleteAds(id, token));
     },
