@@ -39,7 +39,6 @@ export const getProfile = token => dispatch => {
     .then(() => {
       dispatch(getProfileAds(token));
     })
-    .then(() => dispatch(setLoading(false)))
     .catch(error => {
       dispatch(setError(error));
     });
@@ -55,9 +54,11 @@ export const getProfileAds = token => dispatch => {
     .then(response => response.json())
     .then(responseJson => {
       dispatch(setAds(responseJson));
+      dispatch(setLoading(false));
     })
     .catch(error => {
       dispatch(setError(error));
+      dispatch(setLoading(false));
     });
 };
 
@@ -71,3 +72,5 @@ export const deleteAds = (id, token) => dispatch => {
 
   dispatch(getProfileAds(token));
 };
+
+export const changeProfile = newProfile => dispatch => {};

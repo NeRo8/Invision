@@ -13,6 +13,8 @@ import ProfilePaymentHistory from '../screens/Profile/ProfilePaymentHistory';
 import ProfileNotifications from '../screens/Profile/ProfileNotifications';
 import ProfileNotificationsChat from '../screens/Profile/ProfileNotificationsChat';
 
+import { DefaultHeader } from '../components/Headers';
+
 import { colors, globalStyles } from '../constants';
 
 const styles = StyleSheet.create({
@@ -44,154 +46,157 @@ const HeaderLeftIcon = ({ onPressBack }) => (
   />
 );
 
-const ProfileNavigation = createStackNavigator({
-  Home: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      header: null,
+const ProfileNavigation = createStackNavigator(
+  {
+    Home: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    ProfileSettings: {
+      screen: ProfileSettings,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Settings"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    ProfileSettingsChangePassword: {
+      screen: ProfileSettingsChangePassword,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Change password"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    ProfileSettingsPersonalInformaion: {
+      screen: ProfileSettingsPersonalInformaion,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Personal information"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    ProfileSettingsPrivacyPolicy: {
+      screen: ProfileSettingsPrivacyPolicy,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Privacy Policy"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    ProfileSettingsTermsOfUse: {
+      screen: ProfileSettingsTermsOfUse,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Terms of use"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
+      },
+    },
+    ProfilePaymentHistory: {
+      screen: ProfilePaymentHistory,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: 'Payment history',
+          headerTitleStyle: {
+            color: 'white',
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            lineHeight: 24,
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: (
+            <HeaderLeftIcon onPressBack={() => navigation.goBack()} />
+          ),
+        };
+      },
+    },
+    ProfileNotifications: {
+      screen: ProfileNotifications,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: 'Notifications',
+          headerTitleStyle: {
+            color: 'white',
+            fontFamily: globalStyles.gothamBold.fontFamily,
+            fontSize: 17,
+            lineHeight: 24,
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: (
+            <HeaderLeftIcon onPressBack={() => navigation.goBack()} />
+          ),
+        };
+      },
+    },
+    ProfileNotificationsChat: {
+      screen: ProfileNotificationsChat,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: 'Pavlo Laptev',
+          headerTitleStyle: {
+            color: 'white',
+          },
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+        };
+      },
     },
   },
-  ProfileSettings: {
-    screen: ProfileSettings,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Settings',
-        headerTitleStyle: {
-          color: 'white',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
-      };
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
     },
   },
-  ProfileSettingsChangePassword: {
-    screen: ProfileSettingsChangePassword,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Change password',
-        headerTitleStyle: {
-          color: 'white',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  ProfileSettingsPersonalInformaion: {
-    screen: ProfileSettingsPersonalInformaion,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Personal informaion',
-        headerTitleStyle: {
-          color: 'white',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  ProfileSettingsPrivacyPolicy: {
-    screen: ProfileSettingsPrivacyPolicy,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Privacy Policy',
-        headerTitleStyle: {
-          color: 'white',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  ProfileSettingsTermsOfUse: {
-    screen: ProfileSettingsTermsOfUse,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Terms of Use',
-        headerTitleStyle: {
-          color: 'white',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  ProfilePaymentHistory: {
-    screen: ProfilePaymentHistory,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Payment history',
-        headerTitleStyle: {
-          color: 'white',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  ProfileNotifications: {
-    screen: ProfileNotifications,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Notifications',
-        headerTitleStyle: {
-          color: 'white',
-          fontFamily: globalStyles.gothamBold.fontFamily,
-          fontSize: 17,
-          lineHeight: 24,
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeftIcon onPressBack={() => navigation.goBack()} />,
-      };
-    },
-  },
-  ProfileNotificationsChat: {
-    screen: ProfileNotificationsChat,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: 'Pavlo Laptev',
-        headerTitleStyle: {
-          color: 'white',
-        },
-        headerStyle: {
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
-      };
-    },
-  },
-});
+);
 
 export default ProfileNavigation;

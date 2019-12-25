@@ -1,5 +1,10 @@
 const USERS = 'https://staging.masaha.app/api/v1/users/';
 
+/**
+ * API request to server. Returned msg.
+ * but need return users
+ */
+
 export const signUp = async data => {
   return fetch(`${USERS}signup/`, {
     method: 'POST',

@@ -16,6 +16,6 @@ export default StyleSheet.create({
     backgroundColor: colors.DEFAULT_BUTTON,
   },
   btnContainer: {
-    marginVertical: 5,
+    marginVertical: 15,
   },
 });
