@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import AdsScreen from './AdsScreen';
 
 import { getAds, getAdsLoadMore, setLoading } from '../../redux/actions/Ads';
+import { refreshToken } from '../../redux/actions/Auth';
 
 const mapStateToProps = state => {
   return {
@@ -12,6 +13,7 @@ const mapStateToProps = state => {
     filters: state.ads.filters,
     authStatus: state.auth.authStatus,
     token: state.auth.user !== null ? state.auth.user.access_token : null,
+    refreshT: state.auth.user !== null ? state.auth.user.refresh_token : null,
   };
 };
 

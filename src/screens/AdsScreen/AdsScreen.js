@@ -19,9 +19,11 @@ class AdsScreen extends Component {
   }
 
   async componentDidMount() {
-    const { getAdsList, authStatus, token } = this.props;
+    const { getAdsList, authStatus, token, refreshAuth, refreshT } = this.props;
 
     SplashScreen.hide();
+
+    refreshAuth(refreshT);
 
     if (authStatus) {
       getAdsList(null, token);
