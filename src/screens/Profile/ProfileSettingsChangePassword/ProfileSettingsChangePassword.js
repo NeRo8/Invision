@@ -1,94 +1,113 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Switch,
-} from 'react-native';
-import { Input, Icon } from 'react-native-elements';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 
-import { colors, globalStyles } from '../../../constants';
 import { IconInput } from '../../../components/Inputs';
+import { DefaultButton } from '../../../components/Buttons';
+import DropdownAlert from 'react-native-dropdownalert';
+
+import { changePassword } from '../../../api/users';
 
 import styles from './styles';
+
+import { colors } from '../../../constants';
 
 class ProfileSettingsChangePassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryList: [
-        { title: 'Current Password*', header: true },
-        { title: 'Current Password', header: false },
-        { title: 'New Password*', header: true },
-        { title: 'New Password', header: false },
-        { title: 'Confirm Password*', header: true },
-        { title: 'Confirm Password', header: false },
-        { title: 'Save changes', button: true },
-      ],
+      o_password: null,
+      n_password: null,
+      pValid: true,
     };
   }
-  renderItem = ({ item }) => {
-    if (item.button) {
-      return (
-        <TouchableOpacity style={styles.btnStyle}>
-          <Text style={[globalStyles.gothamBold, styles.buttonTextStyle]}>
-            {item.title}
-          </Text>
-        </TouchableOpacity>
+
+  onChangeState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  onCheckPasswords = password => {
+    const { n_password } = this.state;
+
+    if (password === '') {
+      this.setState({
+        pValid: true,
+      });
+    } else if (n_password === password) {
+      this.setState({
+        pValid: true,
+      });
+    } else if (n_password !== password) {
+      this.setState({
+        pValid: false,
+      });
+    }
+  };
+
+  handlePressSave = () => {
+    const { n_password, o_password, pValid } = this.state;
+    const { token } = this.props;
+
+    if (pValid) {
+      changePassword(
+        { new_password: n_password, old_password: o_password },
+        token,
+      ).then(res => {
+        if (res.error) {
+          this.dropDownAlertRef.alertWithType('error', 'Error', res.msg);
+        } else {
+          this.dropDownAlertRef.alertWithType('success', 'Success', res.msg);
+        }
+      });
+    } else {
+      this.dropDownAlertRef.alertWithType(
+        'error',
+        'Error',
+        'Passwords did not match',
       );
-    } else if (item.header) {
-      return (
-        <View style={styles.header}>
-          <Text style={[globalStyles.gothamBold, styles.elementTitle]}>
-            {item.title}
-          </Text>
-        </View>
-      );
-    } else if (!item.header) {
-      if (!item.toggle) {
-        return (
-          <Input
-            inputStyle={[globalStyles.gothamBook, styles.elementTitleNonHeader]}
-            leftIcon={() => (
-              <Icon
-                name="md-key"
-                type="ionicon"
-                color={colors.ICON_GREY_COLOR}
-                size={25}
-              />
-            )}
-            placeholder={item.title}
-            placeholderTextColor={colors.UNACTIVE}
-            leftIconContainerStyle={styles.leftIconContainer}
-            inputContainerStyle={styles.inputContainerS}
-            containerStyle={styles.inputContainer}
-          />
-        );
-      } else if (item.toggle) {
-        return (
-          <View style={styles.elementContainer}>
-            <Text
-              style={[styles.elementTitleNonHeader, globalStyles.gothamBook]}>
-              {item.title}
-            </Text>
-            <Switch
-              ios_backgroundColor={colors.DEFAULT}
-              trackColor={{
-                true: colors.HEADER,
-                false: colors.DEFAULT,
-              }}
-            />
-          </View>
-        );
-      }
     }
   };
 
   render() {
+    const { o_password, n_password, pValid } = this.state;
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.container}></View>
+        <View style={styles.container}>
+          <IconInput
+            secureTextEntry
+            label="Current Password*"
+            iconName="md-key"
+            placeholder="Current Password"
+            value={o_password}
+            onChangeText={text => this.onChangeState('o_password', text)}
+          />
+          <IconInput
+            secureTextEntry
+            label="New Password*"
+            iconName="md-key"
+            placeholder="New Password"
+            value={n_password}
+            onChangeText={text => this.onChangeState('n_password', text)}
+          />
+          <IconInput
+            secureTextEntry
+            label="Confirm password*"
+            iconName="md-key"
+            placeholder="Confirm password"
+            inputContainerStyle={
+              !pValid
+                ? { borderColor: 'red' }
+                : { borderColor: colors.BORDER_COLOR }
+            }
+            onChangeText={text => this.onCheckPasswords(text)}
+          />
+          <DefaultButton title="Save" onPressButton={this.handlePressSave} />
+          <DropdownAlert
+            ref={ref => (this.dropDownAlertRef = ref)}
+            updateStatusBar={false}
+          />
+        </View>
       </SafeAreaView>
     );
   }

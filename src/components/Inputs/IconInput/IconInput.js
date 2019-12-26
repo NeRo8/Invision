@@ -21,7 +21,7 @@ const IconInput = ({ iconName, ...props }) => (
     labelStyle={styles.label}
     inputStyle={styles.inpStyle}
     placeholderTextColor={colors.UNACTIVE}
-    inputContainerStyle={styles.inputContainerS}
+    inputContainerStyle={[styles.inputContainerS, props.inputContainerStyle]}
     containerStyle={styles.inputContainer}
   />
 );
