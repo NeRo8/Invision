@@ -138,19 +138,15 @@ const ProfileNavigation = createStackNavigator(
       screen: ProfilePaymentHistory,
       navigationOptions: ({ navigation }) => {
         return {
-          headerTitle: 'Payment history',
-          headerTitleStyle: {
-            color: 'white',
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            lineHeight: 24,
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: (
-            <HeaderLeftIcon onPressBack={() => navigation.goBack()} />
+          headerTitle: (
+            <DefaultHeader
+              title="Payment history"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
           ),
+          headerLeft: null,
+          headerRight: null,
         };
       },
     },
@@ -158,19 +154,15 @@ const ProfileNavigation = createStackNavigator(
       screen: ProfileNotifications,
       navigationOptions: ({ navigation }) => {
         return {
-          headerTitle: 'Notifications',
-          headerTitleStyle: {
-            color: 'white',
-            fontFamily: globalStyles.gothamBold.fontFamily,
-            fontSize: 17,
-            lineHeight: 24,
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: (
-            <HeaderLeftIcon onPressBack={() => navigation.goBack()} />
+          headerTitle: (
+            <DefaultHeader
+              title="Notifications"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
           ),
+          headerLeft: null,
+          headerRight: null,
         };
       },
     },
@@ -178,14 +170,15 @@ const ProfileNavigation = createStackNavigator(
       screen: ProfileNotificationsChat,
       navigationOptions: ({ navigation }) => {
         return {
-          headerTitle: 'Pavlo Laptev',
-          headerTitleStyle: {
-            color: 'white',
-          },
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: <HeaderLeft onPressCancel={() => navigation.goBack()} />,
+          headerTitle: (
+            <DefaultHeader
+              title="Notifications"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
         };
       },
     },

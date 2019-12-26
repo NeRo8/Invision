@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Switch } from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Switch,
+} from 'react-native';
 import { Input, Icon } from 'react-native-elements';
-import { withNavigation } from 'react-navigation';
 
 import { colors, globalStyles } from '../../../constants';
+import { IconInput } from '../../../components/Inputs';
 
 import styles from './styles';
 
@@ -81,16 +87,11 @@ class ProfileSettingsChangePassword extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, marginTop: 10, marginLeft: 15, marginRight: 15 }}>
-        <FlatList
-          data={this.state.categoryList}
-          renderItem={this.renderItem}
-          keyExtractor={(item, index) => item}
-          stickyHeaderIndices={this.state.stickyHeaderIndices}
-        />
-      </View>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.container}></View>
+      </SafeAreaView>
     );
   }
 }
 
-export default withNavigation(ProfileSettingsChangePassword);
+export default ProfileSettingsChangePassword;

@@ -95,16 +95,25 @@ const Navigation = createBottomTabNavigator(
     },
     Profile: {
       screen: ProfileNavigation,
-      navigationOptions: {
-        title: 'Profile',
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (
-          <Icon
-            name="account-circle"
-            type="material-community"
-            color={tintColor}
-            size={28}
-          />
-        ),
+      navigationOptions: ({ navigation }) => {
+        let tabBarVisible = false;
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+        if (routeName === 'Profile') {
+          tabBarVisible = true;
+        }
+        return {
+          tabBarVisible,
+          title: 'Profile',
+          tabBarIcon: ({ focused, horizontal, tintColor }) => (
+            <Icon
+              name="account-circle"
+              type="material-community"
+              color={tintColor}
+              size={28}
+            />
+          ),
+        };
       },
     },
   },
