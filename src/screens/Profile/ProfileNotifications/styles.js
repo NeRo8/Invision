@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { colors, globalStyles } from '../../../constants';
+import { gothamBook } from '../../../constants/fonts';
 
 export default StyleSheet.create({
   itemContainer: {
@@ -77,16 +78,24 @@ export default StyleSheet.create({
     paddingRight: 15,
     borderRadius: 3,
   },
+  avatar: {
+    width: 45,
+    height: 45,
+    borderRadius: 23,
+  },
   name: {
+    ...gothamBook,
     marginBottom: 8,
     color: 'black',
     fontSize: 17,
   },
   message: {
+    ...gothamBook,
     color: colors.LABEL_GREY_COLOR,
     fontSize: 15,
   },
   when: {
+    ...gothamBook,
     flex: 1,
     textAlign: 'right',
     marginBottom: 22,

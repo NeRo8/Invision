@@ -99,7 +99,7 @@ const Navigation = createBottomTabNavigator(
         let tabBarVisible = false;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
-        if (routeName === 'Profile') {
+        if (routeName === 'Home') {
           tabBarVisible = true;
         }
         return {
@@ -118,6 +118,7 @@ const Navigation = createBottomTabNavigator(
     },
   },
   {
+    //initialRouteName: 'Profile',
     tabBarOptions: {
       activeTintColor: colors.ACTIVE,
       inactiveTintColor: colors.UNACTIVE,

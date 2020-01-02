@@ -44,6 +44,8 @@ target 'Masaha' do
   pod 'Google-Maps-iOS-Utils'
   pod 'RNShare', :path => '../node_modules/react-native-share'
 
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
   target 'MasahaTests' do
     inherit! :search_paths
     # Pods for testing
