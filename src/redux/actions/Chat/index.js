@@ -12,7 +12,7 @@ const setMessages = messages => ({
   payload: messages,
 });
 
-const setLoading = loading => ({
+export const setLoading = loading => ({
   type: SET_LOADING,
   payload: loading,
 });

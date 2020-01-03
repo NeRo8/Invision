@@ -3,7 +3,7 @@ import * as types from '../../actions/Chat/types';
 const initState = {
   threads: null,
   messages: null,
-  loading: null,
+  loading: true,
   error: null,
 };
 

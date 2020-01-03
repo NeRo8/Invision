@@ -8,8 +8,9 @@ import {
   Platform,
   SafeAreaView,
   Text,
+  ActivityIndicator,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon, colors } from 'react-native-elements';
 import moment from 'moment';
 
 import styles from './styles';
@@ -70,7 +71,11 @@ class ProfileNotificationsChat extends Component {
   }
 
   render() {
-    const { messages, user } = this.props;
+    const { messages, user, loading } = this.props;
+
+    if (loading) {
+      return <ActivityIndicator size="large" color="blue" />;
+    }
     return (
       <KeyboardAvoidingView
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}

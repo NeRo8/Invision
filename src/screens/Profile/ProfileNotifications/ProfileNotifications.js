@@ -41,7 +41,7 @@ class ProfileNotifications extends Component {
 
   render() {
     const { Archive, All } = this.state;
-    const { navigation, threads } = this.props;
+    const { navigation, threads, updateLoading } = this.props;
 
     return (
       <View style={styles.container}>
@@ -81,11 +81,12 @@ class ProfileNotifications extends Component {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.rowFront}
-              onPress={() =>
+              onPress={() => {
+                updateLoading();
                 navigation.navigate('ProfileNotificationsChat', {
                   threadId: item.thread.pk,
-                })
-              }>
+                });
+              }}>
               <Image
                 source={{ uri: item.thread.primary_image }}
                 style={styles.avatar}

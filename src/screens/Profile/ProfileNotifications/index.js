@@ -2,7 +2,7 @@ import ProfileNotifications from './ProfileNotifications';
 
 import { connect } from 'react-redux';
 
-import { fetchAllThreads } from '../../../redux/actions/Chat';
+import { fetchAllThreads, setLoading } from '../../../redux/actions/Chat';
 
 const mapStateToProps = state => {
   return {
@@ -15,6 +15,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllThreads: () => {
       dispatch(fetchAllThreads());
+    },
+    updateLoading: () => {
+      dispatch(setLoading(true));
     },
   };
 };
