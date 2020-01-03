@@ -64,14 +64,37 @@ class ProfileNotificationsChat extends Component {
   }
 
   componentDidMount() {
-    const { getAllMessages, navigation } = this.props;
+    const { getAllMessages, navigation, token, setNewMessage } = this.props;
 
     const id = navigation.getParam('threadId', null);
     getAllMessages(id);
+
+    this.ws = new WebSocket(`wss://staging.masaha.app/chat/1/?token=${token}`);
+
+    //Коли відкрився мост
+    this.ws.onopen = () => {
+      console.log('socket connection opened');
+    };
+
+    //Події на мосту
+    this.ws.onmessage = e => {
+      setNewMessage(JSON.parse(e.data));
+    };
+
+    this.ws.onerror = e => {
+      // an error occurred
+      console.log('error.message', e);
+    };
+
+    this.ws.onclose = e => {
+      // connection closed
+      console.log(e.code, e.reason);
+    };
   }
 
   render() {
     const { messages, user, loading } = this.props;
+    const { textMessage } = this.state;
 
     if (loading) {
       return <ActivityIndicator size="large" color="blue" />;
@@ -83,7 +106,7 @@ class ProfileNotificationsChat extends Component {
         behavior="padding">
         <FlatList
           ref={ref => (this.flatList = ref)}
-          data={messages.reverse()}
+          data={messages}
           renderItem={({ item }) => <Message message={item} userId={user} />}
           keyExtractor={(item, index) => index.toString()}
           style={styles.list}
@@ -102,7 +125,11 @@ class ProfileNotificationsChat extends Component {
               underlineColorAndroid="transparent"
             />
           </View>
-          <TouchableOpacity style={styles.btnSend} onPress={() => {}}>
+          <TouchableOpacity
+            style={styles.btnSend}
+            onPress={() =>
+              this.ws.send(JSON.stringify({ message: textMessage }))
+            }>
             <Icon name="ios-send" type="ionicon" color="white" size={25} />
           </TouchableOpacity>
         </View>

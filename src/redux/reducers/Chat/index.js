@@ -21,6 +21,12 @@ const chatReducer = (state = initState, action) => {
         messages: action.payload,
       };
     }
+    case types.SET_MESSAGE: {
+      return {
+        ...state,
+        messages: state.messages.concat(action.payload),
+      };
+    }
     case types.SET_LOADING: {
       return {
         ...state,

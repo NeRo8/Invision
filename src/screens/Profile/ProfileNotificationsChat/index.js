@@ -2,7 +2,7 @@ import ProfileNotificationsChat from './ProfileNotificationsChat';
 
 import { connect } from 'react-redux';
 
-import { fetchAllMessages } from '../../../redux/actions/Chat';
+import { fetchAllMessages, setMessage } from '../../../redux/actions/Chat';
 
 const mapStateToProps = state => {
   return {
@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllMessages: threadId => {
       dispatch(fetchAllMessages(threadId));
+    },
+    setNewMessage: newMessage => {
+      dispatch(setMessage(newMessage));
     },
   };
 };

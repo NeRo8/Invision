@@ -1,4 +1,5 @@
 export const SET_THREADS = 'SET_CHAT_THREADS';
 export const SET_MESSAGES = 'SET_CHAT_MESSAGES';
+export const SET_MESSAGE = 'SET_CHAT_MESSAGE';
 export const SET_LOADING = 'SET_CHAT_LOADING';
 export const SET_ERROR = 'SET_CHAT_ERROR';
