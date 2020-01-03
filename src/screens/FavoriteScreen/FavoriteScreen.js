@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, ActivityIndicator, FlatList } from 'react-native';
-import { connect } from 'react-redux';
+import { View, ActivityIndicator, FlatList, Text } from 'react-native';
 
 import {
   ElementListAds,
@@ -9,10 +8,6 @@ import {
 } from '../../components/ElementLists';
 import TextPicker from '../../components/TextPicker';
 
-import { getAdsFavorites } from '../../redux/actions/adsAction';
-//For token
-import { getData } from '../../utils/AsyncStorage';
-
 import { colors } from '../../constants';
 
 import styles from './styles';
@@ -20,6 +15,7 @@ import styles from './styles';
 class FavoriteScreen extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       activeFilter: 'ads',
       filters: [
@@ -51,11 +47,24 @@ class FavoriteScreen extends Component {
     };
   }
 
-  async componentDidMount() {
-    //FOR TOKEN
-    const token = await getData('token');
+  componentDidMount() {
+    const {
+      authStatus,
+      token,
+      getFavoriteAds,
+      navigation,
+      deleteAllFavorites,
+    } = this.props;
 
-    this.props.getFavorites(token);
+    if (authStatus) {
+      getFavoriteAds(token);
+    }
+
+    navigation.setParams({
+      deleteFavorites: () => {
+        deleteAllFavorites(token);
+      },
+    });
   }
 
   handlePressElement = id => {
@@ -71,6 +80,8 @@ class FavoriteScreen extends Component {
   };
 
   render() {
+    const { authStatus, adsFavoritesList } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -79,22 +90,23 @@ class FavoriteScreen extends Component {
             onPressElement={this.handlePressElement}
           />
         </View>
-        {this.props.adsFavorites === undefined ? (
+        {!authStatus ? (
           <View
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <ActivityIndicator size="large" color={colors.HEADER} />
+            <Text style={styles.loadingText}>First you need sign in ...</Text>
           </View>
         ) : (
           <View style={styles.bodyBlock}>
             {this.state.activeFilter === 'ads' ? (
               <FlatList
                 numColumns={2}
-                data={this.props.adsFavorites}
+                data={adsFavoritesList}
                 renderItem={({ item }) => (
                   <ElementListAds item={item.ad} onPressProduct={() => {}} />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index}
               />
             ) : this.state.activeFilter === 'org' ? (
               <FlatList
@@ -107,7 +119,7 @@ class FavoriteScreen extends Component {
                   />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index}
               />
             ) : (
               <FlatList
@@ -117,7 +129,7 @@ class FavoriteScreen extends Component {
                   <ElementListEvents element={item} onPressProduct={() => {}} />
                 )}
                 contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index}
               />
             )}
           </View>
@@ -127,18 +139,4 @@ class FavoriteScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    adsFavorites: state.ads.adsFavoritesList,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getFavorites: token => {
-      dispatch(getAdsFavorites(token));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FavoriteScreen);
+export default FavoriteScreen;

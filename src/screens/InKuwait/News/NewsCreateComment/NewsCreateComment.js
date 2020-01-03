@@ -4,60 +4,66 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   Platform,
-  TextInput,
 } from 'react-native';
-import { Button, Input } from 'react-native-elements';
 
-import globalStyles from '../../../../constants/globalStyles';
+import { DefaultButton } from '../../../../components/Buttons';
+import { SmallInput, LargeInput } from '../../../../components/Inputs';
+
 import styles from './styles';
 
 class NewsCreateComment extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      comment: null,
+    };
   }
+
+  handlePressSendComment = () => {
+    const { navigation, news, createComment, token } = this.props;
+    const { comment } = this.state;
+
+    const id = navigation.getParam('id', null);
+
+    const newData = {
+      article: news.pk,
+      parent: id !== null ? id : null,
+      description: comment,
+    };
+
+    if (comment !== '' && comment !== null) {
+      createComment(newData, token);
+    }
+  };
+
   render() {
+    const { user } = this.props;
+    const { comment } = this.state;
+
+    const fullName = `${user.user.first_name} ${user.user.last_name}`;
+    const email = `${user.user.email}`;
+
     return (
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior="padding"
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}>
-        <View style={styles.container}>
-          <Input
-            placeholder="Enter youre Full name"
-            inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
-            inputContainerStyle={styles.inputContainerStyle}
-            containerStyle={{ marginTop: 25, paddingHorizontal: 0 }}
-          />
-          <Input
-            placeholder="Enter your email address"
-            inputStyle={[globalStyles.gothamBook, styles.inputStyles]}
-            containerStyle={styles.inputContainer}
-            inputContainerStyle={styles.inputContainerStyle}
-          />
-          <View style={{ flex: 1, marginTop: 15 }}>
-            <Input
-              multiline
+        <SafeAreaView style={styles.container}>
+          <View style={styles.container}>
+            <SmallInput placeholder="Enter youre Full name" value={fullName} />
+            <SmallInput placeholder="Enter your email address" value={email} />
+            <LargeInput
               placeholder="Enter description of your question"
-              inputStyle={[
-                globalStyles.gothamBook,
-                styles.inputStyles,
-                { textAlignVertical: 'top', paddingTop: 12 },
-              ]}
-              inputContainerStyle={[
-                styles.inputContainerStyle,
-                { height: '100%' },
-              ]}
-              containerStyle={{ paddingHorizontal: 0 }}
+              value={comment}
+              onChangeText={text => this.setState({ comment: text })}
+            />
+
+            <DefaultButton
+              title="Send comment"
+              onPress={this.handlePressSendComment}
             />
           </View>
-          <Button
-            title="Send comment"
-            titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
-            buttonStyle={styles.btnStyle}
-            containerStyle={{ marginTop: 25 }}
-          />
-        </View>
+        </SafeAreaView>
       </KeyboardAvoidingView>
     );
   }

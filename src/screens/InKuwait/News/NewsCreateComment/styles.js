@@ -7,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgb(246,246,246)',
     flex: 1,
     justifyContent: 'space-between',
-    padding: 15,
+    paddingHorizontal: 15,
   },
   inputContainer: {
     marginTop: 15,

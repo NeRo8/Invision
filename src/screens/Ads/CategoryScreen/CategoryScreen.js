@@ -3,9 +3,10 @@ import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
 
 import styles from './styles';
+import { setFilter } from '../../../redux/actions/Ads';
 
 const ElementCategoryList = ({ item, onPressElement }) => (
-  <TouchableOpacity onPress={() => onPressElement({ categories: item.name })}>
+  <TouchableOpacity onPress={() => onPressElement(item.name)}>
     <View style={styles.elementContainer}>
       <View style={styles.elementIcon}>
         <Image
@@ -37,10 +38,12 @@ class CategoryScreen extends Component {
     getCategoriesList();
   }
 
-  getAdsListByCategoryName = categories => {
-    const { getAdsList, navigation } = this.props;
+  getAdsListByCategoryName = categoryName => {
+    const { getAdsList, navigation, setFilters, filters } = this.props;
 
-    getAdsList(categories);
+    setFilters('category', categoryName);
+
+    getAdsList({ category: categoryName });
 
     navigation.goBack();
   };

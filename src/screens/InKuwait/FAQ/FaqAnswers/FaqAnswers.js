@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, FlatList } from 'react-native';
 import { Button, Icon, Divider } from 'react-native-elements';
 
-import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
 
 const ElementFl = ({ element }) => (
   <View style={styles.containerElement}>
     <View style={styles.rowBlock}>
-      <Text style={[globalStyles.gothamMediumRegular, styles.author]}>
-        {element.author}
-      </Text>
+      <Text style={styles.author}>{element.author_full_name}</Text>
       <View style={{ flexDirection: 'row' }}>
         <Icon name="clock" type="octicon" color={'silver'} />
-        <Text style={[globalStyles.gothamBook, styles.time]}>
-          {element.date}
-        </Text>
+        <Text style={styles.time}>{element.created}</Text>
       </View>
     </View>
-    <Text style={[globalStyles.gothamBook, styles.answer]}>
-      {element.answer}
-    </Text>
+    <Text style={styles.answer}>{element.description}</Text>
     <View style={{ flexDirection: 'row' }}>
       <Button
         icon={{
@@ -29,7 +22,7 @@ const ElementFl = ({ element }) => (
           color: '#F05B88',
         }}
         title="Report"
-        titleStyle={[globalStyles.gothamBook, styles.btnTitleReport]}
+        titleStyle={styles.btnTitleReport}
         buttonStyle={styles.btnStyleReport}
         containerStyle={styles.btnContainer}
       />
@@ -40,7 +33,7 @@ const ElementFl = ({ element }) => (
           color: '#0A68EF',
         }}
         title="Reply"
-        titleStyle={[globalStyles.gothamBook, styles.btnTitleReply]}
+        titleStyle={styles.btnTitleReply}
         buttonStyle={styles.btnStyleReply}
         containerStyle={styles.btnContainer}
       />
@@ -51,38 +44,16 @@ const ElementFl = ({ element }) => (
 class FaqAnswers extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [
-        {
-          id: 1,
-          author: 'Chester Sparks',
-          date: '22.09.18',
-          answer:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        },
-        {
-          id: 2,
-          author: 'Chester Sparks',
-          date: '22.09.18',
-          answer:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        },
-        {
-          id: 3,
-          author: 'Chester Sparks',
-          date: '22.09.18',
-          answer:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        },
-      ],
-    };
+    this.state = {};
   }
+
   render() {
+    const { answers } = this.props;
     return (
       <FlatList
-        data={this.state.data}
+        data={answers}
         renderItem={({ item }) => <ElementFl element={item} />}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.pk}
         ItemSeparatorComponent={() => <View style={styles.divider} />}
       />
     );

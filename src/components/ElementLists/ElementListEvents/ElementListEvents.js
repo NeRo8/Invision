@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Grayscale } from 'react-native-color-matrix-image-filters';
+import moment from 'moment';
 
 import { colors, globalStyles } from '../../../constants';
 import styles from './styles';
@@ -38,7 +39,9 @@ const ElementFlEvents = ({
       </View>
       <View style={[styles.fullFlex, { paddingHorizontal: 5 }]}>
         <Text style={[globalStyles.gothamBook, styles.dateText]}>
-          {element.date}
+          {moment(element.start_date).format('MMM d')}
+          {' - '}
+          {moment(element.end_date).format('MMM d')}
         </Text>
 
         <Text style={[globalStyles.gothamMediumRegular, styles.titleText]}>

@@ -1,5 +1,10 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { colors } from '../../../../constants';
+import {
+  gothamMediumRegular,
+  gothamBold,
+  gothamBook,
+} from '../../../../constants/fonts';
 
 const imgWidth = 1600;
 const imgHeight = 750;
@@ -22,6 +27,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   title: {
+    ...gothamMediumRegular,
     fontSize: 17,
     lineHeight: 30,
     marginTop: 25,
@@ -49,6 +55,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
   },
   description: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 27,
     fontWeight: '300',
@@ -67,6 +74,7 @@ export default StyleSheet.create({
   },
 
   blockText: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 26,
   },
@@ -83,14 +91,8 @@ export default StyleSheet.create({
   },
   buttonAddGoogle: {
     backgroundColor: '#9BA9BE',
-    height: 50,
-    marginVertical: 5,
   },
-  buttonRegister: {
-    backgroundColor: colors.HEADER,
-    height: 50,
-    marginVertical: 5,
-  },
+
   icon: {
     width: 35,
     height: 35,
@@ -114,15 +116,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 25,
   },
-  bottomContainer: {
-    position: 'absolute',
-    alignItems: 'flex-end',
-    marginTop: 20,
-    bottom: 15,
-    left: 15,
-    right: 15,
-  },
-  btnTitle: { color: 'white', fontSize: 15, lineHeight: 24 },
+
   modalWindow: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -130,9 +124,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   textModal: {
+    ...gothamBook,
     fontSize: 15,
     color: 'white',
     lineHeight: 24,
     textAlign: 'center',
+  },
+  bottomContainer: {
+    flex: 2,
+    paddingHorizontal: 15,
   },
 });

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
+
 import { colors } from '../../../../constants';
+import { gothamBold } from '../../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -12,7 +14,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 20,
   },
+  divider: {
+    borderWidth: 0.5,
+    borderColor: 'silver',
+  },
   textHeader: {
+    ...gothamBold,
     fontSize: 12,
     lineHeight: 20,
     marginVertical: 15,
@@ -56,6 +63,7 @@ export default StyleSheet.create({
     fontSize: 15,
   },
   btnTitle: {
+    ...gothamBold,
     color: 'white',
     fontSize: 15,
   },

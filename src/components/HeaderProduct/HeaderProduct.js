@@ -12,8 +12,28 @@ class HeaderProduct extends Component {
     super(props);
     this.state = {};
   }
+
+  handlePressHeart = () => {
+    const {
+      addAdToFavorite,
+      removeAdFromFavorite,
+      token,
+      item,
+      authStatus,
+    } = this.props;
+
+    if (authStatus) {
+      if (item.is_favorite === true) {
+        removeAdFromFavorite(item.pk, token);
+      } else {
+        addAdToFavorite(item.pk, token);
+      }
+    }
+  };
+
   render() {
     const { item } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -27,7 +47,6 @@ class HeaderProduct extends Component {
             onPress={() => this.props.navigation.goBack()}
           />
         </View>
-
         <View style={styles.rightBlock}>
           <Icon
             containerStyle={styles.icons}
@@ -45,12 +64,15 @@ class HeaderProduct extends Component {
             size={32}
             onPress={() => this.props.onPressShere()}
           />
+
           <Icon
+            underlayColor="transparent"
             containerStyle={styles.icons}
             name={item.is_favorite ? 'heart' : 'heart-outline'}
             color={item.is_favorite ? colors.HEART_ACTIVE : 'white'}
             type="material-community"
             size={24}
+            onPress={this.handlePressHeart}
           />
         </View>
       </View>

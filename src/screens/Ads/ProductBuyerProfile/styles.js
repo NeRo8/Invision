@@ -1,17 +1,55 @@
 import { StyleSheet, Platform } from 'react-native';
 import { colors } from '../../../constants';
+import {
+  gothamBook,
+  gothamMediumRegular,
+  gothamBold,
+} from '../../../constants/fonts';
 
 export default StyleSheet.create({
+  container: {
+    backgroundColor: colors.BACKGROUND,
+    flex: 1,
+  },
   header: {
     paddingTop: Platform.OS === 'ios' ? 40 : 20,
     backgroundColor: 'white',
-    width: '100%',
+  },
+  loadingView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerNavigation: {
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
+  headerProfile: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    paddingHorizontal: 15,
+    alignItems: 'center',
+    paddingTop: 15,
+  },
+  avatarIcon: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: 'silver',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 25,
+  },
+  userLocation: {
+    ...gothamBook,
+    fontSize: 15,
+    lineHeight: 26,
+    color: colors.UNACTIVE,
+  },
   wraperView: {
-    minHeight: '100%',
+    flex: 1,
     marginHorizontal: 15,
     marginTop: 15,
   },
@@ -20,6 +58,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
   },
   userName: {
+    ...gothamMediumRegular,
     fontSize: 20,
     lineHeight: 30,
     color: 'black',
@@ -53,11 +92,19 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   blockText: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 26,
   },
+  headerTag: {
+    ...gothamBold,
+    fontSize: 12,
+    lineHeight: 20,
+    letterSpacing: 1,
+  },
   myAdsView: {
-    marginTop: 25,
+    marginVertical: 25,
+    flex: 1,
   },
   flatListView: {
     marginTop: 10,

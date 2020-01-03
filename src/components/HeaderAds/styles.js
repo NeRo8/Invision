@@ -1,6 +1,7 @@
 import { StyleSheet, Platform } from 'react-native';
 
 import { colors } from '../../constants';
+import { gothamBold } from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -36,6 +37,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   btnTitleStyle: {
+    ...gothamBold,
     fontSize: 13,
     color: 'white',
   },

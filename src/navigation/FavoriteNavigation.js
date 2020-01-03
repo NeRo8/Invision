@@ -13,29 +13,32 @@ const FavoriteNavigation = createStackNavigator(
   {
     Home: {
       screen: FavoriteScreen,
-      navigationOptions: {
-        headerTitle: (
-          <DefaultHeader
-            title="Favorites"
-            rightIcon={
-              <TouchableOpacity>
-                <Text
-                  style={{
-                    ...gothamBook,
-                    color: 'white',
-                    fontSize: 17,
-                    paddingTop: 5,
-                    textAlign: 'right',
-                    marginRight: 10,
-                  }}>
-                  Clear all
-                </Text>
-              </TouchableOpacity>
-            }
-          />
-        ),
-        headerLeft: null,
-        headerRight: null,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Favorites"
+              rightIcon={
+                <TouchableOpacity
+                  onPress={navigation.getParam('deleteFavorites')}>
+                  <Text
+                    style={{
+                      ...gothamBook,
+                      color: 'white',
+                      fontSize: 17,
+                      paddingTop: 5,
+                      textAlign: 'right',
+                      marginRight: 10,
+                    }}>
+                    Clear all
+                  </Text>
+                </TouchableOpacity>
+              }
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
       },
     },
   },

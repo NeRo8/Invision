@@ -1,5 +1,8 @@
 import { StyleSheet, Platform } from 'react-native';
-import { colors, globalStyles } from '../../constants';
+
+import { colors } from '../../constants';
+
+import { gothamBold } from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -10,12 +13,14 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height: 30,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   headerText: {
+    ...gothamBold,
     flex: 1,
-    fontSize: 20,
-    lineHeight: 30,
+    fontSize: 18,
     marginRight: 40,
+    paddingTop: 10,
     padding: 0,
     textAlign: 'center',
     color: 'white',
@@ -37,7 +42,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementText: {
-    fontFamily: globalStyles.gothamBold.fontFamily,
+    ...gothamBold,
     color: 'white',
     lineHeight: 30,
   },
@@ -51,8 +56,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementTextActive: {
+    ...gothamBold,
     lineHeight: 30,
-    fontFamily: globalStyles.gothamBold.fontFamily,
     color: colors.HEADER,
   },
   simpleContainer: {

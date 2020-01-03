@@ -19,35 +19,27 @@ class AdsScreen extends Component {
   }
 
   async componentDidMount() {
-    const { getAdsList } = this.props;
+    const { getAdsList, authStatus, token, refreshAuth, refreshT } = this.props;
+
     SplashScreen.hide();
 
-    getAdsList();
+    refreshAuth(refreshT);
+
+    if (authStatus) {
+      getAdsList(null, token);
+    } else {
+      getAdsList();
+    }
   }
 
-  showProductDetail = productId => {
-    this.props.navigation.navigate('ProductDetail', { productId: productId });
-  };
-
-  onEndAds = url => {
-    const { onLoadPreviousAds } = this.props;
-    if (url !== null) {
-      onLoadPreviousAds(url);
-      this.setState({
-        page: this.state.page - 1,
-      });
-    }
-  };
-
-  onNextAds = url => {
-    const { onRefreshAds } = this.props;
-    if (url !== null) {
-      onRefreshAds(url);
-    }
+  onPressElement = pk => {
+    const { navigation, setLoad } = this.props;
+    setLoad(true);
+    navigation.navigate('ProductDetail', { id: pk });
   };
 
   render() {
-    const { loading, adsList, adsConfig, page } = this.props;
+    const { loading, adsList, adsConfig, getNextAds } = this.props;
 
     return (
       <View style={styles.flatListView}>
@@ -70,19 +62,17 @@ class AdsScreen extends Component {
               renderItem={({ item }) => (
                 <ElementListAds
                   item={item}
-                  onPressProduct={this.showProductDetail}
+                  onPressProduct={this.onPressElement}
                 />
               )}
               contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
               keyExtractor={item => item.pk.toString()}
-              refreshing={false}
-              onRefresh={() => this.onEndAds(adsConfig.previous)}
-              onEndReached={() => this.onNextAds(adsConfig.next)}
+              onEndReached={() => getNextAds(adsConfig.next)}
               onEndReachedThreshold={0.5}
             />
             <View style={styles.pagination}>
               <Text style={{ fontWeight: 'bold' }}>
-                {page}/{Math.round(adsConfig.count / 15)}
+                {adsList.length}/{adsConfig.count}
               </Text>
             </View>
           </View>

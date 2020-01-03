@@ -1,20 +1,21 @@
-import { connect } from 'react-redux';
-import { loginWithFacebook } from '../../../redux/actions/authAction';
 import SignInScreen from './SignInScreen';
+
+import { connect } from 'react-redux';
+
+import { login } from '../../../redux/actions/Auth';
 
 const mapStateToProps = state => {
   return {
-    loading: state.auth.loading,
-    error: state.auth.error,
-    user: state.auth.userAuth,
+    authStatus: state.auth.authStatus,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    facebookLogin: token => {
-      dispatch(loginWithFacebook(token));
+    handlePressSignIn: (email, password) => {
+      dispatch(login(email, password));
     },
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

@@ -1,14 +1,26 @@
 import HeaderAds from './HeaderAds';
 
 import { connect } from 'react-redux';
-import { getAds } from '../../redux/actions/adsAction';
+
+import { getAds, setFilter } from '../../redux/actions/Ads';
+
+const mapStateToProps = state => {
+  return {
+    filters: state.ads.filters,
+    authStatus: state.auth.authStatus,
+    token: state.auth.user !== null ? state.auth.user.access_token : null,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdsByQuery: q => {
-      dispatch(getAds({ query: q }));
+    getAdsList: (filters, token) => {
+      dispatch(getAds(filters, token));
+    },
+    setFilters: value => {
+      dispatch(setFilter('q', value));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(HeaderAds);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderAds);

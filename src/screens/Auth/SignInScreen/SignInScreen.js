@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
-import { connect } from 'react-redux';
 
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
 import { DefaultInput } from '../../../components/Inputs';
-
-import { login } from '../../../redux/actions/authAction';
 
 import { colors, globalStyles } from '../../../constants';
 import styles from './styles';
@@ -50,6 +47,8 @@ class SignInScreen extends Component {
   };
 
   render() {
+    const { authStatus, navigation } = this.props;
+
     return (
       <ScrollView>
         <View>
@@ -147,18 +146,4 @@ class SignInScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    authStatus: state.auth.authStatus,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    handlePressSignIn: (email, password) => {
-      dispatch(login(email, password));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
+export default SignInScreen;

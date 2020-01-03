@@ -116,7 +116,7 @@ class ProfileSettingsScreen extends Component {
         <FlatList
           data={this.state.categoryList}
           renderItem={this.renderItem}
-          keyExtractor={(item, index) => item}
+          keyExtractor={(item, index) => index}
           ItemSeparatorComponent={() => (
             <Divider style={styles.elementDivider} />
           )}

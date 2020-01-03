@@ -1,19 +1,10 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import thunk from 'redux-thunk';
+import { persistStore } from 'redux-persist';
 
-import authReducer from '../reducers/authReducer';
-import adsReducer from '../reducers/adsReducer';
-import inKuwaitReducer from '../reducers/inKuwaitReducer';
-import filtersReducer from '../reducers/filtersReducer';
+import pReducer from '../reducers';
 
-const rootReducer = combineReducers({
-  auth: authReducer,
-  ads: adsReducer,
-  inKuwait: inKuwaitReducer,
-  filters: filtersReducer,
-});
+export const store = createStore(pReducer, applyMiddleware(thunk, logger));
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
-
-export default store;
+export const persistor = persistStore(store);

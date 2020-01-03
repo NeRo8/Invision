@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { colors, globalStyles } from '../../../constants';
+import { gothamBold } from '../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -12,6 +13,7 @@ export default StyleSheet.create({
     marginTop: 25,
   },
   textBlock: {
+    ...gothamBold,
     fontSize: 12,
     color: colors.TITLE,
   },

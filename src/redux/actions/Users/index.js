@@ -1,0 +1,101 @@
+import { SET_PROFILE, SET_LOADING, SET_ERROR, SET_PROFILE_ADS } from './types';
+
+const DEFAULT_URL = 'https://staging.masaha.app/api/v1/users/';
+const ADS = 'https://staging.masaha.app/api/v1/ads/';
+
+const setProfile = profile => ({
+  type: SET_PROFILE,
+  payload: profile,
+});
+
+const setAds = ads => ({
+  type: SET_PROFILE_ADS,
+  payload: ads,
+});
+
+const setLoading = status => ({
+  type: SET_LOADING,
+  payload: status,
+});
+
+export const setError = error => ({
+  type: SET_ERROR,
+  payload: error,
+});
+
+export const getProfile = token => dispatch => {
+  dispatch(setLoading(true));
+
+  fetch(`${DEFAULT_URL}profile-info/`, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setProfile(responseJson));
+    })
+    .then(() => {
+      dispatch(getProfileAds(token));
+    })
+    .catch(error => {
+      dispatch(setError(error));
+    });
+};
+
+export const getProfileAds = token => dispatch => {
+  fetch(`${ADS}my/`, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch(setAds(responseJson));
+      dispatch(setLoading(false));
+    })
+    .catch(error => {
+      dispatch(setError(error));
+      dispatch(setLoading(false));
+    });
+};
+
+export const deleteAds = (id, token) => dispatch => {
+  fetch(`${ADS}delete-ad/${id}/`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+
+  dispatch(getProfileAds(token));
+};
+
+export const changeProfile = (newProfile, token) => dispatch => {
+  fetch(`${DEFAULT_URL}profile-info/`, {
+    method: 'PUT',
+
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+
+    body: JSON.stringify({
+      full_name: newProfile.full_name,
+      email: newProfile.email,
+      phone_number: newProfile.phone_number,
+      city: newProfile.city,
+    }),
+  })
+    .then(response => response.json())
+    .then(response => {
+      if (response.full_name !== undefined) {
+        dispatch(setError(response));
+      } else {
+        dispatch(setError('Success'));
+      }
+    })
+    .catch(error => dispatch(setError(error)));
+};

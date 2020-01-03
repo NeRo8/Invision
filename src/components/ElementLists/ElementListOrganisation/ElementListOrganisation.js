@@ -35,7 +35,7 @@ const ElementListOrganisation = ({ element, onPressOrganizationOrService }) => (
         <StarRating
           disabled
           maxStars={5}
-          rating={element.rating === undefined ? 0 : element.rating}
+          rating={element.rating === undefined ? 0 : parseFloat(element.rating)}
           emptyStar="ios-star"
           fullStar="ios-star"
           halfStar="ios-star"

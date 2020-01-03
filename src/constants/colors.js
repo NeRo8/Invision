@@ -6,6 +6,7 @@ const colors = {
   BACKGROUND: '#F5F5F5',
   HEART_ACTIVE: '#EC4550',
   FACEBOOK: 'rgb(89,111,163)',
+  LINK: '#34465F',
   TWITTER: 'rgb(86, 174,222)',
   INSTAGRAM: 'rgb(195,74,117)',
   NOTIF_ICON: 'rgb(236, 69, 114)',
@@ -30,6 +31,7 @@ const colors = {
   CHAT_BACKGROUND: '#FAFAFA',
   CHAT_DATE: '#2C3440',
   CHAT_DATE_BORDER_COLOR: '#EBEEF0',
+  DEFAULT_BUTTON: '#0A68EF',
 };
 
 export default colors;

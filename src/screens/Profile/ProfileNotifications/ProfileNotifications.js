@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { SwipeListView } from 'react-native-swipe-list-view';
-import { withNavigation } from 'react-navigation';
-import globalStyles from '../../../constants/globalStyles';
-import styles from './styles';
 import { Icon } from 'react-native-elements';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
-// import Images from '../../../assets/images';
+import styles from './styles';
+
+import { setToken } from '../../../api';
 
 var swipeoutBtns = [
   {
@@ -18,91 +17,18 @@ class ProfileNotifications extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryList: [
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-        {
-          name: 'Pavlo Laptiev',
-          message: 'Hello Alex. How are you?',
-          when: 'Today',
-        },
-      ],
+      categoryList: [],
       Archive: true,
       All: false,
     };
+  }
+
+  componentDidMount() {
+    const { token, getAllThreads } = this.props;
+    //SET TOKEN TO AXIOS
+    setToken(token);
+
+    getAllThreads();
   }
 
   handlePressSelectedView = name => {
@@ -115,6 +41,8 @@ class ProfileNotifications extends Component {
 
   render() {
     const { Archive, All } = this.state;
+    const { navigation, threads } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.selectedContainer}>
@@ -146,30 +74,29 @@ class ProfileNotifications extends Component {
           </TouchableOpacity>
         </View>
         <SwipeListView
+          data={threads}
           style={styles.containerSwipe}
           disableRightSwipe={true}
-          data={this.state.categoryList}
-          renderItem={(rowData, rowMap) => (
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.rowFront}
               onPress={() =>
-                this.props.navigation.navigate('ProfileNotificationsChat')
+                navigation.navigate('ProfileNotificationsChat', {
+                  threadId: item.thread.pk,
+                })
               }>
               <Image
-                source={require('../../../../assets/images/profilepic.jpg')}
-                style={{ width: 45, height: 45, borderRadius: 45 / 2 }}
+                source={{ uri: item.thread.primary_image }}
+                style={styles.avatar}
               />
               <View style={{ marginLeft: 15 }}>
-                <Text style={[globalStyles.gothamBook, styles.name]}>
-                  {rowData.item.name}{' '}
+                <Text style={styles.name}>
+                  {item.thread.ad_title.slice(0, 20)} ...
                 </Text>
-                <Text style={[globalStyles.gothamBook, styles.message]}>
-                  {rowData.item.message}
-                </Text>
+                <Text style={styles.message}>{item.thread.message}</Text>
               </View>
-              <Text style={[globalStyles.gothamBook, styles.when]}>
-                {rowData.item.when}
-              </Text>
+              <Text style={styles.when}>{item.thread.sent_at}</Text>
             </TouchableOpacity>
           )}
           renderHiddenItem={(data, rowMap) => (
@@ -184,11 +111,10 @@ class ProfileNotifications extends Component {
             </TouchableOpacity>
           )}
           rightOpenValue={-75}
-          previewRowKey={this.state.categoryList[0].key}
         />
       </View>
     );
   }
 }
 
-export default withNavigation(ProfileNotifications);
+export default ProfileNotifications;

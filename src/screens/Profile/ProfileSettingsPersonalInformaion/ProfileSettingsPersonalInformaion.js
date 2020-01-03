@@ -1,186 +1,162 @@
 import React, { Component } from 'react';
 import {
-  KeyboardAvoidingView,
-  TouchableOpacity,
   Text,
   View,
+  FlatList,
+  SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
-import SearchableDropdown from 'react-native-searchable-dropdown';
-import { Input, Icon } from 'react-native-elements';
-import { withNavigation } from 'react-navigation';
+import { Divider } from 'react-native-elements';
+import DropdownAlert from 'react-native-dropdownalert';
 
-import { colors, globalStyles } from '../../../constants';
+import { DefaultButton } from '../../../components/Buttons';
+import { IconInput } from '../../../components/Inputs';
+
+import { getCities } from '../../../api/users';
 
 import styles from './styles';
-
-var items = [
-  {
-    id: 1,
-    name: 'JavaScript',
-  },
-  {
-    id: 2,
-    name: 'Java',
-  },
-  {
-    id: 3,
-    name: 'Ruby',
-  },
-  {
-    id: 4,
-    name: 'React Native',
-  },
-  {
-    id: 5,
-    name: 'PHP',
-  },
-  {
-    id: 6,
-    name: 'Python',
-  },
-  {
-    id: 7,
-    name: 'Go',
-  },
-  {
-    id: 8,
-    name: 'Swift',
-  },
-];
 
 class ProfileSettingsPersonalInformaion extends Component {
   constructor(props) {
     super(props);
-    this.test = React.createRef();
-    this.setState = {
-      selectedItems: [
-        {
-          id: 7,
-          name: 'Go',
-        },
-        {
-          id: 8,
-          name: 'Swift',
-        },
-      ],
+    this.state = {
+      city: { pk: null, name: null },
+      full_name: null,
+      phone_number: null,
+      email: null,
+      selectBoxVisible: false,
+      cityList: [],
     };
   }
 
+  async componentDidMount() {
+    const { user } = this.props;
+
+    getCities().then(cities => this.setState({ cityList: cities }));
+
+    for (var key in user) {
+      this.onChangeState(key, user[key]);
+    }
+  }
+
+  componentDidUpdate() {
+    const { error, onClearError } = this.props;
+
+    if (error !== null && error === 'Success') {
+      this.dropDownAlertRef.alertWithType(
+        'success',
+        'Success',
+        'All field changed',
+      );
+      onClearError();
+    } else if (error !== null) {
+      this.dropDownAlertRef.alertWithType('error', 'Error', error);
+      onClearError();
+    }
+  }
+
+  onChangeState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handlePressSave = () => {
+    const { full_name, city, phone_number, email } = this.state;
+    const { token, onChangeProfile } = this.props;
+    //Create new profile object
+    const newProfile = {
+      full_name: full_name,
+      city: city.pk,
+      phone_number: phone_number,
+      email: email,
+    };
+    //Check all field is valid
+    var isValid = true;
+    for (var key in newProfile) {
+      if (newProfile[key] === null) {
+        isValid = false;
+      }
+    }
+    //Go go power rangers
+    if (isValid) {
+      onChangeProfile(newProfile, token);
+    }
+  };
+
   render() {
+    const {
+      city,
+      full_name,
+      phone_number,
+      selectBoxVisible,
+      cityList,
+      email,
+    } = this.state;
+
     return (
-      <KeyboardAvoidingView
-        behavior="position"
-        style={{
-          flex: 1,
-          marginTop: 10,
-          marginLeft: 15,
-          marginRight: 15,
-        }}
-        enabled={false}
-        // ref={this.test}
-        // onRef={ref => ( 'child' = ref)}
-      >
-        <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
-          Full name
-        </Text>
-        <Input
-          inputStyle={[globalStyles.gothamBook, styles.elementTitleNonHeader]}
-          leftIcon={() => (
-            <Icon
-              name="md-person"
-              type="ionicon"
-              color={colors.ICON_GREY_COLOR}
-              size={25}
-            />
-          )}
-          placeholder="Please enter your full name"
-          placeholderTextColor={colors.UNACTIVE}
-          leftIconContainerStyle={styles.leftIconContainer}
-          inputContainerStyle={styles.inputContainerS}
-          containerStyle={styles.inputContainer}
-        />
-        <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
-          Email
-        </Text>
-        <Input
-          inputStyle={[globalStyles.gothamBook, styles.elementTitleNonHeader]}
-          leftIcon={() => (
-            <Icon
-              name="ios-mail"
-              type="ionicon"
-              color={colors.ICON_GREY_COLOR}
-              size={25}
-            />
-          )}
-          placeholder="Please enter your email"
-          placeholderTextColor={colors.UNACTIVE}
-          leftIconContainerStyle={styles.leftIconContainer}
-          inputContainerStyle={styles.inputContainerS}
-          containerStyle={styles.inputContainer}
-        />
-        <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
-          Phone number
-        </Text>
-        <Input
-          inputStyle={[globalStyles.gothamBook, styles.elementTitleNonHeader]}
-          leftIcon={() => (
-            <Icon
-              name="ios-phone-portrait"
-              type="ionicon"
-              color={colors.ICON_GREY_COLOR}
-              size={25}
-            />
-          )}
-          placeholder="Please enter your phone number"
-          placeholderTextColor={colors.UNACTIVE}
-          leftIconContainerStyle={styles.leftIconContainer}
-          inputContainerStyle={styles.inputContainerS}
-          containerStyle={styles.inputContainer}
-        />
-        <Text style={[globalStyles.gothamMediumRegular, styles.elementTitle]}>
-          Select city
-        </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Icon
-            iconStyle={styles.dropDownLeftIconStyle}
-            name="ios-home"
-            type="ionicon"
-            color={colors.ICON_GREY_COLOR}
-            size={25}
+      <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+          <IconInput
+            iconName="md-person"
+            placeholder="Please enter your full name"
+            label="Full name"
+            value={full_name}
+            onChangeText={text => this.onChangeState('full_name', text)}
           />
-          <SearchableDropdown
-            onItemSelect={item => {
-              // const items = this.state.selectedItems;
-              // items.push(item)
-              // this.setState({ selectedItems: items });
-            }}
-            containerStyle={styles.dropDownContainer}
-            onRemoveItem={(item, index) => {
-              const items = this.state.selectedItems.filter(
-                sitem => sitem.id !== item.id,
-              );
-              this.setState({ selectedItems: items });
-            }}
-            itemStyle={styles.dropDownItemStyle}
-            itemTextStyle={{ color: '#575C64' }}
-            itemsContainerStyle={{ maxHeight: 165 }}
-            items={items}
-            defaultIndex={2}
-            resetValue={false}
-            textInputProps={styles.dropDownInputStyle}
-            listProps={{
-              nestedScrollEnabled: true,
-            }}
+
+          <IconInput
+            iconName="ios-phone-portrait"
+            placeholder="Please enter your phone number"
+            label="Phone number"
+            value={phone_number}
+            onChangeText={text => this.onChangeState('phone_number', text)}
+          />
+
+          <IconInput
+            iconName="ios-mail"
+            placeholder="Please enter your email"
+            label="Email"
+            value={email}
+            onChangeText={text => this.onChangeState('email', text)}
+          />
+
+          <IconInput
+            iconName="ios-home"
+            placeholder="Please select your city"
+            label="Select city"
+            value={this.state.city.name !== null ? this.state.city.name : city}
+            onFocus={() => this.onChangeState('selectBoxVisible', true)}
+          />
+
+          {selectBoxVisible ? (
+            <FlatList
+              data={cityList}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    this.onChangeState('city', item);
+                    this.onChangeState('selectBoxVisible', false);
+                  }}
+                  style={styles.selectBoxItem}>
+                  <Text style={styles.selectBoxText}>{item.name}</Text>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item, index) => index}
+              contentContainerStyle={styles.selectBoxContainer}
+              ItemSeparatorComponent={() => <Divider />}
+            />
+          ) : null}
+
+          <DefaultButton
+            title="Save changes"
+            onPressButton={this.handlePressSave}
           />
         </View>
-        <TouchableOpacity style={styles.btnStyle}>
-          <Text style={(globalStyles.gothamBold, styles.buttonTextStyle)}>
-            Save changes
-          </Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+        <DropdownAlert ref={ref => (this.dropDownAlertRef = ref)} />
+      </SafeAreaView>
     );
   }
 }
 
-export default withNavigation(ProfileSettingsPersonalInformaion);
+export default ProfileSettingsPersonalInformaion;

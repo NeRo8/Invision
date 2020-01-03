@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  StatusBar,
-  FlatList,
-} from 'react-native';
+import { SafeAreaView, View, Text, FlatList } from 'react-native';
 import { Icon, Button, Divider } from 'react-native-elements';
 import Moment from 'moment';
 
 import styles from './styles';
-import { colors, globalStyles } from '../../../../constants';
+import { colors } from '../../../../constants';
 
-const ElementFlatList = ({ item }) => (
-  <View>
+const ElementFlatList = ({ item, onPressReport, onPressReply, authStatus }) => (
+  <View style={item.parent !== null ? { marginLeft: 20 } : null}>
     <View style={styles.comentView}>
       <View style={styles.topOfComent}>
-        <Text style={[globalStyles.gothamMediumRegular, styles.userName]}>
+        <Text style={styles.userName}>
           {item.user__first_name} {item.user__last_name}
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -29,7 +21,7 @@ const ElementFlatList = ({ item }) => (
             color={colors.UNACTIVE}
             containerStyle={{ marginRight: 8 }}
           />
-          <Text style={[globalStyles.gothamBook, styles.date]}>
+          <Text style={styles.date}>
             {Moment(item.created).format('DD.MM.YY')}
           </Text>
         </View>
@@ -39,26 +31,30 @@ const ElementFlatList = ({ item }) => (
       </View>
       <View style={{ flexDirection: 'row' }}>
         <Button
+          disabled={authStatus}
           icon={{
             name: 'ios-flag',
             type: 'ionicon',
             color: '#F05B88',
           }}
           title="Report"
-          titleStyle={[globalStyles.gothamBook, styles.btnTitleReport]}
+          titleStyle={styles.btnTitleReport}
           buttonStyle={styles.btnStyleReport}
           containerStyle={styles.btnContainer}
+          onPress={() => onPressReport(item.pk)}
         />
         <Button
+          disabled={authStatus}
           icon={{
             name: 'ios-undo',
             type: 'ionicon',
             color: '#0A68EF',
           }}
           title="Reply"
-          titleStyle={[globalStyles.gothamBook, styles.btnTitleReply]}
+          titleStyle={styles.btnTitleReply}
           buttonStyle={styles.btnStyleReply}
           containerStyle={styles.btnContainer}
+          onPress={() => onPressReply(item.pk)}
         />
       </View>
     </View>
@@ -71,69 +67,56 @@ const ElementFlatList = ({ item }) => (
 class NewsAnswers extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      coments: [
-        {
-          id: 0,
-          userName: 'Tyler Hicks',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-        {
-          id: 1,
-          userName: 'Billy Weaver',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-        {
-          id: 2,
-          userName: 'Jordan Mann',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-        {
-          id: 3,
-          userName: 'Alex Synth',
-          date: '22.09.18',
-          coment:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        },
-      ],
-    };
+    this.state = {};
   }
-  async componentDidMount() {
-    const { navigation } = this.props;
-  }
+
   onPressWriteComment = () => {
-    this.props.navigation.navigate('NewsCreateComment');
+    const { navigation } = this.props;
+    navigation.navigate('NewsCreateComment');
+  };
+
+  handlePressReport = id => {
+    const { token, setAnswerReport } = this.props;
+
+    setAnswerReport(id, token);
+  };
+
+  handlePressReply = answerdId => {
+    const { navigation } = this.props;
+
+    navigation.navigate('NewsCreateComment', {
+      id: answerdId,
+    });
   };
 
   render() {
-    const { navigation } = this.props;
+    const { comments, authStatus } = this.props;
+
     return (
-      <View>
-        <View style={styles.wraper}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
           <FlatList
-            contentContainerStyle={{ paddingHorizontal: 15 }}
-            data={navigation.getParam('comments')}
-            renderItem={({ item }) => <ElementFlatList item={item} />}
-            keyExtractor={item => item.pk}
+            data={comments}
+            renderItem={({ item }) => (
+              <ElementFlatList
+                item={item}
+                onPressReport={this.handlePressReport}
+                onPressReply={this.handlePressReply}
+                authStatus={authStatus ? false : true}
+              />
+            )}
+            keyExtractor={item => item.pk.toString()}
+          />
+
+          <Button
+            disabled={authStatus ? false : true}
+            titleStyle={styles.btnTitle}
+            buttonStyle={styles.buttonWrite}
+            title="Write comment"
+            onPress={this.onPressWriteComment}
           />
         </View>
-
-        <Button
-          titleStyle={[
-            globalStyles.gothamBold,
-            { color: 'white', fontSize: 15, lineHeight: 24 },
-          ]}
-          buttonStyle={styles.buttonWrite}
-          title="Write comment"
-          onPress={this.onPressWriteComment}
-        />
-      </View>
+      </SafeAreaView>
     );
   }
 }

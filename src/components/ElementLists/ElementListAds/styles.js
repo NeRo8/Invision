@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../constants';
 
+import { gothamBold, gothamBook } from '../../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -33,13 +35,16 @@ export default StyleSheet.create({
     width: null,
   },
   title: {
+    ...gothamBold,
     fontSize: 13,
   },
   price: {
+    ...gothamBook,
     color: colors.HEADER,
     fontSize: 13,
   },
   status: {
+    ...gothamBook,
     color: colors.UNACTIVE,
     fontSize: 13,
   },

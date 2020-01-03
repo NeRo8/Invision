@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
-  SafeAreaView,
   Image,
   ActivityIndicator,
   Linking,
@@ -13,20 +12,17 @@ import {
 import Moment from 'moment';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
-import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
 import SwiperFlatList from 'react-native-swiper-flatlist';
-
-import { getAd } from '../../../redux/actions/adsAction';
-import { getData } from '../../../utils/AsyncStorage';
-
-import { colors, globalStyles } from '../../../constants';
-
-import styles from './styles';
 
 import HeaderProduct from '../../../components/HeaderProduct';
 import { ElementListAds } from '../../../components/ElementLists';
 import ModalShare from './ModalShare';
+import { DefaultButton } from '../../../components/Buttons';
+
+import { colors, globalStyles } from '../../../constants';
+
+import styles from './styles';
 
 const CommentsFlatList = ({ item }) => (
   <View style={styles.elementContainer}>
@@ -77,8 +73,6 @@ class ProductScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productData: [],
-
       tags: [
         { id: 0, title: 'Privat' },
         { id: 1, title: 'New' },
@@ -93,10 +87,16 @@ class ProductScreen extends Component {
     };
   }
 
-  async componentDidMount() {
-    const token = await getData('token');
-    const prodId = this.props.navigation.getParam('productId', null);
-    this.props.getAdData(prodId, token);
+  componentDidMount() {
+    const { navigation, getAdData, token, authStatus } = this.props;
+
+    const id = navigation.getParam('id', null);
+
+    if (authStatus) {
+      getAdData(id, token);
+    } else {
+      getAdData(id, null);
+    }
   }
 
   handlePressWriteOwnComment = () => {
@@ -108,6 +108,7 @@ class ProductScreen extends Component {
       modalShow: !this.state.modalShow,
     });
   };
+
   onPressShowMore = () => {
     const { productData } = this.props;
     productData.description.length > 300
@@ -116,6 +117,7 @@ class ProductScreen extends Component {
         })
       : null;
   };
+
   onPressReadAll = () => {
     const { productData } = this.props;
     productData.comments.length > 3
@@ -124,6 +126,7 @@ class ProductScreen extends Component {
         })
       : null;
   };
+
   onPressMoreAds = () => {
     const { productData } = this.props;
     productData.recommended.length > 6
@@ -131,17 +134,21 @@ class ProductScreen extends Component {
           moreAds: !this.state.moreAds,
         })
       : null;
-    console.log(this.state.moreAds);
   };
 
-  showProductDetail = async productId => {
-    const token = await getData('token');
+  showProductDetail = id => {
+    const { getAdData, token, authStatus } = this.props;
 
-    this.props.getAdData(productId, token);
+    if (authStatus) {
+      getAdData(id, token);
+    } else {
+      getAdData(id, null);
+    }
   };
 
   render() {
-    const { productData, loading } = this.props;
+    const { productData, loading, authStatus } = this.props;
+
     if (loading) {
       return (
         <View
@@ -211,7 +218,7 @@ class ProductScreen extends Component {
                   style={styles.tagsFlatList}
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.tagsFlatListContainer}
-                  keyExtractor={item => item.id}
+                  keyExtractor={item => item.id.toString()}
                   horizontal
                   data={this.state.tags}
                   render
@@ -240,19 +247,17 @@ class ProductScreen extends Component {
                 <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate('ProductBuyerProfile')
+                      this.props.navigation.navigate('ProductBuyerProfile', {
+                        id: this.props.userid,
+                      })
                     }
                     style={styles.userTouchable}>
                     <View style={styles.userLeftBlock}>
                       <Avatar
                         rounded
-                        source={
-                          productData.user.avatar === null
-                            ? require('../../../assets/icons/userIcons/man.jpg')
-                            : { uri: productData.user.avatar }
-                        }
+                        source={productData.user.avatar}
                         imageProps={{ resizeMode: 'cover' }}
-                        size={25}
+                        size={40}
                       />
                       <Text style={styles.userName}>
                         {productData.user.full_name}
@@ -292,21 +297,20 @@ class ProductScreen extends Component {
                       : productData.comments.slice(0, 3)
                   }
                   renderItem={({ item }) => <CommentsFlatList item={item} />}
-                  keyExtractor={item => item.pk}
+                  keyExtractor={item => item.pk.toString()}
                 />
                 <Button
                   disabled={productData.comments.length <= 3 ? true : false}
-                  title={['Read all ', productData.comments.length, ' reviews']}
-                  titleStyle={[globalStyles.gothamBold, styles.titleRead]}
+                  title={`Read all ${productData.comments.length} reviews`}
+                  titleStyle={styles.titleRead}
                   buttonStyle={styles.btnStyleRead}
                   containerStyle={styles.btnContainer}
                   onPress={() => this.onPressReadAll()}
                 />
-                <Button
+                <DefaultButton
+                  disabled={!authStatus}
                   title="Write own comment"
-                  titleStyle={[globalStyles.gothamBold, styles.titleWrite]}
-                  buttonStyle={styles.btnStyleWrite}
-                  onPress={() =>
+                  onPressButton={() =>
                     this.props.navigation.navigate('CreateComment')
                   }
                 />
@@ -327,7 +331,7 @@ class ProductScreen extends Component {
                         onPressProduct={this.showProductDetail}
                       />
                     )}
-                    keyExtractor={item => item.pk}
+                    keyExtractor={item => item.pk.toString()}
                   />
                 </View>
               </View>
@@ -335,34 +339,24 @@ class ProductScreen extends Component {
                 disabled={productData.recommended.length <= 6 ? true : false}
                 title="Show more ads"
                 titleStyle={[globalStyles.gothamBold, styles.titleRead]}
-                buttonStyle={styles.btnStyleRead}
+                buttonStyle={styles.btnStyleShowMore}
                 containerStyle={styles.btnContainer}
                 onPress={() => this.onPressMoreAds()}
               />
             </View>
             <View style={styles.bottomView}>
-              <View
-                style={{
-                  flex: 1,
-                }}>
-                <Icon
-                  name="phone"
-                  type="font-awesome"
-                  color="white"
-                  containerStyle={styles.iconPhoneContainer}
-                  iconStyle={{
-                    width: 55,
-                    height: 50,
-                    textAlign: 'center',
-                    textAlignVertical: 'center',
-                  }}
-                  onPress={() => {
-                    productData.phone_number !== null || undefined
-                      ? Linking.openURL(`tel:${productData.phone_number}`)
-                      : null;
-                  }}
-                />
-              </View>
+              <Icon
+                name="phone"
+                type="font-awesome"
+                color="white"
+                containerStyle={styles.iconPhoneContainer}
+                onPress={() => {
+                  productData.phone_number !== null || undefined
+                    ? Linking.openURL(`tel:${productData.phone_number}`)
+                    : null;
+                }}
+              />
+
               <View style={{ flex: 6 }}>
                 <Input
                   inputStyle={styles.bottomInput}
@@ -393,19 +387,4 @@ class ProductScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    productData: state.ads.adData,
-    loading: state.ads.loadingAd,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getAdData: (prodId, token) => {
-      dispatch(getAd(prodId, token));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductScreen);
+export default ProductScreen;

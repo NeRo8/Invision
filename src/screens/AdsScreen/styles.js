@@ -4,8 +4,8 @@ export default StyleSheet.create({
   pagination: {
     position: 'absolute',
     bottom: 10,
-    width: 50,
-    left: Dimensions.get('window').width / 2 - 25,
+    width: 100,
+    left: Dimensions.get('window').width / 2 - 50,
     //paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 20,

@@ -2,15 +2,35 @@ import { StyleSheet, Platform } from 'react-native';
 
 import { colors } from '../../constants';
 
+import {
+  gothamBold,
+  gothamBook,
+  gothamMediumRegular,
+} from '../../constants/fonts';
+
 export default StyleSheet.create({
   container: {
+    flexGrow: 1,
+  },
+  containerLoading: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   fontInsideImage: {
     fontSize: 11,
     color: 'white',
   },
+  label: {
+    ...gothamBook,
+  },
+  loadingText: {
+    ...gothamBook,
+    fontSize: 18,
+    marginTop: 20,
+  },
   fontDescription: {
+    ...gothamMediumRegular,
     fontSize: 15,
     color: 'white',
     textAlign: 'justify',
@@ -78,8 +98,14 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 15,
   },
-  headerTitleText: { fontSize: 20, color: 'white', marginVertical: 17 },
+  headerTitleText: {
+    ...gothamBold,
+    fontSize: 20,
+    color: 'white',
+    marginVertical: 17,
+  },
   headerText: {
+    ...gothamBold,
     fontSize: 12,
     fontWeight: 'bold',
     marginLeft: 10,
@@ -148,11 +174,24 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   btnSettingsTitle: {
+    ...gothamBold,
     color: 'white',
   },
   btnStyle: {
     borderRadius: 0,
     backgroundColor: colors.HEADER,
     height: 50,
+  },
+  elementLabel: {
+    ...gothamBook,
+    fontSize: 15,
+  },
+  bottomBlock: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
 });

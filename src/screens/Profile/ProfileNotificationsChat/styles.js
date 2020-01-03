@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../constants';
+import { gothamBold, gothamBook } from '../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
@@ -10,11 +11,17 @@ export default StyleSheet.create({
   list: {
     paddingHorizontal: 12,
   },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'silver',
+  },
   footer: {
     flexDirection: 'row',
     height: 60,
-    paddingHorizontal: 10,
-    padding: 5,
+    paddingHorizontal: 15,
+    marginBottom: 30,
   },
   btnSend: {
     backgroundColor: colors.HEADER,
@@ -36,67 +43,49 @@ export default StyleSheet.create({
     flex: 1,
   },
   inputs: {
+    ...gothamBook,
     height: 50,
     marginLeft: 20,
     flex: 1,
     fontSize: 17,
   },
-  itemIn: {
-    alignSelf: 'flex-start',
-    marginBottom: 10,
-  },
-  itemMe: {
-    alignSelf: 'flex-end',
-    marginBottom: 10,
-  },
-  time: {
-    alignSelf: 'flex-end',
-    fontSize: 12,
-    color: colors.CHAT_DATE_COLOR,
-    marginTop: 6,
-  },
-  item: {
+  blockMessage: {
+    justifyContent: 'flex-end',
     flexDirection: 'row',
-    backgroundColor: colors.CHAT_BACKGROUND_MESSAGE,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 12,
+    paddingLeft: '20%',
     paddingRight: 12,
+    marginVertical: 7,
   },
-  date: {
-    color: colors.CHAT_DATE,
-    borderColor: colors.CHAT_DATE_BORDER_COLOR,
-    borderWidth: 1,
-    alignSelf: 'center',
-    borderRadius: 15,
-    paddingLeft: 21,
-    paddingRight: 21,
-    paddingTop: 7,
-    paddingBottom: 7,
-    marginBottom: 25,
-    marginTop: 15,
-  },
-  itemInName: {
+  blockMessageIncome: {
     flexDirection: 'row',
-    backgroundColor: colors.CHAT_BACKGROUND_IN,
-    paddingTop: 10,
-    paddingBottom: 10,
     paddingLeft: 12,
-    paddingRight: 12,
+    paddingRight: '20%',
+    marginVertical: 7,
   },
-  messageIn: {
-    flexDirection: 'row',
-    backgroundColor: colors.CHAT_BACKGROUND_IN,
-    paddingBottom: 10,
-    paddingLeft: 12,
-    paddingRight: 12,
-  },
-  messageMe: {
-    color: colors.CHAT_MESSAGES_COLOR,
+  messages: {
+    ...gothamBook,
     fontSize: 17,
   },
-  messageInTitle: {
-    color: colors.CHAT_NAME_COLOR,
+  time: {
+    ...gothamBook,
+    fontSize: 12,
+    textAlign: 'right',
+    color: '#79898A',
+  },
+  timeIncome: {
+    ...gothamBook,
+    fontSize: 12,
+    color: '#79898A',
+  },
+  messageMy: {
+    backgroundColor: '#E6F0FF',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  senderName: {
+    ...gothamBold,
     fontSize: 15,
   },
 });

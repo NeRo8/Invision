@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-} from 'react-native';
+import { ScrollView, View, Text, Image, Dimensions } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 
 import StarRating from 'react-native-star-rating';
 
 import styles from './styles';
 import { colors, globalStyles } from '../../../../constants';
+import ShareModal from '../../../../components/ShareModal';
 
 const imgWidth = 1000;
 const imgHeight = 750;
@@ -26,6 +19,7 @@ class OrganisationAndServicesDetail extends Component {
       iHeight: 0,
       imgURL:
         'https://www.nationalgeographic.com/content/dam/travel/Guide-Pages/north-america/united-states/newyork/newyork_NationalGeographic_2328428.adapt.1900.1.jpg',
+      shareModal: false,
     };
   }
 
@@ -38,10 +32,11 @@ class OrganisationAndServicesDetail extends Component {
     });
   }
 
-  render() {
-    const remoteImage =
-      this.state.iHeight / (this.state.iWidth / Dimensions.get('window').width);
+  handlePressShere = () => {
+    this.setState({ shareModal: !this.state.shareModal });
+  };
 
+  render() {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.header}>
@@ -61,7 +56,7 @@ class OrganisationAndServicesDetail extends Component {
               type="evilicon"
               color="white"
               size={32}
-              onPress={() => this.props.onPressShere()}
+              onPress={this.handlePressShere}
             />
           </View>
         </View>
@@ -180,6 +175,11 @@ class OrganisationAndServicesDetail extends Component {
             </View>
           </View>
         </ScrollView>
+        <ShareModal
+          visible={this.state.shareModal}
+          onClose={this.handlePressShere}
+          bgImage={require('../../../../assets/images/building.jpg')}
+        />
       </View>
     );
   }

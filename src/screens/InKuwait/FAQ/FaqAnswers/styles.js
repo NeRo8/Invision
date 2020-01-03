@@ -1,19 +1,24 @@
 import { StyleSheet } from 'react-native';
 
+import { gothamMediumRegular, gothamBook } from '../../../../constants/fonts';
+
 export default StyleSheet.create({
   containerElement: {
     padding: 15,
   },
   author: {
+    ...gothamMediumRegular,
     fontSize: 17,
     lineHeight: 26,
   },
   time: {
+    ...gothamBook,
     marginLeft: 10,
     fontSize: 15,
     lineHeight: 26,
   },
   answer: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 26,
     textAlign: 'justify',
@@ -40,10 +45,12 @@ export default StyleSheet.create({
     paddingHorizontal: 3,
   },
   btnTitleReport: {
+    ...gothamBook,
     color: '#F05B88',
     fontSize: 13,
   },
   btnTitleReply: {
+    ...gothamBook,
     color: '#0A68EF',
     fontSize: 13,
   },

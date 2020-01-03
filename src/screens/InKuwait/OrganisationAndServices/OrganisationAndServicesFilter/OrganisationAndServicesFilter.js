@@ -5,25 +5,21 @@ import { CheckBox, Button } from 'react-native-elements';
 import { colors, globalStyles } from '../../../../constants';
 import styles from './styles';
 
-const ElementFl = ({ element, onChange }) => (
+const ElementFl = ({ element, activeElement, onPressElement }) => (
   <View style={styles.elementContainer}>
     <CheckBox
-      checked={element.checked}
+      checked={element.pk === activeElement ? true : false}
       iconType="ionicon"
       checkedIcon="ios-checkmark-circle"
       uncheckedIcon="ios-radio-button-off"
       checkedColor={colors.HEADER}
       containerStyle={{ marginRight: 15 }}
       onPress={() => {
-        onChange(element.title);
+        onPressElement(element.pk);
       }}
     />
     <Text style={[globalStyles.gothamBook, styles.textElement]}>
-      {' '}
-      {element.title}
-    </Text>
-    <Text style={[globalStyles.gothamBook, styles.textCount]}>
-      {element.count}
+      {element.name}
     </Text>
   </View>
 );
@@ -32,20 +28,18 @@ class OrganisationAndServicesFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: [
-        { id: 0, title: 'University in Kuwait', count: 10, checked: false },
-        { id: 1, title: 'Museums', count: 3, checked: false },
-        { id: 2, title: 'Monuments', count: 5, checked: false },
-        { id: 3, title: 'Restaurants', count: 3, checked: false },
-        { id: 4, title: 'View points', count: 13, checked: false },
-        { id: 5, title: 'Geast house', count: 6, checked: false },
-        { id: 6, title: 'Street food', count: 6, checked: false },
-      ],
       filters: {
         date: true,
         answers: false,
       },
+      activeCategory: null,
     };
+  }
+
+  componentDidMount() {
+    const { getCategoriesList } = this.props;
+
+    getCategoriesList();
   }
 
   handleChangeSorting = name => {
@@ -69,8 +63,28 @@ class OrganisationAndServicesFilter extends Component {
     });
   };
 
+  setActiveCategory = id => {
+    const { setCategoryFilter } = this.props;
+
+    this.setState({
+      activeCategory: id,
+    });
+
+    setCategoryFilter(id);
+  };
+
+  handlePressDone = () => {
+    const { navigation, getServiceList, filters } = this.props;
+
+    getServiceList(filters);
+
+    navigation.goBack();
+  };
+
   render() {
-    const { filters } = this.state;
+    const { categories } = this.props;
+    const { filters, activeCategory } = this.state;
+
     return (
       <View style={styles.container}>
         <View>
@@ -108,27 +122,27 @@ class OrganisationAndServicesFilter extends Component {
           </View>
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={[globalStyles.gothamBold, styles.textHeader]}>
-            SELECT CATEGORY
-          </Text>
+          <Text style={styles.textHeader}>SELECT CATEGORY</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={this.state.category}
+            data={categories}
             renderItem={({ item }) => (
-              <ElementFl element={item} onChange={this.handleChangeChecked} />
+              <ElementFl
+                element={item}
+                activeElement={activeCategory}
+                onPressElement={this.setActiveCategory}
+              />
             )}
             contentContainerStyle={{ marginTop: 10 }}
-            ItemSeparatorComponent={() => (
-              <View style={{ borderWidth: 0.3, borderColor: 'silver' }} />
-            )}
+            ItemSeparatorComponent={() => <View style={styles.divider} />}
           />
         </View>
         <Button
           title="Done"
-          titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
+          titleStyle={styles.btnTitle}
           buttonStyle={styles.btnStyle}
           containerStyle={styles.btnContainer}
-          onPress={() => this.props.navigation.goBack()}
+          onPress={this.handlePressDone}
         />
       </View>
     );
