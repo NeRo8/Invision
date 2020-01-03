@@ -1,9 +1,10 @@
-import { SIGN_IN, LOGOUT } from '../actions/authAction';
+import { SIGN_IN, LOGOUT, SET_LOADING } from '../actions/authAction';
 
 const initState = {
   profile: null,
   authStatus: false,
   error: null,
+  loading: true,
 };
 
 const signInReducer = (state = initState, action) => {
@@ -20,6 +21,12 @@ const signInReducer = (state = initState, action) => {
         ...state,
         profile: null,
         authStatus: false,
+      };
+    }
+    case SET_LOADING: {
+      return {
+        ...state,
+        loading: action.loading,
       };
     }
     default: {
