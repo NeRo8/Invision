@@ -15,6 +15,15 @@ const chatReducer = (state = initState, action) => {
         threads: action.payload,
       };
     }
+    case types.SET_OLD_THREADS: {
+      return {
+        ...state,
+        threads: {
+          ...action.payload,
+          results: state.threads.results.concat(action.payload.results),
+        },
+      };
+    }
     case types.SET_MESSAGES: {
       return {
         ...state,
@@ -23,7 +32,6 @@ const chatReducer = (state = initState, action) => {
     }
     case types.SET_MESSAGE: {
       var newMessageList = state.messages.results;
-
       newMessageList.unshift(action.payload);
 
       return {

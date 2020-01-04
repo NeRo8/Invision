@@ -5,12 +5,18 @@ import {
   SET_ERROR,
   SET_MESSAGE,
   SET_OLD_MESSAGE,
+  SET_OLD_THREADS,
 } from './types';
 
 import API from '../../../api';
 
 const setThreads = threads => ({
   type: SET_THREADS,
+  payload: threads,
+});
+
+const setOldThreads = threads => ({
+  type: SET_OLD_THREADS,
   payload: threads,
 });
 
@@ -50,6 +56,12 @@ export const fetchAllThreads = () => dispatch => {
     .catch(error => {
       dispatch(setError(error));
     });
+};
+
+export const loadOldThreads = url => dispatch => {
+  API.get(url).then(response => {
+    dispatch(setOldThreads(response.data));
+  });
 };
 
 export const updataMessage = threadId => dispatch => {

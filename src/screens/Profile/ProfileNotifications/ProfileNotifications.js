@@ -84,6 +84,14 @@ class ProfileNotifications extends Component {
 
   handlePressDelete = pk => {};
 
+  loadMoreThreads = () => {
+    const { setOldThreads, threadsConf } = this.props;
+
+    if (threadsConf.next !== null) {
+      setOldThreads(threadsConf.next);
+    }
+  };
+
   render() {
     const { Archive, All } = this.state;
     const { threads, loading } = this.props;
@@ -138,6 +146,8 @@ class ProfileNotifications extends Component {
           )}
           disableRightSwipe={true}
           rightOpenValue={-75}
+          onEndReached={this.loadMoreThreads}
+          onEndReachedThreshold={0.5}
         />
       </View>
     );
