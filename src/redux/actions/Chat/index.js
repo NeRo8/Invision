@@ -1,4 +1,10 @@
-import { SET_THREADS, SET_MESSAGES, SET_LOADING, SET_ERROR } from './types';
+import {
+  SET_THREADS,
+  SET_MESSAGES,
+  SET_LOADING,
+  SET_ERROR,
+  SET_MESSAGE,
+} from './types';
 
 import API from '../../../api';
 
@@ -9,10 +15,15 @@ const setThreads = threads => ({
 
 const setMessages = messages => ({
   type: SET_MESSAGES,
-  payload: messages,
+  payload: messages.reverse(),
 });
 
-const setLoading = loading => ({
+export const setMessage = message => ({
+  type: SET_MESSAGE,
+  payload: message,
+});
+
+export const setLoading = loading => ({
   type: SET_LOADING,
   payload: loading,
 });

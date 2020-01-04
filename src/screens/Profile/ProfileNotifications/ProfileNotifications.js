@@ -73,7 +73,9 @@ class ProfileNotifications extends Component {
   };
 
   handlePressThread = pk => {
-    const { navigation } = this.props;
+    const { navigation, updateLoading } = this.props;
+
+    updateLoading(true);
 
     navigation.navigate('ProfileNotificationsChat', {
       threadId: pk,

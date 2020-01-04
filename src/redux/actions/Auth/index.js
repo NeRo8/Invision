@@ -1,5 +1,7 @@
 const USERS = 'https://staging.masaha.app/api/v1/users';
 
+import axios from 'axios';
+
 export const SIGN_IN = 'SIGN_IN';
 export const LOGOUT = 'LOGOUT';
 export const SET_LOADING = 'SET_AUTH_LOADING';
@@ -63,4 +65,34 @@ export const refreshToken = oldToken => dispatch => {
     .then(response => response.json())
     .then(responseJson => dispatch(setToken(responseJson.access)))
     .then(error => dispatch(setError(error)));
+};
+
+export const loginWithFacebook = token => dispatch => {
+  dispatch(setLoading(true));
+  console.log('Token in actions: ', token);
+  var socialData = new FormData();
+
+  socialData.append('provider', 'facebook');
+  socialData.append('access_token', token);
+
+  axios({
+    method: 'post',
+    url: `${USERS}/social-connect/`,
+    data: socialData,
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+    .then(response => {
+      console.log('Response: ', response);
+      if (response.status === 200) {
+        dispatch(setUser(response.data));
+        dispatch(setLoading(false));
+      } else {
+        dispatch(setError(response));
+        dispatch(setLoading(false));
+      }
+    })
+    .catch(error => {
+      dispatch(setLoading(false));
+      dispatch(setError(error));
+    });
 };

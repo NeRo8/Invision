@@ -21,6 +21,7 @@
     "react": "16.9.0",
     "react-native": "0.61.3",
     "react-native-add-calendar-event": "^3.0.0",
+    "react-native-axios": "^0.17.1",
     "react-native-camera": "git+https://git@github.com/react-native-community/react-native-camera.git",
     "react-native-color-matrix-image-filters": "^5.2.0",
     "react-native-dropdown-autocomplete": "^1.0.17",

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -8,14 +9,36 @@ import {
   ScrollView,
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import { AccessToken, LoginManager, LoginButton } from 'react-native-fbsdk';
 
 import { colors, globalStyles } from '../../constants';
+import { loginWithFacebook } from '../../redux/actions/Auth';
 
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  handlePressLoginFacebook = () => {
+    const { facebookLogin } = this.props;
+    LoginManager.logInWithPermissions(['public_profile', 'email']).then(
+      async result => {
+        if (result.isCancelled) {
+          console.log('Login cancelled');
+        } else {
+          const token = await AccessToken.getCurrentAccessToken().then(
+            res => res.accessToken,
+          );
+          console.log('FacebookToken: ', token);
+          facebookLogin(token);
+        }
+      },
+      function(error) {
+        console.log('Login fail: ' + error);
+      },
+    );
+  };
 
   handlePressSignInEmail = () => {
     this.props.navigation.navigate('SignIn');
@@ -36,6 +59,20 @@ class index extends Component {
           </View>
         </View>
         <View style={styles.blockBottom}>
+          {/* <LoginButton
+            onLoginFinished={(error, result) => {
+              if (error) {
+                console.log('login has error: ' + result.error);
+              } else if (result.isCancelled) {
+                console.log('login is cancelled.');
+              } else {
+                AccessToken.getCurrentAccessToken().then(data => {
+                  console.log(data.accessToken.toString());
+                });
+              }
+            }}
+            onLogoutFinished={() => console.log('logout.')}
+          /> */}
           <Button
             icon={{
               name: 'facebook',
@@ -50,7 +87,7 @@ class index extends Component {
             ]}
             containerStyle={styles.btnContainer}
             iconContainerStyle={{ flex: 2 }}
-            onPress={() => this.props.navigation.navigate('CreateAccount')}
+            onPress={this.handlePressLoginFacebook}
           />
           <Button
             icon={{
@@ -154,4 +191,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default index;
+const mapStateToProps = state => {
+  return {};
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    facebookLogin: token => {
+      dispatch(loginWithFacebook(token));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(index);

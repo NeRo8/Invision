@@ -3,7 +3,7 @@ import * as types from '../../actions/Chat/types';
 const initState = {
   threads: null,
   messages: null,
-  loading: null,
+  loading: true,
   error: null,
 };
 
@@ -19,6 +19,12 @@ const chatReducer = (state = initState, action) => {
       return {
         ...state,
         messages: action.payload,
+      };
+    }
+    case types.SET_MESSAGE: {
+      return {
+        ...state,
+        messages: state.messages.concat(action.payload),
       };
     }
     case types.SET_LOADING: {

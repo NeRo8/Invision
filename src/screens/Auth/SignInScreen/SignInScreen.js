@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
+
 import { DefaultInput } from '../../../components/Inputs';
 
 import { colors, globalStyles } from '../../../constants';
@@ -20,6 +22,28 @@ class SignInScreen extends Component {
     this.setState({
       [name]: value,
     });
+  };
+
+  //onPress facebook
+
+  handlePressLoginFacebook = () => {
+    const { facebookLogin } = this.props;
+
+    LoginManager.logInWithPermissions(['public_profile', 'email']).then(
+      async result => {
+        if (result.isCancelled) {
+          console.log('Login cancelled');
+        } else {
+          const token = await AccessToken.getCurrentAccessToken().then(
+            res => res.accessToken,
+          );
+          facebookLogin(token);
+        }
+      },
+      function(error) {
+        console.log('Login fail with error: ' + error);
+      },
+    );
   };
 
   render() {
@@ -86,6 +110,7 @@ class SignInScreen extends Component {
                   { backgroundColor: colors.FACEBOOK },
                 ]}
                 containerStyle={styles.btnSocialContainer}
+                onPress={() => this.handlePressLoginFacebook()}
               />
               <Button
                 icon={{
