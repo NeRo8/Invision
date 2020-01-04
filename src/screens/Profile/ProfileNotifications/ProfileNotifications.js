@@ -1,17 +1,50 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import styles from './styles';
 
 import { setToken } from '../../../api';
+import { colors } from '../../../constants';
 
-var swipeoutBtns = [
-  {
-    text: 'Button',
-  },
-];
+const Thread = ({ item, onPressThread }) => (
+  <TouchableOpacity
+    style={styles.rowFront}
+    onPress={() => onPressThread(item.thread.pk)}>
+    <Image source={{ uri: item.thread.primary_image }} style={styles.avatar} />
+    <View style={{ flex: 2 }}>
+      <Text style={styles.name}>{item.thread.ad_title.slice(0, 20)} ...</Text>
+      <Text style={styles.message}>{item.thread.message}</Text>
+    </View>
+    <View style={{ flex: 1 }}>
+      <Text style={styles.when}>
+        {item.thread.sent_at.replace(', ', ',\n')}
+      </Text>
+    </View>
+  </TouchableOpacity>
+);
+
+const BackThread = ({ onPress }) => (
+  <View style={styles.rowBack}>
+    <View style={styles.iconContainer}>
+      <Icon
+        name="md-trash"
+        type="ionicon"
+        color="white"
+        size={32}
+        onPress={() => onPress()}
+        underlayColor="transparent"
+      />
+    </View>
+  </View>
+);
 
 class ProfileNotifications extends Component {
   constructor(props) {
@@ -39,9 +72,28 @@ class ProfileNotifications extends Component {
     });
   };
 
+  handlePressThread = pk => {
+    const { navigation } = this.props;
+
+    navigation.navigate('ProfileNotificationsChat', {
+      threadId: pk,
+    });
+  };
+
+  handlePressDelete = pk => {};
+
   render() {
     const { Archive, All } = this.state;
-    const { navigation, threads } = this.props;
+    const { threads, loading } = this.props;
+
+    if (loading) {
+      return (
+        <View
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator size="large" color={colors.HEADER} />
+        </View>
+      );
+    }
 
     return (
       <View style={styles.container}>
@@ -73,43 +125,16 @@ class ProfileNotifications extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+
         <SwipeListView
           data={threads}
-          style={styles.containerSwipe}
-          disableRightSwipe={true}
-          keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.rowFront}
-              onPress={() =>
-                navigation.navigate('ProfileNotificationsChat', {
-                  threadId: item.thread.pk,
-                })
-              }>
-              <Image
-                source={{ uri: item.thread.primary_image }}
-                style={styles.avatar}
-              />
-              <View style={{ marginLeft: 15 }}>
-                <Text style={styles.name}>
-                  {item.thread.ad_title.slice(0, 20)} ...
-                </Text>
-                <Text style={styles.message}>{item.thread.message}</Text>
-              </View>
-              <Text style={styles.when}>{item.thread.sent_at}</Text>
-            </TouchableOpacity>
+            <Thread item={item} onPressThread={this.handlePressThread} />
           )}
-          renderHiddenItem={(data, rowMap) => (
-            <TouchableOpacity style={styles.rowBack}>
-              <View />
-              <Icon
-                name="md-trash"
-                type="ionicon"
-                color="white"
-                containerStyle={{ marginHorizontal: 30 }}
-              />
-            </TouchableOpacity>
+          renderHiddenItem={({ item }) => (
+            <BackThread item={item} onPress={this.handlePressDelete} />
           )}
+          disableRightSwipe={true}
           rightOpenValue={-75}
         />
       </View>

@@ -27,7 +27,7 @@ export const fetchAllThreads = () => dispatch => {
 
   API.get('/messaging/inbox/')
     .then(response => {
-      dispatch(setThreads(response.data.results));
+      dispatch(setThreads(response.data));
     })
     .then(() => dispatch(setLoading(false)))
     .catch(error => {
