@@ -15,7 +15,7 @@ const setThreads = threads => ({
 
 const setMessages = messages => ({
   type: SET_MESSAGES,
-  payload: messages.reverse(),
+  payload: messages,
 });
 
 export const setMessage = message => ({
@@ -44,6 +44,12 @@ export const fetchAllThreads = () => dispatch => {
     .catch(error => {
       dispatch(setError(error));
     });
+};
+
+export const updataMessage = threadId => dispatch => {
+  API.get(`/messaging/inbox/${threadId}/`).then(response => {
+    dispatch(setMessages(response.data.results));
+  });
 };
 
 export const fetchAllMessages = threadId => dispatch => {
