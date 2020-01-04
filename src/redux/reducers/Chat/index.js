@@ -34,6 +34,15 @@ const chatReducer = (state = initState, action) => {
         },
       };
     }
+    case types.SET_OLD_MESSAGE: {
+      return {
+        ...state,
+        messages: {
+          ...action.payload,
+          results: state.messages.results.concat(action.payload.results),
+        },
+      };
+    }
     case types.SET_LOADING: {
       return {
         ...state,

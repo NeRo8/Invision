@@ -4,6 +4,7 @@ import {
   SET_LOADING,
   SET_ERROR,
   SET_MESSAGE,
+  SET_OLD_MESSAGE,
 } from './types';
 
 import API from '../../../api';
@@ -21,6 +22,11 @@ const setMessages = messages => ({
 export const setMessage = message => ({
   type: SET_MESSAGE,
   payload: message,
+});
+
+const setOldMessage = messages => ({
+  type: SET_OLD_MESSAGE,
+  payload: messages,
 });
 
 export const setLoading = loading => ({
@@ -49,6 +55,12 @@ export const fetchAllThreads = () => dispatch => {
 export const updataMessage = threadId => dispatch => {
   API.get(`/messaging/inbox/${threadId}/`).then(response => {
     dispatch(setMessages(response.data.results));
+  });
+};
+
+export const loadOldMessages = url => dispatch => {
+  API.get(url).then(response => {
+    dispatch(setOldMessage(response.data));
   });
 };
 

@@ -57,8 +57,16 @@ class ProfileNotificationsChat extends Component {
     this.ws.close();
   }
 
+  nextMessage = () => {
+    const { loadMoreMessages, messagesConf } = this.props;
+
+    if (messagesConf.next !== null) {
+      loadMoreMessages(messagesConf.next);
+    }
+  };
+
   render() {
-    const { messages, user, loading, loadOldMessage } = this.props;
+    const { messages, user, loading } = this.props;
     const { textMessage } = this.state;
 
     if (loading) {
@@ -75,8 +83,8 @@ class ProfileNotificationsChat extends Component {
             ref={ref => (this.flatList = ref)}
             data={messages}
             renderItem={({ item }) => <Message message={item} userId={user} />}
-            keyExtractor={(item, index) => index.toString()}
-            onEndReached={() => {}}
+            keyExtractor={(item, index) => item.pk.toString()}
+            onEndReached={this.nextMessage}
             onEndReachedThreshold={0.1}
           />
           <View style={styles.footer}>

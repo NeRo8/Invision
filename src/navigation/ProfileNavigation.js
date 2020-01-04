@@ -172,7 +172,7 @@ const ProfileNavigation = createStackNavigator(
         return {
           headerTitle: (
             <DefaultHeader
-              title="Notifications"
+              title="Chat"
               leftIcon={true}
               onPressLeftIcon={() => navigation.goBack()}
             />

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 import {
   fetchAllMessages,
-  loadMore,
   updataMessage,
   setMessage,
+  loadOldMessages,
 } from '../../../redux/actions/Chat';
 
 const mapStateToProps = state => {
@@ -26,6 +26,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateMessageList: threadId => {
       dispatch(updataMessage(threadId));
+    },
+    loadMoreMessages: url => {
+      dispatch(loadOldMessages(url));
     },
     setNewMessage: newMessage => {
       dispatch(setMessage(newMessage));
