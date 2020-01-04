@@ -4,15 +4,17 @@ import { connect } from 'react-redux';
 
 import {
   fetchAllMessages,
-  setMessage,
+  loadMore,
   updataMessage,
+  setMessage,
 } from '../../../redux/actions/Chat';
 
 const mapStateToProps = state => {
   return {
     loading: state.chat.loading,
     user: state.users.user.pk,
-    messages: state.chat.messages,
+    messagesConf: state.chat.messages,
+    messages: state.chat.messages !== null ? state.chat.messages.results : [],
     token: state.auth.user !== null ? state.auth.user.access_token : null,
   };
 };

@@ -6,13 +6,13 @@ import {
   TextInput,
   FlatList,
   Platform,
-  Text,
   ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
-import { Icon, Input } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 
 import Message from './components/Message';
+import LoadingStatus from '../../../components/LoadingStatus';
 
 import styles from './styles';
 
@@ -25,7 +25,7 @@ class ProfileNotificationsChat extends Component {
   }
 
   componentDidMount() {
-    const { getAllMessages, navigation, token, updateMessageList } = this.props;
+    const { getAllMessages, navigation, token, setNewMessage } = this.props;
 
     const id = navigation.getParam('threadId', null);
     getAllMessages(id);
@@ -39,7 +39,7 @@ class ProfileNotificationsChat extends Component {
 
     //Події на мосту
     this.ws.onmessage = e => {
-      updateMessageList(id);
+      setNewMessage(JSON.parse(e.data));
     };
 
     this.ws.onerror = e => {
@@ -53,12 +53,16 @@ class ProfileNotificationsChat extends Component {
     };
   }
 
+  componentWillUnmount() {
+    this.ws.close();
+  }
+
   render() {
-    const { messages, user, loading } = this.props;
+    const { messages, user, loading, loadOldMessage } = this.props;
     const { textMessage } = this.state;
 
     if (loading) {
-      return <ActivityIndicator size="large" color="blue" />;
+      return <LoadingStatus />;
     }
     return (
       <SafeAreaView style={styles.container}>
@@ -72,11 +76,8 @@ class ProfileNotificationsChat extends Component {
             data={messages}
             renderItem={({ item }) => <Message message={item} userId={user} />}
             keyExtractor={(item, index) => index.toString()}
-            contentContainerStyle={styles.list}
-            //  onContentSizeChange={() =>
-            //  this.flatList.scrollToEnd({ animated: true })
-            //  }
-            // onLayout={() => this.flatList.scrollToEnd({ animated: true })}
+            onEndReached={() => {}}
+            onEndReachedThreshold={0.1}
           />
           <View style={styles.footer}>
             <View style={styles.inputContainer}>

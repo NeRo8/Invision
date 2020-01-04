@@ -57,7 +57,7 @@ export const fetchAllMessages = threadId => dispatch => {
 
   API.get(`/messaging/inbox/${threadId}/`)
     .then(response => {
-      dispatch(setMessages(response.data.results));
+      dispatch(setMessages(response.data));
     })
     .then(() => dispatch(setLoading(false)))
     .catch(error => {
