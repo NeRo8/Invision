@@ -1,4 +1,12 @@
-import { SET_PROFILE, SET_LOADING, SET_ERROR, SET_PROFILE_ADS } from './types';
+import {
+  SET_PROFILE,
+  SET_LOADING,
+  SET_ERROR,
+  SET_PROFILE_ADS,
+  SET_NOTIFICATION_SETTINGS,
+} from './types';
+
+import API from '../../../api';
 
 const DEFAULT_URL = 'https://staging.masaha.app/api/v1/users/';
 const ADS = 'https://staging.masaha.app/api/v1/ads/';
@@ -21,6 +29,11 @@ const setLoading = status => ({
 export const setError = error => ({
   type: SET_ERROR,
   payload: error,
+});
+
+const setNotificationSettings = settings => ({
+  type: SET_NOTIFICATION_SETTINGS,
+  payload: settings,
 });
 
 export const getProfile = token => dispatch => {
@@ -98,4 +111,16 @@ export const changeProfile = (newProfile, token) => dispatch => {
       }
     })
     .catch(error => dispatch(setError(error)));
+};
+
+export const getNotificationSettings = () => dispatch => {
+  API.get('/users/change-notification/').then(response =>
+    dispatch(setNotificationSettings(response.data)),
+  );
+};
+
+export const updateNotificationSettings = data => dispatch => {
+  API.put('/users/change-notification/', data).then(response =>
+    dispatch(setNotificationSettings(response.data)),
+  );
 };

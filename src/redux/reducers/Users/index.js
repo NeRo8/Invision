@@ -3,6 +3,7 @@ import {
   SET_ERROR,
   SET_LOADING,
   SET_PROFILE_ADS,
+  SET_NOTIFICATION_SETTINGS,
 } from '../../actions/Users/types';
 
 const initState = {
@@ -10,6 +11,10 @@ const initState = {
   ads: null,
   loading: true,
   error: null,
+  notifSettings: {
+    ad_answer: false,
+    news_offer_promotion: false,
+  },
 };
 
 const usersReducer = (state = initState, action) => {
@@ -36,6 +41,12 @@ const usersReducer = (state = initState, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+    }
+    case SET_NOTIFICATION_SETTINGS: {
+      return {
+        ...state,
+        notifSettings: action.payload,
       };
     }
     default:
