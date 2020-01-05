@@ -120,6 +120,7 @@ class ProfileSettingsScreen extends Component {
             <Divider style={styles.divider} />
             <ItemSettings
               title="Notifications"
+              onPressItem={() => {}}
               onPressItem={() => this.onChangeNotificaton(!notification)}
               rightIcon={
                 <Switch
@@ -136,6 +137,7 @@ class ProfileSettingsScreen extends Component {
             <Divider style={styles.divider} />
             <ItemSettings
               title="Take messages about answers on ads."
+              onPressItem={() => {}}
               rightIcon={
                 <Switch
                   ios_backgroundColor={colors.DEFAULT}
@@ -156,6 +158,7 @@ class ProfileSettingsScreen extends Component {
             <Divider style={styles.divider} />
             <ItemSettings
               title="Receive news, offers and promotions from Masaha"
+              onPressItem={() => {}}
               rightIcon={
                 <Switch
                   ios_backgroundColor={colors.DEFAULT}
@@ -175,7 +178,14 @@ class ProfileSettingsScreen extends Component {
             />
             <Divider style={styles.divider} />
           </View>
-          <DefaultButton title="Logout" buttonStyle={{ marginVertical: 16 }} />
+          <DefaultButton
+            title="Logout"
+            buttonStyle={{ marginVertical: 16 }}
+            onPressButton={() => {
+              this.props.navigation.navigate('Auth');
+              this.props.onLogout();
+            }}
+          />
         </ScrollView>
       </SafeAreaView>
     );

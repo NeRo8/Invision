@@ -7,6 +7,8 @@ import {
   updateNotificationSettings,
 } from '../../../redux/actions/Users';
 
+import { logout } from '../../../redux/actions/Auth';
+
 const mapStateToProps = state => {
   return {
     notifSettings: state.users.notifSettings,
@@ -20,6 +22,9 @@ const mapDispatchToProps = dispatch => {
     },
     setNotifSettings: data => {
       dispatch(updateNotificationSettings(data));
+    },
+    onLogout: () => {
+      dispatch(logout());
     },
   };
 };

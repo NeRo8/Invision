@@ -13,7 +13,7 @@ const setUser = user => ({
   payload: user,
 });
 
-const logout = () => ({
+export const logout = () => ({
   type: LOGOUT,
 });
 

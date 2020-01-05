@@ -1,7 +1,12 @@
 import { SIGN_IN, LOGOUT, REFRESH_TOKEN } from '../../actions/Auth';
 
+import { deleteToken } from '../../../api';
+
 const initState = {
-  user: null,
+  user: {
+    user: null,
+    access_token: null,
+  },
   authStatus: false,
   loading: false,
   error: null,
@@ -17,9 +22,12 @@ const authReducer = (state = initState, action) => {
       };
     }
     case LOGOUT: {
+      deleteToken();
       return {
         ...state,
-        user: null,
+        user: {
+          access_token: null,
+        },
         authStatus: false,
       };
     }
