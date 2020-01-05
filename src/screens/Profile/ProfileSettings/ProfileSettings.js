@@ -59,13 +59,13 @@ class ProfileSettingsScreen extends Component {
   };
 
   onChangeNotificaton = value => {
-    const { setNotifSettins } = this.props;
+    const { setNotifSettings } = this.props;
 
     this.setState({
       notification: value,
     });
 
-    setNotifSettins({
+    setNotifSettings({
       ad_answer: value,
       news_offer_promotion: value,
     });
@@ -73,7 +73,7 @@ class ProfileSettingsScreen extends Component {
 
   render() {
     const { notification } = this.state;
-    const { notifSettings } = this.props;
+    const { notifSettings, setNotifSettings } = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.containerBlock}>
@@ -136,9 +136,6 @@ class ProfileSettingsScreen extends Component {
             <Divider style={styles.divider} />
             <ItemSettings
               title="Take messages about answers on ads."
-              onPressItem={() =>
-                this.onChangeState('getAnswears', !getAnswears)
-              }
               rightIcon={
                 <Switch
                   ios_backgroundColor={colors.DEFAULT}
@@ -148,7 +145,10 @@ class ProfileSettingsScreen extends Component {
                   }}
                   value={notifSettings.ad_answer}
                   onValueChange={value =>
-                    this.onChangeState('getAnswears', value)
+                    setNotifSettings({
+                      ad_answer: value,
+                      news_offer_promotion: notifSettings.news_offer_promotion,
+                    })
                   }
                 />
               }
@@ -156,7 +156,6 @@ class ProfileSettingsScreen extends Component {
             <Divider style={styles.divider} />
             <ItemSettings
               title="Receive news, offers and promotions from Masaha"
-              onPressItem={() => this.onChangeState('getNews', !getNews)}
               rightIcon={
                 <Switch
                   ios_backgroundColor={colors.DEFAULT}
@@ -165,7 +164,12 @@ class ProfileSettingsScreen extends Component {
                     false: colors.DEFAULT,
                   }}
                   value={notifSettings.news_offer_promotion}
-                  onValueChange={value => this.onChangeState('getNews', value)}
+                  onValueChange={value =>
+                    setNotifSettings({
+                      ad_answer: notifSettings.ad_answer,
+                      news_offer_promotion: value,
+                    })
+                  }
                 />
               }
             />

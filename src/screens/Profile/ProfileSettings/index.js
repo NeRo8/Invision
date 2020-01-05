@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
     getNotifSettings: () => {
       dispatch(getNotificationSettings());
     },
-    setNotifSettins: data => {
+    setNotifSettings: data => {
       dispatch(updateNotificationSettings(data));
     },
   };
