@@ -12,7 +12,14 @@ class Step1Screen extends Component {
     this.state = {};
   }
   render() {
-    const { navigation } = this.props;
+    const {
+      navigation,
+      category,
+      price,
+      setValue,
+      isSellerPrivate,
+      stateProduct,
+    } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.container}>
@@ -23,7 +30,9 @@ class Step1Screen extends Component {
             <TouchableOpacity
               style={styles.elementPicker}
               onPress={() => navigation.navigate('ChooseCategory')}>
-              <Text style={styles.elementPickerText}>Choose category</Text>
+              <Text style={styles.elementPickerText}>
+                {category !== null ? category.name : 'Choose category'}
+              </Text>
               <Icon
                 name="chevron-right"
                 type="material-community"
@@ -50,6 +59,10 @@ class Step1Screen extends Component {
                   flex: 1,
                   paddingHorizontal: 0,
                 }}
+                value={price.toString()}
+                onChangeText={value => {
+                  setValue('price', value);
+                }}
               />
 
               <Text style={[styles.elementPickerText, { color: colors.TITLE }]}>
@@ -62,7 +75,7 @@ class Step1Screen extends Component {
             <Text style={styles.underTitle}>CHOOSE TYPE SELLER</Text>
             <View style={styles.elementCheck}>
               <CheckBox
-                checked
+                checked={isSellerPrivate}
                 iconType="ionicon"
                 checkedIcon="ios-checkmark-circle"
                 uncheckedIcon="ios-checkmark-circle-outline"
@@ -70,8 +83,10 @@ class Step1Screen extends Component {
                 title="Private"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
+                onPress={() => setValue('isSellerPrivate', true)}
               />
               <CheckBox
+                checked={!isSellerPrivate}
                 iconType="ionicon"
                 checkedIcon="ios-checkmark-circle"
                 uncheckedIcon="ios-checkmark-circle-outline"
@@ -79,6 +94,7 @@ class Step1Screen extends Component {
                 title="Businnes"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
+                onPress={() => setValue('isSellerPrivate', false)}
               />
             </View>
           </View>
@@ -89,7 +105,7 @@ class Step1Screen extends Component {
             </Text>
             <View style={styles.elementCheck}>
               <CheckBox
-                checked
+                checked={stateProduct === 'new' ? true : false}
                 iconType="ionicon"
                 checkedIcon="ios-checkmark-circle"
                 uncheckedIcon="ios-checkmark-circle-outline"
@@ -97,8 +113,10 @@ class Step1Screen extends Component {
                 title="New"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
+                onPress={() => setValue('stateProduct', 'new')}
               />
               <CheckBox
+                checked={stateProduct === 'used' ? true : false}
                 iconType="ionicon"
                 checkedIcon="ios-checkmark-circle"
                 uncheckedIcon="ios-checkmark-circle-outline"
@@ -106,6 +124,7 @@ class Step1Screen extends Component {
                 title="Used"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
+                onPress={() => setValue('stateProduct', 'used')}
               />
             </View>
           </View>

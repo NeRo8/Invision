@@ -5,7 +5,7 @@ import { colors, globalStyles } from '../../../../constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(252,253,255)',
+    backgroundColor: 'rgb(247,247,247)',
     paddingHorizontal: 15,
   },
   headerTitle: {
