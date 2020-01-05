@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Platform,
-  Image,
-  ScrollView,
-} from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
-import { AccessToken, LoginManager, LoginButton } from 'react-native-fbsdk';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
-import { colors, globalStyles } from '../../constants';
 import { loginWithFacebook } from '../../redux/actions/Auth';
+
+import { colors } from '../../constants';
+import styles from './styles';
 
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    const { authStatus, navigation } = this.props;
+
+    if (authStatus) {
+      //      navigation.navigate('CreateAd');
+    }
   }
 
   handlePressLoginFacebook = () => {
@@ -30,7 +33,6 @@ class index extends Component {
           const token = await AccessToken.getCurrentAccessToken().then(
             res => res.accessToken,
           );
-          console.log('FacebookToken: ', token);
           facebookLogin(token);
         }
       },
@@ -59,20 +61,6 @@ class index extends Component {
           </View>
         </View>
         <View style={styles.blockBottom}>
-          {/* <LoginButton
-            onLoginFinished={(error, result) => {
-              if (error) {
-                console.log('login has error: ' + result.error);
-              } else if (result.isCancelled) {
-                console.log('login is cancelled.');
-              } else {
-                AccessToken.getCurrentAccessToken().then(data => {
-                  console.log(data.accessToken.toString());
-                });
-              }
-            }}
-            onLogoutFinished={() => console.log('logout.')}
-          /> */}
           <Button
             icon={{
               name: 'facebook',
@@ -100,6 +88,7 @@ class index extends Component {
             buttonStyle={[styles.btnStyle, { backgroundColor: colors.TWITTER }]}
             containerStyle={styles.btnContainer}
             iconContainerStyle={{ flex: 2 }}
+            onPress={() => this.props.navigation.navigate('CreateAccount')}
           />
           <Button
             icon={{
@@ -131,68 +120,10 @@ class index extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    marginTop: Platform.OS === 'ios' ? 40 : 20,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingBottom: 30,
-  },
-  btnContainer: {
-    width: '70%',
-    marginVertical: 10,
-  },
-  titleEmail: {
-    fontSize: 16,
-    color: colors.HEADER,
-    fontFamily: globalStyles.gothamBold.fontFamily,
-  },
-  btnStyleEmail: {
-    height: 60,
-    borderRadius: 2,
-    backgroundColor: 'white',
-
-    borderWidth: 1,
-    borderColor: colors.HEADER,
-  },
-  logo: {
-    marginTop: 60,
-    borderRadius: 20,
-  },
-  logoText: {
-    fontFamily: globalStyles.gothamBook.fontFamily,
-    marginTop: 40,
-    fontSize: 30,
-    textAlign: 'center',
-  },
-  iconLogo: {
-    color: 'white',
-    fontSize: 70,
-    fontWeight: 'bold',
-    marginTop: -15,
-  },
-  btnStyle: {
-    height: 60,
-    borderRadius: 2,
-  },
-  title: {
-    flex: 5,
-    fontSize: 15,
-    color: 'white',
-    fontFamily: globalStyles.gothamBold.fontFamily,
-    textAlign: 'left',
-  },
-  blockBottom: {
-    flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-});
-
 const mapStateToProps = state => {
-  return {};
+  return {
+    authStatus: state.auth.authStatus,
+  };
 };
 const mapDispatchToProps = dispatch => {
   return {

@@ -1,28 +1,39 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '../../../constants';
+import { colors, globalStyles } from '../../../constants';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
   },
+  headerText: {
+    ...globalStyles.gothamBook,
+    fontSize: 24,
+  },
+  underHeaderText: {
+    ...globalStyles.gothamBook,
+    fontSize: 14,
+    marginTop: 21,
+    marginBottom: 20,
+    color: colors.HINT,
+  },
   containerForm: {
     paddingHorizontal: 30,
   },
-  fontHint: {
-    fontSize: 14,
-    marginTop: 20,
-    color: '#626773',
-  },
   labelInput: {
+    ...globalStyles.gothamBook,
     fontSize: 13,
     fontWeight: '100',
     color: '#74859E',
   },
+  inputStyle: {
+    ...globalStyles.gothamBook,
+    fontSize: 17,
+  },
   containerInput: {
     paddingHorizontal: 0,
-    marginTop: 50,
+    marginTop: 25,
   },
   btnStyles: {
     height: 50,

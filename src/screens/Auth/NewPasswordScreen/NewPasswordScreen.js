@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
+import { DefaultButton } from '../../../components/Buttons';
+
 import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
 
@@ -16,6 +18,13 @@ class NewPasswordScreen extends Component {
     super(props);
     this.state = {};
   }
+
+  handlePressSubmit = () => {
+    const { navigation } = this.props;
+
+    navigation.navigate('SignIn');
+  };
+
   render() {
     return (
       <KeyboardAvoidingView
@@ -24,35 +33,28 @@ class NewPasswordScreen extends Component {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}>
         <SafeAreaView style={styles.container}>
           <View style={styles.containerForm}>
-            <Text style={[globalStyles.gothamBook, { fontSize: 24 }]}>
-              Change your password
-            </Text>
-            <Text style={[globalStyles.gothamBook, styles.fontHint]}>
+            <Text style={styles.headerText}>Change your password</Text>
+            <Text style={styles.underHeaderText}>
               Enter youre new password and confirm it
             </Text>
             <Input
               secureTextEntry
               label="New password*"
-              labelStyle={[globalStyles.gothamBook, styles.labelInput]}
-              inputStyle={[globalStyles.gothamBook, { fontSize: 17 }]}
+              labelStyle={styles.labelInput}
+              inputStyle={styles.inputStyles}
               containerStyle={styles.containerInput}
             />
             <Input
               secureTextEntry
               label="Repeat new password*"
-              labelStyle={[globalStyles.gothamBook, styles.labelInput]}
-              inputStyle={[globalStyles.gothamBook, { fontSize: 17 }]}
+              labelStyle={styles.labelInput}
+              inputStyle={styles.inputStyle}
               containerStyle={styles.containerInput}
             />
-            <Button
+
+            <DefaultButton
               title="Change password"
-              titleStyle={[
-                globalStyles.gothamBold,
-                { fontSize: 15, color: 'white' },
-              ]}
-              buttonStyle={styles.btnStyles}
-              containerStyle={{ marginTop: 35 }}
-              onPress={() => this.props.navigation.navigate('SignIn')}
+              onPressButton={this.handlePressSubmit}
             />
           </View>
         </SafeAreaView>

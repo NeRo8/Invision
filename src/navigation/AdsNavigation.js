@@ -1,6 +1,5 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import AdsScreen from '../screens/AdsScreen';
@@ -9,9 +8,11 @@ import CategoryScreen from '../screens/Ads/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
+import CreateAdNavigation from './CreateAdNavigation';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
+import HeaderCreateAccount from '../components/HeaderCreateAccount';
 
 import { DefaultHeader } from '../components/Headers';
 
@@ -88,6 +89,60 @@ const AdsNavigation = createStackNavigator(
       screen: ProductBuyerProfile,
       navigationOptions: {
         header: null,
+      },
+    },
+    CreateAd: {
+      screen: CreateAdNavigation,
+      navigationOptions: ({ navigation }) => {
+        let index = 1;
+        let headerVisible = null;
+        let routeName =
+          navigation.state.routes[navigation.state.index].routeName;
+
+        switch (routeName) {
+          case 'StepOne': {
+            index = 1;
+            break;
+          }
+          case 'StepTwo': {
+            index = 2;
+            break;
+          }
+          case 'StepThree': {
+            index = 3;
+            break;
+          }
+          case 'StepFour': {
+            index = 4;
+            break;
+          }
+          case 'StepFive': {
+            index = 5;
+            break;
+          }
+          case 'ChooseCategory': {
+            return {
+              headerTitle: <HeaderCreateAccount index={index} />,
+              headerLeft: null,
+              headerStyle: {
+                backgroundColor: colors.HEADER,
+                height: 65,
+              },
+              header: headerVisible,
+            };
+          }
+          default: {
+            index = 1;
+          }
+        }
+        return {
+          headerTitle: <HeaderCreateAccount index={index} />,
+          headerLeft: null,
+          headerStyle: {
+            backgroundColor: colors.HEADER,
+            height: 65,
+          },
+        };
       },
     },
   },
