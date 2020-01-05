@@ -91,6 +91,7 @@ const AdsNavigation = createStackNavigator(
         header: null,
       },
     },
+    //Create Ads Screens
     CreateAd: {
       screen: CreateAdNavigation,
       navigationOptions: ({ navigation }) => {

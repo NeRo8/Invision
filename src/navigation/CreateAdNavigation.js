@@ -1,3 +1,4 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Step1Screen from '../screens/Ads/CreateAdScreens/Step1Screen';
@@ -10,6 +11,9 @@ import ChooseCategoryScreen from '../screens/Ads/CreateAdScreens/ChooseCategoryS
 
 import PayCardScreen from '../screens/Ads/PayCardScreen';
 import MakePictureScreen from '../screens/Ads/MakePictureScreen';
+
+import { DefaultHeader } from '../components/Headers';
+import HeaderPay from '../components/HeaderPay';
 
 const PayNavigation = createStackNavigator(
   {
@@ -43,10 +47,18 @@ const CreateAdNavigation = createStackNavigator(
     },
     ChooseCategory: {
       screen: ChooseCategoryScreen,
-      navigationOptions: {
-        header: ({ navigation }) => (
-          <HeaderChooseCategory navigation={navigation} />
-        ),
+      navigationOptions: navigation => {
+        return {
+          headerTitle: (
+            <DefaultHeader
+              title="Filters"
+              leftIcon={true}
+              onPressLeftIcon={() => navigation.goBack()}
+            />
+          ),
+          headerLeft: null,
+          headerRight: null,
+        };
       },
     },
     Pay: {
