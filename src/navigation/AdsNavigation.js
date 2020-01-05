@@ -9,14 +9,29 @@ import ProductScreen from '../screens/Ads/ProductScreen';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 import CreateAdNavigation from './CreateAdNavigation';
+import PayCardScreen from '../screens/Ads/PayCardScreen';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
 import HeaderCreateAccount from '../components/HeaderCreateAccount';
+import HeaderPay from '../components/HeaderPay';
 
 import { DefaultHeader } from '../components/Headers';
 
 import { colors } from '../constants';
+
+const PayNavigation = createStackNavigator(
+  {
+    PayCard: {
+      screen: PayCardScreen,
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  },
+);
 
 const AdsNavigation = createStackNavigator(
   {
@@ -143,6 +158,19 @@ const AdsNavigation = createStackNavigator(
             backgroundColor: colors.HEADER,
             height: 65,
           },
+        };
+      },
+    },
+    Pay: {
+      screen: PayNavigation,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: <HeaderPay navigation={navigation} />,
+          headerStyle: {
+            height: Platform.OS === 'ios' ? 95 : 110,
+            backgroundColor: colors.HEADER,
+          },
+          headerLeft: null,
         };
       },
     },

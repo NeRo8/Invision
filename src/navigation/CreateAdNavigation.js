@@ -9,49 +9,50 @@ import Step5Screen from '../screens/Ads/CreateAdScreens/Step5Screen';
 
 import ChooseCategoryScreen from '../screens/Ads/CreateAdScreens/ChooseCategoryScreen';
 
-import PayCardScreen from '../screens/Ads/PayCardScreen';
 import MakePictureScreen from '../screens/Ads/MakePictureScreen';
 
 import { DefaultHeader } from '../components/Headers';
-import HeaderPay from '../components/HeaderPay';
-
-const PayNavigation = createStackNavigator(
-  {
-    PayCard: {
-      screen: PayCardScreen,
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      header: null,
-    },
-  },
-);
+import { colors } from '../constants';
 
 const CreateAdNavigation = createStackNavigator(
   {
     StepOne: {
       screen: Step1Screen,
+      navigationOptions: {
+        header: null,
+      },
     },
     StepTwo: {
       screen: Step2Screen,
+      navigationOptions: {
+        header: null,
+      },
     },
     StepThree: {
       screen: Step3Screen,
+      navigationOptions: {
+        header: null,
+      },
     },
     StepFour: {
       screen: Step4Screen,
+      navigationOptions: {
+        header: null,
+      },
     },
     StepFive: {
       screen: Step5Screen,
+      navigationOptions: {
+        header: null,
+      },
     },
     ChooseCategory: {
       screen: ChooseCategoryScreen,
-      navigationOptions: navigation => {
+      navigationOptions: ({ navigation }) => {
         return {
           headerTitle: (
             <DefaultHeader
-              title="Filters"
+              title="Categories"
               leftIcon={true}
               onPressLeftIcon={() => navigation.goBack()}
             />
@@ -61,19 +62,7 @@ const CreateAdNavigation = createStackNavigator(
         };
       },
     },
-    Pay: {
-      screen: PayNavigation,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: <HeaderPay navigation={navigation} />,
-          headerStyle: {
-            height: 110,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-        };
-      },
-    },
+
     MakePicture: {
       screen: MakePictureScreen,
       navigationOptions: {
@@ -83,7 +72,9 @@ const CreateAdNavigation = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      header: null,
+      headerStyle: {
+        backgroundColor: colors.HEADER,
+      },
     },
   },
 );

@@ -1,0 +1,3 @@
+const SET_CATEGORIES = 'SET_CATEGORY_ADS';
+
+export { SET_CATEGORIES };
