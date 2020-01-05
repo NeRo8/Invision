@@ -7,6 +7,12 @@ const setCategories = data => ({
   payload: data,
 });
 
+export const setReducerValue = (name, value) => ({
+  type: types.SET_VALUE,
+  name,
+  value,
+});
+
 export const getCategories = () => dispatch => {
   ApiServices.get('/ads/categories/').then(response =>
     dispatch(setCategories(response.data)),

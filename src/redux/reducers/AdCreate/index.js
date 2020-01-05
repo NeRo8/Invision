@@ -1,7 +1,13 @@
 import * as types from '../../actions/AdCreate/types';
 
 const initState = {
-  categories: [],
+  //main
+  category: null,
+  price: 0,
+  isSellerPrivate: true,
+  stateProduct: 'new',
+  //utils
+  categories: null,
 };
 
 const adCreateReducer = (state = initState, action) => {
@@ -12,7 +18,15 @@ const adCreateReducer = (state = initState, action) => {
         categories: action.payload,
       };
     }
+    case types.SET_VALUE: {
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
+    }
+    default:
+      return state;
   }
 };
 
-export const adCreateReducer;
+export default adCreateReducer;

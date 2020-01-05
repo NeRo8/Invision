@@ -1,15 +1,30 @@
 import { StyleSheet } from 'react-native';
 
+import { globalStyles } from '../../../../constants';
+
 export default StyleSheet.create({
-  wraper: {
-    backgroundColor: 'grey',
-    marginHorizontal: 15,
+  container: {
+    flex: 1,
+    paddingHorizontal: 15,
   },
-  topOfComent: {
+  headerText: {
+    ...globalStyles.gothamBold,
+    fontSize: 12,
+    marginVertical: 15,
+  },
+  title: {
+    ...globalStyles.gothamBook,
+    fontSize: 17,
+  },
+  divider: {
+    color: 'silver',
+    backgroundColor: 'silver',
+    width: '100%',
+    marginVertical: 10,
+  },
+  itemContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  coment: {
-    marginTop: 20,
   },
 });
