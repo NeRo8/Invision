@@ -1,11 +1,17 @@
 import * as types from '../../actions/AdCreate/types';
 
 const initState = {
+  ad: {
+    category: null,
+    price: 0,
+    is_seller_private: true,
+    state: 'new',
+    //Step2
+    title: null,
+    description: null,
+  },
   //main
-  category: null,
-  price: 0,
-  isSellerPrivate: true,
-  stateProduct: 'new',
+
   //utils
   categories: null,
 };
@@ -21,7 +27,10 @@ const adCreateReducer = (state = initState, action) => {
     case types.SET_VALUE: {
       return {
         ...state,
-        [action.name]: action.value,
+        ad: {
+          ...state.ad,
+          [action.name]: action.value,
+        },
       };
     }
     default:

@@ -83,7 +83,7 @@ class Step1Screen extends Component {
                 title="Private"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
-                onPress={() => setValue('isSellerPrivate', true)}
+                onPress={() => setValue('is_seller_private', true)}
               />
               <CheckBox
                 checked={!isSellerPrivate}
@@ -94,7 +94,7 @@ class Step1Screen extends Component {
                 title="Businnes"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
-                onPress={() => setValue('isSellerPrivate', false)}
+                onPress={() => setValue('is_seller_private', false)}
               />
             </View>
           </View>
@@ -113,7 +113,7 @@ class Step1Screen extends Component {
                 title="New"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
-                onPress={() => setValue('stateProduct', 'new')}
+                onPress={() => setValue('state', 'new')}
               />
               <CheckBox
                 checked={stateProduct === 'used' ? true : false}
@@ -124,7 +124,7 @@ class Step1Screen extends Component {
                 title="Used"
                 textStyle={styles.elementCheckBox}
                 containerStyle={styles.checkmark}
-                onPress={() => setValue('stateProduct', 'used')}
+                onPress={() => setValue('state', 'used')}
               />
             </View>
           </View>
