@@ -125,7 +125,7 @@ class ProfileSettingsPersonalInformaion extends Component {
             iconName="ios-home"
             placeholder="Please select your city"
             label="Select city"
-            value={this.state.city.name !== null ? this.state.city.name : city}
+            value={this.state.city !== null ? this.state.city.name : city}
             onFocus={() => this.onChangeState('selectBoxVisible', true)}
           />
 

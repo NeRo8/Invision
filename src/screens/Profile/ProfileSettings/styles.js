@@ -1,57 +1,32 @@
 import { StyleSheet } from 'react-native';
+
 import { colors } from '../../../constants';
+import { globalStyles } from '../../../constants';
 
 export default StyleSheet.create({
-  btnTitleStyle: {
-    fontSize: 12,
-    fontWeight: 'bold',
+  container: {
+    flex: 1,
+    paddingHorizontal: 15,
   },
-  btnStyle: {
-    backgroundColor: colors.HEADER,
-    height: 50,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    marginTop: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 15,
-    marginLeft: 15,
-    marginRight: 15,
+  containerBlock: {
+    flexGrow: 1,
+    paddingHorizontal: 15,
   },
-  buttonTextStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  header: {
-    fontWeight: 'bold',
+  headerText: {
     marginTop: 25,
-    marginBottom: 15,
+    ...globalStyles.gothamBold,
+    fontSize: 12,
   },
-  elementContainer: {
-    paddingVertical: 10,
-    marginRight: 15,
+  divider: {
+    marginVertical: 12,
+  },
+  itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    letterSpacing: 2,
+    justifyContent: 'space-between',
   },
-  elementDivider: {
-    marginHorizontal: 10,
-  },
-  elementIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'silver',
-  },
-  elementTitle: {
-    flex: 1,
-    marginLeft: 10,
-    fontSize: 12,
-  },
-  elementTitleNonHeader: {
-    flex: 1,
-    marginLeft: 10,
+  itemTitle: {
+    ...globalStyles.gothamBook,
     fontSize: 17,
   },
 });

@@ -11,7 +11,10 @@ const mapStateToProps = state => {
   return {
     user: state.users.user,
     ads: state.users.ads,
-    token: state.auth.user !== null ? state.auth.user.access_token : null,
+    token:
+      state.auth.user.access_token !== undefined
+        ? state.auth.user.access_token
+        : null,
     loading: state.users.loading,
     error: state.users.error,
   };

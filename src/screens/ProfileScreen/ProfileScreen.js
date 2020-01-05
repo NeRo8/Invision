@@ -15,6 +15,8 @@ import { ProfileAdsModal } from '../../components/Modals';
 
 import { colors, globalStyles } from '../../constants';
 
+import API, { setToken, deleteToken } from '../../api';
+
 import styles from './styles';
 
 class ProfileScreen extends Component {
@@ -46,7 +48,7 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    const { getProfileInfo, token, navigation } = this.props;
+    const { navigation } = this.props;
 
     this.focusListener = navigation.addListener('didFocus', () =>
       this.componentDidFocus(),
