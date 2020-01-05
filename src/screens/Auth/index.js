@@ -19,7 +19,7 @@ class index extends Component {
     const { authStatus, navigation } = this.props;
 
     if (authStatus) {
-      //      navigation.navigate('CreateAd');
+      navigation.navigate('CreateAd');
     }
   }
 
