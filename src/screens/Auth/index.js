@@ -44,7 +44,7 @@ class index extends Component {
         }
       },
       function(error) {
-        console.log('Login fail: ' + error);
+        console.log('Login fail with error: ' + error);
       },
     );
   };

@@ -45,6 +45,8 @@ target 'Masaha' do
   pod 'RNShare', :path => '../node_modules/react-native-share'
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+  pod 'FBSDKLoginKit'
+    
 
   target 'MasahaTests' do
     inherit! :search_paths
