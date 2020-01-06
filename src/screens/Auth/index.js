@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import InstagramLogin from 'react-native-instagram-login';
 
 import { loginWithFacebook } from '../../redux/actions/Auth';
 
@@ -113,6 +114,16 @@ class index extends Component {
             ]}
             containerStyle={styles.btnContainer}
             iconContainerStyle={{ flex: 2 }}
+            onPress={() => this.instagramLogin.show()}
+          />
+          <InstagramLogin
+            ref={ref => (this.instagramLogin = ref)}
+            appId="2456328861144561"
+            appSecret="aeafaccca2fe9aceadbf5c8d13eb55cb"
+            redirectUrl="https://masaha.app/accounts/oauth/instagram/"
+            scopes={['user_profile', 'user_media']}
+            onLoginSuccess={token => console.log(token)}
+            onLoginFailure={data => console.log(data)}
           />
           <Button
             title="Sign in or Sign up use email"
