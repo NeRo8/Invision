@@ -138,12 +138,11 @@ const AdsNavigation = createStackNavigator(
           }
           case 'ChooseCategory': {
             return {
-              headerTitle: <HeaderCreateAccount index={index} />,
-              headerLeft: null,
-              headerStyle: {
-                backgroundColor: colors.HEADER,
-                height: 65,
-              },
+              header: headerVisible,
+            };
+          }
+          case 'MakePicture': {
+            return {
               header: headerVisible,
             };
           }

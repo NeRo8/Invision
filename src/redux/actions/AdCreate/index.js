@@ -13,6 +13,11 @@ export const setReducerValue = (name, value) => ({
   value,
 });
 
+export const addImage = image => ({
+  type: types.ADD_IMAGE,
+  payload: image,
+});
+
 export const getCategories = () => dispatch => {
   ApiServices.get('/ads/categories/').then(response =>
     dispatch(setCategories(response.data)),

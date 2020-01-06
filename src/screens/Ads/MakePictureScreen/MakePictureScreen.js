@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StatusBar } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { RNCamera } from 'react-native-camera';
 
-import { colors } from '../../../constants';
-
 import styles from './styles';
+import moment from 'moment';
 
 class MakePictureScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cardPhoto: false,
+      flash: true,
+      type: true,
     };
   }
 
@@ -25,7 +26,24 @@ class MakePictureScreen extends Component {
     }
   }
 
+  takePicture = async () => {
+    const { setImageValue } = this.props;
+    if (this.camera) {
+      const options = { quality: 0.5 };
+      const data = await this.camera.takePictureAsync(options);
+
+      const photo = {
+        uri: data.uri,
+        type: 'image/jpeg',
+        name: moment(new Date()).format('YYYYMMDDHHMMSS'),
+      };
+      setImageValue(photo);
+    }
+  };
+
   render() {
+    const { flash, type } = this.state;
+
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 5 }}>
@@ -34,8 +52,16 @@ class MakePictureScreen extends Component {
               this.camera = ref;
             }}
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-            type={RNCamera.Constants.Type.back}
-            flashMode={RNCamera.Constants.FlashMode.on}
+            type={
+              type
+                ? RNCamera.Constants.Type.back
+                : RNCamera.Constants.Type.front
+            }
+            flashMode={
+              flash
+                ? RNCamera.Constants.FlashMode.on
+                : RNCamera.Constants.FlashMode.off
+            }
             androidCameraPermissionOptions={{
               title: 'Permission to use camera',
               message: 'We need your permission to use your camera',
@@ -50,15 +76,18 @@ class MakePictureScreen extends Component {
             }}>
             <View style={styles.headerConsole}>
               <Icon
+                underlayColor="transparent"
                 name="arrow-left"
                 type="material-community"
                 color={'white'}
                 onPress={() => this.props.navigation.goBack()}
               />
               <Icon
-                name="flash-off"
+                underlayColor="transparent"
+                name={flash ? 'flash' : 'flash-off'}
                 type="material-community"
                 color={'white'}
+                onPress={() => this.setState({ flash: !this.state.flash })}
               />
             </View>
 
@@ -77,15 +106,18 @@ class MakePictureScreen extends Component {
           </RNCamera>
         </View>
         <View style={styles.btnContainer}>
-          <View style={styles.btnMakePhoto}>
+          <TouchableOpacity
+            style={styles.btnMakePhoto}
+            onPress={this.takePicture.bind(this)}>
             <View style={styles.insideCircle} />
-          </View>
+          </TouchableOpacity>
           <Icon
             name="ios-reverse-camera"
             type="ionicon"
             color={'white'}
             size={36}
             containerStyle={{ position: 'absolute', right: 25 }}
+            onPress={() => this.setState({ type: !this.state.type })}
           />
         </View>
       </View>

@@ -9,6 +9,8 @@ const initState = {
     //Step2
     title: null,
     description: null,
+    //Step3
+    image: [],
   },
   //main
 
@@ -30,6 +32,15 @@ const adCreateReducer = (state = initState, action) => {
         ad: {
           ...state.ad,
           [action.name]: action.value,
+        },
+      };
+    }
+    case types.ADD_IMAGE: {
+      return {
+        ...state,
+        ad: {
+          ...state.ad,
+          image: state.ad.image.concat(action.payload),
         },
       };
     }
