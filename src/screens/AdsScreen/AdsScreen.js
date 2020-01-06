@@ -24,9 +24,8 @@ class AdsScreen extends Component {
     SplashScreen.hide();
 
     if (authStatus) {
-      refreshAuth(refreshT).then(resp => {
-        getAdsList(null, token);
-      });
+      refreshAuth(refreshT);
+      getAdsList(null, token);
     } else {
       getAdsList();
     }
