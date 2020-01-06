@@ -16,11 +16,18 @@ class index extends Component {
   }
 
   componentDidMount() {
-    const { authStatus, navigation } = this.props;
+    const { navigation, authStatus } = this.props;
 
-    if (authStatus) {
-      navigation.navigate('CreateAd');
-    }
+    this.focusListener = navigation.addListener('didFocus', () => {
+      if (authStatus) {
+        navigation.navigate('CreateAd');
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    // Remove the event listener
+    this.focusListener.remove();
   }
 
   handlePressLoginFacebook = () => {
