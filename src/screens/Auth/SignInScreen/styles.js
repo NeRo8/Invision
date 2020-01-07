@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../constants';
+import { colors, globalStyles } from '../../../constants';
 
 export default StyleSheet.create({
   SignInText: {
+    ...globalStyles.gothamBook,
     fontSize: 24,
     marginLeft: 30,
     marginTop: 43,
@@ -14,11 +15,13 @@ export default StyleSheet.create({
     textAlign: 'left',
   },
   forgot: {
+    ...globalStyles.gothamBook,
     fontSize: 17,
     lineHeight: 17,
     color: colors.HEADER,
   },
   title: {
+    ...globalStyles.gothamBold,
     fontSize: 15,
     color: 'white',
   },

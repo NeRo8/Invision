@@ -1,5 +1,6 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Icon } from 'react-native-elements';
 
@@ -8,8 +9,11 @@ import InKuwaitNavigation from './InKuwaitNavigation';
 import AuthNavigation from './AuthNavigation';
 import FavoriteNavigation from './FavoriteNavigation';
 import ProfileNavigation from './ProfileNavigation';
+import CreateAdNavigation from './CreateAdNavigation';
 
 import { colors } from '../constants';
+
+import { store } from '../redux/store';
 
 const Navigation = createBottomTabNavigator(
   {
@@ -60,8 +64,8 @@ const Navigation = createBottomTabNavigator(
         };
       },
     },
-    Auth: {
-      screen: AuthNavigation,
+    CreateAd: {
+      screen: CreateAdNavigation,
       navigationOptions: ({ navigation }) => {
         //title: 'Ads',
         let tabBarVisible = false;
@@ -119,17 +123,44 @@ const Navigation = createBottomTabNavigator(
   },
   {
     //initialRouteName: 'Profile',
-    tabBarOptions: {
-      activeTintColor: colors.ACTIVE,
-      inactiveTintColor: colors.UNACTIVE,
-      labelStyle: {
-        fontSize: 14,
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarOptions: {
+        activeTintColor: colors.ACTIVE,
+        inactiveTintColor: colors.UNACTIVE,
+        labelStyle: {
+          fontSize: 14,
+        },
+        tabStyle: {
+          paddingTop: 5,
+        },
       },
-      tabStyle: {
-        paddingTop: 5,
+      tabBarOnPress: ({ navigation, defaultHandler }) => {
+        const { authStatus } = store.getState().auth;
+        const { routeName } = navigation.state;
+
+        if (routeName === 'CreateAd') {
+          if (!authStatus) {
+            navigation.navigate('Auth');
+            return;
+          }
+        }
+
+        defaultHandler();
       },
+    }),
+  },
+);
+
+const MainNavigation = createStackNavigator(
+  {
+    Main: Navigation,
+    Auth: AuthNavigation,
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,
     },
   },
 );
 
-export default createAppContainer(Navigation);
+export default createAppContainer(MainNavigation);

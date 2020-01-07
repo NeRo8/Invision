@@ -1,3 +1,5 @@
+import API, { setToken } from '../../../api';
+
 const USERS = 'https://staging.masaha.app/api/v1/users';
 
 import axios from 'axios';
@@ -27,27 +29,18 @@ const setError = error => ({
   payload: error,
 });
 
-const setToken = token => ({
+const setNewToken = token => ({
   type: REFRESH_TOKEN,
   payload: token,
 });
 
-export const login = (emailIncome, paswordIncome) => dispatch => {
+export const login = data => dispatch => {
   dispatch(setLoading(true));
-  fetch(`${USERS}/login/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: emailIncome,
-      password: paswordIncome,
-    }),
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setUser(responseJson));
+  API.post('/users/login/', data)
+    .then(response => {
+      dispatch(setUser(response.data));
       dispatch(setLoading(false));
+      setToken(response.data.access_token);
     })
     .catch(error => dispatch(setError(error)));
 };
@@ -63,7 +56,7 @@ export const refreshToken = oldToken => dispatch => {
     }),
   })
     .then(response => response.json())
-    .then(responseJson => dispatch(setToken(responseJson.access)))
+    .then(responseJson => dispatch(setNewToken(responseJson.access)))
     .then(error => dispatch(setError(error)));
 };
 

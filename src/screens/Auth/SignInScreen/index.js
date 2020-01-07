@@ -12,8 +12,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handlePressSignIn: (email, password) => {
-      dispatch(login(email, password));
+    handlePressSignIn: data => {
+      dispatch(login(data));
     },
   };
 };
