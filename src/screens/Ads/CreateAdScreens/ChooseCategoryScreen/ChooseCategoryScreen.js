@@ -50,6 +50,7 @@ class ChooseCategoryScreen extends Component {
             <ItemList item={item} onPressItem={this.onPressItem} />
           )}
           ItemSeparatorComponent={() => <Divider style={styles.divider} />}
+          keyExtractor={item => item.pk.toString()}
         />
       </View>
     );

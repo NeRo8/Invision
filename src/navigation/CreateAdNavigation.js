@@ -11,6 +11,8 @@ import ChooseCategoryScreen from '../screens/Ads/CreateAdScreens/ChooseCategoryS
 
 import MakePictureScreen from '../screens/Ads/MakePictureScreen';
 
+import { CreateAdHeader } from '../components/Headers';
+
 import { DefaultHeader } from '../components/Headers';
 import { colors } from '../constants';
 
@@ -18,51 +20,23 @@ const CreateAdNavigation = createStackNavigator(
   {
     StepOne: {
       screen: Step1Screen,
-      navigationOptions: {
-        header: null,
-      },
     },
     StepTwo: {
       screen: Step2Screen,
-      navigationOptions: {
-        header: null,
-      },
     },
     StepThree: {
       screen: Step3Screen,
-      navigationOptions: {
-        header: null,
-      },
     },
     StepFour: {
       screen: Step4Screen,
-      navigationOptions: {
-        header: null,
-      },
     },
     StepFive: {
       screen: Step5Screen,
-      navigationOptions: {
-        header: null,
-      },
     },
+    //Support Navigation
     ChooseCategory: {
       screen: ChooseCategoryScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: (
-            <DefaultHeader
-              title="Categories"
-              leftIcon={true}
-              onPressLeftIcon={() => navigation.goBack()}
-            />
-          ),
-          headerLeft: null,
-          headerRight: null,
-        };
-      },
     },
-
     MakePicture: {
       screen: MakePictureScreen,
       navigationOptions: {
@@ -71,10 +45,54 @@ const CreateAdNavigation = createStackNavigator(
     },
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: colors.HEADER,
-      },
+    defaultNavigationOptions: ({ navigation }) => {
+      let index = 1;
+      let activeScreen = navigation.state.routeName;
+
+      switch (activeScreen) {
+        case 'StepOne': {
+          index = 1;
+          break;
+        }
+        case 'StepTwo': {
+          index = 2;
+          break;
+        }
+        case 'StepThree': {
+          index = 3;
+          break;
+        }
+        case 'StepFour': {
+          index = 4;
+          break;
+        }
+        case 'StepFive': {
+          index = 5;
+          break;
+        }
+        case 'ChooseCategory': {
+          return {
+            headerTitle: (
+              <DefaultHeader
+                title="Categories"
+                leftIcon={true}
+                onPressLeftIcon={() => navigation.goBack()}
+              />
+            ),
+            headerLeft: null,
+            headerStyle: {
+              backgroundColor: colors.HEADER,
+            },
+          };
+        }
+      }
+      return {
+        header: <CreateAdHeader index={index} />,
+        headerLeft: null,
+        headerStyle: {
+          //backgroundColor: colors.HEADER,
+        },
+      };
     },
   },
 );

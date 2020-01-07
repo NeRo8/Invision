@@ -8,30 +8,13 @@ import CategoryScreen from '../screens/Ads/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
-import CreateAdNavigation from './CreateAdNavigation';
-import PayCardScreen from '../screens/Ads/PayCardScreen';
 
 import HeaderAds from '../components/HeaderAds';
 import HeaderAdsFilters from '../components/HeaderAdsFilters';
-import HeaderCreateAccount from '../components/HeaderCreateAccount';
-import HeaderPay from '../components/HeaderPay';
 
 import { DefaultHeader } from '../components/Headers';
 
 import { colors } from '../constants';
-
-const PayNavigation = createStackNavigator(
-  {
-    PayCard: {
-      screen: PayCardScreen,
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      header: null,
-    },
-  },
-);
 
 const AdsNavigation = createStackNavigator(
   {
@@ -104,73 +87,6 @@ const AdsNavigation = createStackNavigator(
       screen: ProductBuyerProfile,
       navigationOptions: {
         header: null,
-      },
-    },
-    //Create Ads Screens
-    CreateAd: {
-      screen: CreateAdNavigation,
-      navigationOptions: ({ navigation }) => {
-        let index = 1;
-        let headerVisible = null;
-        let routeName =
-          navigation.state.routes[navigation.state.index].routeName;
-
-        switch (routeName) {
-          case 'StepOne': {
-            index = 1;
-            break;
-          }
-          case 'StepTwo': {
-            index = 2;
-            break;
-          }
-          case 'StepThree': {
-            index = 3;
-            break;
-          }
-          case 'StepFour': {
-            index = 4;
-            break;
-          }
-          case 'StepFive': {
-            index = 5;
-            break;
-          }
-          case 'ChooseCategory': {
-            return {
-              header: headerVisible,
-            };
-          }
-          case 'MakePicture': {
-            return {
-              header: headerVisible,
-            };
-          }
-          default: {
-            index = 1;
-          }
-        }
-        return {
-          headerTitle: <HeaderCreateAccount index={index} />,
-          headerLeft: null,
-          headerStyle: {
-            backgroundColor: colors.HEADER,
-            height: 65,
-          },
-        };
-      },
-    },
-    Pay: {
-      screen: PayNavigation,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: <HeaderPay navigation={navigation} />,
-          headerStyle: {
-            height: Platform.OS === 'ios' ? 95 : 110,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-        };
       },
     },
   },
