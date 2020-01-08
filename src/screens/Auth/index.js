@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { AccessToken, LoginManager, LoginButton } from 'react-native-fbsdk';
+import InstagramLogin from 'react-native-instagram-login';
 
 import { colors, globalStyles } from '../../constants';
 import { loginWithFacebook } from '../../redux/actions/Auth';
@@ -17,7 +18,10 @@ import { loginWithFacebook } from '../../redux/actions/Auth';
 class index extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      igToken: '',
+      igUserId: '',
+    };
   }
 
   handlePressLoginFacebook = () => {
@@ -38,6 +42,11 @@ class index extends Component {
         console.log('Login fail: ' + error);
       },
     );
+  };
+
+  setIgToken = async data => {
+    console.log('Insta data: ', data);
+    this.setState({ igToken: data.access_token, igUserId: data.user_id });
   };
 
   handlePressSignInEmail = () => {
@@ -117,6 +126,16 @@ class index extends Component {
             ]}
             containerStyle={styles.btnContainer}
             iconContainerStyle={{ flex: 2 }}
+            onPress={() => this.instagramLogin.show()}
+          />
+          <InstagramLogin
+            ref={ref => (this.instagramLogin = ref)}
+            appId="548873462364017"
+            appSecret="0814c6162f01dfaed4bdd8625fc5b93d"
+            redirectUrl="https://staging.masaha.app/api/v1/"
+            scopes={['user_profile', 'user_media']}
+            onLoginSuccess={this.setIgToken}
+            onLoginFailure={data => console.log(data)}
           />
           <Button
             title="Sign in or Sign up use email"

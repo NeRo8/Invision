@@ -69,7 +69,6 @@ export const refreshToken = oldToken => dispatch => {
 
 export const loginWithFacebook = token => dispatch => {
   dispatch(setLoading(true));
-  console.log('Token in actions: ', token);
   var socialData = new FormData();
 
   socialData.append('provider', 'facebook');
@@ -82,7 +81,6 @@ export const loginWithFacebook = token => dispatch => {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
     .then(response => {
-      console.log('Response: ', response);
       if (response.status === 200) {
         dispatch(setUser(response.data));
         dispatch(setLoading(false));
