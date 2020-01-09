@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 import {
   SET_PROFILE,
   SET_LOADING,
@@ -123,4 +125,23 @@ export const updateNotificationSettings = data => dispatch => {
   API.put('/users/change-notification/', data).then(response =>
     dispatch(setNotificationSettings(response.data)),
   );
+};
+
+export const updateAvatar = avatar => dispatch => {
+  console.log('avatar in actions: ', avatar);
+  const data = new FormData();
+  data.append('avatar', {
+    name: avatar.fileName,
+    type: avatar.type === null ? 'image/jpeg' : avatar.type,
+    uri:
+      Platform.OS === 'android'
+        ? avatar.uri
+        : avatar.uri.replace('file://', ''),
+  });
+
+  console.log('data in actions: ', data);
+
+  API.post('users/change-avatar/', data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  }).then(response => console.log(response));
 };

@@ -7,22 +7,37 @@ import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import { DefaultInput } from '../../../components/Inputs';
 
 import { colors, globalStyles } from '../../../constants';
+
 import styles from './styles';
 
 class SignInScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
-      password: null,
+      data: {
+        email: null,
+        password: null,
+      },
     };
   }
 
   onChangeState = (name, value) => {
+    const { data } = this.state;
     this.setState({
-      [name]: value,
+      data: {
+        ...data,
+        [name]: value,
+      },
     });
   };
+
+  componentDidUpdate() {
+    const { authStatus, navigation } = this.props;
+
+    if (authStatus) {
+      navigation.navigate('CreateAd');
+    }
+  }
 
   //onPress facebook
 
@@ -47,31 +62,26 @@ class SignInScreen extends Component {
   };
 
   render() {
-    const { authStatus, navigation } = this.props;
+    const { navigation, handlePressSignIn } = this.props;
+    const { data } = this.state;
 
     return (
       <ScrollView>
         <View>
-          <Text style={[globalStyles.gothamBook, styles.SignInText]}>
-            Sign in
-          </Text>
+          <Text style={styles.SignInText}>Sign in</Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <DefaultInput
-              value={this.state.email}
+              value={data.email}
               placeholder="Email address*"
               onChangeText={text => this.onChangeState('email', text)}
             />
             <DefaultInput
-              value={this.state.password}
+              value={data.password}
               placeholder="Password*"
               rightIcon={
                 <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate('ForgotPassword')
-                  }>
-                  <Text style={[globalStyles.gothamBook, styles.forgot]}>
-                    Forgot?
-                  </Text>
+                  onPress={() => navigation.navigate('ForgotPassword')}>
+                  <Text style={styles.forgot}>Forgot?</Text>
                 </TouchableOpacity>
               }
               rightIconContainerStyle={{ paddingTop: 20 }}
@@ -79,18 +89,13 @@ class SignInScreen extends Component {
             />
             <Button
               title="Sign in"
-              titleStyle={[globalStyles.gothamBold, styles.title]}
+              titleStyle={styles.title}
               buttonStyle={[
                 styles.btnSignIn,
-                { backgroundColor: colors.HEADER_BUTTON },
+                { backgroundColor: colors.DEFAULT_BUTTON },
               ]}
               containerStyle={styles.btnContainer}
-              onPress={() =>
-                this.props.handlePressSignIn(
-                  this.state.email,
-                  this.state.password,
-                )
-              }
+              onPress={() => handlePressSignIn(data)}
             />
           </View>
           <View style={styles.bottomView}>

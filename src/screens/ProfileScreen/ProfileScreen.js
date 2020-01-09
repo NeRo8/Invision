@@ -5,10 +5,12 @@ import {
   FlatList,
   ScrollView,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
 
+import ImagePicker from 'react-native-image-picker';
 import TextPicker from '../../components/TextPicker';
 import ElementFL from './ProfileAds';
 import { ProfileAdsModal } from '../../components/Modals';
@@ -44,6 +46,7 @@ class ProfileScreen extends Component {
       grayscale: false,
       item: null,
       showModal: false,
+      avatar: null,
     };
   }
 
@@ -92,8 +95,67 @@ class ProfileScreen extends Component {
     });
   };
 
+  handlePressChangeAvatar = async () => {
+    const options = {
+      title: 'Select avatar',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.showImagePicker(options, response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        //const source = {uri: response.uri};
+        this.setState({
+          avatar: response,
+        });
+        const { onUpdateAvatar } = this.props;
+        onUpdateAvatar(this.state.avatar);
+      }
+    });
+  };
+
+  renderAvatar() {
+    const { avatar } = this.state;
+    const { user } = this.props;
+    if (avatar !== null) {
+      return (
+        <Image
+          source={{ uri: avatar.uri }}
+          style={{ borderRadius: 75, height: 82, width: 82 }}
+          resizeMode="cover"
+        />
+      );
+    } else if (user.avatar !== null) {
+      return (
+        <Image
+          source={{ uri: user.avatar }}
+          style={{ borderRadius: 75, height: 82, width: 82 }}
+          resizeMode="cover"
+        />
+      );
+    } else {
+      return (
+        <Icon
+          name="person"
+          type="ion-icon"
+          size={50}
+          color="silver"
+          containerStyle={styles.iconProfile}
+        />
+      );
+    }
+  }
+
   render() {
     const { loading, token, user, navigation, ads } = this.props;
+    const { avatar } = this.state;
     if (token === null) {
       return (
         <View style={styles.containerLoading}>
@@ -124,21 +186,15 @@ class ProfileScreen extends Component {
                   onPress={() => navigation.navigate('ProfilePaymentHistory')}
                 />
                 <View>
-                  <View style={styles.profileImage}>
-                    <Icon
-                      name="person"
-                      type="ion-icon"
-                      size={50}
-                      color="silver"
-                      containerStyle={styles.iconProfile}
-                    />
-                  </View>
+                  <View style={styles.profileImage}>{this.renderAvatar()}</View>
                   <Icon
                     name="pencil-outline"
                     type="material-community"
+                    underlayColor="transparent"
                     color="white"
                     size={20}
                     containerStyle={styles.iconHeaderProfile}
+                    onPress={this.handlePressChangeAvatar}
                   />
                 </View>
                 <View>

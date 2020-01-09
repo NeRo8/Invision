@@ -1,6 +1,5 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import AdsScreen from '../screens/AdsScreen';

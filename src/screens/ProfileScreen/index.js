@@ -4,6 +4,7 @@ import {
   getProfile,
   getProfileAds,
   deleteAds,
+  updateAvatar,
 } from '../../redux/actions/Users';
 import { connect } from 'react-redux';
 
@@ -27,6 +28,9 @@ const mapDispatchToProps = dispatch => {
     },
     deleteAd: (id, token) => {
       dispatch(deleteAds(id, token));
+    },
+    onUpdateAvatar: avatar => {
+      dispatch(updateAvatar(avatar));
     },
   };
 };
