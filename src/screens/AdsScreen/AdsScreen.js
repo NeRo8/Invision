@@ -70,9 +70,7 @@ class AdsScreen extends Component {
               onEndReachedThreshold={0.5}
             />
             <View style={styles.pagination}>
-              <Text style={{ fontWeight: 'bold' }}>
-                {adsList.length}/{adsConfig.count}
-              </Text>
+              <Text style={{ fontWeight: 'bold' }}>0/{adsConfig.count}</Text>
             </View>
           </View>
         )}

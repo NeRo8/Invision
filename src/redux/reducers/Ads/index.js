@@ -8,6 +8,7 @@ import {
   SET_ERROR,
   SET_FAVORITES_LIST,
   SET_SELLER_PROFILE,
+  SET_ADS_TO_FAVORITE,
 } from '../../actions/Ads/types';
 
 const initState = {
@@ -95,6 +96,26 @@ const adsReducer = (state = initState, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    }
+
+    case SET_ADS_TO_FAVORITE: {
+      console.log(action.payload);
+      console.log('Vef', state.adsList.results);
+      var newAdsList = state.adsList.results.map(ad =>
+        ad.pk === action.payload
+          ? { ...ad, is_favorite: !Boolean(ad.is_favorite) }
+          : { ...ad },
+      );
+
+      console.log('Atf', newAdsList);
+
+      return {
+        ...state,
+        adsList: {
+          ...state.adsList,
+          results: newAdsList,
+        },
       };
     }
 

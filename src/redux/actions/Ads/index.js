@@ -10,6 +10,7 @@ import {
   SET_LOAD_MORE,
   SET_FAVORITES_LIST,
   SET_SELLER_PROFILE,
+  SET_ADS_TO_FAVORITE,
 } from './types';
 
 const setAdsList = ads => ({
@@ -56,6 +57,11 @@ const setAdsFavorites = favorites => ({
 const setSellerProfile = user => ({
   type: SET_SELLER_PROFILE,
   payload: user,
+});
+
+const setAdsToFavorite = id => ({
+  type: SET_ADS_TO_FAVORITE,
+  payload: id,
 });
 
 //API REDUX
@@ -159,7 +165,7 @@ export const getAdsLoadMore = url => dispatch => {
   }
 };
 
-export const addToFavorite = (id, token) => dispatch => {
+export const addToFavorite = (id, token, screen = 'main') => dispatch => {
   var requestData = new FormData();
   requestData.append('ad_id', id);
 
@@ -170,24 +176,27 @@ export const addToFavorite = (id, token) => dispatch => {
       'Content-Type': 'multipart/form-data',
     },
     body: requestData,
-  })
-    .then(response => response.json())
-    .then(responseJson => console.log(responseJson));
-
-  dispatch(getAdsDetail(id, token));
+  });
+  if (screen === 'main') {
+    dispatch(setAdsToFavorite(id));
+  } else {
+    dispatch(getAdsDetail(id, token));
+  }
 };
 
-export const removeFromFavorite = (id, token) => dispatch => {
+export const removeFromFavorite = (id, token, screen = 'main') => dispatch => {
   fetch(`${ADS}/delete-favorite/${id}/`, {
     method: 'DELETE',
     headers: {
       Authorization: 'Bearer ' + token,
     },
-  })
-    .then(response => response.json())
-    .then(responseJson => console.log(responseJson));
+  });
 
-  dispatch(getAdsDetail(id, token));
+  if (screen === 'main') {
+    dispatch(setAdsToFavorite(id));
+  } else {
+    dispatch(getAdsDetail(id, token));
+  }
 };
 
 export const getAdsFavorites = token => dispatch => {
