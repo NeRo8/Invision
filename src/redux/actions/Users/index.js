@@ -128,7 +128,6 @@ export const updateNotificationSettings = data => dispatch => {
 };
 
 export const updateAvatar = avatar => dispatch => {
-  console.log('avatar in actions: ', avatar);
   const data = new FormData();
   data.append('avatar', {
     name: avatar.fileName,
@@ -138,8 +137,6 @@ export const updateAvatar = avatar => dispatch => {
         ? avatar.uri
         : avatar.uri.replace('file://', ''),
   });
-
-  console.log('data in actions: ', data);
 
   API.post('users/change-avatar/', data, {
     headers: { 'Content-Type': 'multipart/form-data' },

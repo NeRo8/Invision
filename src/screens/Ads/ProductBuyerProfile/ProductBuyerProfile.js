@@ -25,7 +25,8 @@ class ProductBuyerProfile extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    console.log('Product buyer profile: ', this.props);
     const { navigation, getProfile } = this.props;
 
     const userid = navigation.getParam('id', null);

@@ -246,19 +246,34 @@ class ProductScreen extends Component {
                 </TouchableOpacity>
                 <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
                   <TouchableOpacity
-                    onPress={() =>
+                    onPress={() => {
+                      this.props.setLoad(true);
                       this.props.navigation.navigate('ProductBuyerProfile', {
                         id: this.props.userid,
-                      })
-                    }
+                      });
+                    }}
                     style={styles.userTouchable}>
                     <View style={styles.userLeftBlock}>
-                      <Avatar
-                        rounded
-                        source={productData.user.avatar}
-                        imageProps={{ resizeMode: 'cover' }}
-                        size={40}
-                      />
+                      {productData.user.avatar !== null ? (
+                        <Avatar
+                          rounded
+                          source={productData.user.avatar}
+                          imageProps={{ resizeMode: 'cover' }}
+                          size={40}
+                        />
+                      ) : (
+                        <Avatar
+                          rounded
+                          icon={{
+                            name: 'person',
+                            type: 'ion-icon',
+                            color: 'white',
+                          }}
+                          containerStyle={styles.iconProfile}
+                          size={40}
+                        />
+                      )}
+
                       <Text style={styles.userName}>
                         {productData.user.full_name}
                       </Text>
