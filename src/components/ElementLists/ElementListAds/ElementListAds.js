@@ -13,35 +13,54 @@ class ElementListAds extends Component {
   }
 
   render() {
-    const { item, onPressProduct } = this.props;
+    const {
+      item,
+      onPressProduct,
+      token,
+      removeFavorite,
+      addFavorite,
+    } = this.props;
 
     return (
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => onPressProduct(item.pk)}>
-        <View style={{ flex: 1 }}>
-          <View style={styles.pictureBlock}>
-            <Image
-              resizeMode="cover"
-              source={{ uri: item.primary_image }}
-              style={styles.picture}
-            />
-            <Icon
-              name={item.is_favorite ? 'ios-heart' : 'ios-heart-empty'}
-              type="ionicon"
-              color={item.is_favorite ? colors.HEART_ACTIVE : 'white'}
-              containerStyle={{ position: 'absolute', top: 5, right: 10 }}
-            />
+      <View style={styles.container}>
+        <Icon
+          name={item.is_favorite ? 'ios-heart' : 'ios-heart-empty'}
+          type="ionicon"
+          underlayColor="transparent"
+          color={item.is_favorite ? colors.HEART_ACTIVE : 'white'}
+          containerStyle={{
+            position: 'absolute',
+            zIndex: 2,
+            top: 5,
+            right: 10,
+          }}
+          onPress={() => {
+            item.is_favorite
+              ? removeFavorite(item.pk, token)
+              : addFavorite(item.pk, token);
+          }}
+        />
+        <TouchableOpacity
+          style={{ flex: 1 }}
+          onPress={() => onPressProduct(item.pk)}>
+          <View style={{ flex: 1 }}>
+            <View style={styles.pictureBlock}>
+              <Image
+                resizeMode="cover"
+                source={{ uri: item.primary_image }}
+                style={styles.picture}
+              />
+            </View>
+            <View style={styles.textBlock}>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.price}>
+                {`${item.price} ${item.currency.toUpperCase()}`}
+              </Text>
+              <Text style={styles.status}>For sale</Text>
+            </View>
           </View>
-          <View style={styles.textBlock}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.price}>
-              {`${item.price} ${item.currency.toUpperCase()}`}
-            </Text>
-            <Text style={styles.status}>For sale</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     );
   }
 }

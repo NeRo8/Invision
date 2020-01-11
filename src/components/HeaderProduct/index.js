@@ -14,10 +14,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addAdToFavorite: (id, token) => {
-      dispatch(addToFavorite(id, token));
+      dispatch(addToFavorite(id, token, 'detail'));
     },
     removeAdFromFavorite: (id, token) => {
-      dispatch(removeFromFavorite(id, token));
+      dispatch(removeFromFavorite(id, token, 'detail'));
     },
   };
 };
