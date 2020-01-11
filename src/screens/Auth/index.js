@@ -7,7 +7,7 @@ import InstagramLogin from 'react-native-instagram-login';
 
 import { loginWithFacebook } from '../../redux/actions/Auth';
 
-import { colors } from '../../constants';
+import { colors, icons } from '../../constants';
 import styles from './styles';
 
 class index extends Component {
@@ -54,7 +54,6 @@ class index extends Component {
   };
 
   setIgToken = async data => {
-    console.log('Insta data: ', data);
     this.setState({ igToken: data.access_token, igUserId: data.user_id });
   };
 
@@ -70,7 +69,7 @@ class index extends Component {
         <View
           style={{ alignItems: 'center', flex: 2, justifyContent: 'center' }}>
           <View style={styles.logo}>
-            <Image source={require('../../assets/icons/appIcon.png')} />
+            <Image source={icons.appIcon} />
           </View>
           <View style={{ width: '80%' }}>
             <Text style={styles.logoText}>

@@ -1,3 +1,7 @@
+import API, { setToken } from '../../../api';
+import { store } from '../../store';
+import { setNewToken } from '../Auth';
+
 const ADS = 'https://staging.masaha.app/api/v1/ads/';
 
 import {
@@ -65,9 +69,15 @@ const setAdsToFavorite = id => ({
 });
 
 //API REDUX
-export const getAds = (filters = null, token = null) => dispatch => {
+//Get list ads
+export const getAds = (filters = null) => dispatch => {
   dispatch(setLoading(true));
+  //Initialize token, for request
+  const { access_token } = store.getState().auth.user;
 
+  if (access_token !== null) {
+    setToken(access_token);
+  }
   var requestUrl = `${ADS}ads/?`;
 
   if (filters !== null) {
@@ -78,56 +88,19 @@ export const getAds = (filters = null, token = null) => dispatch => {
     });
   }
 
-  let head = {
-    method: 'GET',
-  };
-
-  if (token !== null) {
-    head = {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    };
-  }
-
-  fetch(requestUrl, head)
-    .then(response => {
-      return response.json();
-    })
-    .then(responseJson => {
-      dispatch(setAdsList(responseJson));
-      dispatch(setLoading(false));
-    })
-    .catch(error => {
-      dispatch(setError(error));
-    });
+  API.get(requestUrl)
+    .then(response => dispatch(setAdsList(response.data)))
+    .then(() => dispatch(setLoading(false)))
+    .catch(error => dispatch(setError(error)));
 };
 
-export const getAdsDetail = (id, token = null) => dispatch => {
+export const getAdsDetail = id => dispatch => {
   dispatch(setLoading(true));
 
-  let head = {
-    method: 'GET',
-  };
-
-  if (token !== null) {
-    head = {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    };
-  }
-  fetch(`${ADS}ad/${id}/?`, head)
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setAdsDetail(responseJson));
-      dispatch(setLoading(false));
-    })
-    .catch(error => {
-      dispatch(setError(error));
-    });
+  API.get(`/ads/ad/${id}/`)
+    .then(response => dispatch(setAdsDetail(response.data)))
+    .then(() => dispatch(setLoading(false)))
+    .catch(error => dispatch(setError(error)));
 };
 
 export const getCategories = () => dispatch => {

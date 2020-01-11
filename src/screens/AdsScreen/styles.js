@@ -1,5 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+import { colors } from '../../constants';
+
 export default StyleSheet.create({
   pagination: {
     position: 'absolute',
@@ -22,7 +24,7 @@ export default StyleSheet.create({
     elevation: 5,
   },
   flatListView: {
-    backgroundColor: 'rgb(247,247,247)',
+    backgroundColor: colors.BACKGROUND,
     flex: 1,
     width: '100%',
     paddingVertical: 5,

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AdsScreen from './AdsScreen';
 
-import { getAds, getAdsLoadMore, setLoading } from '../../redux/actions/Ads';
+import { getAds, getAdsLoadMore } from '../../redux/actions/Ads';
 import { refreshToken } from '../../redux/actions/Auth';
 
 const mapStateToProps = state => {
@@ -11,25 +11,19 @@ const mapStateToProps = state => {
     loading: state.ads.loading,
     error: state.ads.error,
     filters: state.ads.filters,
-    authStatus: state.auth.authStatus,
-    token: state.auth.user !== null ? state.auth.user.access_token : null,
-    refreshT: state.auth.user !== null ? state.auth.user.refresh_token : null,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdsList: (filters, token) => {
-      dispatch(getAds(filters, token));
+    getAdsList: filters => {
+      dispatch(getAds(filters));
     },
     getNextAds: url => {
       dispatch(getAdsLoadMore(url));
     },
-    setLoad: value => {
-      dispatch(setLoading(value));
-    },
-    refreshAuth: token => {
-      dispatch(refreshToken(token));
+    refreshAuth: () => {
+      dispatch(refreshToken());
     },
   };
 };

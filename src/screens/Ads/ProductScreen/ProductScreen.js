@@ -259,7 +259,7 @@ class ProductScreen extends Component {
                           rounded
                           source={productData.user.avatar}
                           imageProps={{ resizeMode: 'cover' }}
-                          size={40}
+                          size={28}
                         />
                       ) : (
                         <Avatar
@@ -270,7 +270,7 @@ class ProductScreen extends Component {
                             color: 'white',
                           }}
                           containerStyle={styles.iconProfile}
-                          size={40}
+                          size={28}
                         />
                       )}
 

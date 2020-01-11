@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StatusBar,
-  ActivityIndicator,
-} from 'react-native';
+import { View, Text, FlatList, StatusBar } from 'react-native';
 import { ElementListAds } from '../../components/ElementLists';
 import SplashScreen from 'react-native-splash-screen';
 
-import { colors } from '../../constants';
+import LoadingStatus from '../../components/LoadingStatus';
+
 import styles from './styles';
 
 class AdsScreen extends Component {
@@ -19,26 +14,25 @@ class AdsScreen extends Component {
   }
 
   async componentDidMount() {
-    const { getAdsList, authStatus, token, refreshAuth, refreshT } = this.props;
+    const { getAdsList, refreshAuth } = this.props;
 
     SplashScreen.hide();
 
-    if (authStatus) {
-      refreshAuth(refreshT);
-      getAdsList(null, token);
-    } else {
-      getAdsList();
-    }
+    refreshAuth();
+    getAdsList();
   }
 
   onPressElement = pk => {
-    const { navigation, setLoad } = this.props;
-    setLoad(true);
+    const { navigation } = this.props;
     navigation.navigate('ProductDetail', { id: pk });
   };
 
   render() {
     const { loading, adsList, adsConfig, getNextAds } = this.props;
+
+    if (loading) {
+      return <LoadingStatus />;
+    }
 
     return (
       <View style={styles.flatListView}>
@@ -48,32 +42,21 @@ class AdsScreen extends Component {
           backgroundColor="transparent"
         />
 
-        {loading ? (
-          <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <ActivityIndicator size="large" color={colors.HEADER} />
-          </View>
-        ) : (
-          <View>
-            <FlatList
-              numColumns={2}
-              data={adsList}
-              renderItem={({ item }) => (
-                <ElementListAds
-                  item={item}
-                  onPressProduct={this.onPressElement}
-                />
-              )}
-              contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-              keyExtractor={item => item.pk.toString()}
-              onEndReached={() => getNextAds(adsConfig.next)}
-              onEndReachedThreshold={0.5}
-            />
-            <View style={styles.pagination}>
-              <Text style={{ fontWeight: 'bold' }}>0/{adsConfig.count}</Text>
-            </View>
-          </View>
-        )}
+        <FlatList
+          numColumns={2}
+          data={adsList}
+          renderItem={({ item }) => (
+            <ElementListAds item={item} onPressProduct={this.onPressElement} />
+          )}
+          keyExtractor={item => item.pk.toString()}
+          onEndReached={() => getNextAds(adsConfig.next)}
+          onEndReachedThreshold={0.5}
+        />
+        <View style={styles.pagination}>
+          <Text style={{ fontWeight: 'bold' }}>
+            {adsList.length} / {adsConfig.count}
+          </Text>
+        </View>
       </View>
     );
   }

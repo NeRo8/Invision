@@ -5,6 +5,7 @@ import { deleteToken } from '../../../api';
 const initState = {
   user: {
     user: null,
+    refresh_token: null,
     access_token: null,
   },
   authStatus: false,

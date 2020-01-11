@@ -1,4 +1,5 @@
 import colors from './colors';
 import globalStyles from './globalStyles';
+import icons from './icons';
 
-export { colors, globalStyles };
+export { colors, globalStyles, icons };
