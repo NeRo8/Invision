@@ -2,25 +2,21 @@ import ProductScreen from './ProductScreen';
 
 import { connect } from 'react-redux';
 
-import { getAdsDetail, setLoading } from '../../../redux/actions/Ads';
+import { getAdDetail } from '../../../redux/actions/AdDetail';
 
 const mapStateToProps = state => {
   return {
-    productData: state.ads.adData,
-    userid: state.ads.adData.user.pk,
-    loading: state.ads.loading,
-    authStatus: state.auth.authStatus,
-    token: state.auth.user !== null ? state.auth.user.access_token : null,
+    productData: state.ad.adDetail,
+    userid: state.ad.adDetail.user.pk,
+    loading: state.ad.loading,
+    error: state.ad.error,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdData: (id, token) => {
-      dispatch(getAdsDetail(id, token));
-    },
-    setLoad: value => {
-      dispatch(setLoading(value));
+    getAdData: id => {
+      dispatch(getAdDetail(id));
     },
   };
 };

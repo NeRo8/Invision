@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import { colors } from '../../../constants';
-import { gothamBold, gothamBook } from '../../../constants/fonts';
+import { colors } from '../../../../../constants';
+import { gothamBold, gothamBook } from '../../../../../constants/fonts';
 
 export const { width, height } = Dimensions.get('window');
 

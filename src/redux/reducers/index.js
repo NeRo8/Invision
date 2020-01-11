@@ -5,6 +5,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 import authReducer from './Auth';
 import adsReducer from './Ads';
+import adDetailReducer from './AdDetail';
 import createAdReducer from './AdCreate';
 import inKuwaitReducer from './inKuwait';
 import usersReducer from './Users';
@@ -15,7 +16,7 @@ const persistConfig = {
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
   whitelist: ['auth'],
-  blacklist: ['ads', 'inKuwait', 'filters', 'users', 'chat', 'adCreate'],
+  blacklist: ['ads', 'inKuwait', 'filters', 'users', 'chat', 'adCreate', 'ad'],
 };
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   inKuwait: inKuwaitReducer,
   users: usersReducer,
   chat: chatReducer,
+  ad: adDetailReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

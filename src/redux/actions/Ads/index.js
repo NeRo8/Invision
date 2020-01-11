@@ -1,12 +1,10 @@
 import API, { setToken } from '../../../api';
 import { store } from '../../store';
-import { setNewToken } from '../Auth';
 
 const ADS = 'https://staging.masaha.app/api/v1/ads/';
 
 import {
   SET_LIST,
-  SET_DETAIL,
   SET_FILTER,
   SET_LOADING,
   SET_ERROR,
@@ -20,11 +18,6 @@ import {
 const setAdsList = ads => ({
   type: SET_LIST,
   payload: ads,
-});
-
-const setAdsDetail = ad => ({
-  type: SET_DETAIL,
-  payload: ad,
 });
 
 const setAdsLoadMore = ads => ({
@@ -90,15 +83,6 @@ export const getAds = (filters = null) => dispatch => {
 
   API.get(requestUrl)
     .then(response => dispatch(setAdsList(response.data)))
-    .then(() => dispatch(setLoading(false)))
-    .catch(error => dispatch(setError(error)));
-};
-
-export const getAdsDetail = id => dispatch => {
-  dispatch(setLoading(true));
-
-  API.get(`/ads/ad/${id}/`)
-    .then(response => dispatch(setAdsDetail(response.data)))
     .then(() => dispatch(setLoading(false)))
     .catch(error => dispatch(setError(error)));
 };

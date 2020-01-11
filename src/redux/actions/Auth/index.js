@@ -1,8 +1,6 @@
 import API, { setToken } from '../../../api';
 import { store } from '../../store';
 
-const USERS = 'https://staging.masaha.app/api/v1/users';
-
 export const SIGN_IN = 'SIGN_IN';
 export const LOGOUT = 'LOGOUT';
 export const SET_LOADING = 'SET_AUTH_LOADING';

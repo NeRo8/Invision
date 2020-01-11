@@ -6,7 +6,6 @@ import {
   ScrollView,
   FlatList,
   Image,
-  ActivityIndicator,
   Linking,
 } from 'react-native';
 import Moment from 'moment';
@@ -17,57 +16,15 @@ import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import HeaderProduct from '../../../components/HeaderProduct';
 import { ElementListAds } from '../../../components/ElementLists';
-import ModalShare from './ModalShare';
 import { DefaultButton } from '../../../components/Buttons';
+import LoadingStatus from '../../../components/LoadingStatus';
+
+import Comment from './components/Comment';
+
+import ModalShare from './ModalShare';
 
 import { colors, globalStyles } from '../../../constants';
-
 import styles from './styles';
-
-const CommentsFlatList = ({ item }) => (
-  <View style={styles.elementContainer}>
-    <View style={{ flexDirection: 'row', flex: 1, height: 40 }}>
-      <View style={{ flexDirection: 'row', flex: 1 }}>
-        <View style={{ paddingRight: 10 }}>
-          <Avatar
-            rounded
-            source={item.user__avatar}
-            imageProps={{ resizeMode: 'cover' }}
-            size={40}
-          />
-        </View>
-        <View style={{ justifyContent: 'space-between' }}>
-          <Text style={styles.userNameComents}>
-            {item.user__first_name} {item.user__last_name}
-          </Text>
-          <StarRating
-            disabled
-            maxStars={5}
-            rating={item.raiting}
-            emptyStar="ios-star"
-            fullStar="ios-star"
-            halfStar="ios-star"
-            iconSet="Ionicons"
-            fullStarColor={colors.STAR}
-            emptyStarColor={colors.UNACTIVE}
-            starSize={15}
-            starStyle={{ marginRight: 6 }}
-          />
-        </View>
-      </View>
-      <View>
-        <Text style={[globalStyles.gothamBook, styles.date]}>
-          {Moment(item.created).format('DD.MM.YYYY')}
-        </Text>
-      </View>
-    </View>
-    <View style={{ marginTop: 15 }}>
-      <Text style={[globalStyles.gothamBook, styles.coment]}>
-        {item.description}
-      </Text>
-    </View>
-  </View>
-);
 
 class ProductScreen extends Component {
   constructor(props) {
@@ -88,15 +45,11 @@ class ProductScreen extends Component {
   }
 
   componentDidMount() {
-    const { navigation, getAdData, token, authStatus } = this.props;
+    const { navigation, getAdData } = this.props;
 
     const id = navigation.getParam('id', null);
 
-    if (authStatus) {
-      getAdData(id, token);
-    } else {
-      getAdData(id, null);
-    }
+    getAdData(id);
   }
 
   handlePressWriteOwnComment = () => {
@@ -137,268 +90,257 @@ class ProductScreen extends Component {
   };
 
   showProductDetail = id => {
-    const { getAdData, token, authStatus } = this.props;
+    const { getAdData } = this.props;
 
-    if (authStatus) {
-      getAdData(id, token);
-    } else {
-      getAdData(id, null);
-    }
+    getAdData(id);
+  };
+
+  handlePressProfile = () => {
+    const { navigation, userid } = this.props;
+    navigation.navigate('ProductBuyerProfile', {
+      id: userid,
+    });
   };
 
   render() {
     const { productData, loading, authStatus } = this.props;
 
     if (loading) {
-      return (
-        <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <ActivityIndicator size="large" color={colors.HEADER} />
-        </View>
-      );
-    } else
-      return (
-        <View style={{ flex: 1 }}>
-          <HeaderProduct item={productData} onPressShere={this.onPressShere} />
-          <ScrollView>
-            <View style={styles.container}>
-              <SwiperFlatList
-                data={productData.adimage_set.reverse()}
-                showPagination={
-                  productData.adimage_set.length === 1 ? false : true
-                }
-                renderItem={items => (
-                  <View style={styles.container}>
-                    <View style={styles.child}>
-                      <Image
-                        resizeMode="cover"
-                        style={styles.swiperImage}
-                        source={{ uri: items.item.image }}
-                      />
-                    </View>
+      return <LoadingStatus />;
+    }
+    return (
+      <View style={{ flex: 1 }}>
+        <HeaderProduct item={productData} onPressShere={this.onPressShere} />
+        <ScrollView>
+          <View style={styles.container}>
+            <SwiperFlatList
+              data={productData.adimage_set.reverse()}
+              showPagination={
+                productData.adimage_set.length === 1 ? false : true
+              }
+              renderItem={items => (
+                <View style={styles.container}>
+                  <View style={styles.child}>
+                    <Image
+                      resizeMode="cover"
+                      style={styles.swiperImage}
+                      source={{ uri: items.item.image }}
+                    />
                   </View>
+                </View>
+              )}
+            />
+          </View>
+          <View style={styles.head}>
+            <Text style={styles.title}>{productData.title}</Text>
+
+            <View style={styles.properties}>
+              <Text style={styles.price}>
+                {productData.price} {productData.currency.toUpperCase()}
+              </Text>
+
+              <View style={styles.vdView}>
+                <View style={styles.vd}>
+                  <Icon
+                    iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
+                    name="eye-outline"
+                    type="material-community"
+                    size={16}
+                  />
+                  <Text style={styles.viewsAndDate}>{productData.views}</Text>
+                </View>
+                <View style={styles.vd}>
+                  <Icon
+                    iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
+                    name="clock-outline"
+                    type="material-community"
+                    size={16}
+                  />
+
+                  <Text style={styles.viewsAndDate}>
+                    {Moment(productData.publish_date).format('YYYY.MM.DD')}
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.tagsView}>
+              <FlatList
+                style={styles.tagsFlatList}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.tagsFlatListContainer}
+                keyExtractor={item => item.id.toString()}
+                horizontal
+                data={this.state.tags}
+                render
+                renderItem={items => (
+                  <TouchableOpacity style={{ paddingRight: 10 }}>
+                    <Text style={styles.tagsText}>{items.item.title}</Text>
+                  </TouchableOpacity>
                 )}
               />
             </View>
-            <View style={styles.head}>
-              <Text style={styles.title}>{productData.title}</Text>
-
-              <View style={styles.properties}>
-                <Text style={[globalStyles.gothamBook, styles.price]}>
-                  {productData.price} {productData.currency.toUpperCase()}
-                </Text>
-
-                <View style={styles.vdView}>
-                  <View style={styles.vd}>
-                    <Icon
-                      iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
-                      name="eye-outline"
-                      type="material-community"
-                      size={16}
-                    />
-                    <Text style={styles.viewsAndDate}>{productData.views}</Text>
-                  </View>
-                  <View style={styles.vd}>
-                    <Icon
-                      iconStyle={{ color: colors.UNACTIVE, marginRight: 5 }}
-                      name="clock-outline"
-                      type="material-community"
-                      size={16}
-                    />
-
-                    <Text style={styles.viewsAndDate}>
-                      {Moment(productData.publish_date).format('YYYY.MM.DD')}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-
-              <View style={styles.tagsView}>
-                <FlatList
-                  style={styles.tagsFlatList}
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.tagsFlatListContainer}
-                  keyExtractor={item => item.id.toString()}
-                  horizontal
-                  data={this.state.tags}
-                  render
-                  renderItem={items => (
-                    <TouchableOpacity style={{ paddingRight: 10 }}>
-                      <Text style={[globalStyles.gothamBold, styles.tagsText]}>
-                        {items.item.title}
-                      </Text>
-                    </TouchableOpacity>
-                  )}
-                />
-              </View>
-              <View>
-                <Text
-                  ellipsizeMode={'tail'}
-                  style={[globalStyles.gothamBook, styles.description]}>
-                  {this.state.showMore === true
-                    ? productData.description
-                    : productData.description.slice(0, 300)}
-                </Text>
+            <View>
+              <Text ellipsizeMode={'tail'} style={styles.description}>
+                {this.state.showMore === true
+                  ? productData.description
+                  : productData.description.slice(0, 300)}
+              </Text>
+              <TouchableOpacity
+                onPress={() => this.onPressShowMore()}
+                style={{ marginTop: 8 }}>
+                <Text style={styles.showMoreText}>Show more</Text>
+              </TouchableOpacity>
+              <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
                 <TouchableOpacity
-                  onPress={() => this.onPressShowMore()}
-                  style={{ marginTop: 8 }}>
-                  <Text style={styles.showMoreText}>Show more</Text>
-                </TouchableOpacity>
-                <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.props.setLoad(true);
-                      this.props.navigation.navigate('ProductBuyerProfile', {
-                        id: this.props.userid,
-                      });
-                    }}
-                    style={styles.userTouchable}>
-                    <View style={styles.userLeftBlock}>
-                      {productData.user.avatar !== null ? (
-                        <Avatar
-                          rounded
-                          source={productData.user.avatar}
-                          imageProps={{ resizeMode: 'cover' }}
-                          size={28}
-                        />
-                      ) : (
-                        <Avatar
-                          rounded
-                          icon={{
-                            name: 'person',
-                            type: 'ion-icon',
-                            color: 'white',
-                          }}
-                          containerStyle={styles.iconProfile}
-                          size={28}
-                        />
-                      )}
-
-                      <Text style={styles.userName}>
-                        {productData.user.full_name}
-                      </Text>
-                    </View>
-                    <View>
-                      <Text style={styles.otherAds}>Other ads</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View
-                  style={{
-                    height: 200,
-                    marginTop: 10,
-                  }}>
-                  <MapView
-                    initialRegion={{
-                      latitude: 37.78825,
-                      longitude: -122.4324,
-                      latitudeDelta: 0.0922,
-                      longitudeDelta: 0.0421,
-                    }}
-                    provider="google"
-                    style={{ flex: 1 }}>
-                    <Marker
-                      coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
-                    />
-                  </MapView>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.reviews}>REVIEWS</Text>
-                <FlatList
-                  data={
-                    this.state.readAll === true
-                      ? productData.comments
-                      : productData.comments.slice(0, 3)
-                  }
-                  renderItem={({ item }) => <CommentsFlatList item={item} />}
-                  keyExtractor={item => item.pk.toString()}
-                />
-                <Button
-                  disabled={productData.comments.length <= 3 ? true : false}
-                  title={`Read all ${productData.comments.length} reviews`}
-                  titleStyle={styles.titleRead}
-                  buttonStyle={styles.btnStyleRead}
-                  containerStyle={styles.btnContainer}
-                  onPress={() => this.onPressReadAll()}
-                />
-                <DefaultButton
-                  disabled={!authStatus}
-                  title="Write own comment"
-                  onPressButton={() =>
-                    this.props.navigation.navigate('CreateComment')
-                  }
-                />
-              </View>
-              <View>
-                <Text style={styles.similarAds}>SIMILAR ADS</Text>
-                <View style={styles.flatListView}>
-                  <FlatList
-                    numColumns={2}
-                    data={
-                      this.state.moreAds === true
-                        ? productData.recommended
-                        : productData.recommended.slice(0, 6)
-                    }
-                    renderItem={({ item }) => (
-                      <ElementListAds
-                        item={item}
-                        onPressProduct={this.showProductDetail}
+                  onPress={this.handlePressProfile}
+                  style={styles.userTouchable}>
+                  <View style={styles.userLeftBlock}>
+                    {productData.user.avatar !== null ? (
+                      <Avatar
+                        rounded
+                        source={productData.user.avatar}
+                        imageProps={{ resizeMode: 'cover' }}
+                        size={28}
+                      />
+                    ) : (
+                      <Avatar
+                        rounded
+                        icon={{
+                          name: 'person',
+                          type: 'ion-icon',
+                          color: 'white',
+                        }}
+                        containerStyle={styles.iconProfile}
+                        size={28}
                       />
                     )}
-                    keyExtractor={item => item.pk.toString()}
-                  />
-                </View>
+
+                    <Text style={styles.userName}>
+                      {productData.user.full_name}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text style={styles.otherAds}>Other ads</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
+              <View
+                style={{
+                  height: 200,
+                  marginTop: 10,
+                }}>
+                <MapView
+                  initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                  }}
+                  provider="google"
+                  style={{ flex: 1 }}>
+                  <Marker
+                    coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+                  />
+                </MapView>
+              </View>
+            </View>
+            <View>
+              <Text style={styles.reviews}>REVIEWS</Text>
+              <FlatList
+                data={
+                  this.state.readAll === true
+                    ? productData.comments
+                    : productData.comments.slice(0, 3)
+                }
+                renderItem={({ item }) => <Comment item={item} />}
+                keyExtractor={item => item.pk.toString()}
+              />
               <Button
-                disabled={productData.recommended.length <= 6 ? true : false}
-                title="Show more ads"
-                titleStyle={[globalStyles.gothamBold, styles.titleRead]}
-                buttonStyle={styles.btnStyleShowMore}
+                disabled={productData.comments.length <= 3 ? true : false}
+                title={`Read all ${productData.comments.length} reviews`}
+                titleStyle={styles.titleRead}
+                buttonStyle={styles.btnStyleRead}
                 containerStyle={styles.btnContainer}
-                onPress={() => this.onPressMoreAds()}
+                onPress={() => this.onPressReadAll()}
+              />
+              <DefaultButton
+                disabled={!authStatus}
+                title="Write own comment"
+                onPressButton={() =>
+                  this.props.navigation.navigate('CreateComment')
+                }
               />
             </View>
-            <View style={styles.bottomView}>
-              <Icon
-                name="phone"
-                type="font-awesome"
-                color="white"
-                containerStyle={styles.iconPhoneContainer}
-                onPress={() => {
-                  productData.phone_number !== null || undefined
-                    ? Linking.openURL(`tel:${productData.phone_number}`)
-                    : null;
-                }}
-              />
-
-              <View style={{ flex: 6 }}>
-                <Input
-                  inputStyle={styles.bottomInput}
-                  inputContainerStyle={styles.bottomInputContainer}
-                  backgroundColor="white"
-                  placeholder="Write massage"
-                  rightIcon={
-                    <Icon
-                      name="send"
-                      type="material-comunity"
-                      color="white"
-                      containerStyle={styles.iconSendContainer}
-                    />
+            <View>
+              <Text style={styles.similarAds}>SIMILAR ADS</Text>
+              <View style={styles.flatListView}>
+                <FlatList
+                  numColumns={2}
+                  data={
+                    this.state.moreAds === true
+                      ? productData.recommended
+                      : productData.recommended.slice(0, 6)
                   }
+                  renderItem={({ item }) => (
+                    <ElementListAds
+                      item={item}
+                      onPressProduct={this.showProductDetail}
+                    />
+                  )}
+                  keyExtractor={item => item.pk.toString()}
                 />
               </View>
             </View>
-            <ModalShare
-              show={this.state.modalShow}
-              imageUrl={productData.adimage_set.find(
-                el => el.is_primary === true,
-              )}
-              onPressClose={this.onPressShere}
+            <Button
+              disabled={productData.recommended.length <= 6 ? true : false}
+              title="Show more ads"
+              titleStyle={styles.titleRead}
+              buttonStyle={styles.btnStyleShowMore}
+              containerStyle={styles.btnContainer}
+              onPress={() => this.onPressMoreAds()}
             />
-          </ScrollView>
-        </View>
-      );
+          </View>
+          <View style={styles.bottomView}>
+            <Icon
+              name="phone"
+              type="font-awesome"
+              color="white"
+              containerStyle={styles.iconPhoneContainer}
+              onPress={() => {
+                productData.phone_number !== null || undefined
+                  ? Linking.openURL(`tel:${productData.phone_number}`)
+                  : null;
+              }}
+            />
+
+            <View style={{ flex: 6 }}>
+              <Input
+                inputStyle={styles.bottomInput}
+                inputContainerStyle={styles.bottomInputContainer}
+                backgroundColor="white"
+                placeholder="Write massage"
+                rightIcon={
+                  <Icon
+                    name="send"
+                    type="material-comunity"
+                    color="white"
+                    containerStyle={styles.iconSendContainer}
+                  />
+                }
+              />
+            </View>
+          </View>
+          <ModalShare
+            show={this.state.modalShow}
+            imageUrl={productData.adimage_set.find(
+              el => el.is_primary === true,
+            )}
+            onPressClose={this.onPressShere}
+          />
+        </ScrollView>
+      </View>
+    );
   }
 }
 
