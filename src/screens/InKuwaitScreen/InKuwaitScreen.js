@@ -30,8 +30,9 @@ class InKuwaitScreen extends Component {
 
   componentDidMount() {
     const { getCountCategory } = this.props;
-
-    getCountCategory();
+    this.props.navigation.addListener('didFocus', payload =>
+      getCountCategory(),
+    );
   }
 
   render() {

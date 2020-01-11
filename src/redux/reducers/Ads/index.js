@@ -100,15 +100,11 @@ const adsReducer = (state = initState, action) => {
     }
 
     case SET_ADS_TO_FAVORITE: {
-      console.log(action.payload);
-      console.log('Vef', state.adsList.results);
       var newAdsList = state.adsList.results.map(ad =>
         ad.pk === action.payload
           ? { ...ad, is_favorite: !Boolean(ad.is_favorite) }
           : { ...ad },
       );
-
-      console.log('Atf', newAdsList);
 
       return {
         ...state,

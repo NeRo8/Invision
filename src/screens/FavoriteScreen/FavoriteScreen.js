@@ -54,10 +54,12 @@ class FavoriteScreen extends Component {
       getFavoriteAds,
       navigation,
       deleteAllFavorites,
+      adsFavoritesList,
     } = this.props;
-
     if (authStatus) {
-      getFavoriteAds(token);
+      this.props.navigation.addListener('didFocus', payload =>
+        getFavoriteAds(token),
+      );
     }
 
     navigation.setParams({
@@ -79,8 +81,26 @@ class FavoriteScreen extends Component {
     });
   };
 
+  renderFavoritesAds = () => {
+    const { adsFavoritesList } = this.props;
+
+    if (adsFavoritesList !== undefined) {
+      return adsFavoritesList.map(item => {
+        return {
+          ...item,
+          ad: { ...item.ad, is_favorite: true },
+        };
+      });
+    } else {
+      return [];
+    }
+  };
   render() {
     const { authStatus, adsFavoritesList } = this.props;
+    // const r = adsFavoritesList.map(item => {
+    //   return { ...item, is_favorite: true };
+    // });
+    // console.log('R: ', r);
 
     return (
       <View style={styles.container}>
@@ -101,7 +121,7 @@ class FavoriteScreen extends Component {
             {this.state.activeFilter === 'ads' ? (
               <FlatList
                 numColumns={2}
-                data={adsFavoritesList}
+                data={this.renderFavoritesAds()}
                 renderItem={({ item }) => (
                   <ElementListAds item={item.ad} onPressProduct={() => {}} />
                 )}
