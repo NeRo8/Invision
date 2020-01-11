@@ -1,4 +1,5 @@
 import { Platform } from 'react-native';
+import API from '../../../api';
 
 import {
   SET_PROFILE,
@@ -7,8 +8,6 @@ import {
   SET_PROFILE_ADS,
   SET_NOTIFICATION_SETTINGS,
 } from './types';
-
-import API from '../../../api';
 
 const DEFAULT_URL = 'https://staging.masaha.app/api/v1/users/';
 const ADS = 'https://staging.masaha.app/api/v1/ads/';
@@ -38,54 +37,30 @@ const setNotificationSettings = settings => ({
   payload: settings,
 });
 
-export const getProfile = token => dispatch => {
+export const getProfile = () => dispatch => {
   dispatch(setLoading(true));
 
-  fetch(`${DEFAULT_URL}profile-info/`, {
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setProfile(responseJson));
-    })
-    .then(() => {
-      dispatch(getProfileAds(token));
-    })
+  API.get('/users/profile-info/')
+    .then(response => dispatch(setProfile(response.data)))
+    .then(() => dispatch(getProfileAds()))
     .catch(error => {
       dispatch(setError(error));
     });
 };
 
-export const getProfileAds = token => dispatch => {
-  fetch(`${ADS}my/`, {
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setAds(responseJson));
-      dispatch(setLoading(false));
-    })
+export const getProfileAds = () => dispatch => {
+  API.get('/ads/my/')
+    .then(response => dispatch(setAds(response.data)))
+    .then(() => dispatch(setLoading(false)))
     .catch(error => {
       dispatch(setError(error));
-      dispatch(setLoading(false));
     });
 };
 
-export const deleteAds = (id, token) => dispatch => {
-  fetch(`${ADS}delete-ad/${id}/`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
-  });
+export const deleteAds = id => dispatch => {
+  API.delete(`/ads/delete-ad/${id}/`);
 
-  dispatch(getProfileAds(token));
+  dispatch(getProfileAds());
 };
 
 export const changeProfile = (newProfile, token) => dispatch => {

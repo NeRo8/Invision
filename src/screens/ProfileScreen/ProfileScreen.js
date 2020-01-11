@@ -9,15 +9,14 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
-
 import ImagePicker from 'react-native-image-picker';
+
 import TextPicker from '../../components/TextPicker';
-import ElementFL from './ProfileAds';
+import ElementFL from './components/Ads';
 import { ProfileAdsModal } from '../../components/Modals';
+import LoadingStatus from '../../components/LoadingStatus';
 
 import { colors, globalStyles } from '../../constants';
-
-import API, { setToken, deleteToken } from '../../api';
 
 import styles from './styles';
 
@@ -63,10 +62,9 @@ class ProfileScreen extends Component {
   }
 
   componentDidFocus() {
-    const { token, getProfileInfo } = this.props;
-    if (token !== null) {
-      getProfileInfo(token);
-    }
+    const { getProfileInfo } = this.props;
+
+    getProfileInfo();
   }
 
   showOption = (value, itemIncome) => {
@@ -154,21 +152,12 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    const { loading, token, user, navigation, ads } = this.props;
-    const { avatar } = this.state;
-    if (token === null) {
-      return (
-        <View style={styles.containerLoading}>
-          <ActivityIndicator size="large" color={colors.HEADER} />
-          <Text style={styles.loadingText}>First you need sign in ...</Text>
-        </View>
-      );
+    const { loading, token, authStatus, user, navigation, ads } = this.props;
+
+    if (!authStatus) {
+      return <LoadingStatus text="First you need sign in ..." />;
     } else if (loading === true) {
-      return (
-        <View style={styles.containerLoading}>
-          <ActivityIndicator size="large" color={colors.HEADER} />
-        </View>
-      );
+      return <LoadingStatus />;
     } else
       return (
         <ScrollView contentContainerStyle={styles.container}>

@@ -71,7 +71,7 @@ const Navigation = createBottomTabNavigator(
         let tabBarVisible = false;
         let routeName =
           navigation.state.routes[navigation.state.index].routeName;
-        if (routeName === 'Home') {
+        if (routeName === 'StepOne') {
           tabBarVisible = true;
         }
         return {

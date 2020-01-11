@@ -156,20 +156,12 @@ export const removeFromFavorite = (id, token, screen = 'main') => dispatch => {
   }
 };
 
-export const getAdsFavorites = token => dispatch => {
+export const getAdsFavorites = () => dispatch => {
   dispatch(setLoading(true));
 
-  fetch(`${ADS}favorites/`, {
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setAdsFavorites(responseJson));
-      dispatch(setLoading(false));
-    })
+  API.get('/ads/favorites/')
+    .then(response => dispatch(setAdsFavorites(response.data)))
+    .then(() => dispatch(setLoading(false)))
     .catch(error => dispatch(setError(error)));
 };
 
@@ -205,16 +197,11 @@ export const setComment = (data, token) => dispatch => {
   dispatch(getAdsDetail(data.ad, token));
 };
 
-export const deleteFavorites = token => dispatch => {
-  fetch(`${ADS}delete-favorites/`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Bearer ' + token,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  });
+export const deleteFavorites = () => dispatch => {
+  const { access_token } = store.getState().auth.user;
 
-  dispatch(getAdsFavorites(token));
-  dispatch(getAds(token));
+  API.delete('/ads/delete-favorites/');
+
+  dispatch(getAdsFavorites(access_token));
+  dispatch(getAds(access_token));
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, FlatList, Text } from 'react-native';
+import LoadingStatus from '../../components/LoadingStatus';
 
 import {
   ElementListAds,
@@ -7,8 +8,6 @@ import {
   ElementListOrganisation,
 } from '../../components/ElementLists';
 import TextPicker from '../../components/TextPicker';
-
-import { colors } from '../../constants';
 
 import styles from './styles';
 
@@ -48,23 +47,13 @@ class FavoriteScreen extends Component {
   }
 
   componentDidMount() {
-    const {
-      authStatus,
-      token,
-      getFavoriteAds,
-      navigation,
-      deleteAllFavorites,
-      adsFavoritesList,
-    } = this.props;
-    if (authStatus) {
-      this.props.navigation.addListener('didFocus', payload =>
-        getFavoriteAds(token),
-      );
-    }
+    const { navigation, getFavoriteAds, deleteAllFavorites } = this.props;
+
+    navigation.addListener('didFocus', () => getFavoriteAds());
 
     navigation.setParams({
       deleteFavorites: () => {
-        deleteAllFavorites(token);
+        deleteAllFavorites();
       },
     });
   }
@@ -96,11 +85,22 @@ class FavoriteScreen extends Component {
     }
   };
   render() {
-    const { authStatus, adsFavoritesList } = this.props;
-    // const r = adsFavoritesList.map(item => {
-    //   return { ...item, is_favorite: true };
-    // });
-    // console.log('R: ', r);
+    const { authStatus } = this.props;
+    const { activeFilter } = this.state;
+
+    if (!authStatus) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.headerBlock}>
+            <TextPicker
+              dataList={this.state.filters}
+              onPressElement={this.handlePressElement}
+            />
+          </View>
+          <LoadingStatus text="First you need sign in..." />
+        </View>
+      );
+    }
 
     return (
       <View style={styles.container}>
@@ -110,50 +110,40 @@ class FavoriteScreen extends Component {
             onPressElement={this.handlePressElement}
           />
         </View>
-        {!authStatus ? (
-          <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <ActivityIndicator size="large" color={colors.HEADER} />
-            <Text style={styles.loadingText}>First you need sign in ...</Text>
-          </View>
-        ) : (
-          <View style={styles.bodyBlock}>
-            {this.state.activeFilter === 'ads' ? (
-              <FlatList
-                numColumns={2}
-                data={this.renderFavoritesAds()}
-                renderItem={({ item }) => (
-                  <ElementListAds item={item.ad} onPressProduct={() => {}} />
-                )}
-                contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => index}
-              />
-            ) : this.state.activeFilter === 'org' ? (
-              <FlatList
-                numColumns={2}
-                data={[]}
-                renderItem={({ item }) => (
-                  <ElementListOrganisation
-                    element={item}
-                    onPressProduct={() => {}}
-                  />
-                )}
-                contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => index}
-              />
-            ) : (
-              <FlatList
-                numColumns={2}
-                data={[]}
-                renderItem={({ item }) => (
-                  <ElementListEvents element={item} onPressProduct={() => {}} />
-                )}
-                contentContainerStyle={{ backgroundColor: colors.BACKGROUND }}
-                keyExtractor={(item, index) => index}
-              />
-            )}
-          </View>
-        )}
+
+        <View style={styles.bodyBlock}>
+          {activeFilter === 'ads' ? (
+            <FlatList
+              numColumns={2}
+              data={this.renderFavoritesAds()}
+              renderItem={({ item }) => (
+                <ElementListAds item={item.ad} onPressProduct={() => {}} />
+              )}
+              keyExtractor={(item, index) => index}
+            />
+          ) : activeFilter === 'org' ? (
+            <FlatList
+              numColumns={2}
+              data={[]}
+              renderItem={({ item }) => (
+                <ElementListOrganisation
+                  element={item}
+                  onPressProduct={() => {}}
+                />
+              )}
+              keyExtractor={(item, index) => index}
+            />
+          ) : (
+            <FlatList
+              numColumns={2}
+              data={[]}
+              renderItem={({ item }) => (
+                <ElementListEvents element={item} onPressProduct={() => {}} />
+              )}
+              keyExtractor={(item, index) => index}
+            />
+          )}
+        </View>
       </View>
     );
   }

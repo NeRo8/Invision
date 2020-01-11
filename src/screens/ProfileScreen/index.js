@@ -1,21 +1,14 @@
 import ProfileScreen from './ProfileScreen';
 
-import {
-  getProfile,
-  getProfileAds,
-  deleteAds,
-  updateAvatar,
-} from '../../redux/actions/Users';
+import { getProfile, deleteAds, updateAvatar } from '../../redux/actions/Users';
+
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
     user: state.users.user,
     ads: state.users.ads,
-    token:
-      state.auth.user.access_token !== undefined
-        ? state.auth.user.access_token
-        : null,
+    authStatus: state.auth.authStatus,
     loading: state.users.loading,
     error: state.users.error,
   };
@@ -23,11 +16,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProfileInfo: token => {
-      dispatch(getProfile(token));
+    getProfileInfo: () => {
+      dispatch(getProfile());
     },
-    deleteAd: (id, token) => {
-      dispatch(deleteAds(id, token));
+    deleteAd: id => {
+      dispatch(deleteAds(id));
     },
     onUpdateAvatar: avatar => {
       dispatch(updateAvatar(avatar));
