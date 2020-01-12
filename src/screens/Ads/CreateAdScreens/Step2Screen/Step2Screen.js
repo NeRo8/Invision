@@ -3,6 +3,8 @@ import { View, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 
+import { CreateAdInput } from '../../../../components/Inputs';
+
 import styles from './styles';
 
 class Step2Screen extends Component {
@@ -15,7 +17,7 @@ class Step2Screen extends Component {
     return (
       <KeyboardAvoidingScrollView
         containerStyle={styles.container}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={styles.contentContainer}
         stickyFooter={
           <Button
             title="Continue"
@@ -28,14 +30,12 @@ class Step2Screen extends Component {
 
         <View style={{ flex: 1 }}>
           <Text style={styles.underTitle}>TITLE AND DESCRIPTION</Text>
-          <Input
+          <CreateAdInput
             placeholder="Enter title of ad"
-            inputStyle={styles.inputStyle}
-            inputContainerStyle={styles.inputContainerStyle}
-            containerStyle={styles.inputContainer}
             value={title}
             onChangeText={value => setValue('title', value)}
           />
+
           <Input
             multiline
             placeholder="Enter description of ad"

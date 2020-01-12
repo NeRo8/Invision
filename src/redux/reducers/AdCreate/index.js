@@ -11,6 +11,10 @@ const initState = {
     description: null,
     //Step3
     image: [],
+    full_name: null,
+    city: { id: 0, name: null },
+    email: null,
+    phone_number: null,
   },
   //main
 

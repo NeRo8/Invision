@@ -51,6 +51,7 @@ class MakePictureScreen extends Component {
             ref={ref => {
               this.camera = ref;
             }}
+            captureAudio={false}
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
             type={
               type
@@ -65,12 +66,6 @@ class MakePictureScreen extends Component {
             androidCameraPermissionOptions={{
               title: 'Permission to use camera',
               message: 'We need your permission to use your camera',
-              buttonPositive: 'Ok',
-              buttonNegative: 'Cancel',
-            }}
-            androidRecordAudioPermissionOptions={{
-              title: 'Permission to use audio recording',
-              message: 'We need your permission to use your audio',
               buttonPositive: 'Ok',
               buttonNegative: 'Cancel',
             }}>

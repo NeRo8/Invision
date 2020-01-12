@@ -1,22 +1,29 @@
 import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../../constants';
+import { gothamBold, gothamBook } from '../../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(237, 237, 237)',
+    backgroundColor: colors.BACKGROUND,
+    paddingHorizontal: 15,
   },
   containerBlock: {
     flex: 1,
-    backgroundColor: 'rgb(237, 237, 237)',
-    paddingHorizontal: 15,
+    backgroundColor: colors.BACKGROUND,
   },
   headerTitle: {
+    ...gothamBold,
     fontSize: 15,
     lineHeight: 25,
     color: colors.HEADER,
     marginTop: 33,
+  },
+  inputStyle: {
+    ...gothamBook,
+    fontSize: 17,
+    color: colors.LABEL_GREY_COLOR,
   },
   inputContainerStyle: {
     backgroundColor: 'white',
@@ -40,6 +47,7 @@ export default StyleSheet.create({
     marginTop: 15,
   },
   elementPickerText: {
+    ...gothamBook,
     fontSize: 17,
     lineHeight: 26,
     color: colors.LABEL_GREY_COLOR,
@@ -47,6 +55,7 @@ export default StyleSheet.create({
   },
 
   btnTitle: {
+    ...gothamBold,
     fontSize: 15,
     color: 'white',
   },
@@ -55,4 +64,14 @@ export default StyleSheet.create({
     height: 55,
     borderRadius: 0,
   },
+  textPicker: {
+    ...gothamBook,
+    fontSize: 17,
+    color: colors.TITLE,
+  },
+  flContainer: {
+    backgroundColor: 'white',
+    paddingHorizontal: 15,
+  },
+  textPickerContainer: { height: 40, justifyContent: 'center' },
 });
