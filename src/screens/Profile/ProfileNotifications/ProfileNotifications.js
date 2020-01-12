@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import LoadingStatus from '../../../components/LoadingStatus';
 
 import styles from './styles';
-
-import { setToken } from '../../../api';
-import { colors } from '../../../constants';
 
 const Thread = ({ item, onPressThread }) => (
   <TouchableOpacity
@@ -31,7 +23,7 @@ const Thread = ({ item, onPressThread }) => (
   </TouchableOpacity>
 );
 
-const BackThread = ({ onPress }) => (
+const BackThread = ({ onPressDelete }) => (
   <View style={styles.rowBack}>
     <View style={styles.iconContainer}>
       <Icon
@@ -46,31 +38,31 @@ const BackThread = ({ onPress }) => (
   </View>
 );
 
+const ItemTextPicker = ({ active, title, onPressItem }) => (
+  <TouchableOpacity
+    style={active ? styles.selectedElementActive : styles.selectedElement}
+    onPress={() => onPressItem()}>
+    <Text
+      style={
+        active ? styles.selectedTextElementActive : styles.selectedTextElement
+      }>
+      {title}
+    </Text>
+  </TouchableOpacity>
+);
+
 class ProfileNotifications extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryList: [],
-      Archive: true,
-      All: false,
+      filter: true,
     };
   }
 
   componentDidMount() {
-    const { token, getAllThreads } = this.props;
-    //SET TOKEN TO AXIOS
-    setToken(token);
-
+    const { getAllThreads } = this.props;
     getAllThreads();
   }
-
-  handlePressSelectedView = name => {
-    this.setState({
-      Archive: false,
-      All: false,
-      [name]: true,
-    });
-  };
 
   handlePressThread = pk => {
     const { navigation, updateLoading } = this.props;
@@ -92,48 +84,35 @@ class ProfileNotifications extends Component {
     }
   };
 
+  handlePressFilter = () => {
+    const { filter } = this.state;
+
+    this.setState({
+      filter: !filter,
+    });
+  };
+
   render() {
-    const { Archive, All } = this.state;
+    const { filter } = this.state;
     const { threads, loading } = this.props;
 
     if (loading) {
-      return (
-        <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <ActivityIndicator size="large" color={colors.HEADER} />
-        </View>
-      );
+      return <LoadingStatus />;
     }
 
     return (
       <View style={styles.container}>
         <View style={styles.selectedContainer}>
-          <TouchableOpacity
-            style={
-              Archive ? styles.selectedElementActive : styles.selectedElement
-            }
-            onPress={() => this.handlePressSelectedView('Archive')}>
-            <Text
-              style={
-                Archive
-                  ? styles.selectedTextElementActive
-                  : styles.selectedTextElement
-              }>
-              All
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={All ? styles.selectedElementActive : styles.selectedElement}
-            onPress={() => this.handlePressSelectedView('All')}>
-            <Text
-              style={
-                All
-                  ? styles.selectedTextElementActive
-                  : styles.selectedTextElement
-              }>
-              Archive
-            </Text>
-          </TouchableOpacity>
+          <ItemTextPicker
+            title="All"
+            active={filter}
+            onPressItem={this.handlePressFilter}
+          />
+          <ItemTextPicker
+            title="Archive"
+            active={!filter}
+            onPressItem={this.handlePressFilter}
+          />
         </View>
 
         <SwipeListView
@@ -142,7 +121,7 @@ class ProfileNotifications extends Component {
             <Thread item={item} onPressThread={this.handlePressThread} />
           )}
           renderHiddenItem={({ item }) => (
-            <BackThread item={item} onPress={this.handlePressDelete} />
+            <BackThread item={item} onPressDelete={this.handlePressDelete} />
           )}
           disableRightSwipe={true}
           rightOpenValue={-75}

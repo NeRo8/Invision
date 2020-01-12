@@ -14,7 +14,7 @@ export default StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
-    marginVertical: 15,
+    marginVertical: 30,
     paddingHorizontal: 15,
   },
   btnSend: {

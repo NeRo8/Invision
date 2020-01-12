@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import {
-  View,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  TextInput,
-  FlatList,
-  Platform,
-  ActivityIndicator,
-  SafeAreaView,
-} from 'react-native';
+import { View, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 
 import Message from './components/Message';
 import LoadingStatus from '../../../components/LoadingStatus';
@@ -65,28 +57,19 @@ class ProfileNotificationsChat extends Component {
     }
   };
 
+  handlePressSend = () => {
+    const { textMessage } = this.state;
+    this.ws.send(JSON.stringify({ message: textMessage }));
+  };
+
   render() {
     const { messages, user, loading } = this.props;
-    const { textMessage } = this.state;
-
     if (loading) {
       return <LoadingStatus />;
     }
     return (
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : -500}
-          style={styles.container}
-          behavior="padding">
-          <FlatList
-            inverted
-            ref={ref => (this.flatList = ref)}
-            data={messages}
-            renderItem={({ item }) => <Message message={item} userId={user} />}
-            keyExtractor={(item, index) => item.pk.toString()}
-            onEndReached={this.nextMessage}
-            onEndReachedThreshold={0.1}
-          />
+      <KeyboardAvoidingScrollView
+        stickyFooter={
           <View style={styles.footer}>
             <View style={styles.inputContainer}>
               <TextInput
@@ -99,14 +82,22 @@ class ProfileNotificationsChat extends Component {
             </View>
             <TouchableOpacity
               style={styles.btnSend}
-              onPress={() =>
-                this.ws.send(JSON.stringify({ message: textMessage }))
-              }>
+              onPress={this.handlePressSend}>
               <Icon name="ios-send" type="ionicon" color="white" size={25} />
             </TouchableOpacity>
           </View>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
+        }
+        containerStyle={styles.container}>
+        <FlatList
+          inverted
+          ref={ref => (this.flatList = ref)}
+          data={messages}
+          renderItem={({ item }) => <Message message={item} userId={user} />}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReached={this.nextMessage}
+          onEndReachedThreshold={0.1}
+        />
+      </KeyboardAvoidingScrollView>
     );
   }
 }
