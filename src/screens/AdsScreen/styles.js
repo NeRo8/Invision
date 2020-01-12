@@ -31,4 +31,7 @@ export default StyleSheet.create({
     paddingHorizontal: 5,
     alignSelf: 'center',
   },
+  textPagination: {
+    fontWeight: 'bold',
+  },
 });

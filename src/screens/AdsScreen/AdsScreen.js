@@ -13,7 +13,7 @@ class AdsScreen extends Component {
     this.state = {};
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { getAdsList, refreshAuth } = this.props;
 
     SplashScreen.hide();
@@ -53,7 +53,7 @@ class AdsScreen extends Component {
           onEndReachedThreshold={0.5}
         />
         <View style={styles.pagination}>
-          <Text style={{ fontWeight: 'bold' }}>
+          <Text style={styles.textPagination}>
             {adsList.length} / {adsConfig.count}
           </Text>
         </View>
