@@ -4,7 +4,7 @@ import { colors, globalStyles } from '../../../../constants';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: 'rgb(247,247,247)',
     paddingHorizontal: 15,
   },

@@ -12,6 +12,7 @@ class Step1Screen extends Component {
     super(props);
     this.state = {};
   }
+
   onSwipeRight = () => {
     const { navigation } = this.props;
 
