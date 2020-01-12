@@ -69,11 +69,6 @@ const Navigation = createBottomTabNavigator(
       navigationOptions: ({ navigation }) => {
         //title: 'Ads',
         let tabBarVisible = false;
-        let routeName =
-          navigation.state.routes[navigation.state.index].routeName;
-        if (routeName === 'StepOne') {
-          tabBarVisible = true;
-        }
         return {
           tabBarVisible,
           title: 'Add ad',
@@ -123,7 +118,7 @@ const Navigation = createBottomTabNavigator(
   },
   {
     //initialRouteName: 'Profile',
-    defaultNavigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: {
       tabBarOptions: {
         activeTintColor: colors.ACTIVE,
         inactiveTintColor: colors.UNACTIVE,
@@ -134,6 +129,7 @@ const Navigation = createBottomTabNavigator(
           paddingTop: 5,
         },
       },
+
       tabBarOnPress: ({ navigation, defaultHandler }) => {
         const { authStatus } = store.getState().auth;
         const { routeName } = navigation.state;
@@ -147,7 +143,7 @@ const Navigation = createBottomTabNavigator(
 
         defaultHandler();
       },
-    }),
+    },
   },
 );
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Icon, CheckBox, Input, Button } from 'react-native-elements';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 import { colors } from '../../../../constants';
 
@@ -11,6 +12,12 @@ class Step1Screen extends Component {
     super(props);
     this.state = {};
   }
+  onSwipeRight = () => {
+    const { navigation } = this.props;
+
+    navigation.navigate('Home');
+  };
+
   render() {
     const {
       navigation,
@@ -21,7 +28,7 @@ class Step1Screen extends Component {
       stateProduct,
     } = this.props;
     return (
-      <View style={{ flex: 1 }}>
+      <GestureRecognizer onSwipeRight={this.onSwipeRight} style={{ flex: 1 }}>
         <ScrollView style={styles.container}>
           <Text style={styles.headerTitle}>MAIN INFORMATION</Text>
 
@@ -136,7 +143,7 @@ class Step1Screen extends Component {
           buttonStyle={styles.btnStyles}
           onPress={() => navigation.navigate('StepTwo')}
         />
-      </View>
+      </GestureRecognizer>
     );
   }
 }

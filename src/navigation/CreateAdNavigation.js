@@ -88,10 +88,7 @@ const CreateAdNavigation = createStackNavigator(
       }
       return {
         header: <CreateAdHeader index={index} />,
-        headerLeft: null,
-        headerStyle: {
-          //backgroundColor: colors.HEADER,
-        },
+        //headerLeft: null,
       };
     },
   },
