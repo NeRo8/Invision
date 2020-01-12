@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  ScrollView,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import { View, Text, FlatList, ScrollView, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
@@ -122,6 +115,7 @@ class ProfileScreen extends Component {
   renderAvatar() {
     const { avatar } = this.state;
     const { user } = this.props;
+
     if (avatar !== null) {
       return (
         <Image
@@ -152,7 +146,7 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    const { loading, token, authStatus, user, navigation, ads } = this.props;
+    const { loading, authStatus, user, navigation, ads } = this.props;
 
     if (!authStatus) {
       return <LoadingStatus text="First you need sign in ..." />;
@@ -199,13 +193,7 @@ class ProfileScreen extends Component {
                     />
                   </View>
                   <View style={styles.containerTextIcon}>
-                    <Text
-                      style={[
-                        globalStyles.gothamMediumRegular,
-                        styles.fontInsideImage,
-                      ]}>
-                      5
-                    </Text>
+                    <Text style={styles.fontInsideImage}>5</Text>
                   </View>
                 </View>
               </View>

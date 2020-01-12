@@ -18,6 +18,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   fontInsideImage: {
+    ...gothamMediumRegular,
     fontSize: 11,
     color: 'white',
   },

@@ -9,9 +9,6 @@ import {
   SET_NOTIFICATION_SETTINGS,
 } from './types';
 
-const DEFAULT_URL = 'https://staging.masaha.app/api/v1/users/';
-const ADS = 'https://staging.masaha.app/api/v1/ads/';
-
 const setProfile = profile => ({
   type: SET_PROFILE,
   payload: profile,
@@ -63,23 +60,8 @@ export const deleteAds = id => dispatch => {
   dispatch(getProfileAds());
 };
 
-export const changeProfile = (newProfile, token) => dispatch => {
-  fetch(`${DEFAULT_URL}profile-info/`, {
-    method: 'PUT',
-
-    headers: {
-      Authorization: 'Bearer ' + token,
-      'Content-Type': 'application/json',
-    },
-
-    body: JSON.stringify({
-      full_name: newProfile.full_name,
-      email: newProfile.email,
-      phone_number: newProfile.phone_number,
-      city: newProfile.city,
-    }),
-  })
-    .then(response => response.json())
+export const changeProfile = newProfile => dispatch => {
+  API.put('/users/profile-info/', newProfile)
     .then(response => {
       if (response.full_name !== undefined) {
         dispatch(setError(response));

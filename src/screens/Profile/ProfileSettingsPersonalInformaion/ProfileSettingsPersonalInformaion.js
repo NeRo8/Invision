@@ -67,7 +67,7 @@ class ProfileSettingsPersonalInformaion extends Component {
     //Create new profile object
     const newProfile = {
       full_name: full_name,
-      city: city.pk,
+      city: city !== null ? city.pk : null,
       phone_number: phone_number,
       email: email,
     };
@@ -153,7 +153,10 @@ class ProfileSettingsPersonalInformaion extends Component {
             onPressButton={this.handlePressSave}
           />
         </View>
-        <DropdownAlert ref={ref => (this.dropDownAlertRef = ref)} />
+        <DropdownAlert
+          ref={ref => (this.dropDownAlertRef = ref)}
+          updateStatusBar={false}
+        />
       </SafeAreaView>
     );
   }
