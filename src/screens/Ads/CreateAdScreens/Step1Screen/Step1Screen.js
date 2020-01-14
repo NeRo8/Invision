@@ -66,7 +66,7 @@ class Step1Screen extends Component {
                   flex: 1,
                   paddingHorizontal: 0,
                 }}
-                value={price.toString()}
+                //value={price.toString()}
                 onChangeText={value => {
                   setValue('price', value);
                 }}

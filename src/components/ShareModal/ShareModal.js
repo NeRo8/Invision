@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import {
   Modal,
   View,
@@ -15,9 +15,9 @@ import { colors, globalStyles } from '../../constants';
 
 import styles from './styles';
 
-const ShareElement = ({ icon, title, onPress, color }) => (
+const ShareElement = ({ icon, title, onPressElement, color }) => (
   <TouchableOpacity
-    onPress={() => {}}
+    onPress={() => onPressElement()}
     style={{
       flexDirection: 'row',
       alignItems: 'center',
@@ -37,8 +37,44 @@ class ShareModal extends Component {
     this.state = {};
   }
 
+  shareFacebook = socialNetwork => {
+    console.log(socialNetwork);
+    const { description, title } = this.props;
+
+    if (socialNetwork === 'FACEBOOK') {
+      const shareOptions = {
+        title: title,
+        message: description,
+        social: Share.Social.FACEBOOK,
+        url: 'https://staging.masaha.app/ad/5962/furniture-for-sale-15/',
+        failOnCancel: false,
+      };
+      Share.shareSingle(shareOptions);
+    }
+    if (socialNetwork === 'INSTAGRAM') {
+      const shareOptions = {
+        title: title,
+        message: description,
+        social: Share.Social.INSTAGRAM,
+        url: 'https://staging.masaha.app/ad/5962/furniture-for-sale-15/',
+        failOnCancel: false,
+      };
+      Share.shareSingle(shareOptions);
+    }
+    if (socialNetwork === 'TWITTER') {
+      const shareOptions = {
+        title: title,
+        message: description,
+        social: Share.Social.TWITTER,
+        url: 'https://staging.masaha.app/ad/5962/furniture-for-sale-15/',
+        failOnCancel: false,
+      };
+      Share.shareSingle(shareOptions);
+    }
+  };
+
   render() {
-    const { visible, onClose, bgImage } = this.props;
+    const { visible, onClose, bgImage, title } = this.props;
 
     return (
       <Modal visible={visible} transparent>
@@ -48,13 +84,13 @@ class ShareModal extends Component {
             <View>
               <View style={{ height: 178 }}>
                 <ImageBackground
-                  source={bgImage}
+                  source={{ uri: bgImage.image }}
                   style={styles.bgImage}
                   imageStyle={{
                     borderTopLeftRadius: 3,
                     borderTopRightRadius: 3,
                   }}>
-                  <Text style={styles.titleText}>iPhone X 16Gb</Text>
+                  <Text style={styles.titleText}>{title}</Text>
                 </ImageBackground>
               </View>
 
@@ -62,6 +98,7 @@ class ShareModal extends Component {
                 <Text style={styles.headerText}>SELECT SOCIAL FOR SHARING</Text>
 
                 <ShareElement
+                  onPressElement={() => this.shareFacebook('FACEBOOK')}
                   icon={
                     <Icon
                       name="facebook"
@@ -81,6 +118,7 @@ class ShareModal extends Component {
                 />
                 <Divider style={styles.divider} />
                 <ShareElement
+                  onPressElement={() => this.shareFacebook('TWITTER')}
                   icon={
                     <Icon
                       name="twitter"
@@ -100,6 +138,7 @@ class ShareModal extends Component {
                 />
                 <Divider style={styles.divier} />
                 <ShareElement
+                  onPressElement={() => this.shareFacebook('INSTAGRAM')}
                   icon={
                     <Icon
                       name="instagram"

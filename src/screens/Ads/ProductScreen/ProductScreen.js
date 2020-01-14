@@ -22,6 +22,7 @@ import LoadingStatus from '../../../components/LoadingStatus';
 import Comment from './components/Comment';
 
 import ModalShare from './ModalShare';
+import ShareModal from '../../../components/ShareModal';
 
 import { colors, globalStyles } from '../../../constants';
 import styles from './styles';
@@ -331,13 +332,20 @@ class ProductScreen extends Component {
               />
             </View>
           </View>
-          <ModalShare
+          <ShareModal
+            visible={this.state.modalShow}
+            bgImage={productData.adimage_set.find(el => el.is_primary === true)}
+            onClose={this.onPressShere}
+            title={productData.title}
+            description={productData.description}
+          />
+          {/* <ModalShare
             show={this.state.modalShow}
             imageUrl={productData.adimage_set.find(
               el => el.is_primary === true,
             )}
             onPressClose={this.onPressShere}
-          />
+          /> */}
         </ScrollView>
       </View>
     );
