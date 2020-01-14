@@ -64,7 +64,6 @@ export const loginWithFacebook = token => dispatch => {
   })
     .then(response => response.json())
     .then(responseJson => {
-      console.log('QWE:', responseJson);
       if (responseJson.access_token !== null || undefined) {
         dispatch(setProfile(responseJson));
         dispatch(setLoading(false));

@@ -11,7 +11,10 @@ import ChooseCategoryScreen from '../screens/Ads/CreateAdScreens/ChooseCategoryS
 
 import MakePictureScreen from '../screens/Ads/MakePictureScreen';
 
+import PayCardScreen from '../screens/Ads/PayCardScreen';
+
 import { CreateAdHeader } from '../components/Headers';
+import HeaderPay from '../components/HeaderPay';
 
 import { DefaultHeader } from '../components/Headers';
 import { colors } from '../constants';
@@ -42,6 +45,9 @@ const CreateAdNavigation = createStackNavigator(
       navigationOptions: {
         header: null,
       },
+    },
+    PremiumPaid: {
+      screen: PayCardScreen,
     },
   },
   {
@@ -83,6 +89,11 @@ const CreateAdNavigation = createStackNavigator(
             headerStyle: {
               backgroundColor: colors.HEADER,
             },
+          };
+        }
+        case 'PremiumPaid': {
+          return {
+            header: <HeaderPay onPressLeftIcon={() => navigation.goBack()} />,
           };
         }
       }

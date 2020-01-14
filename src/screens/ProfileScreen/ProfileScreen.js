@@ -106,6 +106,7 @@ class ProfileScreen extends Component {
         this.setState({
           avatar: response,
         });
+        console.log(response);
         const { onUpdateAvatar } = this.props;
         onUpdateAvatar(this.state.avatar);
       }

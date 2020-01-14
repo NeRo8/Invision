@@ -6,6 +6,7 @@ import ModalComplite from './ModalComplite';
 
 import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
+import { createAd } from '../../../../redux/actions/AdCreate';
 
 class Step5Screen extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Step5Screen extends Component {
   };
 
   render() {
+    const { createNewAd } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.containerBlock}>
@@ -33,7 +35,7 @@ class Step5Screen extends Component {
             CHOOSE PACKAGE OF YOUR AD
           </Text>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={this.showModalComplite}>
+            <TouchableOpacity onPress={() => createNewAd()}>
               <View style={styles.card}>
                 <LinearGradient
                   colors={['#01DF96', '#00B8B7']}
@@ -71,7 +73,7 @@ class Step5Screen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('Pay');
+                this.props.navigation.navigate('PremiumPaid');
               }}>
               <View style={styles.card}>
                 <LinearGradient

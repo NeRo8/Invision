@@ -38,7 +38,6 @@ class ShareModal extends Component {
   }
 
   shareFacebook = socialNetwork => {
-    console.log(socialNetwork);
     const { description, title } = this.props;
 
     if (socialNetwork === 'FACEBOOK') {

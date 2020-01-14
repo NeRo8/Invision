@@ -3,8 +3,8 @@ import { colors, globalStyles } from '../../constants';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     paddingTop: Platform.OS === 'ios' ? 0 : 20,
+    backgroundColor: colors.HEADER,
   },
   headerBlock: {
     flexDirection: 'row',
@@ -25,7 +25,6 @@ export default StyleSheet.create({
     color: 'white',
   },
   selectedBlock: {
-    flex: 1,
     paddingTop: 10,
   },
   selectedElement: {
@@ -57,7 +56,7 @@ export default StyleSheet.create({
   },
   simpleContainer: {
     flexDirection: 'row',
-    flex: 1,
+    marginBottom: 10,
     paddingHorizontal: 10,
   },
 });

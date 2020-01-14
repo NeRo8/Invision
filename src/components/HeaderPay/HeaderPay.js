@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-
+import { withNavigation } from 'react-navigation';
 import { colors, globalStyles } from '../../constants';
 
 import styles from './styles';
@@ -12,6 +12,7 @@ class HeaderPay extends Component {
     this.state = {};
   }
   render() {
+    const { onPressLeftIcon } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -21,7 +22,7 @@ class HeaderPay extends Component {
             type="material-community"
             color="white"
             size={32}
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() => onPressLeftIcon()}
           />
           <Text style={[globalStyles.gothamBold, styles.headerText]}>
             Add ad
@@ -45,4 +46,4 @@ class HeaderPay extends Component {
   }
 }
 
-export default HeaderPay;
+export default withNavigation(HeaderPay);
