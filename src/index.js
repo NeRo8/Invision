@@ -9,7 +9,6 @@ import { store, persistor } from './redux/store';
 
 const App = () => (
   <Provider store={store}>
-    <StatusBar barStyle="light-content" translucent />
     <PersistGate
       loading={<ActivityIndicator size="large" color="blue" />}
       persistor={persistor}>
