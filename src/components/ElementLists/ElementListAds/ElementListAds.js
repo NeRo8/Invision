@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import { colors } from '../../../constants';
@@ -45,11 +51,15 @@ class ElementListAds extends Component {
           onPress={() => onPressProduct(item.pk)}>
           <View style={{ flex: 1 }}>
             <View style={styles.pictureBlock}>
-              <Image
-                resizeMode="cover"
-                source={{ uri: item.primary_image }}
-                style={styles.picture}
-              />
+              {item.primary_image !== null ? (
+                <Image
+                  resizeMode="cover"
+                  source={{ uri: item.primary_image }}
+                  style={styles.picture}
+                />
+              ) : (
+                <ActivityIndicator />
+              )}
             </View>
             <View style={styles.textBlock}>
               <Text style={styles.title}>{item.title}</Text>

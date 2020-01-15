@@ -1,5 +1,6 @@
 import API, { setToken } from '../../../api';
 import { store } from '../../store';
+import { getAdDetail } from '../../../redux/actions/AdDetail';
 
 const ADS = 'https://staging.masaha.app/api/v1/ads/';
 
@@ -137,7 +138,7 @@ export const addToFavorite = (id, token, screen = 'main') => dispatch => {
   if (screen === 'main') {
     dispatch(setAdsToFavorite(id));
   } else {
-    dispatch(getAdsDetail(id, token));
+    dispatch(getAdDetail(id, token));
   }
 };
 
@@ -152,7 +153,7 @@ export const removeFromFavorite = (id, token, screen = 'main') => dispatch => {
   if (screen === 'main') {
     dispatch(setAdsToFavorite(id));
   } else {
-    dispatch(getAdsDetail(id, token));
+    dispatch(getAdDetail(id, token));
   }
 };
 
@@ -166,18 +167,22 @@ export const getAdsFavorites = () => dispatch => {
 };
 
 export const getSellerProfile = userid => dispatch => {
+  console.log(userid);
   setLoading(true);
-
-  fetch(`${ADS}seller/${userid}/`)
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch(setSellerProfile(responseJson));
-      dispatch(setLoading(false));
-    })
-    .then(error => {
-      dispatch(setError(error));
-      dispatch(setLoading(false));
-    });
+  API.get(`/ads/seller/${userid}/`).then(
+    response => dispatch(setSellerProfile(response.data)),
+    setLoading(false),
+  );
+  // fetch(`${ADS}seller/${userid}/`)
+  //   .then(response => response.json())
+  //   .then(responseJson => {
+  //     dispatch(setSellerProfile(responseJson));
+  //     dispatch(setLoading(false));
+  //   })
+  //   .then(error => {
+  //     dispatch(setError(error));
+  //     dispatch(setLoading(false));
+  //   });
 };
 
 export const setComment = (data, token) => dispatch => {
@@ -194,7 +199,7 @@ export const setComment = (data, token) => dispatch => {
     .then(responseJson => console.log(responseJson))
     .catch(error => console.log(error));
 
-  dispatch(getAdsDetail(data.ad, token));
+  dispatch(getAdDetail(data.ad, token));
 };
 
 export const deleteFavorites = () => dispatch => {

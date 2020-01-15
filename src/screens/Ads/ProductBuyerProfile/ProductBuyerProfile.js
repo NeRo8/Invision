@@ -48,7 +48,7 @@ class ProductBuyerProfile extends Component {
 
   render() {
     const { user, ads, loading } = this.props;
-    if (loading) {
+    if (user === null || undefined) {
       return (
         <View style={styles.loadingView}>
           <ActivityIndicator size="large" color={colors.HEADER} />

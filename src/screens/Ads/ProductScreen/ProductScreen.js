@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   Linking,
+  ActivityIndicator,
 } from 'react-native';
 import Moment from 'moment';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
@@ -21,7 +22,6 @@ import LoadingStatus from '../../../components/LoadingStatus';
 
 import Comment from './components/Comment';
 
-import ModalShare from './ModalShare';
 import ShareModal from '../../../components/ShareModal';
 
 import { colors, globalStyles } from '../../../constants';
@@ -122,11 +122,15 @@ class ProductScreen extends Component {
               renderItem={items => (
                 <View style={styles.container}>
                   <View style={styles.child}>
-                    <Image
-                      resizeMode="cover"
-                      style={styles.swiperImage}
-                      source={{ uri: items.item.image }}
-                    />
+                    {items.item.image !== undefined || null ? (
+                      <Image
+                        resizeMode="cover"
+                        style={styles.swiperImage}
+                        source={{ uri: items.item.image }}
+                      />
+                    ) : (
+                      <ActivityIndicator />
+                    )}
                   </View>
                 </View>
               )}
@@ -200,7 +204,7 @@ class ProductScreen extends Component {
                     {productData.user.avatar !== null ? (
                       <Avatar
                         rounded
-                        source={productData.user.avatar}
+                        source={{ uri: productData.user.avatar }}
                         imageProps={{ resizeMode: 'cover' }}
                         size={28}
                       />
@@ -334,18 +338,15 @@ class ProductScreen extends Component {
           </View>
           <ShareModal
             visible={this.state.modalShow}
-            bgImage={productData.adimage_set.find(el => el.is_primary === true)}
+            bgImage={
+              productData.adimage_set.length === 0
+                ? null
+                : productData.adimage_set.find(el => el.is_primary === true)
+            }
             onClose={this.onPressShere}
             title={productData.title}
             description={productData.description}
           />
-          {/* <ModalShare
-            show={this.state.modalShow}
-            imageUrl={productData.adimage_set.find(
-              el => el.is_primary === true,
-            )}
-            onPressClose={this.onPressShere}
-          /> */}
         </ScrollView>
       </View>
     );

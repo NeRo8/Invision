@@ -22,6 +22,7 @@ export default StyleSheet.create({
     elevation: 5,
   },
   pictureBlock: {
+    justifyContent: 'center',
     flex: 1,
   },
   textBlock: {

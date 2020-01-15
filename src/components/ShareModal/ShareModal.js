@@ -6,6 +6,7 @@ import {
   ImageBackground,
   StatusBar,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import { Icon, Button, Divider } from 'react-native-elements';
 
@@ -82,15 +83,19 @@ class ShareModal extends Component {
           <View>
             <View>
               <View style={{ height: 178 }}>
-                <ImageBackground
-                  source={{ uri: bgImage.image }}
-                  style={styles.bgImage}
-                  imageStyle={{
-                    borderTopLeftRadius: 3,
-                    borderTopRightRadius: 3,
-                  }}>
-                  <Text style={styles.titleText}>{title}</Text>
-                </ImageBackground>
+                {bgImage !== null ? (
+                  <ImageBackground
+                    source={{ uri: bgImage.image }}
+                    style={styles.bgImage}
+                    imageStyle={{
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                    }}>
+                    <Text style={styles.titleText}>{title}</Text>
+                  </ImageBackground>
+                ) : (
+                  <ActivityIndicator />
+                )}
               </View>
 
               <View style={styles.bodyContainer}>
