@@ -10,8 +10,9 @@ class AdFavorite extends Component {
     super(props);
     this.state = {};
   }
+
   render() {
-    const { item } = this.props;
+    const { item, onPressHeart } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.headerBlock}>
@@ -23,8 +24,10 @@ class AdFavorite extends Component {
           <Icon
             name="ios-heart"
             type="ionicon"
+            underlayColor="transparent"
             color={colors.HEART_ACTIVE}
             containerStyle={styles.heartContainer}
+            onPress={() => onPressHeart(item.ad.pk)}
           />
         </View>
         <View style={styles.bottomBlock}>

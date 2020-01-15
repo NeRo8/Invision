@@ -7,6 +7,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     marginHorizontal: 5,
+    marginVertical: 10,
     height: 234,
   },
   headerBlock: {

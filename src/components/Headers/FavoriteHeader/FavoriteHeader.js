@@ -26,6 +26,7 @@ class FavoriteHeader extends Component {
       onTabLongPress,
       getAccessibilityLabel,
       navigation,
+      clearAllFavor,
     } = this.props;
 
     const { routes, index: activeRouteIndex } = navigation.state;
@@ -35,7 +36,9 @@ class FavoriteHeader extends Component {
         <View style={styles.titleBlock}>
           <Text style={styles.sideComponent}></Text>
           <Text style={styles.titleScreen}>Favorites</Text>
-          <Text style={styles.sideComponent}>Clear All</Text>
+          <Text style={styles.sideComponent} onPress={() => clearAllFavor()}>
+            Clear All
+          </Text>
         </View>
         <View style={styles.navBlock}>
           {routes.map((route, routeIndex) => {

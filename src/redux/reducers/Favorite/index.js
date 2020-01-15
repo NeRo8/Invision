@@ -24,6 +24,18 @@ const favoriteReducer = (state = initState, action) => {
         [action.tabValue]: action.loading,
       };
     }
+    case types.DELETE_FAVORITE_AD: {
+      var newFavoriteAds = state.favoriteAds.results.filter(
+        item => item.ad.pk !== action.id,
+      );
+      return {
+        ...state,
+        favoriteAds: {
+          ...state.favoriteAds,
+          results: newFavoriteAds,
+        },
+      };
+    }
     default:
       return state;
   }

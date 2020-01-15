@@ -25,7 +25,10 @@ class ErrorComponent extends Component {
     return (
       <View style={{ flex: 1 }}>
         {children}
-        <DropdownAlert ref={ref => (this.dropDownAlertRef = ref)} />
+        <DropdownAlert
+          ref={ref => (this.dropDownAlertRef = ref)}
+          updateStatusBar={false}
+        />
       </View>
     );
   }

@@ -5,6 +5,7 @@ const masahaApi = axios.create({
 });
 
 export const setToken = token => {
+  console.log('Token', token);
   masahaApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 

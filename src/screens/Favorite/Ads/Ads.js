@@ -23,14 +23,23 @@ class Ads extends Component {
     this.focusListener.remove();
   }
 
+  handlePressHeart = id => {
+    const { deleteAd } = this.props;
+
+    deleteAd(id);
+  };
+
   render() {
     const { adsList } = this.props;
     return (
       <View style={styles.container}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={adsList.results}
           numColumns={2}
-          renderItem={({ item }) => <AdFavorite item={item} />}
+          renderItem={({ item }) => (
+            <AdFavorite item={item} onPressHeart={this.handlePressHeart} />
+          )}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>

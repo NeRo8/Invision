@@ -14,9 +14,27 @@ const setLoading = (tabValue, loading) => ({
   loading,
 });
 
+const deleteFavoriteAd = id => ({
+  type: types.DELETE_FAVORITE_AD,
+  id,
+});
+
 export const getFavoriteAds = () => dispatch => {
   API.get('/ads/favorites/')
     .then(response => dispatch(setFavoriteAds(response.data)))
     .then(() => dispatch(setLoading('favoriteAdsLoading', false)))
+    .catch(error => dispatch(setError(error.message)));
+};
+
+export const clearAllFavorites = () => dispatch => {
+  API.delete('/ads/delete-favorites/')
+    .then(response => dispatch(setFavoriteAds([])))
+    .catch(error => dispatch(setError(error.message)));
+};
+
+export const clearFavoriteAd = id => dispatch => {
+  //console.log('API', API.defaults.headers);
+  API.delete(`/ads/delete-favorite/${id}/`)
+    .then(response => dispatch(deleteFavoriteAd(id)))
     .catch(error => dispatch(setError(error.message)));
 };
