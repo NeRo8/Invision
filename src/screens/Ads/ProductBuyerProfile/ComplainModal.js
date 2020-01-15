@@ -11,9 +11,17 @@ class ComplainModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
+      fraud: false,
+      language: false,
+      other: false,
     };
   }
+
+  check = option => {
+    this.setState({ fraud: false, language: false, other: false });
+    this.setState({ [option]: true });
+  };
+
   render() {
     return (
       <Modal visible={this.props.show} transparent>
@@ -42,8 +50,9 @@ class ComplainModal extends Component {
               </Text>
 
               <CheckBox
+                onPress={() => this.check('fraud')}
                 iconRight
-                title={'Fraud or spam'}
+                title={'Fraud or scam'}
                 textStyle={[globalStyles.gothamBook, styles.radioTitle]}
                 containerStyle={styles.checkBox}
                 wrapperStyle={styles.checkBoxWraper}
@@ -64,12 +73,13 @@ class ComplainModal extends Component {
                     size={25}
                   />
                 }
-                checked={this.state.checked}
+                checked={this.state.fraud}
               />
 
               <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
 
               <CheckBox
+                onPress={() => this.check('language')}
                 iconRight
                 title={'Unparliamentary language'}
                 textStyle={[globalStyles.gothamBook, styles.radioTitle]}
@@ -92,11 +102,12 @@ class ComplainModal extends Component {
                     size={25}
                   />
                 }
-                checked={this.state.checked}
+                checked={this.state.language}
               />
               <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
 
               <CheckBox
+                onPress={() => this.check('other')}
                 iconRight
                 title={'Other'}
                 textStyle={[globalStyles.gothamBook, styles.radioTitle]}
@@ -119,7 +130,7 @@ class ComplainModal extends Component {
                     size={25}
                   />
                 }
-                checked={this.state.checked}
+                checked={this.state.other}
               />
 
               <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
