@@ -20,6 +20,7 @@ const deleteFavoriteAd = id => ({
 });
 
 export const getFavoriteAds = () => dispatch => {
+  dispatch(setLoading('favoriteAdsLoading', true));
   API.get('/ads/favorites/')
     .then(response => dispatch(setFavoriteAds(response.data)))
     .then(() => dispatch(setLoading('favoriteAdsLoading', false)))
@@ -33,7 +34,6 @@ export const clearAllFavorites = () => dispatch => {
 };
 
 export const clearFavoriteAd = id => dispatch => {
-  //console.log('API', API.defaults.headers);
   API.delete(`/ads/delete-favorite/${id}/`)
     .then(response => dispatch(deleteFavoriteAd(id)))
     .catch(error => dispatch(setError(error.message)));

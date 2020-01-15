@@ -16,6 +16,7 @@ class FavoriteHeader extends Component {
       showNavigation: false,
     };
   }
+
   render() {
     const {
       renderIcon,
@@ -27,6 +28,7 @@ class FavoriteHeader extends Component {
       getAccessibilityLabel,
       navigation,
       clearAllFavor,
+      authStatus,
     } = this.props;
 
     const { routes, index: activeRouteIndex } = navigation.state;
@@ -34,11 +36,15 @@ class FavoriteHeader extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.titleBlock}>
-          <Text style={styles.sideComponent}></Text>
+          <Text style={styles.sideComponent} />
           <Text style={styles.titleScreen}>Favorites</Text>
-          <Text style={styles.sideComponent} onPress={() => clearAllFavor()}>
-            Clear All
-          </Text>
+          {authStatus ? (
+            <Text style={styles.sideComponent} onPress={() => clearAllFavor()}>
+              Clear All
+            </Text>
+          ) : (
+            <Text style={styles.sideComponent} />
+          )}
         </View>
         <View style={styles.navBlock}>
           {routes.map((route, routeIndex) => {

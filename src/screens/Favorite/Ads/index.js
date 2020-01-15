@@ -9,7 +9,9 @@ import {
 
 const mapStateToProps = state => {
   return {
+    authStatus: state.auth.authStatus,
     adsList: state.favorite.favoriteAds,
+    loading: state.favorite.favoriteAdsLoading,
   };
 };
 

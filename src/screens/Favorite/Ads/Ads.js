@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 
 import AdFavorite from './components/AdFavorite';
+import LoadingStatus from '../../../components/LoadingStatus';
 
 import styles from './styles';
 
@@ -12,9 +13,12 @@ class Ads extends Component {
   }
 
   componentDidMount() {
-    const { getFavorAds, navigation } = this.props;
+    const { getFavorAds, navigation, authStatus } = this.props;
+
     this.focusListener = navigation.addListener('didFocus', () => {
-      getFavorAds();
+      if (authStatus) {
+        getFavorAds();
+      }
     });
   }
 
@@ -30,7 +34,16 @@ class Ads extends Component {
   };
 
   render() {
-    const { adsList } = this.props;
+    const { adsList, authStatus, loading } = this.props;
+
+    if (!authStatus) {
+      return <LoadingStatus text="First you need sign in..." />;
+    }
+
+    if (loading) {
+      return <LoadingStatus />;
+    }
+
     return (
       <View style={styles.container}>
         <FlatList
