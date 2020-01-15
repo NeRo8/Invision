@@ -1,6 +1,7 @@
 import API from '../../../api';
-
 import * as types from './types';
+
+import { setError } from '../Error';
 
 const setFavoriteAds = ads => ({
   type: types.SET_FAVORITE_ADS,

@@ -15,7 +15,7 @@ class ErrorComponent extends Component {
 
     console.log('ERROR', error);
     if (error !== null) {
-      this.dropDownAlertRef.alertWithType('error', 'Error', error.message);
+      this.dropDownAlertRef.alertWithType('error', 'Error', error);
       clearError();
     }
   }

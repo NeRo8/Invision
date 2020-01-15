@@ -10,7 +10,9 @@ class Ads extends Component {
   }
 
   componentDidMount() {
-    console.log('Error', this.props.error);
+    const { getFavorAds } = this.props;
+
+    getFavorAds();
   }
 
   render() {

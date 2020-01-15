@@ -2,10 +2,18 @@ import Ads from './Ads';
 
 import { connect } from 'react-redux';
 
+import { getFavoriteAds } from '../../../redux/actions/Favorite';
+
 const mapStateToProps = state => {
   return {
-    error: state,
+    adsList: state.favorite.favoriteAds,
   };
 };
 
-export default connect(mapStateToProps, null)(Ads);
+const mapDispatchToProps = dispatch => {
+  return {
+    getFavorAds: () => dispatch(getFavoriteAds()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Ads);
