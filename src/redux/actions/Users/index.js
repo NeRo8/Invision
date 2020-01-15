@@ -1,12 +1,15 @@
 import { Platform } from 'react-native';
 import API from '../../../api';
+import { setError } from '../../actions/Error';
+
+import { store } from '../../store';
 
 import {
   SET_PROFILE,
   SET_LOADING,
-  SET_ERROR,
   SET_PROFILE_ADS,
   SET_NOTIFICATION_SETTINGS,
+  SET_PROFILE_ADS_STATUS,
 } from './types';
 
 const setProfile = profile => ({
@@ -24,15 +27,18 @@ const setLoading = status => ({
   payload: status,
 });
 
-export const setError = error => ({
-  type: SET_ERROR,
-  payload: error,
-});
-
 const setNotificationSettings = settings => ({
   type: SET_NOTIFICATION_SETTINGS,
   payload: settings,
 });
+
+export const setAdsStatus = active => dispatch => {
+  dispatch({
+    type: SET_PROFILE_ADS_STATUS,
+    payload: active,
+  });
+  dispatch(getProfileAds());
+};
 
 export const getProfile = () => dispatch => {
   dispatch(setLoading(true));
@@ -46,7 +52,8 @@ export const getProfile = () => dispatch => {
 };
 
 export const getProfileAds = () => dispatch => {
-  API.get('/ads/my/')
+  const { adsStatus } = store.getState().users;
+  API.get(`/ads/my/?status=${adsStatus}`)
     .then(response => dispatch(setAds(response.data)))
     .then(() => dispatch(setLoading(false)))
     .catch(error => {

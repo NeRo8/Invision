@@ -67,11 +67,11 @@ const ElementFL = ({ item, showOption, grayscale }) => {
   if (grayscale) {
     return (
       <Grayscale style={{ flex: 1 }}>
-        <Element element={item} onPressDots={showOption} />
+        <Element element={item} onPressDots={() => {}} />
       </Grayscale>
     );
   }
-  return <Element element={item} onPressDots={showOption} />;
+  return <Element element={item} onPressDots={() => {}} />;
 };
 
 export default ElementFL;
