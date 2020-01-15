@@ -254,7 +254,7 @@ class ProfileScreen extends Component {
           <FlatList
             data={ads.results}
             renderItem={({ item }) => <ElementFL item={item} />}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </ScrollView>

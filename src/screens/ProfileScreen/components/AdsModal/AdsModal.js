@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Modal, View, ImageBackground, Text, Switch } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../../constants';
+import { colors, globalStyles } from '../../../../constants';
 
 import styles from './styles';
 
-class ProfileAdsModal extends Component {
+class AdsModal extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -19,7 +19,7 @@ class ProfileAdsModal extends Component {
   };
 
   render() {
-    const { item, show, showOption } = this.props;
+    const { item, show, onClose } = this.props;
 
     return (
       <Modal style={styles.containerModal} visible={show} transparent>
@@ -81,7 +81,7 @@ class ProfileAdsModal extends Component {
             titleStyle={styles.btnTitle}
             buttonStyle={styles.btnDoneStyle}
             containerStyle={styles.btnContainer}
-            onPress={() => showOption(false, null)}
+            onPress={() => onClose()}
           />
         </View>
       </Modal>
@@ -89,4 +89,4 @@ class ProfileAdsModal extends Component {
   }
 }
 
-export default ProfileAdsModal;
+export default AdsModal;

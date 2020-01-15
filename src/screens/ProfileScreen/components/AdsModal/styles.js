@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '../../../constants';
+import { colors } from '../../../../constants';
 
 import {
   gothamMediumRegular,
   gothamBold,
   gothamBook,
-} from '../../../constants/fonts';
+} from '../../../../constants/fonts';
 
 export default StyleSheet.create({
   containerModal: {
