@@ -43,7 +43,7 @@ export const setFilter = (name, value) => ({
 });
 
 export const getEvents = (filters = null) => dispatch => {
-  var requestUrl = `${DEFAULT_URL}/events/?`;
+  var requestUrl = `${DEFAULT_URL}/events/`;
 
   dispatch(setLoading(true));
   //Generate filters for request
@@ -60,7 +60,7 @@ export const getEvents = (filters = null) => dispatch => {
       }
     });
   }
-
+  console.log('requestUrl', requestUrl);
   fetch(requestUrl)
     .then(response => response.json())
     .then(responseJson => {
