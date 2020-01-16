@@ -20,6 +20,7 @@
 		4D09F38D7CBD448169B7906D /* libPods-Masaha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D6A4AE717D9395A98DC040 /* libPods-Masaha.a */; };
 		5F4E3D11722E4ADC18A2EF28 /* libPods-Masaha-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3910DC5EC88257E7EBC41B0A /* libPods-Masaha-tvOSTests.a */; };
 		69F6E0AB5FF540E2B052F589 /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 308815D633704412833B526C /* Gotham-Bold.otf */; };
+		CE775A0723D07253000C0B9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE775A0623D07253000C0B9A /* GoogleService-Info.plist */; };
 		D9D296CCC6434427BF1DCBE9 /* Gotham Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0689BE80486D4F62BF4ED702 /* Gotham Medium.ttf */; };
 		DB106CF70AA5FE3538B5F247 /* libPods-MasahaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D01B2CEB80AEE0E513E94B48 /* libPods-MasahaTests.a */; };
 		DE738FE1A4D789AEAC7A68AB /* libPods-Masaha-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7102A5DE570615EE12B65AF7 /* libPods-Masaha-tvOS.a */; };
@@ -80,6 +81,7 @@
 		A21605D0CB19241E862EC613 /* Pods-Masaha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Masaha.debug.xcconfig"; path = "Target Support Files/Pods-Masaha/Pods-Masaha.debug.xcconfig"; sourceTree = "<group>"; };
 		A613604C8942605B43FC15B5 /* Pods-Masaha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Masaha.release.xcconfig"; path = "Target Support Files/Pods-Masaha/Pods-Masaha.release.xcconfig"; sourceTree = "<group>"; };
 		CC04C283F3014F229735F35D /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		CE775A0623D07253000C0B9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CFA1AE4AE406422CAD2B12FD /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		D01B2CEB80AEE0E513E94B48 /* libPods-MasahaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MasahaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2104B8712AB4B028EC38859 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		13B07FAE1A68108700A75B9A /* Masaha */ = {
 			isa = PBXGroup;
 			children = (
+				CE775A0623D07253000C0B9A /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -397,6 +400,7 @@
 				1FE94572932142078EBD7895 /* Gotham-Book.otf in Resources */,
 				E0D00A6C1EA24FF4B2B6B9BF /* Muli-Regular.ttf in Resources */,
 				D9D296CCC6434427BF1DCBE9 /* Gotham Medium.ttf in Resources */,
+				CE775A0723D07253000C0B9A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,7 +750,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.neromobi.masaha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.masaha;
 				PRODUCT_NAME = Masaha;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -765,7 +769,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.neromobi.masaha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.masaha;
 				PRODUCT_NAME = Masaha;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
