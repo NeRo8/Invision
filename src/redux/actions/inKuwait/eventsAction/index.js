@@ -60,7 +60,6 @@ export const getEvents = (filters = null) => dispatch => {
       }
     });
   }
-  console.log('requestUrl', requestUrl);
   fetch(requestUrl)
     .then(response => response.json())
     .then(responseJson => {
