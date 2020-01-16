@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "899575856190",
+    "firebase_url": "https://masaha-ad89d.firebaseio.com",
+    "project_id": "masaha-ad89d",
+    "storage_bucket": "masaha-ad89d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899575856190:android:c15cf8f95f5ca7a600256f",
+        "android_client_info": {
+          "package_name": "com.masaha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899575856190-2hqoiv5fpbqu9eq62p95ogjcm63dvrbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGzqoMLaPx2NdBUJP6bdNZH1IAwZElkOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899575856190-2hqoiv5fpbqu9eq62p95ogjcm63dvrbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
