@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.masaha"
+        applicationId "we.candev.mobile.masaha"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>899575856190-64q6sthdvp04ue9ouv9ffpjtpisn2mhq.apps.googleusercontent.com</string>
+	<string>148982606823-5rnspacehdcjlb25t9530vbgs1tnbd4e.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.899575856190-64q6sthdvp04ue9ouv9ffpjtpisn2mhq</string>
+	<string>com.googleusercontent.apps.148982606823-5rnspacehdcjlb25t9530vbgs1tnbd4e</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCMmbddoIsG5QdODA7k_EEQG3VdaLr8MaM</string>
+	<string>AIzaSyDsgu3WfKZNj_glWuB3jGx3nvDhM4txe3k</string>
 	<key>GCM_SENDER_ID</key>
-	<string>899575856190</string>
+	<string>148982606823</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.masaha</string>
+	<string>we.candev.mobile.masaha</string>
 	<key>PROJECT_ID</key>
-	<string>masaha-ad89d</string>
+	<string>masaha-116c8</string>
 	<key>STORAGE_BUCKET</key>
-	<string>masaha-ad89d.appspot.com</string>
+	<string>masaha-116c8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:899575856190:ios:844f27a81f5ccf8b00256f</string>
+	<string>1:148982606823:ios:04feb7def6a82d51c9ab42</string>
 	<key>DATABASE_URL</key>
-	<string>https://masaha-ad89d.firebaseio.com</string>
+	<string>https://masaha-116c8.firebaseio.com</string>
 </dict>
 </plist>

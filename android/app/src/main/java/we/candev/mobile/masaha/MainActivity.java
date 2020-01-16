@@ -1,4 +1,4 @@
-package com.masaha;
+package we.candev.mobile.masaha;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen; // import this
