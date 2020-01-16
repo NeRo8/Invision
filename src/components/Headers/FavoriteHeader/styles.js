@@ -4,6 +4,7 @@ import { colors, globalStyles } from '../../../constants';
 
 export default StyleSheet.create({
   container: {
+    paddingTop: 20,
     backgroundColor: colors.HEADER,
   },
   titleBlock: {
