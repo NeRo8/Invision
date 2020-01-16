@@ -22,7 +22,9 @@ class ProfileNotificationsChat extends Component {
     const id = navigation.getParam('threadId', null);
     getAllMessages(id);
 
-    this.ws = new WebSocket(`wss://staging.masaha.app/chat/1/?token=${token}`);
+    this.ws = new WebSocket(
+      `wss://staging.masaha.app/chat/${id}/?token=${token}`,
+    );
 
     //Коли відкрився мост
     this.ws.onopen = () => {
@@ -41,7 +43,7 @@ class ProfileNotificationsChat extends Component {
 
     this.ws.onclose = e => {
       // connection closed
-      console.log(e.code, e.reason);
+      console.log('Socket close', e.code, e.reason);
     };
   }
 

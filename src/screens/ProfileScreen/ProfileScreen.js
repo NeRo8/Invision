@@ -37,9 +37,10 @@ class ProfileScreen extends Component {
   }
 
   componentDidFocus() {
-    const { getProfileInfo } = this.props;
-
-    getProfileInfo();
+    const { getProfileInfo, authStatus } = this.props;
+    if (authStatus) {
+      getProfileInfo();
+    }
   }
 
   handlePressChangeAvatar = async () => {

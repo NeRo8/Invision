@@ -1,14 +1,14 @@
+import API from '../../../api';
+import { setError } from '../Error';
+
 import {
   SET_THREADS,
   SET_MESSAGES,
   SET_LOADING,
-  SET_ERROR,
   SET_MESSAGE,
   SET_OLD_MESSAGE,
   SET_OLD_THREADS,
 } from './types';
-
-import API from '../../../api';
 
 const setThreads = threads => ({
   type: SET_THREADS,
@@ -40,11 +40,6 @@ export const setLoading = loading => ({
   payload: loading,
 });
 
-const setError = error => ({
-  type: SET_ERROR,
-  payload: error,
-});
-
 export const fetchAllThreads = () => dispatch => {
   dispatch(setLoading(true));
 
@@ -54,7 +49,7 @@ export const fetchAllThreads = () => dispatch => {
     })
     .then(() => dispatch(setLoading(false)))
     .catch(error => {
-      dispatch(setError(error));
+      dispatch(setError(error.message));
     });
 };
 
@@ -85,6 +80,6 @@ export const fetchAllMessages = threadId => dispatch => {
     })
     .then(() => dispatch(setLoading(false)))
     .catch(error => {
-      dispatch(setError(error));
+      dispatch(setError(error.message));
     });
 };
