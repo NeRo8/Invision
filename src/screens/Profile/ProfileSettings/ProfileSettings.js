@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 import { DefaultButton } from '../../../components/Buttons';
 
@@ -69,6 +70,15 @@ class ProfileSettingsScreen extends Component {
       ad_answer: value,
       news_offer_promotion: value,
     });
+  };
+
+  handlePressLogout = () => {
+    this.props.onLogout();
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'Main' })],
+    });
+    this.props.navigation.dispatch(resetAction);
   };
 
   render() {
@@ -183,10 +193,7 @@ class ProfileSettingsScreen extends Component {
           <DefaultButton
             title="Logout"
             buttonStyle={{ marginVertical: 16 }}
-            onPressButton={() => {
-              this.props.navigation.navigate('Auth');
-              this.props.onLogout();
-            }}
+            onPressButton={this.handlePressLogout}
           />
         </ScrollView>
       </SafeAreaView>
