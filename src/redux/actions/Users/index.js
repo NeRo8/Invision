@@ -10,6 +10,7 @@ import {
   SET_PROFILE_ADS,
   SET_NOTIFICATION_SETTINGS,
   SET_PROFILE_ADS_STATUS,
+  SET_AVATAR,
 } from './types';
 
 const setProfile = profile => ({
@@ -30,6 +31,11 @@ const setLoading = status => ({
 const setNotificationSettings = settings => ({
   type: SET_NOTIFICATION_SETTINGS,
   payload: settings,
+});
+
+const setAvatar = avatar => ({
+  type: SET_AVATAR,
+  payload: avatar,
 });
 
 export const setAdsStatus = active => dispatch => {
@@ -104,5 +110,7 @@ export const updateAvatar = avatar => dispatch => {
 
   API.post('users/change-avatar/', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
-  }).then(response => console.log(response));
+  })
+    .then(response => dispatch(setAvatar(response.data.avatar)))
+    .catch(error => dispatch(setError(error.message)));
 };

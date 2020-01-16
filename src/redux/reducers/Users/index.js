@@ -4,6 +4,7 @@ import {
   SET_PROFILE_ADS,
   SET_NOTIFICATION_SETTINGS,
   SET_PROFILE_ADS_STATUS,
+  SET_AVATAR,
 } from '../../actions/Users/types';
 
 const initState = {
@@ -48,6 +49,15 @@ const usersReducer = (state = initState, action) => {
       return {
         ...state,
         adsStatus: action.payload,
+      };
+    }
+    case SET_AVATAR: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          avatar: action.payload,
+        },
       };
     }
     default:

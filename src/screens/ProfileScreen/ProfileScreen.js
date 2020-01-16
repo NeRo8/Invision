@@ -21,9 +21,7 @@ import styles from './styles';
 class ProfileScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      avatar: null,
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -45,6 +43,7 @@ class ProfileScreen extends Component {
   }
 
   handlePressChangeAvatar = async () => {
+    const { onUpdateAvatar } = this.props;
     const options = {
       title: 'Select avatar',
       storageOptions: {
@@ -52,38 +51,15 @@ class ProfileScreen extends Component {
         path: 'images',
       },
     };
-    ImagePicker.showImagePicker(options, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        //const source = {uri: response.uri};
-        this.setState({
-          avatar: response,
-        });
-        console.log(response);
-        const { onUpdateAvatar } = this.props;
-        onUpdateAvatar(this.state.avatar);
-      }
+    ImagePicker.launchImageLibrary(options, response => {
+      onUpdateAvatar(response);
     });
   };
 
   renderAvatar() {
-    const { avatar } = this.state;
     const { user } = this.props;
 
-    if (avatar !== null) {
-      return (
-        <Image
-          source={{ uri: avatar.uri }}
-          style={{ borderRadius: 75, height: 82, width: 82 }}
-          resizeMode="cover"
-        />
-      );
-    } else if (user.avatar !== null) {
+    if (user.avatar !== null) {
       return (
         <Image
           source={{ uri: user.avatar }}
