@@ -76,7 +76,9 @@ class ProfileSettingsScreen extends Component {
     const { notifSettings, setNotifSettings } = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.containerBlock}>
+        <ScrollView
+          contentContainerStyle={styles.containerBlock}
+          showsVerticalScrollIndicator={false}>
           <View>
             <Text style={styles.headerText}>PERSONAL INFO & PASSWORD</Text>
             <Divider style={styles.divider} />

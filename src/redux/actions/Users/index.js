@@ -74,15 +74,9 @@ export const deleteAds = id => dispatch => {
 };
 
 export const changeProfile = newProfile => dispatch => {
-  API.put('/users/profile-info/', newProfile)
-    .then(response => {
-      if (response.full_name !== undefined) {
-        dispatch(setError(response));
-      } else {
-        dispatch(setError('Success'));
-      }
-    })
-    .catch(error => dispatch(setError(error)));
+  API.put('/users/profile-info/', newProfile).catch(error =>
+    dispatch(setError(error)),
+  );
 };
 
 export const getNotificationSettings = () => dispatch => {
