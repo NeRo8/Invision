@@ -2,7 +2,7 @@ import HeaderAds from './HeaderAds';
 
 import { connect } from 'react-redux';
 
-import { getAds, setFilter } from '../../redux/actions/Ads';
+import { adsActions } from '../../redux/Ads';
 
 const mapStateToProps = state => {
   return {
@@ -15,10 +15,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAdsList: (filters, token) => {
-      dispatch(getAds(filters, token));
+      dispatch(adsActions.getAds(filters, token));
     },
     setFilters: value => {
-      dispatch(setFilter('q', value));
+      dispatch(adsActions.setFilter('q', value));
     },
   };
 };

@@ -2,7 +2,7 @@ import ProductScreen from './ProductScreen';
 
 import { connect } from 'react-redux';
 
-import { getAdDetail } from '../../../redux/actions/AdDetail';
+import { adDetailActions } from '../../../redux/AdDetail';
 
 const mapStateToProps = state => {
   return {
@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAdData: id => {
-      dispatch(getAdDetail(id));
+      dispatch(adDetailActions.getAdDetail(id));
     },
   };
 };

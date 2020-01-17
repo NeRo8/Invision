@@ -2,11 +2,7 @@ import FaqFilter from './FaqFilter';
 
 import { connect } from 'react-redux';
 
-import {
-  getCategories,
-  setFilter,
-  getFaqs,
-} from '../../../../redux/actions/inKuwait/faqAction';
+import { faqActions } from '../../../../redux/Faq';
 
 const mapStateToProps = state => {
   return {
@@ -18,13 +14,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getFaqsList: filters => {
-      dispatch(getFaqs(filters));
+      dispatch(faqActions.getFaqs(filters));
     },
     getCategoriesList: () => {
-      dispatch(getCategories());
+      dispatch(faqActions.getCategories());
     },
     setFilters: (name, id) => {
-      dispatch(setFilter(name, id));
+      dispatch(faqActions.setFilter(name, id));
     },
   };
 };

@@ -2,10 +2,7 @@ import Ads from './Ads';
 
 import { connect } from 'react-redux';
 
-import {
-  getFavoriteAds,
-  clearFavoriteAd,
-} from '../../../redux/actions/Favorite';
+import { favoriteActions } from '../../../redux/Favorite';
 
 const mapStateToProps = state => {
   return {
@@ -17,8 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFavorAds: () => dispatch(getFavoriteAds()),
-    deleteAd: id => dispatch(clearFavoriteAd(id)),
+    getFavorAds: () => dispatch(favoriteActions.getFavoriteAds()),
+    deleteAd: id => dispatch(favoriteActions.clearFavoriteAd(id)),
   };
 };
 

@@ -1,11 +1,8 @@
 import EventsFilter from './EventsFilter';
 
 import { connect } from 'react-redux';
-import {
-  getCategories,
-  setFilter,
-  getEvents,
-} from '../../../../redux/actions/inKuwait/eventsAction';
+
+import { eventsActions } from '../../../../redux/Events';
 
 const mapStateToProps = state => {
   return {
@@ -17,13 +14,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getEventsList: filters => {
-      dispatch(getEvents(filters));
+      dispatch(eventsActions.getEvents(filters));
     },
     getCategoriesList: () => {
-      dispatch(getCategories());
+      dispatch(eventsActions.getCategories());
     },
     setFilters: (name, value) => {
-      dispatch(setFilter(name, value));
+      dispatch(eventsActions.setFilter(name, value));
     },
   };
 };

@@ -2,7 +2,7 @@ import AdsModal from './AdsModal';
 
 import { connect } from 'react-redux';
 
-import { deleteAds } from '../../../../redux/actions/Users';
+import { usersActions } from '../../../../redux/Users';
 
 const mapStateToProps = state => {
   return {};
@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     deleteAd: (id, token) => {
-      dispatch(deleteAds(id, token));
+      dispatch(usersActions.deleteAds(id, token));
     },
   };
 };

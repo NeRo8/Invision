@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 
 import OrganisationAndServicesScreen from './OrganisationAndServicesScreen';
 
-import {
-  getServices,
-  setFilter,
-} from '../../../../redux/actions/inKuwait/servicesAction';
+import { servicesActions } from '../../../../redux/Services';
 
 const mapStateToProps = state => {
   return {
@@ -18,10 +15,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getServiceList: filters => {
-      dispatch(getServices(filters));
+      dispatch(servicesActions.getServices(filters));
     },
     onSearch: text => {
-      dispatch(setFilter('q', text));
+      dispatch(servicesActions.setFilter('q', text));
     },
   };
 };

@@ -1,7 +1,7 @@
 import NewsAnswers from './NewsAnswers';
 
 import { connect } from 'react-redux';
-import { setReport } from '../../../../redux/actions/inKuwait/newsAction';
+import { newsActions } from '../../../../redux/News';
 
 const mapStateToProps = state => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setAnswerReport: (commentId, token) => {
-      dispatch(setReport(commentId, token));
+      dispatch(newsActions.setReport(commentId, token));
     },
   };
 };

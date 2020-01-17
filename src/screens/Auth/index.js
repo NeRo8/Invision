@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 import { AccessToken, LoginManager, LoginButton } from 'react-native-fbsdk';
 import InstagramLogin from 'react-native-instagram-login';
 
-import { loginWithFacebook } from '../../redux/actions/Auth';
+import { authActions } from '../../redux/Auth';
 
 import { colors, icons } from '../../constants';
 import styles from './styles';
@@ -155,7 +155,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     facebookLogin: token => {
-      dispatch(loginWithFacebook(token));
+      dispatch(authActions.loginWithFacebook(token));
     },
   };
 };

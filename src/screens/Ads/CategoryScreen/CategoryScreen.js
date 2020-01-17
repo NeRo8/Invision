@@ -3,7 +3,6 @@ import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
 
 import styles from './styles';
-import { setFilter } from '../../../redux/actions/Ads';
 
 const ElementCategoryList = ({ item, onPressElement }) => (
   <TouchableOpacity onPress={() => onPressElement(item.name)}>

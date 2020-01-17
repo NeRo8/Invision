@@ -2,11 +2,7 @@ import NewsFilter from './NewsFilter';
 
 import { connect } from 'react-redux';
 
-import {
-  getCategories,
-  setFilter,
-  getNews,
-} from '../../../../redux/actions/inKuwait/newsAction';
+import { newsActions } from '../../../../redux/News';
 
 const mapStateToProps = state => {
   return {
@@ -18,13 +14,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCategories: () => {
-      dispatch(getCategories());
+      dispatch(newsActions.getCategories());
     },
     setFilters: (name, value) => {
-      dispatch(setFilter(name, value));
+      dispatch(newsActions.setFilter(name, value));
     },
     getNewsList: filters => {
-      dispatch(getNews(filters));
+      dispatch(newsActions.getNews(filters));
     },
   };
 };

@@ -1,10 +1,8 @@
 import FaqAsk from './FaqAsk';
 
 import { connect } from 'react-redux';
-import {
-  setQuestion,
-  getCategories,
-} from '../../../../redux/actions/inKuwait/faqAction';
+
+import { faqActions } from '../../../../redux/Faq';
 
 const mapStatToProps = state => {
   return {
@@ -17,10 +15,10 @@ const mapStatToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCategoryList: () => {
-      dispatch(getCategories());
+      dispatch(faqActions.getCategories());
     },
     addQuestion: (token, question) => {
-      dispatch(setQuestion(token, question));
+      dispatch(faqActions.setQuestion(token, question));
     },
   };
 };

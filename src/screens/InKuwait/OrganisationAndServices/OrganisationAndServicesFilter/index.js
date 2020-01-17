@@ -1,11 +1,7 @@
 import OrganisationAndServicesFilter from './OrganisationAndServicesFilter';
 
 import { connect } from 'react-redux';
-import {
-  getCategories,
-  setFilter,
-  getServices,
-} from '../../../../redux/actions/inKuwait/servicesAction';
+import { servicesActions } from '../../../../redux/Services';
 
 const mapStateToProps = state => {
   return {
@@ -17,13 +13,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getServiceList: filters => {
-      dispatch(getServices(filters));
+      dispatch(servicesActions.getServices(filters));
     },
     getCategoriesList: () => {
-      dispatch(getCategories());
+      dispatch(servicesActions.getCategories());
     },
     setCategoryFilter: id => {
-      dispatch(setFilter('category', id));
+      dispatch(servicesActions.setFilter('category', id));
     },
   };
 };

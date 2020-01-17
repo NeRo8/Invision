@@ -2,7 +2,7 @@ import HeaderProduct from './HeaderProduct';
 
 import { connect } from 'react-redux';
 
-import { addToFavorite, removeFromFavorite } from '../../redux/actions/Ads';
+import { adsActions } from '../../redux/Ads';
 
 const mapStateToProps = state => {
   return {
@@ -14,10 +14,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addAdToFavorite: (id, token) => {
-      dispatch(addToFavorite(id, token, 'detail'));
+      dispatch(adsActions.addToFavorite(id, token, 'detail'));
     },
     removeAdFromFavorite: (id, token) => {
-      dispatch(removeFromFavorite(id, token, 'detail'));
+      dispatch(adsActions.removeFromFavorite(id, token, 'detail'));
     },
   };
 };

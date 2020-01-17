@@ -2,7 +2,7 @@ import CreateCommentScreen from './CreateCommentScreen';
 
 import { connect } from 'react-redux';
 
-import { setComment } from '../../../redux/actions/Ads';
+import { adsActions } from '../../../redux/Ads';
 
 const mapStateToProps = state => {
   return {
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createComment: (data, token) => {
-      dispatch(setComment(data, token));
+      dispatch(adsActions.setComment(data, token));
     },
   };
 };

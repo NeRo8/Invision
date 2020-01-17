@@ -2,7 +2,7 @@ import ElementListAds from './ElementListAds';
 
 import { connect } from 'react-redux';
 
-import { addToFavorite, removeFromFavorite } from '../../../redux/actions/Ads';
+import { adsActions } from '../../../redux/Ads';
 
 const mapStateToProps = state => {
   return {
@@ -13,10 +13,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addFavorite: (id, token) => {
-      dispatch(addToFavorite(id, token));
+      dispatch(adsActions.addToFavorite(id, token));
     },
     removeFavorite: (id, token) => {
-      dispatch(removeFromFavorite(id, token));
+      dispatch(adsActions.removeFromFavorite(id, token));
     },
   };
 };

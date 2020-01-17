@@ -2,7 +2,7 @@ import ErrorComponent from './ErrorComponent';
 
 import { connect } from 'react-redux';
 
-import { clearErr } from '../../redux/actions/Error';
+import { errorActions } from '../../redux/Error';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     clearError: () => {
-      dispatch(clearErr());
+      dispatch(errorActions.clearErr());
     },
   };
 };

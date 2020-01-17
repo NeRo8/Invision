@@ -2,12 +2,9 @@ import ProfileSettings from './ProfileSettings';
 
 import { connect } from 'react-redux';
 
-import {
-  getNotificationSettings,
-  updateNotificationSettings,
-} from '../../../redux/actions/Users';
+import { usersActions } from '../../../redux/Users';
 
-import { logout } from '../../../redux/actions/Auth';
+import { authActions } from '../../../redux/Auth';
 
 const mapStateToProps = state => {
   return {
@@ -18,13 +15,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getNotifSettings: () => {
-      dispatch(getNotificationSettings());
+      dispatch(usersActions.getNotificationSettings());
     },
     setNotifSettings: data => {
-      dispatch(updateNotificationSettings(data));
+      dispatch(usersActions.updateNotificationSettings(data));
     },
     onLogout: () => {
-      dispatch(logout());
+      dispatch(authActions.logout());
     },
   };
 };

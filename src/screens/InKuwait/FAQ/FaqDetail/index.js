@@ -2,7 +2,7 @@ import FaqDetail from './FaqDetail';
 
 import { connect } from 'react-redux';
 
-import { getFaqDetail } from '../../../../redux/actions/inKuwait/faqAction';
+import { faqActions } from '../../../../redux/Faq';
 
 const mapStateToProps = state => {
   return {
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getQuestionDetail: id => {
-      dispatch(getFaqDetail(id));
+      dispatch(faqActions.getFaqDetail(id));
     },
   };
 };

@@ -6,7 +6,6 @@ import ModalComplite from './ModalComplite';
 
 import globalStyles from '../../../../constants/globalStyles';
 import styles from './styles';
-import { createAd } from '../../../../redux/actions/AdCreate';
 
 class Step5Screen extends Component {
   constructor(props) {
