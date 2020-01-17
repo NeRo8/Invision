@@ -14,21 +14,18 @@ class HeaderAds extends Component {
   }
 
   handlePressCategory = () => {
-    this.props.navigation.navigate('Category');
+    const { navigation } = this.props;
+    navigation.navigate('Category');
   };
 
   handlePressFilters = () => {
-    this.props.navigation.navigate('Filters');
+    const { navigation } = this.props;
+    navigation.navigate('Filters');
   };
 
   handlePressSubmit = () => {
-    const { getAdsList, filters, authStatus, token } = this.props;
-
-    if (authStatus) {
-      getAdsList(filters, token);
-    } else {
-      getAdsList(filters);
-    }
+    const { getAdsList } = this.props;
+    getAdsList();
   };
 
   render() {

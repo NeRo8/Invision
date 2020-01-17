@@ -7,7 +7,6 @@ import { adsActions } from '../../../redux/Ads';
 const mapStateToProps = state => {
   return {
     data: state.ads.categories.results,
-    filters: state.ads.filters,
   };
 };
 
@@ -16,11 +15,11 @@ const mapDispatchToProps = dispatch => {
     getCategoriesList: () => {
       dispatch(adsActions.getCategories());
     },
-    getAdsList: filter => {
-      dispatch(adsActions.getAds(filter));
-    },
     setFilters: (name, value) => {
       dispatch(adsActions.setFilter(name, value));
+    },
+    getAllAds: () => {
+      dispatch(adsActions.getAds());
     },
   };
 };

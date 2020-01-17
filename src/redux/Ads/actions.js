@@ -1,5 +1,6 @@
 import API, { setToken } from '../../api';
 import { store } from '../store';
+import { errorActions } from '../Error';
 
 import * as types from './types';
 
@@ -60,7 +61,7 @@ export const getAds = () => dispatch => {
   API.get(`/ads/ads/?${requestUrl}`)
     .then(response => dispatch(setAdsList(response.data)))
     .then(() => dispatch(setLoading(false)))
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getCategories = () => dispatch => {
@@ -70,13 +71,13 @@ export const getCategories = () => dispatch => {
     .then(response => {
       dispatch(setCategories(response.data));
     })
-    .then(() => setLoading(false))
-    .catch(error => dispatch(setError(error)));
+    .then(() => dispatch(setLoading(false)))
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getAdsLoadMore = url => dispatch => {
   if (url === null) {
-    dispatch(setError('Next not exist'));
+    dispatch(errorActions.setError('Next not exist'));
   } else {
     fetch(url, {
       method: 'GET',
@@ -86,7 +87,7 @@ export const getAdsLoadMore = url => dispatch => {
         dispatch(setAdsLoadMore(responseJson));
       })
       .catch(error => {
-        dispatch(setError(error));
+        dispatch(errorActions.setError(error));
       });
   }
 };
@@ -124,7 +125,7 @@ export const getAdsFavorites = () => dispatch => {
   API.get('/ads/favorites/')
     .then(response => dispatch(setAdsFavorites(response.data)))
     .then(() => dispatch(setLoading(false)))
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getSellerProfile = userid => dispatch => {
