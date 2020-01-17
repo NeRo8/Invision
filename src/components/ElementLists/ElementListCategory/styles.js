@@ -16,7 +16,7 @@ export default StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'silver',
+    backgroundColor: 'rgb(222,222,222)',
   },
   elementTitle: {
     ...gothamBook,

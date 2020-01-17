@@ -9,7 +9,11 @@ const ElementCategoryList = ({ item, onPressElement }) => (
     <View style={styles.elementContainer}>
       <View style={styles.elementIcon}>
         <Image
-          source={item.icon}
+          source={
+            item.icon_image !== null
+              ? { uri: item.icon_image }
+              : item.icon_image
+          }
           style={{ width: null, height: null, flex: 1 }}
         />
       </View>
