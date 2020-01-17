@@ -26,6 +26,8 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         user: {
+          user: null,
+          refresh_token: null,
           access_token: null,
         },
         authStatus: false,
