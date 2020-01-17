@@ -1,4 +1,4 @@
-package com.masaha;
+package we.candev.mobile.masaha;
 
 import android.app.Application;
 import android.content.Context;

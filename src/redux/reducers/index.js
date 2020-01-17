@@ -10,13 +10,25 @@ import createAdReducer from './AdCreate';
 import inKuwaitReducer from './inKuwait';
 import usersReducer from './Users';
 import chatReducer from './Chat';
+import favoriteReducer from './Favorite';
+import errorReducer from './Error';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
   whitelist: ['auth'],
-  blacklist: ['ads', 'inKuwait', 'filters', 'users', 'chat', 'adCreate', 'ad'],
+  blacklist: [
+    'ads',
+    'inKuwait',
+    'filters',
+    'users',
+    'chat',
+    'adCreate',
+    'ad',
+    'favorite',
+    'error',
+  ],
 };
 
 const rootReducer = combineReducers({
@@ -27,6 +39,8 @@ const rootReducer = combineReducers({
   users: usersReducer,
   chat: chatReducer,
   ad: adDetailReducer,
+  favorite: favoriteReducer,
+  error: errorReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

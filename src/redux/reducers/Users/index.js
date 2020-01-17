@@ -1,9 +1,10 @@
 import {
   SET_PROFILE,
-  SET_ERROR,
   SET_LOADING,
   SET_PROFILE_ADS,
   SET_NOTIFICATION_SETTINGS,
+  SET_PROFILE_ADS_STATUS,
+  SET_AVATAR,
 } from '../../actions/Users/types';
 
 const initState = {
@@ -15,6 +16,7 @@ const initState = {
     ad_answer: false,
     news_offer_promotion: false,
   },
+  adsStatus: 'active',
 };
 
 const usersReducer = (state = initState, action) => {
@@ -37,16 +39,25 @@ const usersReducer = (state = initState, action) => {
         loading: action.payload,
       };
     }
-    case SET_ERROR: {
-      return {
-        ...state,
-        error: action.payload,
-      };
-    }
     case SET_NOTIFICATION_SETTINGS: {
       return {
         ...state,
         notifSettings: action.payload,
+      };
+    }
+    case SET_PROFILE_ADS_STATUS: {
+      return {
+        ...state,
+        adsStatus: action.payload,
+      };
+    }
+    case SET_AVATAR: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          avatar: action.payload,
+        },
       };
     }
     default:

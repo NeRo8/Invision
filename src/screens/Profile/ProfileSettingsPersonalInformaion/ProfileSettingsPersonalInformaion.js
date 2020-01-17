@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
-import DropdownAlert from 'react-native-dropdownalert';
 
 import { DefaultButton } from '../../../components/Buttons';
 import { IconInput } from '../../../components/Inputs';
@@ -36,22 +35,6 @@ class ProfileSettingsPersonalInformaion extends Component {
 
     for (var key in user) {
       this.onChangeState(key, user[key]);
-    }
-  }
-
-  componentDidUpdate() {
-    const { error, onClearError } = this.props;
-
-    if (error !== null && error === 'Success') {
-      this.dropDownAlertRef.alertWithType(
-        'success',
-        'Success',
-        'All field changed',
-      );
-      onClearError();
-    } else if (error !== null) {
-      this.dropDownAlertRef.alertWithType('error', 'Error', error);
-      onClearError();
     }
   }
 
@@ -153,10 +136,6 @@ class ProfileSettingsPersonalInformaion extends Component {
             onPressButton={this.handlePressSave}
           />
         </View>
-        <DropdownAlert
-          ref={ref => (this.dropDownAlertRef = ref)}
-          updateStatusBar={false}
-        />
       </SafeAreaView>
     );
   }

@@ -1,45 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ScrollView, Image } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, Button } from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
 
-import TextPicker from '../../components/TextPicker';
 import ElementFL from './components/Ads';
-import { ProfileAdsModal } from '../../components/Modals';
 import LoadingStatus from '../../components/LoadingStatus';
 
-import { colors, globalStyles } from '../../constants';
+import { colors } from '../../constants';
 
 import styles from './styles';
 
 class ProfileScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      filters: [
-        {
-          id: 0,
-          title: 'Active',
-          active: true,
-          func: () => {
-            this.setState({ grayscale: false });
-          },
-        },
-        {
-          id: 1,
-          title: 'Unactive',
-          active: false,
-          func: () => {
-            this.setState({ grayscale: true });
-          },
-        },
-      ],
-      grayscale: false,
-      item: null,
-      showModal: false,
-      avatar: null,
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -55,38 +37,14 @@ class ProfileScreen extends Component {
   }
 
   componentDidFocus() {
-    const { getProfileInfo } = this.props;
-
-    getProfileInfo();
+    const { getProfileInfo, authStatus } = this.props;
+    if (authStatus) {
+      getProfileInfo();
+    }
   }
 
-  showOption = (value, itemIncome) => {
-    this.setState({
-      showModal: value,
-      item: itemIncome,
-    });
-  };
-
-  handlePressSelectedView = name => {
-    this.setState({
-      active: false,
-      inactive: false,
-      [name]: true,
-    });
-  };
-
-  handlePressFilter = id => {
-    const { filters } = this.state;
-    const newFilter = filters.map(item =>
-      item.id === id ? { ...item, active: true } : { ...item, active: false },
-    );
-
-    this.setState({
-      filters: newFilter,
-    });
-  };
-
   handlePressChangeAvatar = async () => {
+    const { onUpdateAvatar } = this.props;
     const options = {
       title: 'Select avatar',
       storageOptions: {
@@ -94,38 +52,15 @@ class ProfileScreen extends Component {
         path: 'images',
       },
     };
-    ImagePicker.showImagePicker(options, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        //const source = {uri: response.uri};
-        this.setState({
-          avatar: response,
-        });
-        console.log(response);
-        const { onUpdateAvatar } = this.props;
-        onUpdateAvatar(this.state.avatar);
-      }
+    ImagePicker.launchImageLibrary(options, response => {
+      onUpdateAvatar(response);
     });
   };
 
   renderAvatar() {
-    const { avatar } = this.state;
     const { user } = this.props;
 
-    if (avatar !== null) {
-      return (
-        <Image
-          source={{ uri: avatar.uri }}
-          style={{ borderRadius: 75, height: 82, width: 82 }}
-          resizeMode="cover"
-        />
-      );
-    } else if (user.avatar !== null) {
+    if (user.avatar !== null) {
       return (
         <Image
           source={{ uri: user.avatar }}
@@ -147,133 +82,160 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    const { loading, authStatus, user, navigation, ads } = this.props;
+    const {
+      loading,
+      authStatus,
+      user,
+      navigation,
+      ads,
+      setStatusAds,
+      adsState,
+    } = this.props;
 
     if (!authStatus) {
       return <LoadingStatus text="First you need sign in ..." />;
-    } else if (loading === true) {
+    }
+    if (loading === true) {
       return <LoadingStatus />;
-    } else
-      return (
-        <ScrollView contentContainerStyle={styles.container}>
-          <LinearGradient
-            colors={['rgb(45,118,233)', 'rgb(97,193,248)']}
-            start={{ x: 0.0, y: 1 }}
-            end={{ x: 0.8, y: 1.3 }}>
-            <View style={styles.headerProfile}>
-              <View style={styles.headerProfileContainer}>
+    }
+    return (
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}>
+        <LinearGradient
+          colors={['rgb(45,118,233)', 'rgb(97,193,248)']}
+          start={{ x: 0.0, y: 1 }}
+          end={{ x: 0.8, y: 1.3 }}>
+          <View style={styles.headerProfile}>
+            <View style={styles.headerProfileContainer}>
+              <Icon
+                name="folder-open"
+                type="ion-icon"
+                color="white"
+                containerStyle={styles.iconHeader}
+                onPress={() => navigation.navigate('ProfilePaymentHistory')}
+              />
+              <View>
+                <View style={styles.profileImage}>{this.renderAvatar()}</View>
                 <Icon
-                  name="folder-open"
-                  type="ion-icon"
+                  name="pencil-outline"
+                  type="material-community"
+                  underlayColor="transparent"
                   color="white"
-                  containerStyle={styles.iconHeader}
-                  onPress={() => navigation.navigate('ProfilePaymentHistory')}
+                  size={20}
+                  containerStyle={styles.iconHeaderProfile}
+                  onPress={this.handlePressChangeAvatar}
                 />
-                <View>
-                  <View style={styles.profileImage}>{this.renderAvatar()}</View>
-                  <Icon
-                    name="pencil-outline"
-                    type="material-community"
-                    underlayColor="transparent"
-                    color="white"
-                    size={20}
-                    containerStyle={styles.iconHeaderProfile}
-                    onPress={this.handlePressChangeAvatar}
-                  />
-                </View>
-                <View>
-                  <View>
-                    <Icon
-                      name="ios-notifications-outline"
-                      type="ionicon"
-                      color="white"
-                      containerStyle={styles.iconHeader}
-                      onPress={() =>
-                        navigation.navigate('ProfileNotifications')
-                      }
-                    />
-                  </View>
-                  <View style={styles.containerTextIcon}>
-                    <Text style={styles.fontInsideImage}>5</Text>
-                  </View>
-                </View>
               </View>
               <View>
-                <Text style={styles.headerTitleText}>{user.full_name}</Text>
+                <View>
+                  <Icon
+                    name="ios-notifications-outline"
+                    type="ionicon"
+                    color="white"
+                    containerStyle={styles.iconHeader}
+                    onPress={() => navigation.navigate('ProfileNotifications')}
+                  />
+                </View>
+                <View style={styles.containerTextIcon}>
+                  <Text style={styles.fontInsideImage}>5</Text>
+                </View>
               </View>
             </View>
-          </LinearGradient>
-          <Button
-            title="Settings"
-            titleStyle={styles.btnSettingsTitle}
-            buttonStyle={styles.btnStyle}
-            onPress={() => navigation.navigate('ProfileSettings')}
-          />
-          <View>
-            <View style={styles.infoElement}>
-              <Icon
-                name="ios-mail"
-                type="ionicon"
-                color={colors.HEADER}
-                containerStyle={{ marginHorizontal: 20 }}
-              />
-              <Text style={styles.elementLabel}>{user.email}</Text>
-            </View>
-            <View style={styles.infoElement}>
-              <Icon
-                name="ios-call"
-                type="ionicon"
-                color={colors.HEADER}
-                containerStyle={{ marginHorizontal: 20 }}
-              />
-              <Text style={styles.elementLabel}>
-                {user.phone_number !== null ? user.phone_number : 'Not found'}
-              </Text>
-            </View>
-            <View style={styles.infoElement}>
-              <Icon
-                name="ios-business"
-                type="ionicon"
-                color={colors.HEADER}
-                containerStyle={{ marginHorizontal: 20 }}
-              />
-              <Text style={styles.elementLabel}>
-                {user.city !== null ? user.city.name : 'Not found'}
-              </Text>
+            <View>
+              <Text style={styles.headerTitleText}>{user.full_name}</Text>
             </View>
           </View>
-          <View style={styles.blockBody}>
-            <Text style={styles.headerText}>MY ADS</Text>
-
-            <View style={styles.selectedContainer}>
-              <TextPicker
-                dataList={this.state.filters}
-                onPressElement={this.handlePressFilter}
-              />
-            </View>
-
-            <FlatList
-              data={ads.results}
-              renderItem={({ item }) => (
-                <ElementFL
-                  item={item}
-                  showOption={this.showOption}
-                  grayscale={this.state.grayscale}
-                />
-              )}
-              keyExtractor={(item, index) => index}
+        </LinearGradient>
+        <Button
+          title="Settings"
+          titleStyle={styles.btnSettingsTitle}
+          buttonStyle={styles.btnStyle}
+          onPress={() => navigation.navigate('ProfileSettings')}
+        />
+        <View>
+          <View style={styles.infoElement}>
+            <Icon
+              name="ios-mail"
+              type="ionicon"
+              color={colors.HEADER}
+              containerStyle={{ marginHorizontal: 20 }}
             />
-
-            {this.state.item !== null ? (
-              <ProfileAdsModal
-                item={this.state.item}
-                show={this.state.showModal}
-                showOption={this.showOption}
-              />
-            ) : null}
+            <Text style={styles.elementLabel}>{user.email}</Text>
           </View>
-        </ScrollView>
-      );
+          <View style={styles.infoElement}>
+            <Icon
+              name="ios-call"
+              type="ionicon"
+              color={colors.HEADER}
+              containerStyle={{ marginHorizontal: 20 }}
+            />
+            <Text style={styles.elementLabel}>
+              {user.phone_number !== null ? user.phone_number : 'Not found'}
+            </Text>
+          </View>
+          <View style={styles.infoElement}>
+            <Icon
+              name="ios-business"
+              type="ionicon"
+              color={colors.HEADER}
+              containerStyle={{ marginHorizontal: 20 }}
+            />
+            <Text style={styles.elementLabel}>
+              {user.city !== null ? user.city.name : 'Not found'}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.blockBody}>
+          <Text style={styles.headerText}>MY ADS</Text>
+
+          <View style={styles.selectedContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                setStatusAds('active');
+              }}
+              style={
+                adsState === 'active'
+                  ? styles.textBlockActive
+                  : styles.textBlockUnactive
+              }>
+              <Text
+                style={
+                  adsState === 'active'
+                    ? styles.textActive
+                    : styles.unactiveText
+                }>
+                Active
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setStatusAds('inactive');
+              }}
+              style={
+                adsState === 'inactive'
+                  ? styles.textBlockActive
+                  : styles.textBlockUnactive
+              }>
+              <Text
+                style={
+                  adsState === 'inactive'
+                    ? styles.textActive
+                    : styles.unactiveText
+                }>
+                Unactive
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <FlatList
+            data={ads.results}
+            renderItem={({ item }) => <ElementFL item={item} />}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+      </ScrollView>
+    );
   }
 }
 

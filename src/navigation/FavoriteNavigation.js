@@ -1,53 +1,40 @@
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
-import FavoriteScreen from '../screens/FavoriteScreen';
+import AdsScreen from '../screens/Favorite/Ads';
+import ServicesScreen from '../screens/Favorite/Services';
+import EventsScreen from '../screens/Favorite/Events';
 
-import { DefaultHeader } from '../components/Headers';
+import { FavoriteHeader } from '../components/Headers';
 
 import { colors } from '../constants';
-import { gothamBook } from '../constants/fonts';
 
-const FavoriteNavigation = createStackNavigator(
+const FavoriteNavigation = createMaterialTopTabNavigator(
   {
-    Home: {
-      screen: FavoriteScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: (
-            <DefaultHeader
-              title="Favorites"
-              rightIcon={
-                <TouchableOpacity
-                  onPress={navigation.getParam('deleteFavorites')}>
-                  <Text
-                    style={{
-                      ...gothamBook,
-                      color: 'white',
-                      fontSize: 17,
-                      paddingTop: 5,
-                      textAlign: 'right',
-                      marginRight: 10,
-                    }}>
-                    Clear all
-                  </Text>
-                </TouchableOpacity>
-              }
-            />
-          ),
-          headerLeft: null,
-          headerRight: null,
-        };
+    Ads: {
+      screen: AdsScreen,
+      navigationOptions: {
+        title: 'Ads',
+      },
+    },
+    Services: {
+      screen: ServicesScreen,
+      navigationOptions: {
+        title: 'Org/Services',
+      },
+    },
+    Events: {
+      screen: EventsScreen,
+      navigationOptions: {
+        title: 'Events',
       },
     },
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: colors.HEADER,
-      },
+    tabBarOptions: {
+      activeTintColor: colors.HEADER,
+      inactiveTintColor: 'white',
     },
+    tabBarComponent: FavoriteHeader,
   },
 );
 

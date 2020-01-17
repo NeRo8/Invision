@@ -74,10 +74,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  selectedContainer: {
-    flexDirection: 'row',
-    marginHorizontal: 10,
-  },
   selectedElement: {
     flex: 1,
     alignItems: 'center',
@@ -194,5 +190,37 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  selectedContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
+  },
+  textBlockActive: {
+    flex: 1,
+    height: 40,
+    backgroundColor: colors.HEADER,
+    borderWidth: 0.5,
+    borderColor: 'silver',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textBlockUnactive: {
+    flex: 1,
+    height: 40,
+    backgroundColor: 'white',
+    borderWidth: 0.5,
+    borderColor: 'silver',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textActive: {
+    ...gothamBold,
+    fontSize: 15,
+    color: 'white',
+    marginTop: 5,
+  },
+  unactiveText: {
+    ...gothamBook,
+    fontSize: 15,
   },
 });

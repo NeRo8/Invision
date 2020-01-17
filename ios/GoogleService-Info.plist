@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>148982606823-5rnspacehdcjlb25t9530vbgs1tnbd4e.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.148982606823-5rnspacehdcjlb25t9530vbgs1tnbd4e</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDsgu3WfKZNj_glWuB3jGx3nvDhM4txe3k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>148982606823</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>we.candev.mobile.masaha</string>
+	<key>PROJECT_ID</key>
+	<string>masaha-116c8</string>
+	<key>STORAGE_BUCKET</key>
+	<string>masaha-116c8.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:148982606823:ios:04feb7def6a82d51c9ab42</string>
+	<key>DATABASE_URL</key>
+	<string>https://masaha-116c8.firebaseio.com</string>
+</dict>
+</plist>

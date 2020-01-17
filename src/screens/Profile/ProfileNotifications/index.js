@@ -13,7 +13,6 @@ const mapStateToProps = state => {
     threads: state.chat.threads !== null ? state.chat.threads.results : [],
     threadsConf: state.chat.threads,
     loading: state.chat.loading,
-    token: state.auth.user !== null ? state.auth.user.access_token : null,
   };
 };
 

@@ -1,4 +1,4 @@
-package com.masaha;
+package we.candev.mobile.masaha;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,5 +1,7 @@
 const colors = {
   HEADER: '#0A68EF',
+  LINK_TEXT: '#0A68EF',
+  UNDER_TEXT: '#6B6F81',
   HEADER_BUTTON: '#3F7FE9',
   UNACTIVE: '#9DA9BC',
   ACTIVE: '#236AE6',

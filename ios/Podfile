@@ -46,6 +46,8 @@ target 'Masaha' do
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
   pod 'FBSDKLoginKit'
+  # add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
     
 
   target 'MasahaTests' do

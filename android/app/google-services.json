@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "148982606823",
+    "firebase_url": "https://masaha-116c8.firebaseio.com",
+    "project_id": "masaha-116c8",
+    "storage_bucket": "masaha-116c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148982606823:android:8ea92c919db87adcc9ab42",
+        "android_client_info": {
+          "package_name": "we.candev.mobile.masaha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148982606823-4nkqp2632h4hlp1kv4nobrc8hhiin7gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdiAA2oJkDAwUmLEV9WjTOYENJE4GFn20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148982606823-4nkqp2632h4hlp1kv4nobrc8hhiin7gv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "148982606823-5rnspacehdcjlb25t9530vbgs1tnbd4e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "we.candev.mobile.masaha"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

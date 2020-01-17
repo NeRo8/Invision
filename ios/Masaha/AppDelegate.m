@@ -13,6 +13,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <RNSplashScreen.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Firebase.h>
 
 @implementation AppDelegate
 
@@ -32,6 +33,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
    // You can skip this line if you have the latest version of the SDK installed
+  [FIRApp configure];
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
   [RNSplashScreen show];

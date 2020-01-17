@@ -4,7 +4,7 @@ import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { gothamBook } from '../../constants/fonts';
 import { colors } from '../../constants';
 
-const LoadingStatus = ({ text }) => (
+const LoadingStatus = ({ text, bgColor }) => (
   <View style={styles.container}>
     <ActivityIndicator size="large" color={colors.HEADER} />
     <Text style={styles.loadingText}>{text}</Text>
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.BACKGROUND,
   },
   loadingText: {
     ...gothamBook,
