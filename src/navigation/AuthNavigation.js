@@ -1,50 +1,44 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Platform } from 'react-native';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
-import Auth from '../screens/Auth';
+import AuthScreen from '../screens/Auth';
 import SignInScreen from '../screens/Auth/SignInScreen';
 import SignUpScreen from '../screens/Auth/SignUpScreen';
 import ForgotPasswordScreen from '../screens/Auth/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/Auth/NewPasswordScreen';
-import HeaderSignIn from '../components/HeaderSignIn/HeaderSignIn';
+import AuthHeader from '../components/Headers/AuthHeader';
 
 import { DefaultHeader } from '../components/Headers';
 
 import { colors } from '../constants';
 
+const SingInNavigation = createMaterialTopTabNavigator(
+  {
+    SingIn: { screen: SignInScreen },
+    SignUp: { screen: SignUpScreen },
+  },
+  {
+    tabBarComponent: AuthHeader,
+    tabBarOptions: {
+      activeTintColor: 'white',
+      inactiveTintColor: colors.HEADER,
+    },
+  },
+);
+
 const AuthNavigation = createStackNavigator(
   {
     Home: {
-      screen: Auth,
+      screen: AuthScreen,
       navigationOptions: {
         header: null,
       },
     },
-    SignIn: {
-      screen: SignInScreen,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerTitle: <HeaderSignIn activeScreen={true} />,
-          headerStyle: {
-            height: Platform.OS === 'ios' ? 80 : 100,
-            backgroundColor: colors.HEADER,
-          },
-          headerLeft: null,
-          headerRight: null,
-        };
-      },
-    },
-    SignUp: {
-      screen: SignUpScreen,
+    Auth: {
+      screen: SingInNavigation,
       navigationOptions: {
-        headerTitle: <HeaderSignIn activeScreen={false} />,
-        headerStyle: {
-          height: Platform.OS === 'ios' ? 80 : 100,
-          backgroundColor: colors.HEADER,
-        },
-        headerLeft: null,
-        headerRight: null,
+        header: null,
       },
     },
     ForgotPassword: {

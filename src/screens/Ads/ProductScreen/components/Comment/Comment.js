@@ -43,16 +43,13 @@ class Comment extends Component {
             </View>
           </View>
           <View>
-            <Text style={[globalStyles.gothamBook, styles.date]}>
+            <Text style={styles.date}>
               {moment(item.created).format('DD.MM.YYYY')}
             </Text>
           </View>
         </View>
-        <View style={{ marginTop: 15 }}>
-          <Text style={[globalStyles.gothamBook, styles.coment]}>
-            {item.description}
-          </Text>
-        </View>
+
+        <Text style={styles.coment}>{item.description}</Text>
       </View>
     );
   }

@@ -9,8 +9,8 @@ import ProductScreen from '../screens/Ads/ProductScreen';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
 import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
 
-import HeaderAds from '../components/HeaderAds';
-import HeaderAdsFilters from '../components/HeaderAdsFilters';
+import AdsHeader from '../components/Headers/AdsHeader';
+import AdsFiltersHeader from '../components/Headers/AdsFiltersHeader';
 
 import { DefaultHeader } from '../components/Headers';
 
@@ -21,7 +21,7 @@ const AdsNavigation = createStackNavigator(
     Home: {
       screen: AdsScreen,
       navigationOptions: {
-        headerTitle: <HeaderAds />,
+        headerTitle: <AdsHeader />,
         headerStyle: {
           height: Platform.OS === 'ios' ? 95 : 110,
           backgroundColor: colors.HEADER,
@@ -50,7 +50,7 @@ const AdsNavigation = createStackNavigator(
       navigationOptions: ({ navigation }) => {
         return {
           gesturesEnabled: false,
-          headerTitle: <HeaderAdsFilters />,
+          headerTitle: <AdsFiltersHeader />,
           headerStyle: {
             paddingTop: 10,
             height: Platform.OS === 'ios' ? 150 : 174,

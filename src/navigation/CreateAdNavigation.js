@@ -14,7 +14,7 @@ import MakePictureScreen from '../screens/Ads/MakePictureScreen';
 import PayCardScreen from '../screens/Ads/PayCardScreen';
 
 import { CreateAdHeader } from '../components/Headers';
-import HeaderPay from '../components/HeaderPay';
+import HeaderPay from '../components/Headers/HeaderPay';
 
 import { DefaultHeader } from '../components/Headers';
 import { colors } from '../constants';

@@ -14,11 +14,20 @@ class ReportModal extends Component {
       fraud: false,
       language: false,
       other: false,
+      message: '',
     };
   }
   check = option => {
     this.setState({ fraud: false, language: false, other: false });
     this.setState({ [option]: true });
+    this.setState({ message: option });
+  };
+
+  onPressSend = () => {
+    const { setReportData } = this.props;
+    const { idForReport } = this.props;
+    const message = this.state.message;
+    setReportData(idForReport, message);
   };
 
   render() {
@@ -140,6 +149,8 @@ class ReportModal extends Component {
                 ]}
                 buttonStyle={styles.buttonSend}
                 title="Send"
+                onPress={this.onPressSend}
+                onPressOut={this.props.onPressClose}
               />
             </View>
           </View>

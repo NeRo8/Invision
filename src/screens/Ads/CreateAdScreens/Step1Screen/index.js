@@ -2,7 +2,7 @@ import Step1Screen from './Step1Screen';
 
 import { connect } from 'react-redux';
 
-import { setReducerValue } from '../../../../redux/actions/AdCreate';
+import { adCreateActions } from '../../../../redux/AdCreate';
 
 const mapStateToProps = state => {
   return {
@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setValue: (name, value) => {
-      dispatch(setReducerValue(name, value));
+      dispatch(adCreateActions.setReducerValue(name, value));
     },
   };
 };

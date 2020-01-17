@@ -14,7 +14,7 @@ import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
-import HeaderProduct from '../../../components/HeaderProduct';
+import HeaderProduct from '../../../components/Headers/ProductHeader';
 import { ElementListAds } from '../../../components/ElementLists';
 import { DefaultButton } from '../../../components/Buttons';
 import LoadingStatus from '../../../components/LoadingStatus';
@@ -24,7 +24,7 @@ import Comment from './components/Comment';
 import ShareModal from '../../../components/ShareModal';
 import ReportModal from '../../../components/ReportModal';
 
-import { colors, globalStyles } from '../../../constants';
+import { colors } from '../../../constants';
 import styles from './styles';
 
 class ProductScreen extends Component {
@@ -362,6 +362,7 @@ class ProductScreen extends Component {
         <ReportModal
           show={this.state.reportModalShow}
           onPressClose={this.onPressReport}
+          idForReport={productData.pk}
         />
       </View>
     );

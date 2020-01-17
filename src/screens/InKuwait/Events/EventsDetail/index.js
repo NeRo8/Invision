@@ -1,7 +1,8 @@
 import EventsDetail from './EventsDetail';
 
 import { connect } from 'react-redux';
-import { getEventsDetail } from '../../../../redux/actions/inKuwait/eventsAction';
+
+import { eventsActions } from '../../../../redux/Events';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getEvent: id => {
-      dispatch(getEventsDetail(id));
+      dispatch(eventsActions.getEventsDetail(id));
     },
   };
 };

@@ -1,11 +1,7 @@
 import EventsScreen from './EventsScreen';
 
 import { connect } from 'react-redux';
-import {
-  getEvents,
-  setLoading,
-  setFilter,
-} from '../../../../redux/actions/inKuwait/eventsAction';
+import { eventsActions } from '../../../../redux/Events';
 
 const mapStateToProps = state => {
   return {
@@ -17,16 +13,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getEventsList: filters => {
-      dispatch(getEvents(filters));
+      dispatch(eventsActions.getEvents(filters));
     },
     setLoad: () => {
-      dispatch(setLoading(true));
+      dispatch(eventsActions.setLoading(true));
     },
     onSearch: text => {
-      dispatch(setFilter('q', text));
+      dispatch(eventsActions.setFilter('q', text));
     },
     setFilters: value => {
-      dispatch(setFilter('status', value));
+      dispatch(eventsActions.setFilter('status', value));
     },
   };
 };

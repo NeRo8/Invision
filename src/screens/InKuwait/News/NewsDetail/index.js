@@ -1,7 +1,7 @@
 import NewsDetail from './NewsDetail';
 
 import { connect } from 'react-redux';
-import { getNewsDetail } from '../../../../redux/actions/inKuwait/newsAction';
+import { newsActions } from '../../../../redux/News';
 
 const mapStateToProps = state => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getNews: id => {
-      dispatch(getNewsDetail(id));
+      dispatch(newsActions.getNewsDetail(id));
     },
   };
 };

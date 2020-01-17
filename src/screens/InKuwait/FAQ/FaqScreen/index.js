@@ -2,11 +2,7 @@ import FaqScreen from './FaqScreen';
 
 import { connect } from 'react-redux';
 
-import {
-  getFaqs,
-  setFilter,
-  setLoading,
-} from '../../../../redux/actions/inKuwait/faqAction';
+import { faqActions } from '../../../../redux/Faq';
 
 const mapStateToProps = state => {
   return {
@@ -20,16 +16,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getFaqsList: filters => {
-      dispatch(getFaqs(filters));
+      dispatch(faqActions.getFaqs(filters));
     },
     onSearch: value => {
-      dispatch(setFilter('q', value));
+      dispatch(faqActions.setFilter('q', value));
     },
     setFilters: value => {
-      dispatch(setFilter('status', value));
+      dispatch(faqActions.setFilter('status', value));
     },
     setLoad: () => {
-      dispatch(setLoading(true));
+      dispatch(faqActions.setLoading(true));
     },
   };
 };

@@ -22,6 +22,7 @@ class ProfileNotificationsChat extends Component {
     const id = navigation.getParam('threadId', null);
     getAllMessages(id);
 
+    console.log(`wss://staging.masaha.app/chat/${id}/?token=${token}`);
     this.ws = new WebSocket(
       `wss://staging.masaha.app/chat/${id}/?token=${token}`,
     );

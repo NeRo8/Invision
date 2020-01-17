@@ -1,11 +1,13 @@
 import Step5Screen from './Step5Screen';
+
 import { connect } from 'react-redux';
-import { createAd } from '../../../../redux/actions/AdCreate';
+
+import { adCreateActions } from '../../../../redux/AdCreate';
 
 const mapDispatchToProps = dispatch => {
   return {
     createNewAd: () => {
-      dispatch(createAd());
+      dispatch(adCreateActions.createAd());
     },
   };
 };

@@ -2,7 +2,7 @@ import FavoriteHeader from './FavoriteHeader';
 
 import { connect } from 'react-redux';
 
-import { clearAllFavorites } from '../../../redux/actions/Favorite';
+import { favoriteActions } from '../../../redux/Favorite';
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    clearAllFavor: () => dispatch(clearAllFavorites()),
+    clearAllFavor: () => dispatch(favoriteActions.clearAllFavorites()),
   };
 };
 

@@ -2,8 +2,8 @@ import ProductBuyerProfile from './ProductBuyerProfile';
 
 import { connect } from 'react-redux';
 
-import { setLoading, getSellerProfile } from '../../../redux/actions/Ads';
-import { getAdDetail } from '../../../redux/actions/AdDetail';
+import { adsActions } from '../../../redux/Ads';
+import { adDetailActions } from '../../../redux/AdDetail';
 
 const mapStateToProps = state => {
   return {
@@ -19,13 +19,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setLoad: status => {
-      dispatch(setLoading(status));
+      dispatch(adsActions.setLoading(status));
     },
     getProfile: userid => {
-      dispatch(getSellerProfile(userid));
+      dispatch(adsActions.getSellerProfile(userid));
     },
     getAdData: (id, token) => {
-      dispatch(getAdDetail(id, token));
+      dispatch(adDetailActions.getAdDetail(id, token));
     },
   };
 };

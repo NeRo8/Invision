@@ -2,7 +2,7 @@ import ProfileSettingsPersonalInformaion from './ProfileSettingsPersonalInformai
 
 import { connect } from 'react-redux';
 
-import { changeProfile } from '../../../redux/actions/Users';
+import { usersActions } from '../../../redux/Users';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onChangeProfile: profile => {
-      dispatch(changeProfile(profile));
+      dispatch(usersActions.changeProfile(profile));
     },
   };
 };

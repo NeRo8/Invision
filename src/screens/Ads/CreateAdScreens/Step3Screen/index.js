@@ -2,7 +2,7 @@ import Step3Screen from './Step3Screen';
 
 import { connect } from 'react-redux';
 
-import { addImage } from '../../../../redux/actions/AdCreate';
+import { adCreateActions } from '../../../../redux/AdCreate';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setImageValue: image => {
-      dispatch(addImage(image));
+      dispatch(adCreateActions.addImage(image));
     },
   };
 };

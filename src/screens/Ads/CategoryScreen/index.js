@@ -2,25 +2,24 @@ import CategoryScreen from './CategoryScreen';
 
 import { connect } from 'react-redux';
 
-import { getCategories, getAds, setFilter } from '../../../redux/actions/Ads';
+import { adsActions } from '../../../redux/Ads';
 
 const mapStateToProps = state => {
   return {
     data: state.ads.categories.results,
-    filters: state.ads.filters,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getCategoriesList: () => {
-      dispatch(getCategories());
-    },
-    getAdsList: filter => {
-      dispatch(getAds(filter));
+      dispatch(adsActions.getCategories());
     },
     setFilters: (name, value) => {
-      dispatch(setFilter(name, value));
+      dispatch(adsActions.setFilter(name, value));
+    },
+    getAllAds: () => {
+      dispatch(adsActions.getAds());
     },
   };
 };

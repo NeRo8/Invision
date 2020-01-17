@@ -2,7 +2,7 @@ import SignInScreen from './SignInScreen';
 
 import { connect } from 'react-redux';
 
-import { login } from '../../../redux/actions/Auth';
+import { authActions } from '../../../redux/Auth';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handlePressSignIn: data => {
-      dispatch(login(data));
+      dispatch(authActions.login(data));
     },
   };
 };

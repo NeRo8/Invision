@@ -1,12 +1,6 @@
 import ProfileScreen from './ProfileScreen';
 
-import {
-  getProfile,
-  deleteAds,
-  updateAvatar,
-  getProfileAds,
-  setAdsStatus,
-} from '../../redux/actions/Users';
+import { usersActions } from '../../redux/Users';
 
 import { connect } from 'react-redux';
 
@@ -24,19 +18,19 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getProfileInfo: () => {
-      dispatch(getProfile());
+      dispatch(usersActions.getProfile());
     },
     getUserAds: () => {
-      dispatch(getProfileAds());
+      dispatch(usersActions.getProfileAds());
     },
     setStatusAds: value => {
-      dispatch(setAdsStatus(value));
+      dispatch(usersActions.setAdsStatus(value));
     },
     deleteAd: id => {
-      dispatch(deleteAds(id));
+      dispatch(usersActions.deleteAds(id));
     },
     onUpdateAvatar: avatar => {
-      dispatch(updateAvatar(avatar));
+      dispatch(usersActions.updateAvatar(avatar));
     },
   };
 };

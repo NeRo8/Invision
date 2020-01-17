@@ -2,10 +2,7 @@ import ChooseCategoryScreen from './ChooseCategoryScreen';
 
 import { connect } from 'react-redux';
 
-import {
-  getCategories,
-  setReducerValue,
-} from '../../../../redux/actions/AdCreate';
+import { adCreateActions } from '../../../../redux/AdCreate';
 
 const mapStateToProps = state => {
   return {
@@ -19,10 +16,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAllCategories: () => {
-      dispatch(getCategories());
+      dispatch(adCreateActions.getCategories());
     },
     setCategory: value => {
-      dispatch(setReducerValue('category', value));
+      dispatch(adCreateActions.setReducerValue('category', value));
     },
   };
 };

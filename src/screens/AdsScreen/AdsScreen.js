@@ -28,7 +28,7 @@ class AdsScreen extends Component {
   };
 
   render() {
-    const { loading, adsList, adsConfig, getNextAds } = this.props;
+    const { loading, adsList, adsConfig, getNextAds, getAdsList } = this.props;
 
     if (loading) {
       return <LoadingStatus />;
@@ -49,6 +49,8 @@ class AdsScreen extends Component {
             <ElementListAds item={item} onPressProduct={this.onPressElement} />
           )}
           keyExtractor={item => item.pk.toString()}
+          refreshing={loading}
+          onRefresh={() => getAdsList()}
           onEndReached={() => getNextAds(adsConfig.next)}
           onEndReachedThreshold={0.5}
         />

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import InKuwaitScreen from './InKuwaitScreen';
 
-import { getCountList } from '../../redux/actions/inKuwait';
+import { inKuwaitActions } from '../../redux/inKuwait';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCountCategory: () => {
-      dispatch(getCountList());
+      dispatch(inKuwaitActions.getCountList());
     },
   };
 };

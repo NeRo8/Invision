@@ -1,29 +1,27 @@
 import { connect } from 'react-redux';
 import AdsScreen from './AdsScreen';
 
-import { getAds, getAdsLoadMore } from '../../redux/actions/Ads';
-import { refreshToken } from '../../redux/actions/Auth';
+import { adsActions } from '../../redux/Ads';
+import { authActions } from '../../redux/Auth';
 
 const mapStateToProps = state => {
   return {
     adsConfig: state.ads.adsList,
     adsList: state.ads.adsList.results,
     loading: state.ads.loading,
-    error: state.ads.error,
-    filters: state.ads.filters,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdsList: filters => {
-      dispatch(getAds(filters));
+    getAdsList: () => {
+      dispatch(adsActions.getAds());
     },
     getNextAds: url => {
-      dispatch(getAdsLoadMore(url));
+      dispatch(adsActions.getAdsLoadMore(url));
     },
     refreshAuth: () => {
-      dispatch(refreshToken());
+      dispatch(authActions.refreshToken());
     },
   };
 };

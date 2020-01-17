@@ -2,11 +2,7 @@ import NewsScreen from './NewsScreen';
 
 import { connect } from 'react-redux';
 
-import {
-  getNews,
-  setFilter,
-  setLoading,
-} from '../../../../redux/actions/inKuwait/newsAction';
+import { newsActions } from '../../../../redux/News';
 
 const mapStateToProps = state => {
   return {
@@ -19,13 +15,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getNewsList: filters => {
-      dispatch(getNews(filters));
+      dispatch(newsActions.getNews(filters));
     },
     setFilters: value => {
-      dispatch(setFilter('q', value));
+      dispatch(newsActions.setFilter('q', value));
     },
     setLoad: () => {
-      dispatch(setLoading(true));
+      dispatch(newsActions.setLoading(true));
     },
   };
 };

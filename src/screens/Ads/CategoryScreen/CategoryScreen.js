@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
-import { Divider, Icon, Avatar } from 'react-native-elements';
+import { Divider, Icon } from 'react-native-elements';
+import { styles } from './styles';
 
-import styles from './styles';
-import { setFilter } from '../../../redux/actions/Ads';
+import { ElementListCategory } from '../../../components/ElementLists';
 
 const ElementCategoryList = ({ item, onPressElement }) => (
   <TouchableOpacity onPress={() => onPressElement(item.name)}>
@@ -39,13 +39,11 @@ class CategoryScreen extends Component {
     getCategoriesList();
   }
 
-  getAdsListByCategoryName = categoryName => {
-    const { getAdsList, navigation, setFilters, filters } = this.props;
+  setFilterByCategory = categoryName => {
+    const { navigation, setFilters, getAllAds } = this.props;
 
     setFilters('category', categoryName);
-
-    getAdsList({ category: categoryName });
-
+    getAllAds();
     navigation.goBack();
   };
 
@@ -55,9 +53,9 @@ class CategoryScreen extends Component {
         <FlatList
           data={this.props.data}
           renderItem={({ item }) => (
-            <ElementCategoryList
+            <ElementListCategory
               item={item}
-              onPressElement={this.getAdsListByCategoryName}
+              onPressElement={this.setFilterByCategory}
             />
           )}
           keyExtractor={item => item.pk.toString()}

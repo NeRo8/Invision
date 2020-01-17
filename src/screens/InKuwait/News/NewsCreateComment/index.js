@@ -1,7 +1,8 @@
 import NewsCreateComment from './NewsCreateComment';
 
 import { connect } from 'react-redux';
-import { setComment } from '../../../../redux/actions/inKuwait/newsAction';
+
+import { newsActions } from '../../../../redux/News';
 
 const mapStateToProps = state => {
   return {
@@ -14,7 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createComment: (data, token) => {
-      dispatch(setComment(data, token));
+      dispatch(newsActions.setComment(data, token));
     },
   };
 };
