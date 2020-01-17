@@ -1,6 +1,6 @@
 import API from '../../api';
-
 import * as types from './types';
+import { store } from '../store';
 
 const setQuestionDetail = faq => ({
   type: types.SET_FAQ_DETAIL,
@@ -33,20 +33,19 @@ export const setFilter = (name, value) => ({
   value,
 });
 
-export const getFaqs = (filters = null) => dispatch => {
-  var requestUrl = `/faq/questions/?`;
+export const getFaqs = () => dispatch => {
+  const { filters } = store.getState().inKuwait.faq;
+  var requestUrl = '';
 
   dispatch(setLoading(true));
-  //Generate filters for request
-  if (filters !== null) {
-    Object.keys(filters).forEach(item => {
-      if (filters[item] !== null) {
-        requestUrl += `&${item}=${filters[item]}`;
-      }
-    });
-  }
 
-  API.get(requestUrl)
+  Object.keys(filters).forEach(item => {
+    if (filters[item] !== null) {
+      requestUrl += `&${item}=${filters[item]}`;
+    }
+  });
+
+  API.get(`/faq/questions/?${requestUrl}`)
     .then(response => {
       dispatch(setQuestionList(response.data));
       dispatch(setLoading(false));
@@ -57,7 +56,7 @@ export const getFaqs = (filters = null) => dispatch => {
 export const getCategories = () => dispatch => {
   dispatch(setLoading(true));
 
-  API.get(`faq/categories/`)
+  API.get(`/faq/categories/`)
     .then(response => {
       dispatch(setCategories(response.data));
       dispatch(setLoading(false));
