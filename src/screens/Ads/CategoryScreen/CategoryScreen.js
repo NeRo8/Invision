@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
-import { Divider, Icon } from 'react-native-elements';
+import { Divider, Icon, Avatar } from 'react-native-elements';
 
 import styles from './styles';
 import { setFilter } from '../../../redux/actions/Ads';
@@ -10,11 +10,12 @@ const ElementCategoryList = ({ item, onPressElement }) => (
     <View style={styles.elementContainer}>
       <View style={styles.elementIcon}>
         <Image
-          source={item.icon}
+          source={{ uri: item.icon_image }}
           style={{ width: null, height: null, flex: 1 }}
         />
       </View>
       <Text style={styles.elementTitle}>{item.name}</Text>
+
       <Icon
         name="chevron-right"
         type="material-community"
