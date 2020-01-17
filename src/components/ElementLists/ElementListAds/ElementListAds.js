@@ -22,7 +22,7 @@ class ElementListAds extends Component {
     const {
       item,
       onPressProduct,
-      token,
+      authStatus,
       removeFavorite,
       addFavorite,
     } = this.props;
@@ -41,9 +41,9 @@ class ElementListAds extends Component {
             right: 10,
           }}
           onPress={() => {
-            item.is_favorite
-              ? removeFavorite(item.pk, token)
-              : addFavorite(item.pk, token);
+            if (authStatus) {
+              item.is_favorite ? removeFavorite(item.pk) : addFavorite(item.pk);
+            }
           }}
         />
         <TouchableOpacity

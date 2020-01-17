@@ -6,17 +6,17 @@ import { adsActions } from '../../../redux/Ads';
 
 const mapStateToProps = state => {
   return {
-    token: state.auth.user !== null ? state.auth.user.access_token : null,
+    authStatus: state.auth.authStatus,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFavorite: (id, token) => {
-      dispatch(adsActions.addToFavorite(id, token));
+    addFavorite: id => {
+      dispatch(adsActions.addToFavorite(id));
     },
-    removeFavorite: (id, token) => {
-      dispatch(adsActions.removeFromFavorite(id, token));
+    removeFavorite: id => {
+      dispatch(adsActions.removeFromFavorite(id));
     },
   };
 };
