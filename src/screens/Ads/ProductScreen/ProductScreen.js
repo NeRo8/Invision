@@ -12,7 +12,6 @@ import {
 import Moment from 'moment';
 import { Icon, Button, Avatar, Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
-import StarRating from 'react-native-star-rating';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import HeaderProduct from '../../../components/HeaderProduct';
@@ -23,6 +22,7 @@ import LoadingStatus from '../../../components/LoadingStatus';
 import Comment from './components/Comment';
 
 import ShareModal from '../../../components/ShareModal';
+import ReportModal from '../../../components/ReportModal';
 
 import { colors, globalStyles } from '../../../constants';
 import styles from './styles';
@@ -42,6 +42,7 @@ class ProductScreen extends Component {
       showMore: false,
       readAll: false,
       moreAds: false,
+      reportModalShow: false,
     };
   }
 
@@ -60,6 +61,12 @@ class ProductScreen extends Component {
   onPressShere = () => {
     this.setState({
       modalShow: !this.state.modalShow,
+    });
+  };
+
+  onPressReport = () => {
+    this.setState({
+      reportModalShow: !this.state.reportModalShow,
     });
   };
 
@@ -111,7 +118,11 @@ class ProductScreen extends Component {
     }
     return (
       <View style={{ flex: 1 }}>
-        <HeaderProduct item={productData} onPressShere={this.onPressShere} />
+        <HeaderProduct
+          item={productData}
+          onPressShere={this.onPressShere}
+          onPressReport={this.onPressReport}
+        />
         <ScrollView>
           <View style={styles.container}>
             <SwiperFlatList
@@ -348,6 +359,10 @@ class ProductScreen extends Component {
             description={productData.description}
           />
         </ScrollView>
+        <ReportModal
+          show={this.state.reportModalShow}
+          onPressClose={this.onPressReport}
+        />
       </View>
     );
   }

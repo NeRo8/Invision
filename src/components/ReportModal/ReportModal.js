@@ -3,11 +3,11 @@ import { Modal, View, Text } from 'react-native';
 
 import { Button, Divider, CheckBox, Icon } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../../constants';
+import { colors, globalStyles } from '../../constants';
 
 import styles from './styles';
 
-class ComplainModal extends Component {
+class ReportModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -149,4 +149,4 @@ class ComplainModal extends Component {
   }
 }
 
-export default ComplainModal;
+export default ReportModal;

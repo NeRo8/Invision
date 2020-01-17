@@ -54,7 +54,7 @@ class HeaderProduct extends Component {
             type="material-community"
             color="white"
             size={26}
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() => this.props.onPressReport()}
           />
           <Icon
             containerStyle={styles.icons}
