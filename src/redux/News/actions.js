@@ -1,4 +1,5 @@
 import * as types from './types';
+import { errorActions } from '../Error';
 
 const DEFAULT_URL = 'https://staging.masaha.app/api/v1/blog';
 
@@ -20,11 +21,6 @@ const setCategories = categories => ({
 export const setLoading = loading => ({
   type: types.SET_LOADING,
   payload: loading,
-});
-
-const setError = error => ({
-  type: types.SET_ERROR,
-  payload: error,
 });
 
 export const setFilter = (name, value) => ({
@@ -52,7 +48,7 @@ export const getNews = (filters = null) => dispatch => {
       dispatch(setList(responseJson));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getCategories = () => dispatch => {
@@ -64,7 +60,7 @@ export const getCategories = () => dispatch => {
       dispatch(setCategories(responseJson));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getNewsDetail = id => dispatch => {
@@ -76,7 +72,7 @@ export const getNewsDetail = id => dispatch => {
       dispatch(setDetail(responseJson));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const setReport = (commentId, token) => dispatch => {
@@ -85,7 +81,7 @@ export const setReport = (commentId, token) => dispatch => {
     headers: {
       Authorization: 'Bearer ' + token,
     },
-  }).catch(error => console.log(error));
+  }).catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const setComment = (data, token) => dispatch => {
@@ -100,5 +96,5 @@ export const setComment = (data, token) => dispatch => {
   })
     .then(response => response.json())
     .then(responseJson => console.log(responseJson))
-    .catch(error => console.log(error));
+    .catch(error => dispatch(errorActions.setError(error)));
 };

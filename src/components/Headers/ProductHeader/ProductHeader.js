@@ -3,11 +3,11 @@ import { View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
-import { colors } from '../../constants';
+import { colors } from '../../../constants';
 
 import styles from './styles';
 
-class HeaderProduct extends Component {
+class ProductHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -70,4 +70,4 @@ class HeaderProduct extends Component {
   }
 }
 
-export default withNavigation(HeaderProduct);
+export default withNavigation(ProductHeader);

@@ -11,6 +11,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 12,
+    marginTop: 10,
   },
   sideComponent: {
     flex: 1,

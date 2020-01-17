@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
-import { colors, globalStyles } from '../../constants';
+import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
 

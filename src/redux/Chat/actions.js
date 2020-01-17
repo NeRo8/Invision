@@ -1,5 +1,5 @@
 import API from '../../api';
-import { setError } from '../Error/action';
+import { errorActions } from '../Error';
 
 import * as types from './types';
 
@@ -42,7 +42,7 @@ export const fetchAllThreads = () => dispatch => {
     })
     .then(() => dispatch(setLoading(false)))
     .catch(error => {
-      dispatch(setError(error.message));
+      dispatch(errorActions.setError(error));
     });
 };
 
@@ -73,6 +73,6 @@ export const fetchAllMessages = threadId => dispatch => {
     })
     .then(() => dispatch(setLoading(false)))
     .catch(error => {
-      dispatch(setError(error.message));
+      dispatch(errorActions.setError(error));
     });
 };

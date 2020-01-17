@@ -1,5 +1,6 @@
 import API, { setToken } from '../../api';
 import { store } from '../store';
+import { errorActions } from '../Error';
 import * as types from './types';
 
 const setUser = user => ({
@@ -16,11 +17,6 @@ const setLoading = loading => ({
   payload: loading,
 });
 
-const setError = error => ({
-  type: types.SET_ERROR,
-  payload: error,
-});
-
 const setNewToken = token => ({
   type: types.REFRESH_TOKEN,
   payload: token,
@@ -34,7 +30,7 @@ export const login = data => dispatch => {
       setToken(response.data.access_token);
     })
     .then(() => dispatch(setLoading(false)))
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const refreshToken = () => dispatch => {
@@ -43,7 +39,7 @@ export const refreshToken = () => dispatch => {
   if (refresh_token !== null) {
     API.post('/users/refresh-token/', { refresh: refresh_token })
       .then(response => dispatch(setNewToken(response.data.access)))
-      .catch(error => console.log('Refresh token error:', error));
+      .catch(error => dispatch(errorActions.setError(error)));
   }
 };
 
@@ -63,12 +59,12 @@ export const loginWithFacebook = token => dispatch => {
         dispatch(setUser(response.data));
         dispatch(setLoading(false));
       } else {
-        dispatch(setError(response));
+        dispatch(errorActions.setError(response));
         dispatch(setLoading(false));
       }
     })
     .catch(error => {
       dispatch(setLoading(false));
-      dispatch(setError(error));
+      dispatch(errorActions.setError(error));
     });
 };

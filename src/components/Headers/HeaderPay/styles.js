@@ -1,26 +1,21 @@
 import { StyleSheet, Platform } from 'react-native';
-
-import { colors } from '../../constants';
-
-import { gothamBold } from '../../constants/fonts';
+import { colors, globalStyles } from '../../../constants';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     paddingTop: Platform.OS === 'ios' ? 0 : 20,
+    backgroundColor: colors.HEADER,
   },
   headerBlock: {
     flexDirection: 'row',
     height: 30,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   headerText: {
-    ...gothamBold,
     flex: 1,
-    fontSize: 18,
+    fontSize: 20,
+    lineHeight: 30,
     marginRight: 40,
-    paddingTop: 10,
     padding: 0,
     textAlign: 'center',
     color: 'white',
@@ -30,7 +25,6 @@ export default StyleSheet.create({
     color: 'white',
   },
   selectedBlock: {
-    flex: 1,
     paddingTop: 10,
   },
   selectedElement: {
@@ -42,7 +36,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementText: {
-    ...gothamBold,
+    fontFamily: globalStyles.gothamBold.fontFamily,
     color: 'white',
     lineHeight: 30,
   },
@@ -56,13 +50,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementTextActive: {
-    ...gothamBold,
     lineHeight: 30,
+    fontFamily: globalStyles.gothamBold.fontFamily,
     color: colors.HEADER,
   },
   simpleContainer: {
     flexDirection: 'row',
-    flex: 1,
+    marginBottom: 10,
     paddingHorizontal: 10,
   },
 });

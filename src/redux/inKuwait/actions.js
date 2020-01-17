@@ -1,5 +1,6 @@
 import API from '../../api';
 import * as types from './types';
+import { errorAction } from '../Error';
 
 const setCountList = countList => ({
   type: types.SET_COUNT_LIST,
@@ -11,11 +12,6 @@ const setLoading = loading => ({
   payload: loading,
 });
 
-const setError = error => ({
-  type: types.SET_ERROR,
-  payload: error,
-});
-
 export const getCountList = () => dispatch => {
   dispatch(setLoading(true));
 
@@ -24,5 +20,5 @@ export const getCountList = () => dispatch => {
       dispatch(setCountList(response.data));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorAction.setError(error)));
 };

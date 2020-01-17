@@ -1,6 +1,7 @@
 const DEFAULT_URL = 'https://staging.masaha.app/api/v1/common';
 
 import * as types from './types';
+import { errorActions } from '../Error';
 
 const setServices = services => ({
   type: types.SET_SERVICES,
@@ -47,7 +48,7 @@ export const getServices = (filters = null) => dispatch => {
       dispatch(setServices(responseJson));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getCategories = () => dispatch => {
@@ -59,5 +60,5 @@ export const getCategories = () => dispatch => {
       dispatch(setCategories(responseJson));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };

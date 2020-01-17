@@ -99,5 +99,5 @@ export const updateAvatar = avatar => dispatch => {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
     .then(response => dispatch(setAvatar(response.data.avatar)))
-    .catch(error => dispatch(errorActions.setError(error.message)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };

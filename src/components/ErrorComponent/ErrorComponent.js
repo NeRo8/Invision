@@ -13,9 +13,8 @@ class ErrorComponent extends Component {
   componentDidUpdate() {
     const { error, clearError } = this.props;
 
-    console.log('ERROR', error);
     if (error !== null) {
-      this.dropDownAlertRef.alertWithType('error', 'Error', error);
+      this.dropDownAlertRef.alertWithType('error', 'Error', error.message);
       clearError();
     }
   }

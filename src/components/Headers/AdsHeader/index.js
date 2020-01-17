@@ -1,8 +1,8 @@
-import HeaderAds from './HeaderAds';
+import AdsHeader from './AdsHeader';
 
 import { connect } from 'react-redux';
 
-import { adsActions } from '../../redux/Ads';
+import { adsActions } from '../../../redux/Ads';
 
 const mapStateToProps = state => {
   return {
@@ -21,4 +21,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderAds);
+export default connect(mapStateToProps, mapDispatchToProps)(AdsHeader);

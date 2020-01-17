@@ -3,11 +3,11 @@ import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { Input, Icon, Button } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../constants';
+import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
 
-class HeaderAds extends Component {
+class AdsHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -87,4 +87,4 @@ class HeaderAds extends Component {
   }
 }
 
-export default withNavigation(HeaderAds);
+export default withNavigation(AdsHeader);

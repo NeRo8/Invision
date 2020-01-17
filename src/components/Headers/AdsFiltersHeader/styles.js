@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
-import { gothamBook, gothamBold } from '../../constants/fonts';
+import { gothamBook, gothamBold } from '../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {

@@ -15,7 +15,7 @@ import MapView, { Marker } from 'react-native-maps';
 import StarRating from 'react-native-star-rating';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
-import HeaderProduct from '../../../components/HeaderProduct';
+import HeaderProduct from '../../../components/Headers/ProductHeader';
 import { ElementListAds } from '../../../components/ElementLists';
 import { DefaultButton } from '../../../components/Buttons';
 import LoadingStatus from '../../../components/LoadingStatus';

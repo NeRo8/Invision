@@ -1,7 +1,6 @@
 import API from '../../api';
 import * as types from './types';
-
-import { setError } from '../Error';
+import { errorActions } from '../Error';
 
 const setFavoriteAds = ads => ({
   type: types.SET_FAVORITE_ADS,
@@ -24,17 +23,17 @@ export const getFavoriteAds = () => dispatch => {
   API.get('/ads/favorites/')
     .then(response => dispatch(setFavoriteAds(response.data)))
     .then(() => dispatch(setLoading('favoriteAdsLoading', false)))
-    .catch(error => dispatch(setError(error.message)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const clearAllFavorites = () => dispatch => {
   API.delete('/ads/delete-favorites/')
     .then(response => dispatch(setFavoriteAds([])))
-    .catch(error => dispatch(setError(error.message)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const clearFavoriteAd = id => dispatch => {
   API.delete(`/ads/delete-favorite/${id}/`)
     .then(response => dispatch(deleteFavoriteAd(id)))
-    .catch(error => dispatch(setError(error.message)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };

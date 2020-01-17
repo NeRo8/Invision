@@ -1,6 +1,7 @@
 import API from '../../api';
 import moment from 'moment';
 import * as types from './types';
+import { errorActions } from '../Error';
 
 const setList = events => ({
   type: types.SET_EVENTS_LIST,
@@ -20,11 +21,6 @@ const setCategories = categories => ({
 export const setLoading = loading => ({
   type: types.SET_LOADING,
   payload: loading,
-});
-
-const setError = error => ({
-  type: types.SET_ERROR,
-  payload: error,
 });
 
 export const setFilter = (name, value) => ({
@@ -56,7 +52,7 @@ export const getEvents = (filters = null) => dispatch => {
       dispatch(setList(response.data));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getCategories = () => dispatch => {
@@ -67,7 +63,7 @@ export const getCategories = () => dispatch => {
       dispatch(setCategories(response.data));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getEventsDetail = id => dispatch => {
@@ -78,5 +74,5 @@ export const getEventsDetail = id => dispatch => {
       dispatch(setEventsDetail(response.data));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };

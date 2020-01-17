@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
 
-class HeaderAdsFilters extends Component {
+class AdsFiltersHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -70,4 +70,4 @@ class HeaderAdsFilters extends Component {
   }
 }
 
-export default withNavigation(HeaderAdsFilters);
+export default withNavigation(AdsFiltersHeader);

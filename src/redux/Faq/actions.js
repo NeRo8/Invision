@@ -1,6 +1,7 @@
 import API from '../../api';
 import * as types from './types';
 import { store } from '../store';
+import { errorAction, errorActions } from '../Error';
 
 const setQuestionDetail = faq => ({
   type: types.SET_FAQ_DETAIL,
@@ -20,11 +21,6 @@ const setCategories = categories => ({
 export const setLoading = loading => ({
   type: types.SET_LOADING,
   payload: loading,
-});
-
-const setError = error => ({
-  type: types.SET_ERROR,
-  payload: error,
 });
 
 export const setFilter = (name, value) => ({
@@ -50,7 +46,7 @@ export const getFaqs = () => dispatch => {
       dispatch(setQuestionList(response.data));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorAction.setError(error)));
 };
 
 export const getCategories = () => dispatch => {
@@ -61,7 +57,7 @@ export const getCategories = () => dispatch => {
       dispatch(setCategories(response.data));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getFaqDetail = id => dispatch => {
@@ -72,7 +68,7 @@ export const getFaqDetail = id => dispatch => {
       dispatch(setQuestionDetail(response.data));
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorAction.setError(error)));
 };
 
 export const setQuestion = (token, data) => dispatch => {
@@ -91,5 +87,5 @@ export const setQuestion = (token, data) => dispatch => {
     .then(() => {
       dispatch(setLoading(false));
     })
-    .catch(error => dispatch(setError(error)));
+    .catch(error => dispatch(errorAction.setError(error)));
 };

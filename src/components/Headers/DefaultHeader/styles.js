@@ -13,7 +13,7 @@ export default StyleSheet.create({
     fontFamily: 'Gotham-Bold',
     color: 'white',
     fontSize: 17,
-    paddingTop: 5,
+    marginTop: 10,
   },
   leftIcon: {
     width: 100,

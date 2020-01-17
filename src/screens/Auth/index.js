@@ -60,7 +60,7 @@ class index extends Component {
   handlePressSignInEmail = () => {
     const { navigation } = this.props;
 
-    navigation.navigate('SignIn');
+    navigation.navigate('Auth');
   };
 
   render() {
