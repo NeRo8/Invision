@@ -18,11 +18,6 @@ export const setLoading = loading => ({
   payload: loading,
 });
 
-const setError = error => ({
-  type: types.SET_ERROR,
-  payload: error,
-});
-
 export const setFilter = (name, value) => ({
   type: types.SET_FILTER,
   name,

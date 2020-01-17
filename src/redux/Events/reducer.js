@@ -49,12 +49,6 @@ const eventsReducer = (state = initialState, action) => {
         loading: action.payload,
       };
     }
-    case types.SET_ERROR: {
-      return {
-        ...state,
-        error: action.payload,
-      };
-    }
     default:
       return state;
   }

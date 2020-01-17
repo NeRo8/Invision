@@ -4,7 +4,6 @@ const initState = {
   threads: null,
   messages: null,
   loading: true,
-  error: null,
 };
 
 const chatReducer = (state = initState, action) => {
@@ -52,12 +51,6 @@ const chatReducer = (state = initState, action) => {
       };
     }
     case types.SET_LOADING: {
-      return {
-        ...state,
-        loading: action.payload,
-      };
-    }
-    case types.SET_ERROR: {
       return {
         ...state,
         loading: action.payload,
