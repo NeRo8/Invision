@@ -70,7 +70,7 @@ export const getAds = (filters = null) => dispatch => {
     });
   }
 
-  API.get(`/ads/?${requestUrl}`)
+  API.get(`/ads/ads/?${requestUrl}`)
     .then(response => dispatch(setAdsList(response.data)))
     .then(() => dispatch(setLoading(false)))
     .catch(error => dispatch(setError(error)));
