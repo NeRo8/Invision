@@ -2,14 +2,6 @@ import * as types from './types';
 
 const initState = {
   adsList: [],
-  adsFavoritesList: [],
-  adData: {
-    user: {
-      pk: null,
-    },
-  },
-  sellerProfile: null,
-  error: null,
   loading: true,
   filters: {
     seller_type: 'all',
@@ -42,24 +34,6 @@ const adsReducer = (state = initState, action) => {
         },
       };
     }
-    case types.SET_SELLER_PROFILE: {
-      return {
-        ...state,
-        sellerProfile: action.payload,
-      };
-    }
-    case types.SET_FAVORITES_LIST: {
-      return {
-        ...state,
-        adsFavoritesList: action.payload,
-      };
-    }
-    case types.SET_DETAIL: {
-      return {
-        ...state,
-        adData: action.payload,
-      };
-    }
     case types.SET_CATEGORIES: {
       return {
         ...state,
@@ -73,12 +47,6 @@ const adsReducer = (state = initState, action) => {
           ...state.filters,
           [action.name]: action.value,
         },
-      };
-    }
-    case types.SET_ERROR: {
-      return {
-        ...state,
-        error: action.payload,
       };
     }
     case types.SET_LOADING: {

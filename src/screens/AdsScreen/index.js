@@ -9,15 +9,13 @@ const mapStateToProps = state => {
     adsConfig: state.ads.adsList,
     adsList: state.ads.adsList.results,
     loading: state.ads.loading,
-    error: state.ads.error,
-    filters: state.ads.filters,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdsList: filters => {
-      dispatch(adsActions.getAds(filters));
+    getAdsList: () => {
+      dispatch(adsActions.getAds());
     },
     getNextAds: url => {
       dispatch(adsActions.getAdsLoadMore(url));

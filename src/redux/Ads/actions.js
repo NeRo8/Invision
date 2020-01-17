@@ -1,6 +1,5 @@
 import API, { setToken } from '../../api';
 import { store } from '../store';
-import { getAdDetail } from '../AdDetail';
 
 import * as types from './types';
 
@@ -30,36 +29,24 @@ export const setLoading = loading => ({
   payload: loading,
 });
 
-const setError = error => ({
-  type: types.SET_ERROR,
-  payload: error,
-});
-
-const setAdsFavorites = favorites => ({
-  type: types.SET_FAVORITES_LIST,
-  payload: favorites,
-});
-
-const setSellerProfile = user => ({
-  type: types.SET_SELLER_PROFILE,
-  payload: user,
-});
-
+//Add and delete from favorite
 const setAdsToFavorite = id => ({
   type: types.SET_ADS_TO_FAVORITE,
   payload: id,
 });
 
 //API REDUX
-//Get list ads
-export const getAds = (filters = null) => dispatch => {
-  dispatch(setLoading(true));
-  //Initialize token, for request
+//Get all ads with filters
+export const getAds = () => dispatch => {
+  const { filters } = store.getState().ads;
+  //Initialize token for all requests
   const { access_token } = store.getState().auth.user;
-
   if (access_token !== null) {
     setToken(access_token);
   }
+
+  dispatch(setLoading(true));
+
   var requestUrl = '';
 
   if (filters !== null) {
