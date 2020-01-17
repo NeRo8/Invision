@@ -3,8 +3,6 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
-import { globalStyles } from '../../constants';
-
 import styles from './styles';
 
 class HeaderAdsFilters extends Component {
@@ -14,15 +12,15 @@ class HeaderAdsFilters extends Component {
   }
 
   handlePressDone = () => {
-    const { filters, getAdsList, navigation } = this.props;
+    const { getAdsList, navigation } = this.props;
 
-    getAdsList(filters);
+    getAdsList();
 
     navigation.goBack();
   };
 
   render() {
-    const { city, query, setFilters, filters } = this.props;
+    const { city, query, setFilters } = this.props;
 
     return (
       <View style={styles.container}>

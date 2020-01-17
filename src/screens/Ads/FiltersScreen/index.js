@@ -7,7 +7,6 @@ const mapStateToProps = state => {
   return {
     filters: state.ads.filters,
     categories: state.ads.categories.results,
-    loading: state.ads.loading,
   };
 };
 
@@ -18,9 +17,6 @@ const mapDispatchToProps = dispatch => {
     },
     getCategoriesList: () => {
       dispatch(adsActions.getCategories());
-    },
-    setLoad: () => {
-      dispatch(adsActions.setLoading(true));
     },
   };
 };

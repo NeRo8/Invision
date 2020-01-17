@@ -8,14 +8,13 @@ const mapStateToProps = state => {
   return {
     city: state.ads.filters.city,
     query: state.ads.filters.q,
-    filters: state.ads.filters,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAdsList: filters => {
-      dispatch(adsActions.getAds(filters));
+    getAdsList: () => {
+      dispatch(adsActions.getAds());
     },
     setFilters: (name, value) => {
       dispatch(adsActions.setFilter(name, value));

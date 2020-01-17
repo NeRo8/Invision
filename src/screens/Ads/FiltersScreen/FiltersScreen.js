@@ -20,13 +20,15 @@ const ElementCategories = ({ element, onPressElement }) => (
   <TouchableOpacity
     style={styles.categoryElement}
     onPress={() => onPressElement('category', element.name)}>
-    {/**
-      <Image
-        source={}
-        style={{ width: 30, height: 30 }}
-      />
-       */}
-    <View style={{ width: 30, height: 30 }}></View>
+    <Image
+      source={
+        element.icon_image !== null
+          ? { uri: element.icon_image }
+          : element.icon_image
+      }
+      style={{ width: 30, height: 30 }}
+      resizeMode="contain"
+    />
     <Text style={styles.titleCategory}>{element.name}</Text>
   </TouchableOpacity>
 );
@@ -93,7 +95,7 @@ class FiltersScreen extends Component {
   }
 
   componentDidMount() {
-    const { getCategoriesList, setLoad } = this.props;
+    const { getCategoriesList } = this.props;
 
     const { filters } = this.props;
     const { typeOfAd, stateOfProduct } = this.state;
@@ -117,7 +119,6 @@ class FiltersScreen extends Component {
       stateOfProduct: newStateOfProduct,
     });
 
-    setLoad();
     getCategoriesList();
   }
 
