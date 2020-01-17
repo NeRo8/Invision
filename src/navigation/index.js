@@ -12,8 +12,8 @@ import ProfileNavigation from './ProfileNavigation';
 import CreateAdNavigation from './CreateAdNavigation';
 
 import { colors } from '../constants';
-
 import { store } from '../redux/store';
+import { translate } from '../i18n';
 
 const Navigation = createBottomTabNavigator(
   {
@@ -29,7 +29,7 @@ const Navigation = createBottomTabNavigator(
         }
         return {
           tabBarVisible,
-          title: 'Ads',
+          title: translate('ads'),
           tabBarIcon: ({ focused, horizontal, tintColor }) => (
             <Icon
               name="calendar-multiple"
@@ -52,7 +52,7 @@ const Navigation = createBottomTabNavigator(
         }
         return {
           tabBarVisible,
-          title: 'In Kuwait',
+          title: translate('inKuwait'),
           tabBarIcon: ({ focused, horizontal, tintColor }) => (
             <Icon
               name="building"
@@ -71,7 +71,7 @@ const Navigation = createBottomTabNavigator(
         let tabBarVisible = false;
         return {
           tabBarVisible,
-          title: 'Add ad',
+          title: translate('addAd'),
           tabBarIcon: ({ focused, horizontal, tintColor }) => (
             <Icon
               name="ios-add-circle"
@@ -86,7 +86,7 @@ const Navigation = createBottomTabNavigator(
     Favorite: {
       screen: FavoriteNavigation,
       navigationOptions: {
-        title: 'Favorites',
+        title: translate('favorites'),
         tabBarIcon: ({ focused, horizontal, tintColor }) => (
           <Icon name="ios-heart" type="ionicon" color={tintColor} size={28} />
         ),
@@ -103,7 +103,7 @@ const Navigation = createBottomTabNavigator(
         }
         return {
           tabBarVisible,
-          title: 'Profile',
+          title: translate('profile'),
           tabBarIcon: ({ focused, horizontal, tintColor }) => (
             <Icon
               name="account-circle"
