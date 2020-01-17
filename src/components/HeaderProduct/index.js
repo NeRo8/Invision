@@ -2,22 +2,18 @@ import HeaderProduct from './HeaderProduct';
 
 import { connect } from 'react-redux';
 
-import { adsActions } from '../../redux/Ads';
+import { adDetailActions } from '../../redux/AdDetail';
 
 const mapStateToProps = state => {
   return {
     authStatus: state.auth.authStatus,
-    token: state.auth.user !== null ? state.auth.user.access_token : null,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAdToFavorite: (id, token) => {
-      dispatch(adsActions.addToFavorite(id, token, 'detail'));
-    },
-    removeAdFromFavorite: (id, token) => {
-      dispatch(adsActions.removeFromFavorite(id, token, 'detail'));
+    addAdToFavorite: id => {
+      dispatch(adDetailActions.addToFavorite(id));
     },
   };
 };

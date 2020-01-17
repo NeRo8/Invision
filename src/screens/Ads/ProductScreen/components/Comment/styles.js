@@ -146,15 +146,18 @@ export default StyleSheet.create({
     height: 1,
   },
   date: {
+    ...gothamBook,
     fontSize: 12,
     flex: 1,
     color: colors.UNACTIVE,
   },
   coment: {
+    ...gothamBook,
     fontSize: 15,
     lineHeight: 28,
     fontWeight: '300',
     textAlign: 'justify',
+    marginTop: 15,
   },
   titleRead: {
     ...gothamBold,

@@ -14,20 +14,10 @@ class HeaderProduct extends Component {
   }
 
   handlePressHeart = () => {
-    const {
-      addAdToFavorite,
-      removeAdFromFavorite,
-      token,
-      item,
-      authStatus,
-    } = this.props;
+    const { addAdToFavorite, item, authStatus } = this.props;
 
     if (authStatus) {
-      if (item.is_favorite === true) {
-        removeAdFromFavorite(item.pk, token);
-      } else {
-        addAdToFavorite(item.pk, token);
-      }
+      addAdToFavorite(item.pk);
     }
   };
 
@@ -62,7 +52,7 @@ class HeaderProduct extends Component {
             type="evilicon"
             color="white"
             size={32}
-            onPress={() => this.props.onPressShere()}
+            onPress={() => {}}
           />
 
           <Icon

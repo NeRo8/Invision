@@ -9,7 +9,7 @@ const mapStateToProps = state => {
     productData: state.ad.adDetail,
     userid: state.ad.adDetail.user.pk,
     loading: state.ad.loading,
-    error: state.ad.error,
+    authStatus: state.auth.authStatus,
   };
 };
 

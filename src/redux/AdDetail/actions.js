@@ -1,6 +1,7 @@
 import API from '../../api';
-
 import * as types from './types';
+import { errorActions } from '../Error';
+import { store } from '../store';
 
 const setAdDetail = ad => ({
   type: types.SET_AD_DETAIL,
@@ -12,9 +13,9 @@ const setAdLoading = loading => ({
   payload: loading,
 });
 
-const setAdError = error => ({
-  type: types.SET_AD_ERROR,
-  payload: error,
+const setAdToFavorite = id => ({
+  type: types.ADD_AD_TO_FAVORITE,
+  payload: id,
 });
 
 export const getAdDetail = id => dispatch => {
@@ -23,5 +24,24 @@ export const getAdDetail = id => dispatch => {
   API.get(`/ads/ad/${id}/`)
     .then(response => dispatch(setAdDetail(response.data)))
     .then(() => dispatch(setAdLoading(false)))
-    .catch(error => dispatch(setAdError(error)));
+    .catch(error => dispatch(errorActions.setError(error)));
+};
+
+export const addToFavorite = id => dispatch => {
+  const { adDetail } = store.getState().ad;
+
+  var requestData = new FormData();
+  requestData.append('ad_id', id);
+
+  dispatch(setAdToFavorite(id));
+
+  if (adDetail.is_favorite) {
+    API.delete(`/ads/delete-favorite/${id}/`);
+  } else {
+    API.post('/ads/add-favorite/', requestData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
 };

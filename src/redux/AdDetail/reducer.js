@@ -7,7 +7,6 @@ const initState = {
     },
   },
   loading: true,
-  error: false,
 };
 
 const adDetailReducer = (state = initState, action) => {
@@ -18,16 +17,19 @@ const adDetailReducer = (state = initState, action) => {
         adDetail: action.payload,
       };
     }
+    case types.ADD_AD_TO_FAVORITE: {
+      return {
+        ...state,
+        adDetail: {
+          ...state.adDetail,
+          is_favorite: !Boolean(state.adDetail.is_favorite),
+        },
+      };
+    }
     case types.SET_AD_LOADING: {
       return {
         ...state,
         loading: action.payload,
-      };
-    }
-    case types.SET_AD_ERROR: {
-      return {
-        ...state,
-        error: action.payload,
       };
     }
     default:
