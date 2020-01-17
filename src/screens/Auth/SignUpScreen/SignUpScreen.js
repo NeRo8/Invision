@@ -12,6 +12,8 @@ import { signUp } from '../../../api/auth';
 
 import styles from './styles';
 
+import { translate } from '../../../i18n';
+
 class SignUpScreen extends Component {
   constructor(props) {
     super(props);
@@ -74,39 +76,39 @@ class SignUpScreen extends Component {
             justifyContent: 'space-between',
             flex: 1,
           }}>
-          <Text style={styles.SignUpText}>Sign up</Text>
+          <Text style={styles.SignUpText}>{translate('signUp')}</Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <DefaultInput
-              placeholder="First & Last name"
+              placeholder={translate('firstLastName')}
               value={data.full_name}
               onChangeText={text => this.onChangeState('full_name', text)}
             />
             <DefaultInput
-              placeholder="Email"
+              placeholder={translate('email')}
               value={data.email}
               onChangeText={text => this.onChangeState('email', text)}
             />
             <DefaultInput
-              placeholder="Phone number"
+              placeholder={translate('phoneNumber')}
               value={data.phone_number}
               onChangeText={text => this.onChangeState('phone_number', text)}
             />
             <DefaultInput
               secureTextEntry={true}
-              placeholder="Password"
+              placeholder={translate('password')}
               value={data.password}
               onChangeText={text => this.onChangeState('password', text)}
             />
             <DefaultInput
               secureTextEntry={true}
-              placeholder="Confirm password"
+              placeholder={translate('confirmNewPassword')}
               value={data.confirm_password}
               onChangeText={text =>
                 this.onChangeState('confirm_password', text)
               }
             />
             <DefaultButton
-              title="Sign up"
+              title={translate('signUp')}
               buttonStyle={{ marginHorizontal: 30, marginVertical: 20 }}
               onPressButton={this.handlePressSignUp}
             />
@@ -125,15 +127,18 @@ class SignUpScreen extends Component {
                 onPress={() => this.setState({ checked: !this.state.checked })}
               />
               <Text style={styles.textOfTerms}>
-                By Signing up you agree to our {'\n'}
-                <Text style={styles.textLink}>Terms of Service</Text> &{' '}
-                <Text style={styles.textLink}>Privacy Policy</Text>.
+                {translate('bySigningUpYouAgree')} {'\n'}
+                <Text style={styles.textLink}>
+                  {translate('termsOfService')}
+                </Text>{' '}
+                & <Text style={styles.textLink}>{translate('termsOfUse')}</Text>
+                .
               </Text>
             </View>
           </View>
           <View style={styles.bottomView}>
             <Text style={styles.OrUseText}>
-              Or use Sign in use social networks
+              {translate('signInUseSocials')}
             </Text>
             <View style={styles.btnSocialView}>
               <Button

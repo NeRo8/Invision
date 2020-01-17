@@ -85,11 +85,13 @@ const Navigation = createBottomTabNavigator(
     },
     Favorite: {
       screen: FavoriteNavigation,
-      navigationOptions: {
-        title: translate('favorites'),
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (
-          <Icon name="ios-heart" type="ionicon" color={tintColor} size={28} />
-        ),
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: translate('favorites'),
+          tabBarIcon: ({ focused, horizontal, tintColor }) => (
+            <Icon name="ios-heart" type="ionicon" color={tintColor} size={28} />
+          ),
+        };
       },
     },
     Profile: {

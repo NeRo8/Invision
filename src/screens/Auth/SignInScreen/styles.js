@@ -26,6 +26,7 @@ export default StyleSheet.create({
     color: 'white',
   },
   OrUseText: {
+    ...globalStyles.gothamBook,
     fontSize: 14,
     textAlign: 'center',
   },

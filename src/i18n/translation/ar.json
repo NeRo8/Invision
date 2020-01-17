@@ -169,6 +169,7 @@
   "noAdsFound": "لا يوجد أي اعلان",
   "livingInKuwait": "من سكان الكويت",
   "organizationAndServices": "منظمات وخدمات",
+  "orgAndServices": "منظمات وخدمات",
   "faq": "الأسئلة الأكثر طرحاً",
   "events": "حدث",
   "news": "اخبار",
@@ -204,5 +205,6 @@
   "payWithPaypal": "الدفع من خلال الباي بال",
   "oopsText": "لقد حدث خطأ ما!",
   "pleaseReload": "الرجاء اعادة تشغيل التطبيق",
-  "reload": "اعادة تشغيل"
+  "reload": "اعادة تشغيل",
+  "firstYouNeed": "يرجى تسجيل الدخول"
 }

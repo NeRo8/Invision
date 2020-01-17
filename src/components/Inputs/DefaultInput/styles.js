@@ -12,6 +12,6 @@ export default StyleSheet.create({
     fontFamily: globalStyles.gothamBook.fontFamily,
     fontSize: 17,
     marginTop: 20,
-    textAlign: 'left',
+    alignItems: 'flex-start',
   },
 });

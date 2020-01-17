@@ -8,24 +8,32 @@ import { FavoriteHeader } from '../components/Headers';
 
 import { colors } from '../constants';
 
+import { translate } from '../i18n';
+
 const FavoriteNavigation = createMaterialTopTabNavigator(
   {
     Ads: {
       screen: AdsScreen,
-      navigationOptions: {
-        title: 'Ads',
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: translate('ads'),
+        };
       },
     },
     Services: {
       screen: ServicesScreen,
-      navigationOptions: {
-        title: 'Org/Services',
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: translate('orgAndServices'),
+        };
       },
     },
     Events: {
       screen: EventsScreen,
-      navigationOptions: {
-        title: 'Events',
+      navigationOptions: ({ navigation }) => {
+        return {
+          title: translate('events'),
+        };
       },
     },
   },

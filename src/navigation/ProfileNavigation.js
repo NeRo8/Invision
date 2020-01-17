@@ -1,7 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
-import { Icon } from 'react-native-elements';
 
 import ProfileScreen from '../screens/ProfileScreen';
 import ProfileSettings from '../screens/Profile/ProfileSettings';
@@ -15,36 +13,7 @@ import ProfileNotificationsChat from '../screens/Profile/ProfileNotificationsCha
 
 import { DefaultHeader } from '../components/Headers';
 
-import { colors, globalStyles } from '../constants';
-
-const styles = StyleSheet.create({
-  btnCancel: {
-    color: 'white',
-    fontSize: 16,
-    marginHorizontal: 10,
-  },
-});
-
-const HeaderLeft = ({ onPressCancel }) => (
-  <TouchableOpacity
-    onPress={() => {
-      onPressCancel();
-    }}>
-    <Text style={[styles.btnCancel, globalStyles.gothamBook]}>Cancel</Text>
-  </TouchableOpacity>
-);
-
-const HeaderLeftIcon = ({ onPressBack }) => (
-  <Icon
-    name={'chevron-left'}
-    size={38}
-    color="white"
-    underlayColor="transparent"
-    onPress={() => {
-      onPressBack();
-    }}
-  />
-);
+import { colors } from '../constants';
 
 const ProfileNavigation = createStackNavigator(
   {

@@ -1,6 +1,4 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import InKuwaitScreen from '../screens/InKuwaitScreen';
@@ -30,20 +28,10 @@ import OrganisationAndServicesFilter from '../screens/InKuwait/OrganisationAndSe
 import OrganisationAndServicesDetail from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesDetail';
 import OrganisationAndServicesMap from '../screens/InKuwait/OrganisationAndServices/OrganisationAndServicesMap';
 
-import { colors, globalStyles } from '../constants';
+import { colors } from '../constants';
+import { translate } from '../i18n';
 
 import { DefaultHeader } from '../components/Headers';
-
-const HeaderLeftIcon = ({ goBack }) => (
-  <Icon
-    name="chevron-left"
-    type="material-community"
-    underlayColor="transparent"
-    color="white"
-    size={32}
-    onPress={() => goBack()}
-  />
-);
 
 // Organisation and services
 const ServicesNavigation = createStackNavigator(
@@ -334,8 +322,10 @@ const InKuwaitNavigation = createStackNavigator(
   {
     InKuwait: {
       screen: InKuwaitScreen,
-      navigationOptions: {
-        headerTitle: <DefaultHeader title={'Living In Kuwait'} />,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerTitle: <DefaultHeader title={translate('livingInKuwait')} />,
+        };
       },
     },
     ServicesNavigation: {

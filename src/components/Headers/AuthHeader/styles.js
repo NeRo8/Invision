@@ -1,11 +1,12 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../constants';
 
-import { gothamBold, gothamBook } from '../../../constants/fonts';
+import { gothamBold } from '../../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
+    paddingTop: 20,
     backgroundColor: colors.HEADER,
   },
   headerBlock: {

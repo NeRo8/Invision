@@ -7,6 +7,8 @@ import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
 
+import { translate } from '../../../i18n';
+
 class AdsHeader extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +47,7 @@ class AdsHeader extends Component {
               />
             )}
             value={filters.q}
-            placeholder="Search ad..."
+            placeholder={translate('searchAd')}
             placeholderTextColor={colors.UNACTIVE}
             leftIconContainerStyle={styles.leftIconContainer}
             inputContainerStyle={styles.inputContainerS}
@@ -58,7 +60,7 @@ class AdsHeader extends Component {
         <View style={styles.filtersContainer}>
           <View style={styles.btnContainer}>
             <Button
-              title="Choose category"
+              title={translate('chooseCategory')}
               titleStyle={styles.btnTitleStyle}
               buttonStyle={styles.btnStyle}
               containerStyle={{ marginRight: 5 }}
@@ -74,7 +76,7 @@ class AdsHeader extends Component {
                 color: 'white',
                 size: 20,
               }}
-              title="Add filters"
+              title={translate('filters')}
               titleStyle={styles.btnTitleStyle}
               buttonStyle={styles.btnStyle}
               containerStyle={{ marginLeft: 5 }}

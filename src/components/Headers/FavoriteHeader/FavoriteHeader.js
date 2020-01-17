@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import {
-  TouchableOpacity,
-  View,
-  ScrollView,
-  Text,
-  SafeAreaView,
-} from 'react-native';
+import { TouchableOpacity, View, Text, SafeAreaView } from 'react-native';
 
 import styles from './styles';
+
+import { translate } from '../../../i18n';
 
 class FavoriteHeader extends Component {
   constructor(props) {
@@ -37,7 +33,7 @@ class FavoriteHeader extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.titleBlock}>
           <Text style={styles.sideComponent} />
-          <Text style={styles.titleScreen}>Favorites</Text>
+          <Text style={styles.titleScreen}>{translate('favorites')}</Text>
           {authStatus ? (
             <Text style={styles.sideComponent} onPress={() => clearAllFavor()}>
               Clear All

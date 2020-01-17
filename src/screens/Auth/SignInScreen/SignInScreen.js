@@ -10,6 +10,8 @@ import { colors, globalStyles } from '../../../constants';
 
 import styles from './styles';
 
+import { translate } from '../../../i18n';
+
 class SignInScreen extends Component {
   constructor(props) {
     super(props);
@@ -68,16 +70,16 @@ class SignInScreen extends Component {
     return (
       <ScrollView>
         <View>
-          <Text style={styles.SignInText}>Sign in</Text>
+          <Text style={styles.SignInText}>{translate('signIn')}</Text>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <DefaultInput
               value={data.email}
-              placeholder="Email address*"
+              placeholder={translate('emailAddressReq')}
               onChangeText={text => this.onChangeState('email', text)}
             />
             <DefaultInput
               value={data.password}
-              placeholder="Password*"
+              placeholder={translate('passwordReq')}
               rightIcon={
                 <TouchableOpacity
                   onPress={() => navigation.navigate('ForgotPassword')}>
@@ -88,7 +90,7 @@ class SignInScreen extends Component {
               onChangeText={text => this.onChangeState('password', text)}
             />
             <Button
-              title="Sign in"
+              title={translate('signIn')}
               titleStyle={styles.title}
               buttonStyle={[
                 styles.btnSignIn,
@@ -99,8 +101,8 @@ class SignInScreen extends Component {
             />
           </View>
           <View style={styles.bottomView}>
-            <Text style={[globalStyles.gothamBook, styles.OrUseText]}>
-              Or use Sign in use social networks
+            <Text style={styles.OrUseText}>
+              {translate('signInUseSocials')}
             </Text>
             <View style={styles.btnSocialView}>
               <Button

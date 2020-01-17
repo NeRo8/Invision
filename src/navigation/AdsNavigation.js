@@ -16,6 +16,8 @@ import { DefaultHeader } from '../components/Headers';
 
 import { colors } from '../constants';
 
+import { translate } from '../i18n';
+
 const AdsNavigation = createStackNavigator(
   {
     Home: {
@@ -35,7 +37,7 @@ const AdsNavigation = createStackNavigator(
         return {
           headerTitle: (
             <DefaultHeader
-              title="Filters"
+              title={translate('filters')}
               leftIcon={true}
               onPressLeftIcon={() => navigation.goBack()}
             />
@@ -73,7 +75,7 @@ const AdsNavigation = createStackNavigator(
         return {
           headerTitle: (
             <DefaultHeader
-              title="Write comment"
+              title={translate('writeComment')}
               leftIcon={true}
               onPressLeftIcon={() => navigation.goBack()}
             />

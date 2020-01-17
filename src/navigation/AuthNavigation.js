@@ -12,6 +12,7 @@ import AuthHeader from '../components/Headers/AuthHeader';
 import { DefaultHeader } from '../components/Headers';
 
 import { colors } from '../constants';
+import { translate } from '../i18n';
 
 const SingInNavigation = createMaterialTopTabNavigator(
   {
@@ -47,7 +48,7 @@ const AuthNavigation = createStackNavigator(
         return {
           headerTitle: (
             <DefaultHeader
-              title="Forgot Password"
+              title={translate('forgotPassword')}
               leftIcon={true}
               onPressLeftIcon={() => navigation.goBack()}
             />
@@ -61,7 +62,9 @@ const AuthNavigation = createStackNavigator(
       screen: NewPasswordScreen,
       navigationOptions: ({ navigation }) => {
         return {
-          headerTitle: <DefaultHeader title="New password" leftIcon={null} />,
+          headerTitle: (
+            <DefaultHeader title={translate('newPassword')} leftIcon={null} />
+          ),
           headerLeft: null,
           headerRight: null,
         };

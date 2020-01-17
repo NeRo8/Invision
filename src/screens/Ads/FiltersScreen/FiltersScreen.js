@@ -16,6 +16,8 @@ import { colors } from '../../../constants';
 
 import styles from './styles';
 
+import { translate } from '../../../i18n';
+
 const ElementCategories = ({ element, onPressElement }) => (
   <TouchableOpacity
     style={styles.categoryElement}
@@ -47,21 +49,21 @@ class FiltersScreen extends Component {
       typeOfAd: [
         {
           id: 0,
-          title: 'Private',
+          title: translate('private'),
           value: 'privete',
           active: true,
           func: () => {},
         },
         {
           id: 1,
-          title: 'Business',
+          title: translate('business'),
           value: 'business',
           active: false,
           func: () => {},
         },
         {
           id: 2,
-          title: 'All',
+          title: translate('all'),
           value: 'all',
           active: false,
           func: () => {},
@@ -71,21 +73,21 @@ class FiltersScreen extends Component {
       stateOfProduct: [
         {
           id: 0,
-          title: 'New',
+          title: translate('new'),
           value: 'new',
           active: true,
           func: () => {},
         },
         {
           id: 1,
-          title: 'b/a',
+          title: translate('used'),
           value: 'used',
           active: false,
           func: () => {},
         },
         {
           id: 2,
-          title: 'All',
+          title: translate('all'),
           value: 'all',
           active: false,
           func: () => {},
@@ -178,7 +180,9 @@ class FiltersScreen extends Component {
         scrollEnabled={this.state.scrollEnabled}>
         <View style={styles.container}>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>TYPE OF AD</Text>
+            <Text style={styles.textBlock}>
+              {translate('typeOfAd').toUpperCase()}
+            </Text>
             <View style={styles.selectBlock}>
               <TextPicker
                 dataList={typeOfAd}
@@ -187,7 +191,9 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>STATE OF PRODUCT</Text>
+            <Text style={styles.textBlock}>
+              {translate('whatIsTheState').toUpperCase()}
+            </Text>
             <View style={styles.selectBlock}>
               <TextPicker
                 dataList={stateOfProduct}
@@ -196,13 +202,13 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>Price</Text>
+            <Text style={styles.textBlock}>{translate('price')}</Text>
             <View>
               <View style={styles.blockPrice}>
                 <Input
                   value={this.state.minPrice.toString()}
                   placeholder="0"
-                  label="From"
+                  label={translate('from')}
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
@@ -216,7 +222,7 @@ class FiltersScreen extends Component {
                 <Input
                   value={this.state.maxPrice.toString()}
                   placeholder="0"
-                  label="To"
+                  label={translate('to')}
                   labelStyle={styles.labelInput}
                   inputStyle={styles.inputS}
                   inputContainerStyle={styles.inputStyle}
@@ -257,7 +263,9 @@ class FiltersScreen extends Component {
             </View>
           </View>
           <View style={styles.filterElement}>
-            <Text style={styles.textBlock}>CHOOSE CATEGORY</Text>
+            <Text style={styles.textBlock}>
+              {translate('chooseCategory').toUpperCase()}
+            </Text>
             <FlatList
               horizontal
               contentContainerStyle={styles.blockPrice}

@@ -10,6 +10,8 @@ import { authActions } from '../../redux/Auth';
 import { colors, icons } from '../../constants';
 import styles from './styles';
 
+import { translate } from '../../i18n';
+
 class index extends Component {
   constructor(props) {
     super(props);
@@ -72,9 +74,7 @@ class index extends Component {
             <Image source={icons.appIcon} />
           </View>
           <View style={{ width: '80%' }}>
-            <Text style={styles.logoText}>
-              {'For first sign in to your account'}
-            </Text>
+            <Text style={styles.logoText}>{translate('signInIntro')}</Text>
           </View>
         </View>
         <View style={styles.blockBottom}>
@@ -84,7 +84,7 @@ class index extends Component {
               type: 'material-community',
               color: 'white',
             }}
-            title="Sign in use Facebook"
+            title={translate('signInFacebook')}
             titleStyle={styles.title}
             buttonStyle={[
               styles.btnStyle,
@@ -100,7 +100,7 @@ class index extends Component {
               type: 'material-community',
               color: 'white',
             }}
-            title="Sign in use Twitter"
+            title={translate('signInTwitter')}
             titleStyle={styles.title}
             buttonStyle={[styles.btnStyle, { backgroundColor: colors.TWITTER }]}
             containerStyle={styles.btnContainer}
@@ -113,7 +113,7 @@ class index extends Component {
               type: 'material-community',
               color: 'white',
             }}
-            title="Sign in use Instagram"
+            title={translate('signInInstagram')}
             underlayColor={'silver'}
             backColor={colors.INSTAGRAM}
             titleStyle={styles.title}
@@ -135,7 +135,7 @@ class index extends Component {
             onLoginFailure={data => console.log(data)}
           />
           <Button
-            title="Sign in or Sign up use email"
+            title={translate('signInUpEmail')}
             titleStyle={styles.titleEmail}
             buttonStyle={styles.btnStyleEmail}
             containerStyle={styles.btnContainer}

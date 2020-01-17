@@ -18,6 +18,8 @@ import { colors } from '../../constants';
 
 import styles from './styles';
 
+import { translate } from '../../i18n';
+
 class ProfileScreen extends Component {
   constructor(props) {
     super(props);
@@ -93,7 +95,7 @@ class ProfileScreen extends Component {
     } = this.props;
 
     if (!authStatus) {
-      return <LoadingStatus text="First you need sign in ..." />;
+      return <LoadingStatus text={translate('firstYouNeed')} />;
     }
     if (loading === true) {
       return <LoadingStatus />;

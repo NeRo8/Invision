@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, I18nManager } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
 import styles from './styles';
+
+import { translate } from '../../../i18n';
 
 class AdsFiltersHeader extends Component {
   constructor(props) {
@@ -33,10 +35,11 @@ class AdsFiltersHeader extends Component {
             size={32}
             onPress={() => this.props.navigation.goBack()}
             containerStyle={{ width: 50 }}
+            iconStyle={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}
           />
-          <Text style={styles.headerText}>Filters</Text>
+          <Text style={styles.headerText}>{translate('filters')}</Text>
           <TouchableOpacity onPress={this.handlePressDone}>
-            <Text style={styles.headerRight}>Done</Text>
+            <Text style={styles.headerRight}>{translate('done')}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bodyBlock}>
@@ -45,7 +48,7 @@ class AdsFiltersHeader extends Component {
               <Icon name="ios-search" type="ionicon" color="white" size={20} />
             }
             value={query}
-            placeholder="Search ad..."
+            placeholder={translate('searchAd')}
             placeholderTextColor="white"
             inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStl}
@@ -57,7 +60,7 @@ class AdsFiltersHeader extends Component {
               <Icon name="ios-pin" type="ionicon" color="white" size={20} />
             }
             value={city}
-            placeholder="Choose location"
+            placeholder={translate('chooseLocation')}
             placeholderTextColor="white"
             inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStl}

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import { translate } from '../../i18n';
 
 const ElementCategory = ({ label, count, backgroundImage, onPressElement }) => (
   <TouchableOpacity onPress={() => onPressElement()}>
@@ -49,25 +50,25 @@ class InKuwaitScreen extends Component {
         <Text style={styles.headerTitle}>CHOOSE ONE OF CATEGORY</Text>
         <View style={styles.containerBody}>
           <ElementCategory
-            label={'Organisation \n & services'}
+            label={translate('organizationAndServices')}
             count={countList.services}
             backgroundImage={require('../../assets/images/organisation.jpg')}
             onPressElement={() => navigation.navigate('ServicesNavigation')}
           />
           <ElementCategory
-            label="FAQ"
+            label={translate('faq')}
             count={countList.faqs}
             backgroundImage={require('../../assets/images/faq.jpg')}
             onPressElement={() => navigation.navigate('FaqNavigation')}
           />
           <ElementCategory
-            label="Events"
+            label={translate('events')}
             count={countList.events}
             backgroundImage={require('../../assets/images/events.jpg')}
             onPressElement={() => navigation.navigate('EventsNavigation')}
           />
           <ElementCategory
-            label="News"
+            label={translate('news')}
             count={countList.news}
             backgroundImage={require('../../assets/images/news.jpg')}
             onPressElement={() => navigation.navigate('NewsScreen')}

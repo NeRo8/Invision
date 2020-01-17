@@ -71,7 +71,7 @@
   "mainInfo": "Main information",
   "whatToSell": "What do you want to sell?",
   "chooseTypeSeller": "Choose Type seller",
-  "whatIsTheState": "What is the state of your product?",
+  "whatIsTheState": "State of product",
   "tellAboutAd": "Tell about your ad",
   "titleDescription": "Title & Description",
   "enterTitleOfAd": "Enter title of ad",
@@ -170,6 +170,7 @@
   "noAdsFound": "No Ads found",
   "livingInKuwait": "Living In Kuwait",
   "organizationAndServices": "Organisation & services",
+  "orgAndServices": "Org/Services",
   "faq": "FAQ",
   "events": "Events",
   "news": "News",
@@ -205,5 +206,6 @@
   "payWithPaypal": "Pay with Paypal",
   "oopsText": "Oops, something went wrong.",
   "pleaseReload": "Please reload application",
-  "reload": "Reload"
+  "reload": "Reload",
+  "firstYouNeed": "First you need sign in..."
 }

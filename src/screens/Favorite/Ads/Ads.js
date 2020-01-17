@@ -5,6 +5,7 @@ import AdFavorite from './components/AdFavorite';
 import LoadingStatus from '../../../components/LoadingStatus';
 
 import styles from './styles';
+import { translate } from '../../../i18n';
 
 class Ads extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Ads extends Component {
     const { adsList, authStatus, loading } = this.props;
 
     if (!authStatus) {
-      return <LoadingStatus text="First you need sign in..." />;
+      return <LoadingStatus text={translate('firstYouNeed')} />;
     }
 
     if (loading) {

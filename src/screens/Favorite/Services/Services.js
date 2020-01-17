@@ -5,6 +5,8 @@ import LoadingStatus from '../../../components/LoadingStatus';
 
 import styles from './styles';
 
+import { translate } from '../../../i18n';
+
 class Services extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ class Services extends Component {
     const { authStatus } = this.props;
 
     if (!authStatus) {
-      return <LoadingStatus text="First you need sign in..." />;
+      return <LoadingStatus text={translate('firstYouNeed')} />;
     }
 
     return <View style={styles.container}></View>;

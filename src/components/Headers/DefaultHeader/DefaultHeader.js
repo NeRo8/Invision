@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, I18nManager } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import styles from './styles';
@@ -27,6 +27,9 @@ class DefaultHeader extends Component {
               size={32}
               color="white"
               underlayColor="transparent"
+              iconStyle={{
+                transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+              }}
               containerStyle={styles.leftIcon}
               onPress={() => onPressLeftIcon()}
             />
