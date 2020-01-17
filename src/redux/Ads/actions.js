@@ -92,7 +92,7 @@ export const getAdsLoadMore = url => dispatch => {
   }
 };
 
-export const addToFavorite = (id, token, screen = 'main') => dispatch => {
+export const addToFavorite = id => dispatch => {
   var requestData = new FormData();
   requestData.append('ad_id', id);
 
@@ -102,51 +102,11 @@ export const addToFavorite = (id, token, screen = 'main') => dispatch => {
     },
   });
 
-  if (screen === 'main') {
-    dispatch(setAdsToFavorite(id));
-  } else {
-    dispatch(getAdDetail(id, token));
-  }
+  dispatch(setAdsToFavorite(id));
 };
 
-export const removeFromFavorite = (id, token, screen = 'main') => dispatch => {
+export const removeFromFavorite = id => dispatch => {
   API.delete(`/ads/delete-favorite/${id}/`);
 
-  if (screen === 'main') {
-    dispatch(setAdsToFavorite(id));
-  } else {
-    dispatch(getAdDetail(id, token));
-  }
-};
-
-export const getAdsFavorites = () => dispatch => {
-  dispatch(setLoading(true));
-
-  API.get('/ads/favorites/')
-    .then(response => dispatch(setAdsFavorites(response.data)))
-    .then(() => dispatch(setLoading(false)))
-    .catch(error => dispatch(errorActions.setError(error)));
-};
-
-export const getSellerProfile = userid => dispatch => {
-  setLoading(true);
-  API.get(`/ads/seller/${userid}/`).then(
-    response => dispatch(setSellerProfile(response.data)),
-    setLoading(false),
-  );
-};
-
-export const setComment = (data, token) => dispatch => {
-  API.post('ads/ad-comment/', data);
-
-  dispatch(getAdDetail(data.ad, token));
-};
-
-export const deleteFavorites = () => dispatch => {
-  const { access_token } = store.getState().auth.user;
-
-  API.delete('/ads/delete-favorites/');
-
-  dispatch(getAdsFavorites(access_token));
-  dispatch(getAds(access_token));
+  dispatch(setAdsToFavorite(id));
 };

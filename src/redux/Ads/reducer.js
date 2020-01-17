@@ -55,7 +55,6 @@ const adsReducer = (state = initState, action) => {
         loading: action.payload,
       };
     }
-
     case types.SET_ADS_TO_FAVORITE: {
       var newAdsList = state.adsList.results.map(ad =>
         ad.pk === action.payload
