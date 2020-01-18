@@ -10,15 +10,15 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Moment from 'moment';
-import { Icon, Button, Avatar, Input } from 'react-native-elements';
+import { Icon, Button, Input, Avatar } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
-import StarRating from 'react-native-star-rating';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import HeaderProduct from '../../../components/Headers/ProductHeader';
 import { ElementListAds } from '../../../components/ElementLists';
 import { DefaultButton } from '../../../components/Buttons';
 import LoadingStatus from '../../../components/LoadingStatus';
+import CommentsBlock from './components/CommentsBlock';
 
 import Comment from './components/Comment';
 
@@ -212,8 +212,8 @@ class ProductScreen extends Component {
                       <Avatar
                         rounded
                         icon={{
-                          name: 'person',
-                          type: 'ion-icon',
+                          name: 'ios-person',
+                          type: 'ionicon',
                           color: 'white',
                         }}
                         containerStyle={styles.iconProfile}
@@ -250,6 +250,8 @@ class ProductScreen extends Component {
                 </MapView>
               </View>
             </View>
+            <CommentsBlock commentsList={productData.comments} />
+            {/**
             <View>
               <Text style={styles.reviews}>REVIEWS</Text>
               <FlatList
@@ -260,6 +262,7 @@ class ProductScreen extends Component {
                 }
                 renderItem={({ item }) => <Comment item={item} />}
                 keyExtractor={item => item.pk.toString()}
+                style={{ height: 300 }}
               />
               <Button
                 disabled={productData.comments.length <= 3 ? true : false}
@@ -277,6 +280,7 @@ class ProductScreen extends Component {
                 }
               />
             </View>
+             */}
             <View>
               <Text style={styles.similarAds}>SIMILAR ADS</Text>
               <View style={styles.flatListView}>

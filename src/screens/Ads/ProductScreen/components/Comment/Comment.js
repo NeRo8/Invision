@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { Avatar } from 'react-native-elements';
+import StarRating from 'react-native-star-rating';
 import moment from 'moment';
 
+import { colors } from '../../../../../constants';
 import styles from './styles';
 
 class Comment extends Component {
@@ -11,17 +14,31 @@ class Comment extends Component {
   }
   render() {
     const { item } = this.props;
+
     return (
       <View style={styles.elementContainer}>
         <View style={{ flexDirection: 'row', flex: 1, height: 40 }}>
           <View style={{ flexDirection: 'row', flex: 1 }}>
             <View style={{ paddingRight: 10 }}>
-              <Avatar
-                rounded
-                source={item.user__avatar}
-                imageProps={{ resizeMode: 'cover' }}
-                size={40}
-              />
+              {item.user__avatar !== null ? (
+                <Avatar
+                  rounded
+                  source={{ uri: item.user__avatar }}
+                  imageProps={{ resizeMode: 'cover' }}
+                  size={40}
+                />
+              ) : (
+                <Avatar
+                  rounded
+                  icon={{
+                    name: 'ios-person',
+                    type: 'ionicon',
+                    color: 'white',
+                  }}
+                  containerStyle={styles.iconProfile}
+                  size={28}
+                />
+              )}
             </View>
             <View style={{ justifyContent: 'space-between' }}>
               <Text style={styles.userNameComents}>

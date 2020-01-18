@@ -173,6 +173,8 @@ export default StyleSheet.create({
     borderRadius: 2,
     backgroundColor: 'white',
     marginBottom: 10,
+    borderColor: colors.HEADER,
+    borderWidth: 1,
   },
   iconAvatar: {
     width: 30,
