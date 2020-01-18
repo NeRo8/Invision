@@ -18,7 +18,7 @@ class CommentsBlock extends Component {
     const { commentsList, authStatus } = this.props;
     return (
       <View>
-        <Text style={styles.reviews}>REVIEWS</Text>
+        <Text style={styles.headerText}>REVIEWS</Text>
         <FlatList
           showsVerticalScrollIndicator={false}
           data={commentsList}

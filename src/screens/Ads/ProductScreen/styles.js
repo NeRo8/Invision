@@ -10,6 +10,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  buyerProfile: {
+    marginTop: 25,
+    backgroundColor: '#F5F8FB',
+  },
   child: {
     height: height * 0.4,
     width,
@@ -31,6 +35,7 @@ export default StyleSheet.create({
     fontSize: 17,
     lineHeight: 32,
     textDecorationLine: 'underline',
+    marginTop: 8,
   },
   price: {
     ...gothamBook,
@@ -242,6 +247,7 @@ export default StyleSheet.create({
     backgroundColor: '#F8F8F9',
     marginHorizontal: 15,
     marginBottom: 15,
+    marginTop: 20,
   },
   bottomInput: {
     ...gothamBook,

@@ -10,21 +10,19 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Moment from 'moment';
-import { Icon, Button, Input, Avatar } from 'react-native-elements';
+import { Icon, Input, Avatar } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import HeaderProduct from '../../../components/Headers/ProductHeader';
-import { ElementListAds } from '../../../components/ElementLists';
-import { DefaultButton } from '../../../components/Buttons';
 import LoadingStatus from '../../../components/LoadingStatus';
 import CommentsBlock from './components/CommentsBlock';
 
-import Comment from './components/Comment';
-
 import ShareModal from '../../../components/ShareModal';
 
-import { colors, globalStyles } from '../../../constants';
+import AdsBlock from './components/AdsBlock';
+
+import { colors } from '../../../constants';
 import styles from './styles';
 
 class ProductScreen extends Component {
@@ -39,9 +37,7 @@ class ProductScreen extends Component {
       ],
 
       modalShow: false,
-      showMore: false,
-      readAll: false,
-      moreAds: false,
+      showAllDesctiption: false,
     };
   }
 
@@ -53,47 +49,10 @@ class ProductScreen extends Component {
     getAdData(id);
   }
 
-  handlePressWriteOwnComment = () => {
-    this.props.navigation.navigate('ProductWriteMessage');
-  };
-
   onPressShere = () => {
     this.setState({
       modalShow: !this.state.modalShow,
     });
-  };
-
-  onPressShowMore = () => {
-    const { productData } = this.props;
-    productData.description.length > 300
-      ? this.setState({
-          showMore: !this.state.showMore,
-        })
-      : null;
-  };
-
-  onPressReadAll = () => {
-    const { productData } = this.props;
-    productData.comments.length > 3
-      ? this.setState({
-          readAll: !this.state.readAll,
-        })
-      : null;
-  };
-
-  onPressMoreAds = () => {
-    const { productData } = this.props;
-    productData.recommended.length > 6
-      ? this.setState({
-          moreAds: !this.state.moreAds,
-        })
-      : null;
-  };
-
-  showProductDetail = id => {
-    const { getAdData } = this.props;
-
-    getAdData(id);
   };
 
   handlePressProfile = () => {
@@ -103,8 +62,15 @@ class ProductScreen extends Component {
     });
   };
 
+  handlePressShowAll = () => {
+    this.setState({
+      showAllDesctiption: !this.state.showAllDesctiption,
+    });
+  };
+
   render() {
-    const { productData, loading, authStatus } = this.props;
+    const { productData, loading } = this.props;
+    const { showAllDesctiption } = this.state;
 
     if (loading) {
       return <LoadingStatus />;
@@ -186,17 +152,20 @@ class ProductScreen extends Component {
               />
             </View>
             <View>
-              <Text ellipsizeMode={'tail'} style={styles.description}>
-                {this.state.showMore === true
-                  ? productData.description
-                  : productData.description.slice(0, 300)}
-              </Text>
-              <TouchableOpacity
-                onPress={() => this.onPressShowMore()}
-                style={{ marginTop: 8 }}>
-                <Text style={styles.showMoreText}>Show more</Text>
-              </TouchableOpacity>
-              <View style={{ marginTop: 25, backgroundColor: '#F5F8FB' }}>
+              <View>
+                <Text ellipsizeMode={'tail'} style={styles.description}>
+                  {showAllDesctiption
+                    ? productData.description
+                    : productData.description.slice(0, 300)}
+                </Text>
+                <Text
+                  onPress={this.handlePressShowAll}
+                  style={styles.showMoreText}>
+                  Show more
+                </Text>
+              </View>
+
+              <View style={styles.buyerProfile}>
                 <TouchableOpacity
                   onPress={this.handlePressProfile}
                   style={styles.userTouchable}>
@@ -251,64 +220,7 @@ class ProductScreen extends Component {
               </View>
             </View>
             <CommentsBlock commentsList={productData.comments} />
-            {/**
-            <View>
-              <Text style={styles.reviews}>REVIEWS</Text>
-              <FlatList
-                data={
-                  this.state.readAll === true
-                    ? productData.comments
-                    : productData.comments.slice(0, 3)
-                }
-                renderItem={({ item }) => <Comment item={item} />}
-                keyExtractor={item => item.pk.toString()}
-                style={{ height: 300 }}
-              />
-              <Button
-                disabled={productData.comments.length <= 3 ? true : false}
-                title={`Read all ${productData.comments.length} reviews`}
-                titleStyle={styles.titleRead}
-                buttonStyle={styles.btnStyleRead}
-                containerStyle={styles.btnContainer}
-                onPress={() => this.onPressReadAll()}
-              />
-              <DefaultButton
-                disabled={!authStatus}
-                title="Write own comment"
-                onPressButton={() =>
-                  this.props.navigation.navigate('CreateComment')
-                }
-              />
-            </View>
-             */}
-            <View>
-              <Text style={styles.similarAds}>SIMILAR ADS</Text>
-              <View style={styles.flatListView}>
-                <FlatList
-                  numColumns={2}
-                  data={
-                    this.state.moreAds === true
-                      ? productData.recommended
-                      : productData.recommended.slice(0, 6)
-                  }
-                  renderItem={({ item }) => (
-                    <ElementListAds
-                      item={item}
-                      onPressProduct={this.showProductDetail}
-                    />
-                  )}
-                  keyExtractor={item => item.pk.toString()}
-                />
-              </View>
-            </View>
-            <Button
-              disabled={productData.recommended.length <= 6 ? true : false}
-              title="Show more ads"
-              titleStyle={styles.titleRead}
-              buttonStyle={styles.btnStyleShowMore}
-              containerStyle={styles.btnContainer}
-              onPress={() => this.onPressMoreAds()}
-            />
+            <AdsBlock adsList={productData.recommended} />
           </View>
           <View style={styles.bottomView}>
             <Icon
