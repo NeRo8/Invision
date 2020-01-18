@@ -18,6 +18,9 @@ const mapDispatchToProps = dispatch => {
     getAdData: id => {
       dispatch(adDetailActions.getAdDetail(id));
     },
+    // setReportData: (id, message) => {
+    //   dispatch(adDetailActions.reportAd(id, message));
+    // },
   };
 };
 

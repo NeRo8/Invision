@@ -19,6 +19,7 @@ import LoadingStatus from '../../../components/LoadingStatus';
 import CommentsBlock from './components/CommentsBlock';
 
 import ShareModal from '../../../components/ShareModal';
+import ReportModal from '../../../components/ReportModal';
 
 import AdsBlock from './components/AdsBlock';
 
@@ -38,6 +39,7 @@ class ProductScreen extends Component {
 
       modalShow: false,
       showAllDesctiption: false,
+      reportModalShow: false,
     };
   }
 
@@ -52,6 +54,12 @@ class ProductScreen extends Component {
   onPressShere = () => {
     this.setState({
       modalShow: !this.state.modalShow,
+    });
+  };
+
+  onPressReport = () => {
+    this.setState({
+      reportModalShow: !this.state.reportModalShow,
     });
   };
 
@@ -70,14 +78,18 @@ class ProductScreen extends Component {
 
   render() {
     const { productData, loading } = this.props;
-    const { showAllDesctiption } = this.state;
+    const { showAllDesctiption, modalShow } = this.state;
 
     if (loading) {
       return <LoadingStatus />;
     }
     return (
       <View style={{ flex: 1 }}>
-        <HeaderProduct item={productData} onPressShere={this.onPressShere} />
+        <HeaderProduct
+          item={productData}
+          onPressShere={this.onPressShere}
+          onPressReport={this.onPressReport}
+        />
         <ScrollView>
           <View style={styles.container}>
             <SwiperFlatList
@@ -253,7 +265,7 @@ class ProductScreen extends Component {
             </View>
           </View>
           <ShareModal
-            visible={this.state.modalShow}
+            visible={modalShow}
             bgImage={
               productData.adimage_set.length === 0
                 ? null
@@ -264,6 +276,11 @@ class ProductScreen extends Component {
             description={productData.description}
           />
         </ScrollView>
+        <ReportModal
+          show={this.state.reportModalShow}
+          onPressClose={this.onPressReport}
+          idForReport={productData.pk}
+        />
       </View>
     );
   }

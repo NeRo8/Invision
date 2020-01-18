@@ -1,4 +1,5 @@
 import API from '../../api';
+import ApiServices from '../../api';
 import * as types from './types';
 import { errorActions } from '../Error';
 import { store } from '../store';
@@ -17,6 +18,13 @@ const setAdToFavorite = id => ({
   type: types.ADD_AD_TO_FAVORITE,
   payload: id,
 });
+
+export const reportAd = (idForReport, message) => dispatch => {
+  const reportData = new FormData();
+  reportData.append('ad', idForReport);
+  reportData.append('message', message);
+  API.post('/ads/flag-ad/', reportData);
+};
 
 export const getAdDetail = id => dispatch => {
   dispatch(setAdLoading(true));

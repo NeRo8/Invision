@@ -1,27 +1,43 @@
 import React, { Component } from 'react';
 import { Modal, View, Text } from 'react-native';
 
-import { Button, Divider, CheckBox, Icon } from 'react-native-elements';
+import { Divider, CheckBox, Icon } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../../constants';
+import { DefaultButton } from '../../components/Buttons';
+
+import { colors } from '../../constants';
 
 import styles from './styles';
 
-class ComplainModal extends Component {
+class ReportModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fraud: false,
       language: false,
       other: false,
+      message: '',
     };
   }
   check = option => {
-    this.setState({ fraud: false, language: false, other: false });
-    this.setState({ [option]: true });
+    this.setState({
+      fraud: false,
+      language: false,
+      other: false,
+      [option]: true,
+      message: option,
+    });
+  };
+
+  onPressSend = () => {
+    const { setReportData, idForReport } = this.props;
+    const { message } = this.state;
+
+    setReportData(idForReport, message);
   };
 
   render() {
+    const { onPressClose } = this.props;
     return (
       <Modal visible={this.props.show} transparent>
         <View
@@ -41,18 +57,14 @@ class ComplainModal extends Component {
               />
             </View>
             <View style={styles.modalWraper}>
-              <Text style={[globalStyles.gothamMediumRegular, styles.WhatHapp]}>
-                What happens?
-              </Text>
-              <Text style={[globalStyles.gothamBook, styles.Choose]}>
-                Choose one of option below
-              </Text>
+              <Text style={styles.whatHapp}>What happens?</Text>
+              <Text style={styles.choose}>Choose one of option below</Text>
 
               <CheckBox
                 onPress={() => this.check('fraud')}
                 iconRight
                 title={'Fraud or scam'}
-                textStyle={[globalStyles.gothamBook, styles.radioTitle]}
+                textStyle={styles.radioTitle}
                 containerStyle={styles.checkBox}
                 wrapperStyle={styles.checkBoxWraper}
                 checkedIcon={
@@ -81,7 +93,7 @@ class ComplainModal extends Component {
                 onPress={() => this.check('language')}
                 iconRight
                 title={'Unparliamentary language'}
-                textStyle={[globalStyles.gothamBook, styles.radioTitle]}
+                textStyle={styles.radioTitle}
                 containerStyle={styles.checkBox}
                 wrapperStyle={styles.checkBoxWraper}
                 checkedIcon={
@@ -109,7 +121,7 @@ class ComplainModal extends Component {
                 onPress={() => this.check('other')}
                 iconRight
                 title={'Other'}
-                textStyle={[globalStyles.gothamBook, styles.radioTitle]}
+                textStyle={styles.radioTitle}
                 containerStyle={styles.checkBox}
                 wrapperStyle={styles.checkBoxWraper}
                 checkedIcon={
@@ -133,13 +145,11 @@ class ComplainModal extends Component {
               />
 
               <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
-              <Button
-                titleStyle={[
-                  globalStyles.gothamBold,
-                  { color: 'white', fontSize: 15, lineHeight: 24 },
-                ]}
-                buttonStyle={styles.buttonSend}
+              <DefaultButton
                 title="Send"
+                buttonContainer={styles.buttonContainer}
+                onPress={this.onPressSend}
+                onPressOut={() => onPressClose()}
               />
             </View>
           </View>
@@ -149,4 +159,4 @@ class ComplainModal extends Component {
   }
 }
 
-export default ComplainModal;
+export default ReportModal;

@@ -10,7 +10,13 @@ class DefaultButton extends Component {
   }
 
   render() {
-    const { title, onPressButton, disabled, buttonStyle } = this.props;
+    const {
+      title,
+      onPressButton,
+      disabled,
+      buttonStyle,
+      buttonContainer,
+    } = this.props;
 
     return (
       <Button
@@ -18,7 +24,7 @@ class DefaultButton extends Component {
         title={title}
         titleStyle={styles.btnTitle}
         buttonStyle={[styles.btnStyle, buttonStyle]}
-        containerStyle={styles.btnContainer}
+        containerStyle={[styles.btnContainer, buttonContainer]}
         onPress={onPressButton}
       />
     );

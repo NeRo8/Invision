@@ -22,7 +22,7 @@ class ProductHeader extends Component {
   };
 
   render() {
-    const { item } = this.props;
+    const { item, navigation, onPressShere, onPressReport } = this.props;
 
     return (
       <View style={styles.container}>
@@ -34,25 +34,27 @@ class ProductHeader extends Component {
             underlayColor="transparent"
             color="white"
             size={32}
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() => navigation.goBack()}
           />
         </View>
         <View style={styles.rightBlock}>
           <Icon
             containerStyle={styles.icons}
+            underlayColor="transparent"
             name="flag-outline"
             type="material-community"
             color="white"
             size={26}
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() => onPressReport()}
           />
           <Icon
             containerStyle={styles.icons}
+            underlayColor="transparent"
             name="share-apple"
             type="evilicon"
             color="white"
             size={32}
-            onPress={() => {}}
+            onPress={() => onPressShere()}
           />
 
           <Icon
