@@ -23,6 +23,7 @@ class CommentsBlock extends Component {
 
   render() {
     const { commentsList, authStatus } = this.props;
+
     return (
       <View>
         <Text style={styles.headerText}>REVIEWS</Text>

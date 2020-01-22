@@ -65,7 +65,7 @@ class ProductScreen extends Component {
 
   handlePressProfile = () => {
     const { navigation, userid } = this.props;
-    navigation.navigate('ProductBuyerProfile', {
+    navigation.navigate('ProductSellerProfile', {
       id: userid,
     });
   };

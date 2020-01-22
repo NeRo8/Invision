@@ -6,6 +6,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import authReducer from '../Auth/reducer';
 import adsReducer from '../Ads/reducer';
 import adDetailReducer from '../AdDetail/reducer';
+import adSellerReducer from '../AdSeller/reducer';
 import createAdReducer from '../AdCreate/reducer';
 import inKuwaitReducer from '../inKuwait/reducer';
 import usersReducer from '../Users/reducer';
@@ -28,13 +29,15 @@ const persistConfig = {
     'ad',
     'favorite',
     'error',
+    'adSeller',
   ],
 };
 
 const rootReducer = combineReducers({
-  auth: authReducer,
   ads: adsReducer,
   adCreate: createAdReducer,
+  adSeller: adSellerReducer,
+  auth: authReducer,
   inKuwait: inKuwaitReducer,
   users: usersReducer,
   chat: chatReducer,

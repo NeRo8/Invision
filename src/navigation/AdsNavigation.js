@@ -7,7 +7,7 @@ import FiltersScreen from '../screens/Ads/FiltersScreen';
 import CategoryScreen from '../screens/Ads/CategoryScreen';
 import ProductScreen from '../screens/Ads/ProductScreen';
 import CreateCommentScreen from '../screens/Ads/CreateCommentScreen';
-import ProductBuyerProfile from '../screens/Ads/ProductBuyerProfile';
+import ProductSellerProfile from '../screens/Ads/ProductSellerProfile';
 
 import AdsHeader from '../components/Headers/AdsHeader';
 import AdsFiltersHeader from '../components/Headers/AdsFiltersHeader';
@@ -85,8 +85,8 @@ const AdsNavigation = createStackNavigator(
         };
       },
     },
-    ProductBuyerProfile: {
-      screen: ProductBuyerProfile,
+    ProductSellerProfile: {
+      screen: ProductSellerProfile,
       navigationOptions: {
         header: null,
       },
