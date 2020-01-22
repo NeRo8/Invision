@@ -1,5 +1,4 @@
 import API from '../../api';
-import ApiServices from '../../api';
 import * as types from './types';
 import { errorActions } from '../Error';
 import { store } from '../store';

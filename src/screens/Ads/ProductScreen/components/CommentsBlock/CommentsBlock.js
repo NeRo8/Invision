@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
+import { withNavigation } from 'react-navigation';
 
 import Comment from '../Comment';
 
@@ -13,6 +14,12 @@ class CommentsBlock extends Component {
       scrollEnabled: true,
     };
   }
+
+  handlePressWriteComment = () => {
+    const { navigation } = this.props;
+
+    navigation.navigate('CreateComment');
+  };
 
   render() {
     const { commentsList, authStatus } = this.props;
@@ -31,6 +38,7 @@ class CommentsBlock extends Component {
             titleStyle={styles.btnTitle}
             buttonStyle={styles.btnStyle}
             containerStyle={styles.btnContainer}
+            onPress={this.handlePressWriteComment}
           />
         ) : null}
       </View>
@@ -38,4 +46,4 @@ class CommentsBlock extends Component {
   }
 }
 
-export default CommentsBlock;
+export default withNavigation(CommentsBlock);

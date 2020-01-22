@@ -7,15 +7,14 @@ import { adsActions } from '../../../redux/Ads';
 const mapStateToProps = state => {
   return {
     user: state.auth.user,
-    adId: state.ads.adData.pk,
-    token: state.auth.user !== null ? state.auth.user.access_token : null,
+    adId: state.ad.adDetail.pk,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    createComment: (data, token) => {
-      dispatch(adsActions.setComment(data, token));
+    createComment: data => {
+      dispatch(adsActions.setComment(data));
     },
   };
 };
