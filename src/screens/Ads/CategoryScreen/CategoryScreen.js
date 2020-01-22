@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { styles } from './styles';
+
+import styles from './styles';
 
 import { ElementListCategory } from '../../../components/ElementLists';
 

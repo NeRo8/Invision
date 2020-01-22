@@ -12,20 +12,10 @@ export default StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: 15,
   },
-  footer: {
+  inputField: {
     flexDirection: 'row',
-    marginVertical: 30,
-    paddingHorizontal: 15,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.17,
-    shadowRadius: 1.49,
-
-    elevation: 2,
-    backgroundColor: 'transparent',
+    marginBottom: 30,
+    marginHorizontal: 15,
   },
   btnSend: {
     backgroundColor: colors.HEADER,
@@ -52,5 +42,17 @@ export default StyleSheet.create({
     marginLeft: 20,
     flex: 1,
     fontSize: 17,
+    paddingHorizontal: 10,
+    borderWidth: 0.5,
+    borderColor: 'silver',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 1.49,
+
+    elevation: 2,
   },
 });

@@ -91,16 +91,14 @@ class ProfileNotificationsChat extends Component {
           onEndReached={this.nextMessage}
           onEndReachedThreshold={0.1}
         />
-        <View style={styles.footer}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.inputs}
-              value={this.state.textMessage}
-              onChangeText={textMessage => this.setState({ textMessage })}
-              placeholder="Type something"
-              underlineColorAndroid="transparent"
-            />
-          </View>
+        <View style={styles.inputField}>
+          <TextInput
+            style={styles.inputs}
+            value={this.state.textMessage}
+            onChangeText={textMessage => this.setState({ textMessage })}
+            placeholder="Type something"
+            underlineColorAndroid="transparent"
+          />
           <TouchableOpacity
             style={styles.btnSend}
             onPress={this.handlePressSend}>
