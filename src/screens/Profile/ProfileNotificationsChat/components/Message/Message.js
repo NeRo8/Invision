@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 import moment from 'moment';
 
@@ -29,8 +29,14 @@ class Message extends Component {
     } else {
       return (
         <View style={styles.blockMessageIncome}>
-          <View>
-            <View style={styles.messageMy}>
+          <View style={{ justifyContent: 'flex-end', marginBottom: 10 }}>
+            <Image
+              source={{ uri: message.sender_avatar }}
+              style={styles.avatar}
+            />
+          </View>
+          <View style={{ marginHorizontal: 15 }}>
+            <View style={styles.messageMyIncome}>
               <Text style={styles.senderName}>{message.sender_name}</Text>
               <Text style={styles.messages}>{message.message}</Text>
             </View>

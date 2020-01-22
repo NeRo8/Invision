@@ -23,6 +23,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
   },
+  messageMyIncome: {
+    backgroundColor: '#F6F6F6',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
 
   messages: {
     ...gothamBook,

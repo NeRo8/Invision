@@ -6,7 +6,7 @@ import { gothamBold, gothamBook } from '../../../constants/fonts';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.CHAT_BACKGROUND,
+    backgroundColor: 'white',
   },
   list: {
     flexGrow: 1,
@@ -16,6 +16,16 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 30,
     paddingHorizontal: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 1.49,
+
+    elevation: 2,
+    backgroundColor: 'transparent',
   },
   btnSend: {
     backgroundColor: colors.HEADER,

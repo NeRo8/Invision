@@ -27,7 +27,6 @@ class ProfileNotificationsChat extends Component {
     const id = navigation.getParam('threadId', null);
     getAllMessages(id);
 
-    console.log(`wss://staging.masaha.app/chat/${id}/?token=${token}`);
     this.ws = new WebSocket(
       `wss://staging.masaha.app/chat/${id}/?token=${token}`,
     );
@@ -68,6 +67,9 @@ class ProfileNotificationsChat extends Component {
   handlePressSend = () => {
     const { textMessage } = this.state;
     this.ws.send(JSON.stringify({ message: textMessage }));
+    this.setState({
+      textMessage: '',
+    });
   };
 
   render() {
