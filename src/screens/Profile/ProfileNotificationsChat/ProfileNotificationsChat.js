@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, TextInput, FlatList } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  TextInput,
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { Icon } from 'react-native-elements';
-import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
-
 import Message from './components/Message';
 import LoadingStatus from '../../../components/LoadingStatus';
 
@@ -71,26 +76,10 @@ class ProfileNotificationsChat extends Component {
       return <LoadingStatus />;
     }
     return (
-      <KeyboardAvoidingScrollView
-        stickyFooter={
-          <View style={styles.footer}>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.inputs}
-                value={this.state.textMessage}
-                onChangeText={textMessage => this.setState({ textMessage })}
-                placeholder="Type something"
-                underlineColorAndroid="transparent"
-              />
-            </View>
-            <TouchableOpacity
-              style={styles.btnSend}
-              onPress={this.handlePressSend}>
-              <Icon name="ios-send" type="ionicon" color="white" size={25} />
-            </TouchableOpacity>
-          </View>
-        }
-        containerStyle={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : -500}>
         <FlatList
           inverted
           ref={ref => (this.flatList = ref)}
@@ -100,7 +89,23 @@ class ProfileNotificationsChat extends Component {
           onEndReached={this.nextMessage}
           onEndReachedThreshold={0.1}
         />
-      </KeyboardAvoidingScrollView>
+        <View style={styles.footer}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.inputs}
+              value={this.state.textMessage}
+              onChangeText={textMessage => this.setState({ textMessage })}
+              placeholder="Type something"
+              underlineColorAndroid="transparent"
+            />
+          </View>
+          <TouchableOpacity
+            style={styles.btnSend}
+            onPress={this.handlePressSend}>
+            <Icon name="ios-send" type="ionicon" color="white" size={25} />
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
