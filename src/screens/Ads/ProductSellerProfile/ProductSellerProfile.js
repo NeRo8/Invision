@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StatusBar,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
+import { View, Text, StatusBar, FlatList } from 'react-native';
 import { Avatar, Icon } from 'react-native-elements';
 
 import { ElementListAds } from '../../../components/ElementLists';
