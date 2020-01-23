@@ -1,31 +1,51 @@
 import React, { Component } from 'react';
-import { Modal, View, Text } from 'react-native';
-
+import { Modal, View, Text, FlatList } from 'react-native';
 import { Divider, CheckBox, Icon } from 'react-native-elements';
 
 import { DefaultButton } from '../../Buttons';
 
 import { colors } from '../../../constants';
-
 import styles from './styles';
+
+const CheckBoxVariant = ({ item, onPressItem }) => (
+  <CheckBox
+    checked={item.active}
+    checkedIcon="check-circle"
+    uncheckedIcon="radiobox-blank"
+    iconType="material-community"
+    checkedColor={colors.HEADER}
+    size={25}
+    title={item.title}
+    textStyle={styles.titleStyle}
+    wrapperStyle={styles.wrapperStyle}
+    containerStyle={styles.containerStyle}
+    iconRight={true}
+    onPress={() => onPressItem(item.id)}
+  />
+);
 
 class ReportAd extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fraud: false,
-      language: false,
-      other: false,
-      message: '',
+      reportMessage: null,
+      variantList: [
+        { id: 0, title: 'Fraud or spam', active: false },
+        { id: 1, title: 'Unparliamentary language', active: false },
+        { id: 2, title: 'Other', active: false },
+      ],
     };
   }
-  check = option => {
+
+  onChangeActive = id => {
+    const { variantList } = this.state;
+    var newVariantList = variantList.map(variant =>
+      variant.id === id
+        ? { ...variant, active: true }
+        : { ...variant, active: false },
+    );
     this.setState({
-      fraud: false,
-      language: false,
-      other: false,
-      [option]: true,
-      message: option,
+      variantList: newVariantList,
     });
   };
 
@@ -37,127 +57,40 @@ class ReportAd extends Component {
   };
 
   render() {
-    const { onPressClose } = this.props;
+    const { variantList } = this.state;
+    const { onPressClose, show } = this.props;
     return (
-      <Modal visible={this.props.show} transparent>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: 'rgba(0,0,0, 0.5)',
-            justifyContent: 'center',
-          }}>
+      <Modal visible={show} transparent>
+        <View style={styles.container}>
           <View style={styles.modalBody}>
-            <View style={styles.closeView}>
-              <Icon
-                name="close"
-                type="material-community"
-                iconStyle={{ paddingTop: 15, paddingRight: 15 }}
-                color={colors.UNACTIVE}
-                onPress={this.props.onPressClose}
-                underlayColor="transparent"
-              />
-            </View>
-            <View style={styles.modalWraper}>
-              <Text style={styles.whatHapp}>What happens?</Text>
-              <Text style={styles.choose}>Choose one of option below</Text>
+            <Icon
+              name="close"
+              type="material-community"
+              iconStyle={styles.iconClose}
+              color={colors.UNACTIVE}
+              onPress={onPressClose}
+              underlayColor="transparent"
+            />
 
-              <CheckBox
-                onPress={() => this.check('fraud')}
-                iconRight
-                title={'Fraud or scam'}
-                textStyle={styles.radioTitle}
-                containerStyle={styles.checkBox}
-                wrapperStyle={styles.checkBoxWraper}
-                checkedIcon={
-                  <Icon
-                    name="check-circle"
-                    type="material-community"
-                    color={colors.HEADER}
-                    size={25}
-                    underlayColor="transparent"
+            <View style={styles.modalContainer}>
+              <Text style={styles.headerText}>What happens?</Text>
+              <Text style={styles.underHeaderText}>
+                Choose one of option below
+              </Text>
+              <FlatList
+                scrollEnabled={false}
+                data={variantList}
+                renderItem={({ item }) => (
+                  <CheckBoxVariant
+                    item={item}
+                    onPressItem={this.onChangeActive}
                   />
-                }
-                uncheckedIcon={
-                  <Icon
-                    iconStyle={{ alignSelf: 'flex-end' }}
-                    name="radiobox-blank"
-                    type="material-community"
-                    color={colors.UNACTIVE}
-                    size={25}
-                    underlayColor="transparent"
-                  />
-                }
-                checked={this.state.fraud}
+                )}
+                keyExtractor={(item, index) => index.toString()}
+                ItemSeparatorComponent={() => <Divider />}
               />
 
-              <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
-
-              <CheckBox
-                onPress={() => this.check('language')}
-                iconRight
-                title={'Unparliamentary language'}
-                textStyle={styles.radioTitle}
-                containerStyle={styles.checkBox}
-                wrapperStyle={styles.checkBoxWraper}
-                checkedIcon={
-                  <Icon
-                    name="check-circle"
-                    type="material-community"
-                    color={colors.HEADER}
-                    size={25}
-                    underlayColor="transparent"
-                  />
-                }
-                uncheckedIcon={
-                  <Icon
-                    iconStyle={{ alignSelf: 'flex-end' }}
-                    name="radiobox-blank"
-                    type="material-community"
-                    color={colors.UNACTIVE}
-                    size={25}
-                    underlayColor="transparent"
-                  />
-                }
-                checked={this.state.language}
-              />
-              <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
-
-              <CheckBox
-                onPress={() => this.check('other')}
-                iconRight
-                title={'Other'}
-                textStyle={styles.radioTitle}
-                containerStyle={styles.checkBox}
-                wrapperStyle={styles.checkBoxWraper}
-                checkedIcon={
-                  <Icon
-                    name="check-circle"
-                    type="material-community"
-                    color={colors.HEADER}
-                    size={25}
-                    underlayColor="transparent"
-                  />
-                }
-                uncheckedIcon={
-                  <Icon
-                    iconStyle={{ alignSelf: 'flex-end' }}
-                    name="radiobox-blank"
-                    type="material-community"
-                    color={colors.UNACTIVE}
-                    size={25}
-                    underlayColor="transparent"
-                  />
-                }
-                checked={this.state.other}
-              />
-
-              <Divider style={{ backgroundColor: colors.DIVIDER, height: 1 }} />
-              <DefaultButton
-                title="Send"
-                buttonContainer={styles.buttonContainer}
-                onPressButton={this.onPressSend}
-                onPressOut={() => onPressClose()}
-              />
+              <DefaultButton title="Send" onPressButton={this.onPressSend} />
             </View>
           </View>
         </View>

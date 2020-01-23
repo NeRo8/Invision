@@ -3,58 +3,49 @@ import { colors } from '../../../constants';
 import { gothamBook, gothamMediumRegular } from '../../../constants/fonts';
 
 export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0, 0.5)',
+    justifyContent: 'center',
+  },
   modalBody: {
     backgroundColor: 'white',
-    marginHorizontal: 15,
-    borderRadius: 2,
+    marginHorizontal: '4%',
   },
-  buttonSend: {
-    backgroundColor: colors.HEADER,
-    height: 50,
-    marginVertical: 25,
+  modalContainer: {
+    padding: '9%',
   },
-  choose: {
-    ...gothamBook,
-    marginTop: 15,
-    marginBottom: 15,
-    fontSize: 13,
-    lineHeight: 20,
-    color: colors.TITLE,
-  },
-  radioTitle: {
-    ...gothamBook,
-    fontSize: 17,
-    lineHeight: 27,
-    color: colors.TITLE,
-    fontWeight: '300',
-  },
-  checkBox: {
-    marginLeft: 0,
-    paddingLeft: 0,
-    marginRight: 0,
-    paddingRight: 0,
-    height: 55,
-    alignItems: 'center',
-    flexDirection: 'row',
-    borderWidth: 0,
-    backgroundColor: 'transparent',
-  },
-  checkBoxWraper: {
-    width: '100%',
-    justifyContent: 'space-between',
-  },
-  closeView: {
-    width: '100%',
-    alignItems: 'flex-end',
-  },
-  modalWraper: {
-    marginHorizontal: 32,
-  },
-  whatHapp: {
+  headerText: {
     ...gothamMediumRegular,
     fontSize: 20,
+    marginBottom: 10,
   },
-  buttonContainer: {
-    marginVertical: 25,
+  underHeaderText: {
+    ...gothamBook,
+    fontSize: 13,
+    marginVertical: 15,
+  },
+  titleStyle: {
+    ...gothamBook,
+    fontSize: 17,
+    fontWeight: 'normal',
+    marginLeft: 0,
+    marginRight: 0,
+  },
+  wrapperStyle: {
+    justifyContent: 'space-between',
+  },
+  containerStyle: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    paddingHorizontal: 0,
+    marginHorizontal: 0,
+    marginLeft: 0,
+    marginRight: 0,
+  },
+  iconClose: {
+    position: 'absolute',
+    top: 15,
+    right: 15,
   },
 });
