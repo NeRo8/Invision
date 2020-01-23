@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import { CheckBox, Button } from 'react-native-elements';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
+import { CheckBox } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../../../constants';
+import { DefaultButton } from '../../../../components/Buttons';
+
+import { colors } from '../../../../constants';
 import styles from './styles';
 
 const ElementFl = ({ element, activeElement, onPressElement }) => (
@@ -18,9 +26,8 @@ const ElementFl = ({ element, activeElement, onPressElement }) => (
         onPressElement(element.pk);
       }}
     />
-    <Text style={[globalStyles.gothamBook, styles.textElement]}>
-      {element.name}
-    </Text>
+    <Text style={styles.textElement}>{element.name}</Text>
+    <Text style={styles.countElement}>{element.count_of_services}</Text>
   </View>
 );
 
@@ -86,65 +93,59 @@ class OrganisationAndServicesFilter extends Component {
     const { filters, activeCategory } = this.state;
 
     return (
-      <View style={styles.container}>
-        <View>
-          <View style={styles.containerRow}>
-            <TouchableOpacity
-              onPress={() => this.handleChangeSorting('services')}
-              style={
-                filters.services ? styles.activeBlock : styles.unactiveBlock
-              }>
-              <Text
-                style={[
-                  globalStyles.gothamMediumRegular,
-                  filters.services ? styles.activeText : styles.unactiveText,
-                ]}>
-                Services
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.handleChangeSorting('organisations')}
-              style={
-                filters.organisations
-                  ? styles.activeBlock
-                  : styles.unactiveBlock
-              }>
-              <Text
-                style={[
-                  globalStyles.gothamMediumRegular,
+      <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+          <View>
+            <View style={styles.containerRow}>
+              <TouchableOpacity
+                onPress={() => this.handleChangeSorting('services')}
+                style={
+                  filters.services ? styles.activeBlock : styles.unactiveBlock
+                }>
+                <Text
+                  style={
+                    filters.services ? styles.activeText : styles.unactiveText
+                  }>
+                  Services
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.handleChangeSorting('organisations')}
+                style={
                   filters.organisations
-                    ? styles.activeText
-                    : styles.unactiveText,
-                ]}>
-                Organisations
-              </Text>
-            </TouchableOpacity>
+                    ? styles.activeBlock
+                    : styles.unactiveBlock
+                }>
+                <Text
+                  style={
+                    filters.organisations
+                      ? styles.activeText
+                      : styles.unactiveText
+                  }>
+                  Organisations
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.textHeader}>SELECT CATEGORY</Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={categories}
+              renderItem={({ item }) => (
+                <ElementFl
+                  element={item}
+                  activeElement={activeCategory}
+                  onPressElement={this.setActiveCategory}
+                />
+              )}
+              contentContainerStyle={{ marginTop: 10 }}
+              ItemSeparatorComponent={() => <View style={styles.divider} />}
+            />
+          </View>
+          <DefaultButton title="Done" onPress={this.handlePressDone} />
         </View>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.textHeader}>SELECT CATEGORY</Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={categories}
-            renderItem={({ item }) => (
-              <ElementFl
-                element={item}
-                activeElement={activeCategory}
-                onPressElement={this.setActiveCategory}
-              />
-            )}
-            contentContainerStyle={{ marginTop: 10 }}
-            ItemSeparatorComponent={() => <View style={styles.divider} />}
-          />
-        </View>
-        <Button
-          title="Done"
-          titleStyle={styles.btnTitle}
-          buttonStyle={styles.btnStyle}
-          containerStyle={styles.btnContainer}
-          onPress={this.handlePressDone}
-        />
-      </View>
+      </SafeAreaView>
     );
   }
 }

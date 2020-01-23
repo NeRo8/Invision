@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '../../../../constants';
+import { colors, globalStyles } from '../../../../constants';
 import { gothamBold } from '../../../../constants/fonts';
 
 export default StyleSheet.create({
@@ -41,11 +41,13 @@ export default StyleSheet.create({
     borderColor: colors.BORDER_COLOR,
   },
   activeText: {
+    ...globalStyles.gothamMediumRegular,
     fontSize: 13,
     lineHeight: 24,
     color: 'white',
   },
   unactiveText: {
+    ...globalStyles.gothamMediumRegular,
     fontSize: 13,
     lineHeight: 24,
   },
@@ -56,6 +58,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   textElement: {
+    ...globalStyles.gothamBook,
     flex: 1,
     fontSize: 17,
   },
@@ -73,4 +76,9 @@ export default StyleSheet.create({
     backgroundColor: colors.HEADER,
   },
   btnContainer: {},
+  countElement: {
+    ...globalStyles.gothamBook,
+    fontSize: 15,
+    color: '#6B6F81',
+  },
 });
