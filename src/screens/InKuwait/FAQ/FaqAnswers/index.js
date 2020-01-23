@@ -1,6 +1,7 @@
 import FaqAnswers from './FaqAnswers';
 
 import { connect } from 'react-redux';
+import { faqActions } from '../../../../redux/Faq';
 
 const mapStateToProps = state => {
   return {
@@ -10,8 +11,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    replyAnswer: () => {},
-    reportAnswer: () => {},
+    reportAnswer: id => {
+      dispatch(faqActions.reportAnswer(id));
+    },
   };
 };
 

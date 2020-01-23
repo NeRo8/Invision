@@ -95,3 +95,9 @@ export const sendComment = data => dispatch => {
     .then(response => console.log(response.status))
     .catch(error => dispatch(setError(error)));
 };
+
+export const reportAnswer = id => dispatch => {
+  API.post(`/faq/report/${id}/`)
+    .then(response => console.log(response.status))
+    .catch(error => dispatch(setError(error)));
+};

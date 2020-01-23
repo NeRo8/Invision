@@ -4,7 +4,7 @@ import { Button, Icon } from 'react-native-elements';
 
 import styles from './styles';
 
-const ElementFl = ({ element, onPressReply }) => {
+const ElementFl = ({ element, onPressReply, onPressReport }) => {
   var marginLeft = 0;
   if (element.parent !== null) {
     marginLeft = 30;
@@ -35,6 +35,7 @@ const ElementFl = ({ element, onPressReply }) => {
           titleStyle={styles.btnTitleReport}
           buttonStyle={styles.btnStyleReport}
           containerStyle={styles.btnContainer}
+          onPress={() => onPressReport(element.pk)}
         />
         <Button
           icon={{
@@ -65,13 +66,23 @@ class FaqAnswers extends Component {
     navigation.navigate('FaqCreateComment', { parent: id });
   };
 
+  handlePressElementReport = id => {
+    const { reportAnswer } = this.props;
+
+    reportAnswer(id);
+  };
+
   render() {
     const { answers } = this.props;
     return (
       <FlatList
         data={answers}
         renderItem={({ item }) => (
-          <ElementFl element={item} onPressReply={this.handlePressElement} />
+          <ElementFl
+            element={item}
+            onPressReport={this.handlePressElementReport}
+            onPressReply={this.handlePressElement}
+          />
         )}
         keyExtractor={item => item.pk}
         ItemSeparatorComponent={() => <View style={styles.divider} />}
