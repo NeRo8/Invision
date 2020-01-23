@@ -6,7 +6,7 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
-import { CheckBox, Button } from 'react-native-elements';
+import { CheckBox } from 'react-native-elements';
 
 import { DefaultButton } from '../../../../components/Buttons';
 
@@ -25,7 +25,7 @@ const ElementFl = ({ element, activeElement, onPressElement }) => (
       onPress={() => onPressElement(element.pk)}
     />
     <Text style={styles.textElement}>{element.name}</Text>
-    <Text style={styles.textCount}>{element.count}</Text>
+    <Text style={styles.textCount}>{element.count_of_questions}</Text>
   </View>
 );
 
@@ -80,7 +80,7 @@ class FaqFilter extends Component {
     const { categories } = this.props;
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.container}>
           <View>
             <Text style={styles.textHeader}>SORTING BY</Text>
@@ -127,7 +127,7 @@ class FaqFilter extends Component {
               ItemSeparatorComponent={() => <View style={styles.divider} />}
             />
           </View>
-          <DefaultButton title="Done" onPress={this.handlePressDone} />
+          <DefaultButton title="Done" onPressButton={this.handlePressDone} />
         </View>
       </SafeAreaView>
     );

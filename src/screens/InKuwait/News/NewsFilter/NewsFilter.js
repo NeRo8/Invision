@@ -130,7 +130,7 @@ class NewsFilter extends Component {
               keyExtractor={item => item.pk.toString()}
             />
           </View>
-          <DefaultButton title="Done" onPress={this.handlePressDone} />
+          <DefaultButton title="Done" onPressButton={this.handlePressDone} />
         </View>
       </SafeAreaView>
     );

@@ -155,7 +155,7 @@ class ReportModal extends Component {
               <DefaultButton
                 title="Send"
                 buttonContainer={styles.buttonContainer}
-                onPress={this.onPressSend}
+                onPressButton={this.onPressSend}
                 onPressOut={() => onPressClose()}
               />
             </View>

@@ -110,7 +110,7 @@ class EventsFilter extends Component {
             />
           </View>
 
-          <DefaultButton title="Done" onPress={this.handlePressDone} />
+          <DefaultButton title="Done" onPressButton={this.handlePressDone} />
         </View>
       </SafeAreaView>
     );

@@ -65,6 +65,7 @@ export default StyleSheet.create({
   textCount: {
     ...gothamBook,
     fontSize: 15,
+    color: '#6B6F81',
   },
   btnTitle: {
     ...gothamBold,

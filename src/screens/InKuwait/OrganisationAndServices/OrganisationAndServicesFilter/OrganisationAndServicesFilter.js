@@ -143,7 +143,7 @@ class OrganisationAndServicesFilter extends Component {
               ItemSeparatorComponent={() => <View style={styles.divider} />}
             />
           </View>
-          <DefaultButton title="Done" onPress={this.handlePressDone} />
+          <DefaultButton title="Done" onPressButton={this.handlePressDone} />
         </View>
       </SafeAreaView>
     );

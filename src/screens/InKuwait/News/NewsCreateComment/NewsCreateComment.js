@@ -60,7 +60,7 @@ class NewsCreateComment extends Component {
 
             <DefaultButton
               title="Send comment"
-              onPress={this.handlePressSendComment}
+              onPressButton={this.handlePressSendComment}
             />
           </View>
         </SafeAreaView>
