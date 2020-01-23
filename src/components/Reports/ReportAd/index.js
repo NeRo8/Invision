@@ -11,8 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setReportData: (idForReport, message) => {
-      dispatch(adDetailActions.reportAd(idForReport, message));
+    setReportData: message => {
+      dispatch(adDetailActions.reportAd(message));
     },
   };
 };

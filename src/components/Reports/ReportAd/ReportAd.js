@@ -50,15 +50,16 @@ class ReportAd extends Component {
   };
 
   onPressSend = () => {
-    const { setReportData, idForReport } = this.props;
-    const { message } = this.state;
-
-    setReportData(idForReport, message);
+    const { onPressClose, setReportData } = this.props;
+    const { variantList } = this.state;
+    var message = variantList.find(variant => variant.active === true);
+    setReportData(message.title);
+    onPressClose();
   };
 
   render() {
     const { variantList } = this.state;
-    const { onPressClose, show } = this.props;
+    const { show, onPressClose } = this.props;
     return (
       <Modal visible={show} transparent>
         <View style={styles.container}>

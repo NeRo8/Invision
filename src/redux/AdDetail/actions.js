@@ -19,11 +19,18 @@ const setAdToFavorite = id => ({
   payload: id,
 });
 
-export const reportAd = (idForReport, message) => dispatch => {
+export const reportAd = message => dispatch => {
+  const { adDetail } = store.getState().ad;
   const reportData = new FormData();
-  reportData.append('ad', idForReport);
+  reportData.append('ad', adDetail.pk);
   reportData.append('message', message);
-  API.post('/ads/flag-ad/', reportData);
+  API.post('/ads/flag-ad/', reportData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+    .then(response => console.log(response.data))
+    .catch(error => dispatch(setError(error)));
 };
 
 export const getAdDetail = id => dispatch => {
