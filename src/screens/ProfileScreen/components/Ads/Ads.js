@@ -112,7 +112,7 @@ class Ads extends Component {
       );
     }
 
-    return <Element element={item} onPressDots={() => {}} />;
+    return <Element element={item} />;
   }
 }
 

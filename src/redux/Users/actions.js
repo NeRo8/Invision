@@ -101,3 +101,14 @@ export const updateAvatar = avatar => dispatch => {
     .then(response => dispatch(setAvatar(response.data.avatar)))
     .catch(error => dispatch(errorActions.setError(error)));
 };
+
+export const updateAdStatus = (id, status) => dispatch => {
+  var formData = new FormData();
+  formData.append('status', status === 'active' ? 1 : 0);
+
+  API.patch(`/ads/update-status/${id}/`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+    .then(() => dispatch(setAdsStatus(status)))
+    .catch(error => dispatch(errorActions.setError(error)));
+};

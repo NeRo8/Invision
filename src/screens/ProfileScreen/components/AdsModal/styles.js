@@ -92,4 +92,9 @@ export default StyleSheet.create({
     ...gothamBook,
     fontSize: 17,
   },
+  titleStyle: {
+    ...gothamBook,
+    color: colors.HEADER,
+    fontSize: 17,
+  },
 });

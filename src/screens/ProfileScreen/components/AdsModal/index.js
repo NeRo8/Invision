@@ -5,13 +5,18 @@ import { connect } from 'react-redux';
 import { usersActions } from '../../../../redux/Users';
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    adStatus: state.users.adsStatus,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteAd: (id, token) => {
-      dispatch(usersActions.deleteAds(id, token));
+    updateAdStatus: (id, status) => {
+      dispatch(usersActions.updateAdStatus(id, status));
+    },
+    deleteAd: id => {
+      dispatch(usersActions.deleteAds(id));
     },
   };
 };

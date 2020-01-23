@@ -2,24 +2,46 @@ import React, { Component } from 'react';
 import { Modal, View, ImageBackground, Text, Switch } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../../../constants';
-
 import styles from './styles';
 
 class AdsModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      adStatus: null,
+    };
+  }
+
+  componentDidMount() {
+    const { adStatus } = this.props;
+    this.setState({
+      adStatus: adStatus,
+    });
   }
 
   handlePressDelete = () => {
-    const { item, token, deleteAd } = this.props;
+    const { item, deleteAd } = this.props;
 
-    deleteAd(item.pk, token);
+    deleteAd(item.pk);
+  };
+
+  onChangeState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handlePressDone = () => {
+    const { onClose, updateAdStatus, item } = this.props;
+    const { adStatus } = this.state;
+
+    updateAdStatus(item.pk, adStatus);
+    onClose();
   };
 
   render() {
-    const { item, show, onClose } = this.props;
+    const { adStatus } = this.state;
+    const { item, show } = this.props;
 
     return (
       <Modal style={styles.containerModal} visible={show} transparent>
@@ -44,10 +66,7 @@ class AdsModal extends Component {
                     containerStyle: styles.iconBtnLeft,
                   }}
                   title="Edit ad"
-                  titleStyle={[
-                    globalStyles.gothamBook,
-                    { color: colors.HEADER, fontSize: 17 },
-                  ]}
+                  titleStyle={styles.titleStyle}
                   buttonStyle={styles.btnStyle}
                 />
                 <Button
@@ -62,10 +81,7 @@ class AdsModal extends Component {
                     ],
                   }}
                   title="Delete ad"
-                  titleStyle={[
-                    globalStyles.gothamBook,
-                    { color: 'red', fontSize: 17 },
-                  ]}
+                  titleStyle={[styles.titleStyle, { color: 'red' }]}
                   buttonStyle={styles.btnStyle}
                   onPress={this.handlePressDelete}
                 />
@@ -74,14 +90,22 @@ class AdsModal extends Component {
           </View>
           <View style={styles.blockStatus}>
             <Text style={styles.labelSwitcher}>Active or inactive</Text>
-            <Switch />
+            <Switch
+              value={adStatus === 'active' ? true : false}
+              onValueChange={() =>
+                this.onChangeState(
+                  'adStatus',
+                  adStatus === 'active' ? 'inactive' : 'active',
+                )
+              }
+            />
           </View>
           <Button
             title="Done"
             titleStyle={styles.btnTitle}
             buttonStyle={styles.btnDoneStyle}
             containerStyle={styles.btnContainer}
-            onPress={() => onClose()}
+            onPress={this.handlePressDone}
           />
         </View>
       </Modal>
