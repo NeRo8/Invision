@@ -10,6 +10,7 @@ import AuthNavigation from './AuthNavigation';
 import FavoriteNavigation from './FavoriteNavigation';
 import ProfileNavigation from './ProfileNavigation';
 import CreateAdNavigation from './CreateAdNavigation';
+import PreLoadingScreen from '../screens/PreLoadingScreen';
 
 import { colors } from '../constants';
 import { store } from '../redux/store';
@@ -151,6 +152,7 @@ const Navigation = createBottomTabNavigator(
 
 const MainNavigation = createStackNavigator(
   {
+    Preloading: PreLoadingScreen,
     Main: Navigation,
     Auth: AuthNavigation,
   },

@@ -36,11 +36,9 @@ export const login = data => dispatch => {
 export const refreshToken = () => dispatch => {
   const { refresh_token } = store.getState().auth.user;
 
-  if (refresh_token !== null) {
-    API.post('/users/refresh-token/', { refresh: refresh_token })
-      .then(response => dispatch(setNewToken(response.data.access)))
-      .catch(error => dispatch(errorActions.setError(error)));
-  }
+  API.post('/users/refresh-token/', { refresh: refresh_token })
+    .then(response => dispatch(setNewToken(response.data.access)))
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const loginWithFacebook = token => dispatch => {

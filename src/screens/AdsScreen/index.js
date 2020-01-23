@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import AdsScreen from './AdsScreen';
 
 import { adsActions } from '../../redux/Ads';
-import { authActions } from '../../redux/Auth';
 
 const mapStateToProps = state => {
   return {
@@ -19,9 +18,6 @@ const mapDispatchToProps = dispatch => {
     },
     getNextAds: url => {
       dispatch(adsActions.getAdsLoadMore(url));
-    },
-    refreshAuth: () => {
-      dispatch(authActions.refreshToken());
     },
   };
 };

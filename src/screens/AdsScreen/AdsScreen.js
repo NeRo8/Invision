@@ -14,11 +14,10 @@ class AdsScreen extends Component {
   }
 
   componentDidMount() {
-    const { getAdsList, refreshAuth } = this.props;
+    const { getAdsList } = this.props;
 
     SplashScreen.hide();
 
-    refreshAuth();
     getAdsList();
   }
 
