@@ -23,7 +23,7 @@ const Thread = ({ item, onPressThread }) => (
   </TouchableOpacity>
 );
 
-const BackThread = ({ onPressDelete }) => (
+const BackThread = ({ item, onPressDelete }) => (
   <View style={styles.rowBack}>
     <View style={styles.iconContainer}>
       <Icon
@@ -31,7 +31,7 @@ const BackThread = ({ onPressDelete }) => (
         type="ionicon"
         color="white"
         size={32}
-        onPress={() => onPress()}
+        onPress={() => onPressDelete(item.thread.pk)}
         underlayColor="transparent"
         underlayColor="transparent"
       />
@@ -75,7 +75,11 @@ class ProfileNotifications extends Component {
     });
   };
 
-  handlePressDelete = pk => {};
+  handlePressDelete = pk => {
+    const { blockThreads } = this.props;
+
+    blockThreads(pk);
+  };
 
   loadMoreThreads = () => {
     const { setOldThreads, threadsConf } = this.props;
@@ -91,6 +95,17 @@ class ProfileNotifications extends Component {
     this.setState({
       filter: !filter,
     });
+  };
+
+  getThreads = () => {
+    const { threads } = this.props;
+    const { filter } = this.state;
+
+    if (!filter) {
+      return threads.filter(item => item.thread.blocked === !filter);
+    }
+
+    return threads;
   };
 
   render() {
@@ -117,7 +132,7 @@ class ProfileNotifications extends Component {
         </View>
 
         <SwipeListView
-          data={threads}
+          data={this.getThreads()}
           renderItem={({ item }) => (
             <Thread item={item} onPressThread={this.handlePressThread} />
           )}

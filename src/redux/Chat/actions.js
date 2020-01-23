@@ -76,3 +76,17 @@ export const fetchAllMessages = threadId => dispatch => {
       dispatch(errorActions.setError(error));
     });
 };
+
+export const blockThreads = threadId => dispatch => {
+  dispatch(setLoading(true));
+
+  var formData = new FormData();
+  formData.append('thread', threadId);
+
+  API.patch(`/messaging/block/`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+    .then(response => console.log(response.data))
+    .then(() => dispatch(setLoading(false)))
+    .catch(error => dispatch(errorActions.setError(error)));
+};

@@ -23,6 +23,9 @@ const mapDispatchToProps = dispatch => {
     setOldThreads: url => {
       dispatch(chatActions.loadOldThreads(url));
     },
+    blockThreads: id => {
+      dispatch(chatActions.blockThreads(id));
+    },
   };
 };
 
