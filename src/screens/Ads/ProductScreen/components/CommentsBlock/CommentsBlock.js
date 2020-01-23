@@ -23,10 +23,6 @@ class CommentsBlock extends Component {
 
   render() {
     const { commentsList, authStatus } = this.props;
-    var commentBlockHeight = 400;
-    if (commentsList.length === 0) {
-      commentBlockHeight = 0;
-    }
 
     return (
       <View>
@@ -35,7 +31,7 @@ class CommentsBlock extends Component {
           showsVerticalScrollIndicator={false}
           data={commentsList}
           renderItem={({ item }) => <Comment item={item} />}
-          style={{ height: commentBlockHeight }}
+          style={styles.containerBlock}
         />
         {authStatus ? (
           <Button

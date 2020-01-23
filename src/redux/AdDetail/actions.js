@@ -2,6 +2,7 @@ import API from '../../api';
 import * as types from './types';
 import { errorActions } from '../Error';
 import { store } from '../store';
+import { setError } from '../Error/action';
 
 const setAdDetail = ad => ({
   type: types.SET_AD_DETAIL,
@@ -51,4 +52,10 @@ export const addToFavorite = id => dispatch => {
       },
     });
   }
+};
+
+export const sendComment = data => dispatch => {
+  API.post('/ads/ad-comment/', data)
+    .then(response => console.log(response.data))
+    .catch(error => dispatch(setError(error)));
 };

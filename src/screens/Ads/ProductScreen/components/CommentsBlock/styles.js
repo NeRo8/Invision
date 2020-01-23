@@ -23,4 +23,7 @@ export default StyleSheet.create({
   btnContainer: {
     marginTop: 25,
   },
+  containerBlock: {
+    maxHeight: 400,
+  },
 });

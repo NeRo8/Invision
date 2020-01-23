@@ -20,7 +20,7 @@ class CreateCommentScreen extends Component {
   }
 
   handlePressSendComment = () => {
-    const { token, adId, createComment } = this.props;
+    const { adId, createComment } = this.props;
     const { comment } = this.state;
 
     const newData = {
@@ -29,7 +29,7 @@ class CreateCommentScreen extends Component {
     };
 
     if (comment !== '' && comment !== null) {
-      createComment(newData, token);
+      createComment(newData);
     }
   };
 
@@ -44,13 +44,14 @@ class CreateCommentScreen extends Component {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior="padding"
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}>
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : -500}>
         <SafeAreaView style={styles.container}>
           <View style={styles.container}>
             <SmallInput placeholder="Enter youre Full name" value={fullName} />
             <SmallInput placeholder="Enter your email address" value={email} />
             <LargeInput
               placeholder="Enter description of your question"
+              returnKeyType="send"
               value={comment}
               onChangeText={text => this.setState({ comment: text })}
             />
