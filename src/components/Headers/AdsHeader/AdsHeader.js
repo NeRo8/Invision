@@ -44,6 +44,7 @@ class AdsHeader extends Component {
                 type="ionicon"
                 color={colors.UNACTIVE}
                 size={25}
+                underlayColor="transparent"
               />
             )}
             value={filters.q}

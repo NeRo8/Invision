@@ -38,6 +38,7 @@ class ComplainModal extends Component {
                 iconStyle={{ paddingTop: 15, paddingRight: 15 }}
                 color={colors.UNACTIVE}
                 onPress={this.props.onPressClose}
+                underlayColor="transparent"
               />
             </View>
             <View style={styles.modalWraper}>
@@ -61,6 +62,7 @@ class ComplainModal extends Component {
                     type="material-community"
                     color={colors.HEADER}
                     size={25}
+                    underlayColor="transparent"
                   />
                 }
                 uncheckedIcon={
@@ -70,6 +72,7 @@ class ComplainModal extends Component {
                     type="material-community"
                     color={colors.UNACTIVE}
                     size={25}
+                    underlayColor="transparent"
                   />
                 }
                 checked={this.state.fraud}
@@ -90,6 +93,7 @@ class ComplainModal extends Component {
                     type="material-community"
                     color={colors.HEADER}
                     size={25}
+                    underlayColor="transparent"
                   />
                 }
                 uncheckedIcon={
@@ -99,6 +103,7 @@ class ComplainModal extends Component {
                     type="material-community"
                     color={colors.UNACTIVE}
                     size={25}
+                    underlayColor="transparent"
                   />
                 }
                 checked={this.state.language}
@@ -118,6 +123,7 @@ class ComplainModal extends Component {
                     type="material-community"
                     color={colors.HEADER}
                     size={25}
+                    underlayColor="transparent"
                   />
                 }
                 uncheckedIcon={
@@ -127,6 +133,7 @@ class ComplainModal extends Component {
                     type="material-community"
                     color={colors.UNACTIVE}
                     size={25}
+                    underlayColor="transparent"
                   />
                 }
                 checked={this.state.other}

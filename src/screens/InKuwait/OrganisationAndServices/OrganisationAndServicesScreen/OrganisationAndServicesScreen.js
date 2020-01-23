@@ -86,6 +86,7 @@ class OrganisationAndServicesScreen extends Component {
               raised
               name="map-pin"
               type="feather"
+              underlayColor="transparent"
               containerStyle={styles.mapPin}
               color={colors.HEADER}
               onPress={this.onPressChoodeLocation}

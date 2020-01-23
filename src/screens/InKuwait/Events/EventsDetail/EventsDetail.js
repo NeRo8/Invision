@@ -95,6 +95,7 @@ class EventsDetail extends Component {
                 name="ios-heart-empty"
                 type="ionicon"
                 color="white"
+                underlayColor="transparent"
                 containerStyle={styles.iconContainer}
               />
               <Icon
@@ -102,6 +103,7 @@ class EventsDetail extends Component {
                 name="share-apple"
                 type="evilicon"
                 color="white"
+                underlayColor="transparent"
                 size={32}
                 onPress={() => this.props.onPressShere()}
               />
@@ -127,6 +129,7 @@ class EventsDetail extends Component {
                       type="ionicon"
                       color={'#63A3FF'}
                       iconStyle={{ marginRight: 10 }}
+                      underlayColor="transparent"
                     />
                     <Text style={styles.blockText}>
                       {moment(eventsDetail.start_date).format('MMM d')}
@@ -138,6 +141,7 @@ class EventsDetail extends Component {
                       type="octicon"
                       color={'#63A3FF'}
                       iconStyle={{ marginRight: 10 }}
+                      underlayColor="transparent"
                     />
                     <Text style={styles.blockText}>
                       {moment(eventsDetail.end_date).format('MMM d')}
@@ -151,6 +155,7 @@ class EventsDetail extends Component {
                       type="material-community"
                       color={'#63A3FF'}
                       iconStyle={{ marginRight: 10 }}
+                      underlayColor="transparent"
                     />
                     <Text style={styles.blockText}>{eventsDetail.price}</Text>
                   </View>
@@ -162,6 +167,7 @@ class EventsDetail extends Component {
                       iconStyle={{
                         marginRight: 10,
                       }}
+                      underlayColor="transparent"
                     />
                     <Text style={styles.blockText}>
                       {eventsDetail.address.slice(0, 10)} ...
@@ -189,6 +195,7 @@ class EventsDetail extends Component {
                 name="ios-pin"
                 type="ionicon"
                 size={24}
+                underlayColor="transparent"
                 color={colors.HEADER}
                 iconStyle={styles.icon}
                 onPress={() => {

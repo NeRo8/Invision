@@ -37,6 +37,7 @@ class ProfileSettingsPrivacyPolicy extends Component {
             name="ios-checkmark-circle-outline"
             type="ionicon"
             color={colors.HEADER}
+            underlayColor="transparent"
             containerStyle={{ marginTop: 20 }}
           />
           <Text

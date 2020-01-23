@@ -62,6 +62,7 @@ class NewsDetail extends Component {
                 type="feather"
                 color="white"
                 size={32}
+                underlayColor="transparent"
                 onPress={() => this.props.navigation.goBack()}
               />
               <Icon
@@ -70,6 +71,7 @@ class NewsDetail extends Component {
                 type="evilicon"
                 color="white"
                 size={32}
+                underlayColor="transparent"
                 onPress={() => this.props.onPressShere()}
               />
             </View>
@@ -107,6 +109,7 @@ class NewsDetail extends Component {
                       name="cellphone-text"
                       type="material-community"
                       color={'#63A3FF'}
+                      underlayColor="transparent"
                       iconStyle={{ marginRight: 10 }}
                     />
                     <Text style={styles.blockText}></Text>
@@ -116,6 +119,7 @@ class NewsDetail extends Component {
                       name="clock"
                       type="octicon"
                       color={'#63A3FF'}
+                      underlayColor="transparent"
                       iconStyle={{ marginRight: 10 }}
                     />
                     <Text style={styles.blockText}>
@@ -134,6 +138,7 @@ class NewsDetail extends Component {
                       name="eye-outline"
                       type="material-community"
                       color={'#63A3FF'}
+                      underlayColor="transparent"
                       iconStyle={{ marginRight: 10 }}
                     />
                     <Text style={styles.blockText}>{newsDetail.hit_count}</Text>
@@ -143,6 +148,7 @@ class NewsDetail extends Component {
                       name="tag-outline"
                       type="material-community"
                       color={'#63A3FF'}
+                      underlayColor="transparent"
                       iconStyle={{
                         marginRight: 10,
                         transform: [{ rotate: '90deg' }],

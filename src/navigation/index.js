@@ -37,6 +37,7 @@ const Navigation = createBottomTabNavigator(
               type="material-community"
               color={tintColor}
               size={28}
+              underlayColor="transparent"
             />
           ),
         };
@@ -60,6 +61,7 @@ const Navigation = createBottomTabNavigator(
               type="font-awesome"
               color={tintColor}
               size={28}
+              underlayColor="transparent"
             />
           ),
         };
@@ -79,6 +81,7 @@ const Navigation = createBottomTabNavigator(
               type="ionicon"
               color={tintColor}
               size={28}
+              underlayColor="transparent"
             />
           ),
         };
@@ -90,7 +93,13 @@ const Navigation = createBottomTabNavigator(
         return {
           title: translate('favorites'),
           tabBarIcon: ({ focused, horizontal, tintColor }) => (
-            <Icon name="ios-heart" type="ionicon" color={tintColor} size={28} />
+            <Icon
+              name="ios-heart"
+              type="ionicon"
+              color={tintColor}
+              size={28}
+              underlayColor="transparent"
+            />
           ),
         };
       },
@@ -113,6 +122,7 @@ const Navigation = createBottomTabNavigator(
               type="material-community"
               color={tintColor}
               size={28}
+              underlayColor="transparent"
             />
           ),
         };

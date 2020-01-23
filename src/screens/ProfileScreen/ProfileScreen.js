@@ -77,6 +77,7 @@ class ProfileScreen extends Component {
           type="ion-icon"
           size={50}
           color="silver"
+          underlayColor="transparent"
           containerStyle={styles.iconProfile}
         />
       );
@@ -114,6 +115,7 @@ class ProfileScreen extends Component {
                 name="folder-open"
                 type="ion-icon"
                 color="white"
+                underlayColor="transparent"
                 containerStyle={styles.iconHeader}
                 onPress={() => navigation.navigate('ProfilePaymentHistory')}
               />
@@ -135,6 +137,7 @@ class ProfileScreen extends Component {
                     name="ios-notifications-outline"
                     type="ionicon"
                     color="white"
+                    underlayColor="transparent"
                     containerStyle={styles.iconHeader}
                     onPress={() => navigation.navigate('ProfileNotifications')}
                   />
@@ -161,6 +164,7 @@ class ProfileScreen extends Component {
               name="ios-mail"
               type="ionicon"
               color={colors.HEADER}
+              underlayColor="transparent"
               containerStyle={{ marginHorizontal: 20 }}
             />
             <Text style={styles.elementLabel}>{user.email}</Text>
@@ -170,6 +174,7 @@ class ProfileScreen extends Component {
               name="ios-call"
               type="ionicon"
               color={colors.HEADER}
+              underlayColor="transparent"
               containerStyle={{ marginHorizontal: 20 }}
             />
             <Text style={styles.elementLabel}>
@@ -181,6 +186,7 @@ class ProfileScreen extends Component {
               name="ios-business"
               type="ionicon"
               color={colors.HEADER}
+              underlayColor="transparent"
               containerStyle={{ marginHorizontal: 20 }}
             />
             <Text style={styles.elementLabel}>

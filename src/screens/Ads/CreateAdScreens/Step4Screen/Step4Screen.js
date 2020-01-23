@@ -76,6 +76,7 @@ class Step4Screen extends Component {
               size={24}
               color={'#74859E'}
               containerStyle={{}}
+              underlayColor="transparent"
             />
           </View>
         </TouchableOpacity>

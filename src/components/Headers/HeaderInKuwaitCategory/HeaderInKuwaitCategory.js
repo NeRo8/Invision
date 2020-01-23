@@ -50,6 +50,7 @@ class HeaderInKuwaitCategory extends Component {
                 type="ionicon"
                 color={colors.UNACTIVE}
                 size={24}
+                underlayColor="transparent"
               />
             )}
             leftIconContainerStyle={styles.leftIconContainer}

@@ -22,6 +22,7 @@ const MapFlatList = ({ element }) => (
     <Icon
       name={element.active ? 'ios-heart' : 'ios-heart-empty'}
       type="ionicon"
+      underlayColor="transparent"
       color={element.active ? colors.HEART_ACTIVE : 'silver'}
       underlayColor="transparent"
       containerStyle={styles.elementHeart}
@@ -165,6 +166,7 @@ class OrganisationAndServicesMap extends Component {
           raised
           name="crosshairs-gps"
           type="material-community"
+          underlayColor="transparent"
           color={colors.LABEL_GREY_COLOR}
           containerStyle={{ position: 'absolute', bottom: 170, right: 15 }}
         />

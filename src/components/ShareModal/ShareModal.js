@@ -115,6 +115,7 @@ class ShareModal extends Component {
                           backgroundColor: colors.FACEBOOK,
                         },
                       ]}
+                      underlayColor="transparent"
                     />
                   }
                   title="Facebook"
@@ -129,6 +130,7 @@ class ShareModal extends Component {
                       type="material-community"
                       size={18}
                       color="white"
+                      underlayColor="transparent"
                       containerStyle={[
                         styles.socialIcon,
                         {
@@ -149,6 +151,7 @@ class ShareModal extends Component {
                       type="material-community"
                       size={18}
                       color="white"
+                      underlayColor="transparent"
                       containerStyle={[
                         styles.socialIcon,
                         {
@@ -168,6 +171,7 @@ class ShareModal extends Component {
                       type="material-community"
                       size={18}
                       color="white"
+                      underlayColor="transparent"
                       containerStyle={[
                         styles.socialIcon,
                         {

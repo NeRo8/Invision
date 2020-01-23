@@ -31,6 +31,7 @@ const ModalSuccess = ({ show, onPressSubmit }) => (
               type="ionicon"
               color={colors.HEADER}
               size={70}
+              underlayColor="transparent"
             />
           </View>
         </View>

@@ -15,6 +15,7 @@ const IconInput = ({ iconName, ...props }) => (
         type="ionicon"
         color={colors.ICON_GREY_COLOR}
         size={25}
+        underlayColor="transparent"
       />
     )}
     leftIconContainerStyle={styles.leftIconContainer}

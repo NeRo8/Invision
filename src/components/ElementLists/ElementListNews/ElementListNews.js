@@ -22,6 +22,7 @@ const ElementListNews = ({ item, onPressProduct }) => (
           color={'#63A3FF'}
           size={16}
           iconStyle={{ marginRight: 10 }}
+          underlayColor="transparent"
         />
         <Text style={[globalStyles.gothamBook, styles.title]}>
           {item.created.slice(0, 10)}

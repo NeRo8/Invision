@@ -33,6 +33,7 @@ class AuthHeader extends Component {
             type="feather"
             color="white"
             size={32}
+            underlayColor="transparent"
             onPress={() => navigation.goBack()}
           />
           <Text style={styles.headerText}>Add ad</Text>

@@ -102,7 +102,13 @@ class ProfileNotificationsChat extends Component {
           <TouchableOpacity
             style={styles.btnSend}
             onPress={this.handlePressSend}>
-            <Icon name="ios-send" type="ionicon" color="white" size={25} />
+            <Icon
+              name="ios-send"
+              type="ionicon"
+              color="white"
+              size={25}
+              underlayColor="transparent"
+            />
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>

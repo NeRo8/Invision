@@ -122,6 +122,7 @@ class EventsScreen extends Component {
             <Icon
               name="map-pin"
               type="feather"
+              underlayColor="transparent"
               color={colors.HEADER}
               iconStyle={styles.icon}
               onPress={() => {

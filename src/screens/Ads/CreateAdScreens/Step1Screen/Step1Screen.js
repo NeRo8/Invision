@@ -47,6 +47,7 @@ class Step1Screen extends Component {
                 size={24}
                 color={'#74859E'}
                 containerStyle={{}}
+                underlayColor="transparent"
               />
             </TouchableOpacity>
             <View style={[styles.elementPicker, { paddingLeft: 0 }]}>

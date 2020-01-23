@@ -59,6 +59,7 @@ class ProductSellerProfile extends Component {
               containerStyle={{
                 width: 50,
               }}
+              underlayColor="transparent"
               onPress={() => this.props.navigation.goBack()}
             />
             <Icon
@@ -66,6 +67,7 @@ class ProductSellerProfile extends Component {
               type="ionicon"
               size={24}
               color={colors.DEFAULT}
+              underlayColor="transparent"
               containerStyle={{
                 width: 50,
               }}
@@ -79,6 +81,7 @@ class ProductSellerProfile extends Component {
                 type="ionicon"
                 color="white"
                 size={40}
+                underlayColor="transparent"
                 containerStyle={styles.avatarIcon}
               />
             ) : (
@@ -97,6 +100,7 @@ class ProductSellerProfile extends Component {
                   type="feather"
                   color={colors.UNACTIVE}
                   size={20}
+                  underlayColor="transparent"
                   iconStyle={{ marginRight: 8 }}
                 />
                 <Text style={styles.userLocation}>
@@ -119,6 +123,7 @@ class ProductSellerProfile extends Component {
                   type="material-community"
                   color={'#63A3FF'}
                   iconStyle={{ marginRight: 10 }}
+                  underlayColor="transparent"
                 />
                 <Text style={styles.blockText}>
                   {profile.phone_number !== null
@@ -130,6 +135,7 @@ class ProductSellerProfile extends Component {
                 <Icon
                   name="clock"
                   type="octicon"
+                  underlayColor="transparent"
                   color={'#63A3FF'}
                   iconStyle={{ marginRight: 10 }}
                 />
@@ -145,6 +151,7 @@ class ProductSellerProfile extends Component {
                 type="material-community"
                 color={'#63A3FF'}
                 iconStyle={{ marginRight: 10 }}
+                underlayColor="transparent"
               />
               <Text style={styles.blockText}>{profile.email}</Text>
             </View>

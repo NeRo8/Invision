@@ -9,7 +9,12 @@ const ElementFl = ({ element }) => (
     <View style={styles.rowBlock}>
       <Text style={styles.author}>{element.author_full_name}</Text>
       <View style={{ flexDirection: 'row' }}>
-        <Icon name="clock" type="octicon" color={'silver'} />
+        <Icon
+          name="clock"
+          type="octicon"
+          color={'silver'}
+          underlayColor="transparent"
+        />
         <Text style={styles.time}>{element.created}</Text>
       </View>
     </View>

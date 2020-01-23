@@ -27,6 +27,7 @@ const ElementList = ({ element, onPressElement, onClose }) => (
       type="ionicon"
       color={colors.HEADER}
       containerStyle={{ marginHorizontal: 20 }}
+      underlayColor="transparent"
     />
     <Text style={styles.text}>{element.name}</Text>
   </TouchableOpacity>
@@ -110,6 +111,7 @@ class FaqAsk extends Component {
             type="material-community"
             size={32}
             color={colors.LABEL_GREY_COLOR}
+            underlayColor="transparent"
             onPress={() => this.onChangeState('visible', true)}
           />
         </View>

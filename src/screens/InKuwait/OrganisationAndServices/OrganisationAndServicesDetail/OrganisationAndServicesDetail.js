@@ -47,6 +47,7 @@ class OrganisationAndServicesDetail extends Component {
               type="feather"
               color="white"
               size={32}
+              underlayColor="transparent"
               onPress={() => this.props.navigation.goBack()}
             />
 
@@ -56,6 +57,7 @@ class OrganisationAndServicesDetail extends Component {
               type="evilicon"
               color="white"
               size={32}
+              underlayColor="transparent"
               onPress={this.handlePressShere}
             />
           </View>
@@ -112,6 +114,7 @@ class OrganisationAndServicesDetail extends Component {
                     type="material-community"
                     color={'#63A3FF'}
                     iconStyle={{ marginRight: 10 }}
+                    underlayColor="transparent"
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
                     Oct 11-12
@@ -123,6 +126,7 @@ class OrganisationAndServicesDetail extends Component {
                     type="octicon"
                     color={'#63A3FF'}
                     iconStyle={{ marginRight: 10 }}
+                    underlayColor="transparent"
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
                     11am - 14pm
@@ -141,6 +145,7 @@ class OrganisationAndServicesDetail extends Component {
                     type="material-community"
                     color={'#63A3FF'}
                     iconStyle={{ marginRight: 10 }}
+                    underlayColor="transparent"
                   />
                   <Text style={[globalStyles.gothamBook, styles.blockText]}>
                     3 KD Entry
@@ -151,6 +156,7 @@ class OrganisationAndServicesDetail extends Component {
                     name="tag-outline"
                     type="material-community"
                     color={'#63A3FF'}
+                    underlayColor="transparent"
                     iconStyle={{
                       marginRight: 10,
                       transform: [{ rotate: '90deg' }],

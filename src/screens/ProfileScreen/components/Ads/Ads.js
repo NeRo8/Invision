@@ -57,6 +57,7 @@ class Element extends Component {
                 name="dots-vertical"
                 type="material-community"
                 containerStyle={styles.iconDots}
+                underlayColor="transparent"
                 onPress={this.handlePressDots}
               />
             </View>
@@ -79,6 +80,7 @@ class Element extends Component {
                 name="ios-mail"
                 type="ionicon"
                 color="silver"
+                underlayColor="transparent"
                 containerStyle={{ marginLeft: 5 }}
               />
             </View>

@@ -45,7 +45,13 @@ class AdsFiltersHeader extends Component {
         <View style={styles.bodyBlock}>
           <Input
             leftIcon={
-              <Icon name="ios-search" type="ionicon" color="white" size={20} />
+              <Icon
+                name="ios-search"
+                type="ionicon"
+                color="white"
+                size={20}
+                underlayColor="transparent"
+              />
             }
             value={query}
             placeholder={translate('searchAd')}
@@ -57,7 +63,13 @@ class AdsFiltersHeader extends Component {
           />
           <Input
             leftIcon={
-              <Icon name="ios-pin" type="ionicon" color="white" size={20} />
+              <Icon
+                name="ios-pin"
+                type="ionicon"
+                color="white"
+                size={20}
+                underlayColor="transparent"
+              />
             }
             value={city}
             placeholder={translate('chooseLocation')}

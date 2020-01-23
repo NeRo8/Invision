@@ -111,6 +111,7 @@ class MakePictureScreen extends Component {
             type="ionicon"
             color={'white'}
             size={36}
+            underlayColor="transparent"
             containerStyle={{ position: 'absolute', right: 25 }}
             onPress={() => this.setState({ type: !this.state.type })}
           />

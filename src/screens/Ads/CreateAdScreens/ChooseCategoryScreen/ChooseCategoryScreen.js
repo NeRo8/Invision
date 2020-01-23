@@ -15,6 +15,7 @@ const ItemList = ({ item, onPressItem }) => (
       type="material-community"
       color={colors.HINT}
       size={32}
+      underlayColor="transparent"
     />
   </TouchableOpacity>
 );

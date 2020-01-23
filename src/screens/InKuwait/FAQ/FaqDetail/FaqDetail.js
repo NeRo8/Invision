@@ -47,6 +47,7 @@ class FaqDetail extends Component {
                   type="octicon"
                   color={'#63A3FF'}
                   iconStyle={{ marginRight: 10 }}
+                  underlayColor="transparent"
                 />
                 <Text style={styles.blockText}>{questionDetail.created}</Text>
               </View>
@@ -56,6 +57,7 @@ class FaqDetail extends Component {
                   type="material-community"
                   color={'#63A3FF'}
                   iconStyle={{ marginRight: 10 }}
+                  underlayColor="transparent"
                 />
                 <Text style={styles.blockText}>
                   {questionDetail.answer_count}
@@ -69,6 +71,7 @@ class FaqDetail extends Component {
                   type="ionicon"
                   color={'#63A3FF'}
                   iconStyle={{ marginRight: 10 }}
+                  underlayColor="transparent"
                 />
                 <Text style={styles.blockText}>
                   {questionDetail.author_full_name}
@@ -83,6 +86,7 @@ class FaqDetail extends Component {
                     marginRight: 10,
                     transform: [{ rotate: '90deg' }],
                   }}
+                  underlayColor="transparent"
                 />
                 <Text style={styles.blockText}>
                   {questionDetail.category.name}

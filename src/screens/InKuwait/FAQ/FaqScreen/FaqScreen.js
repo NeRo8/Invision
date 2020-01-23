@@ -100,6 +100,7 @@ class FaqScreen extends Component {
               color="white"
               underlayColor="transparent"
               onPress={() => navigation.navigate('FaqFilter')}
+              underlayColor="transparent"
             />
           }
           onSearchQuery={onSearch}
@@ -129,6 +130,7 @@ class FaqScreen extends Component {
             name="ios-add"
             type="ionicon"
             color={colors.HEADER}
+            underlayColor="transparent"
             iconStyle={{
               width: '100%',
             }}

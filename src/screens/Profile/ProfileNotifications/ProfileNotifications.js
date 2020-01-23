@@ -33,6 +33,7 @@ const BackThread = ({ onPressDelete }) => (
         size={32}
         onPress={() => onPress()}
         underlayColor="transparent"
+        underlayColor="transparent"
       />
     </View>
   </View>

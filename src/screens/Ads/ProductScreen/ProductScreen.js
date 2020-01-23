@@ -129,6 +129,7 @@ class ProductScreen extends Component {
                     name="eye-outline"
                     type="material-community"
                     size={16}
+                    underlayColor="transparent"
                   />
                   <Text style={styles.viewsAndDate}>{productData.views}</Text>
                 </View>
@@ -138,6 +139,7 @@ class ProductScreen extends Component {
                     name="clock-outline"
                     type="material-community"
                     size={16}
+                    underlayColor="transparent"
                   />
 
                   <Text style={styles.viewsAndDate}>
@@ -245,6 +247,7 @@ class ProductScreen extends Component {
                   ? Linking.openURL(`tel:${productData.phone_number}`)
                   : null;
               }}
+              underlayColor="transparent"
             />
 
             <View style={{ flex: 6 }}>
@@ -259,6 +262,7 @@ class ProductScreen extends Component {
                     type="material-comunity"
                     color="white"
                     containerStyle={styles.iconSendContainer}
+                    underlayColor="transparent"
                   />
                 }
               />

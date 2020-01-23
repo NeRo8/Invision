@@ -19,6 +19,7 @@ const ElementFlatList = ({ item, onPressReport, onPressReply, authStatus }) => (
             name="clock"
             type="octicon"
             color={colors.UNACTIVE}
+            underlayColor="transparent"
             containerStyle={{ marginRight: 8 }}
           />
           <Text style={styles.date}>

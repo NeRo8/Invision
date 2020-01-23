@@ -28,6 +28,7 @@ const ItemSettings = ({ title, screen, onPressItem, rightIcon = null }) => (
           name="chevron-right"
           type="material-community"
           color="silver"
+          underlayColor="transparent"
           size={32}
         />
       ) : (
