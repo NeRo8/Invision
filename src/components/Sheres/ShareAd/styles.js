@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-import { gothamBold, gothamBook } from '../../constants/fonts';
-import { colors } from '../../constants';
+import { gothamBold, gothamBook } from '../../../constants/fonts';
+import { colors } from '../../../constants';
 
 export default StyleSheet.create({
   container: {

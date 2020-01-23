@@ -6,7 +6,6 @@ import StarRating from 'react-native-star-rating';
 
 import styles from './styles';
 import { colors, globalStyles } from '../../../../constants';
-import ShareModal from '../../../../components/ShareModal';
 
 const imgWidth = 1000;
 const imgHeight = 750;
@@ -31,10 +30,6 @@ class OrganisationAndServicesDetail extends Component {
       });
     });
   }
-
-  handlePressShere = () => {
-    this.setState({ shareModal: !this.state.shareModal });
-  };
 
   render() {
     return (
@@ -181,11 +176,6 @@ class OrganisationAndServicesDetail extends Component {
             </View>
           </View>
         </ScrollView>
-        <ShareModal
-          visible={this.state.shareModal}
-          onClose={this.handlePressShere}
-          bgImage={require('../../../../assets/images/building.jpg')}
-        />
       </View>
     );
   }

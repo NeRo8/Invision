@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import {
   Modal,
   View,
@@ -12,7 +12,7 @@ import { Icon, Button, Divider } from 'react-native-elements';
 
 import Share from 'react-native-share';
 
-import { colors, globalStyles } from '../../constants';
+import { colors } from '../../../constants';
 
 import styles from './styles';
 
@@ -32,7 +32,7 @@ const ShareElement = ({ icon, title, onPressElement, color }) => (
   </TouchableOpacity>
 );
 
-class ShareModal extends Component {
+class ShareAd extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -199,4 +199,4 @@ class ShareModal extends Component {
   }
 }
 
-export default ShareModal;
+export default ShareAd;

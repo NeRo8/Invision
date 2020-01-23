@@ -3,13 +3,13 @@ import { Modal, View, Text } from 'react-native';
 
 import { Divider, CheckBox, Icon } from 'react-native-elements';
 
-import { DefaultButton } from '../../components/Buttons';
+import { DefaultButton } from '../../Buttons';
 
-import { colors } from '../../constants';
+import { colors } from '../../../constants';
 
 import styles from './styles';
 
-class ReportModal extends Component {
+class ReportAd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -166,4 +166,4 @@ class ReportModal extends Component {
   }
 }
 
-export default ReportModal;
+export default ReportAd;

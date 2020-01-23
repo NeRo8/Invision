@@ -18,8 +18,8 @@ import HeaderProduct from '../../../components/Headers/ProductHeader';
 import LoadingStatus from '../../../components/LoadingStatus';
 import CommentsBlock from './components/CommentsBlock';
 
-import ShareModal from '../../../components/ShareModal';
-import ReportModal from '../../../components/ReportModal';
+import ShareAd from '../../../components/Sheres/ShareAd';
+import ReportAd from '../../../components/Reports/ReportAd';
 
 import AdsBlock from './components/AdsBlock';
 
@@ -268,7 +268,7 @@ class ProductScreen extends Component {
               />
             </View>
           </View>
-          <ShareModal
+          <ShareAd
             visible={modalShow}
             bgImage={
               productData.adimage_set.length === 0
@@ -280,7 +280,7 @@ class ProductScreen extends Component {
             description={productData.description}
           />
         </ScrollView>
-        <ReportModal
+        <ReportAd
           show={this.state.reportModalShow}
           onPressClose={this.onPressReport}
           idForReport={productData.pk}
