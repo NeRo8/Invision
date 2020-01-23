@@ -3,7 +3,6 @@ import { View, Text, StatusBar, FlatList } from 'react-native';
 import { Avatar, Icon } from 'react-native-elements';
 
 import { ElementListAds } from '../../../components/ElementLists';
-import ComplainModal from './ComplainModal';
 import LoadingStatus from '../../../components/LoadingStatus';
 
 import moment from 'moment';
@@ -27,12 +26,6 @@ class ProductSellerProfile extends Component {
 
     getProfile(userid);
   }
-
-  onPressComplain = () => {
-    this.setState({
-      complainModalShow: !this.state.complainModalShow,
-    });
-  };
 
   onPressElement = pk => {
     const { getAdDetail, navigation } = this.props;
@@ -61,17 +54,6 @@ class ProductSellerProfile extends Component {
               }}
               underlayColor="transparent"
               onPress={() => this.props.navigation.goBack()}
-            />
-            <Icon
-              name="md-flag"
-              type="ionicon"
-              size={24}
-              color={colors.DEFAULT}
-              underlayColor="transparent"
-              containerStyle={{
-                width: 50,
-              }}
-              onPress={() => this.onPressComplain()}
             />
           </View>
           <View style={styles.headerProfile}>
@@ -172,10 +154,6 @@ class ProductSellerProfile extends Component {
             />
           </View>
         </View>
-        <ComplainModal
-          show={this.state.complainModalShow}
-          onPressClose={this.onPressComplain}
-        />
       </View>
     );
   }
