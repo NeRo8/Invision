@@ -25,8 +25,9 @@ class FaqDetail extends Component {
     const { questionDetail, authStatus, loading } = this.props;
 
     if (loading) {
-      <LoadingStatus />;
+      return <LoadingStatus />;
     }
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.titleHeader}>{questionDetail.title}</Text>

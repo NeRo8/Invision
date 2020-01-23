@@ -1,7 +1,7 @@
 import API from '../../api';
 import * as types from './types';
 import { store } from '../store';
-import { errorAction, errorActions } from '../Error';
+import { setError } from '../Error/action';
 
 const setQuestionDetail = faq => ({
   type: types.SET_FAQ_DETAIL,
@@ -71,7 +71,7 @@ export const getFaqDetail = id => dispatch => {
     .catch(error => dispatch(errorAction.setError(error)));
 };
 
-export const setQuestion = (token, data) => dispatch => {
+export const setQuestion = data => dispatch => {
   var requestData = new FormData();
 
   for (const key in data) {
@@ -88,4 +88,10 @@ export const setQuestion = (token, data) => dispatch => {
       dispatch(setLoading(false));
     })
     .catch(error => dispatch(errorAction.setError(error)));
+};
+
+export const sendComment = data => dispatch => {
+  API.post('/faq/new-comment/', data)
+    .then(response => console.log(response.status))
+    .catch(error => dispatch(setError(error)));
 };

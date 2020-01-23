@@ -11,6 +11,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 10,
     textAlignVertical: 'top',
+    paddingHorizontal: 15,
     paddingTop: 12,
   },
   inputContainerStyle: {
