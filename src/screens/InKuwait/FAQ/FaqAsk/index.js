@@ -17,8 +17,8 @@ const mapDispatchToProps = dispatch => {
     getCategoryList: () => {
       dispatch(faqActions.getCategories());
     },
-    addQuestion: (token, question) => {
-      dispatch(faqActions.setQuestion(token, question));
+    addQuestion: question => {
+      dispatch(faqActions.setQuestion(question));
     },
   };
 };

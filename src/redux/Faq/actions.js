@@ -77,17 +77,12 @@ export const setQuestion = data => dispatch => {
   for (const key in data) {
     requestData.append(key, data[key]);
   }
-  dispatch(setLoading(true));
 
   API.post('/faq/ask-question/', requestData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
-  })
-    .then(() => {
-      dispatch(setLoading(false));
-    })
-    .catch(error => dispatch(errorAction.setError(error)));
+  }).catch(error => dispatch(setError(error)));
 };
 
 export const sendComment = data => dispatch => {

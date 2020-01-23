@@ -62,10 +62,10 @@ class FaqAsk extends Component {
   }
 
   handlePressSubmit = () => {
-    const { token, addQuestion, navigation } = this.props;
+    const { addQuestion, navigation } = this.props;
     const { data } = this.state;
 
-    addQuestion(token, data);
+    addQuestion(data);
 
     navigation.goBack();
   };
