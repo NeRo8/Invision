@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import { withNavigationFocus } from 'react-navigation';
 
 import { colors } from '../../constants';
 import styles from './styles';
@@ -23,6 +24,14 @@ class PreLoadingScreen extends Component {
     }
   }
 
+  componentDidUpdate() {
+    const { isFocused, navigation } = this.props;
+
+    {
+      isFocused ? navigation.navigate('Main') : null;
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -32,4 +41,4 @@ class PreLoadingScreen extends Component {
   }
 }
 
-export default PreLoadingScreen;
+export default withNavigationFocus(PreLoadingScreen);
