@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 import moment from 'moment';
 
@@ -30,10 +31,14 @@ class Message extends Component {
       return (
         <View style={styles.blockMessageIncome}>
           <View style={{ justifyContent: 'flex-end', marginBottom: 10 }}>
-            <Image
-              source={{ uri: message.sender_avatar }}
-              style={styles.avatar}
-            />
+            {message.sender_avatar !== null ? (
+              <Image
+                source={{ uri: message.sender_avatar }}
+                style={styles.avatar}
+              />
+            ) : (
+              <Icon name="ios-person" type="ionicon" color="silver" />
+            )}
           </View>
           <View style={{ marginHorizontal: 15 }}>
             <View style={styles.messageMyIncome}>
