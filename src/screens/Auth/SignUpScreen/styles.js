@@ -69,7 +69,5 @@ export default StyleSheet.create({
     height: 44,
     paddingHorizontal: 10,
   },
-  bottomView: {
-    marginBottom: 40,
-  },
+  bottomView: {},
 });

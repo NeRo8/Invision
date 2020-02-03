@@ -2,6 +2,7 @@ import API from '../../api';
 import moment from 'moment';
 import * as types from './types';
 import { errorActions } from '../Error';
+import { store } from '../../redux/store';
 
 const setList = events => ({
   type: types.SET_EVENTS_LIST,
@@ -29,7 +30,8 @@ export const setFilter = (name, value) => ({
   value,
 });
 
-export const getEvents = (filters = null) => dispatch => {
+export const getEvents = () => dispatch => {
+  const { filters } = store.getState().inKuwait.events;
   var requestUrl = '';
 
   dispatch(setLoading(true));
@@ -47,7 +49,7 @@ export const getEvents = (filters = null) => dispatch => {
       }
     });
   }
-  API.get(`/events/events/${requestUrl}`)
+  API.get(`/events/events/?${requestUrl}`)
     .then(response => {
       dispatch(setList(response.data));
       dispatch(setLoading(false));
@@ -58,7 +60,7 @@ export const getEvents = (filters = null) => dispatch => {
 export const getCategories = () => dispatch => {
   dispatch(setLoading(true));
 
-  API.get('/ads/categories/')
+  API.get('/events/categories/')
     .then(response => {
       dispatch(setCategories(response.data));
       dispatch(setLoading(false));

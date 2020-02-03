@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, SafeAreaView } from 'react-native';
-import { CheckBox, Button, Input } from 'react-native-elements';
+import { CheckBox, Button, Input, Divider } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 
@@ -24,6 +24,7 @@ const ElementFl = ({ element, onPressElement, activeElement }) => (
       }}
     />
     <Text style={styles.textElement}>{element.name}</Text>
+    <Text style={styles.textCount}>{element.count_of_events}</Text>
   </View>
 );
 
@@ -44,9 +45,9 @@ class EventsFilter extends Component {
   }
 
   handlePressDone = () => {
-    const { filters, getEventsList, navigation } = this.props;
+    const { getEventsList, navigation } = this.props;
 
-    getEventsList(filters);
+    getEventsList();
     navigation.goBack();
   };
 
@@ -55,7 +56,7 @@ class EventsFilter extends Component {
     const { showDataPicker } = this.state;
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.container}>
           <View>
             <Text style={styles.textHeader}>SELECT DATE</Text>
@@ -104,9 +105,7 @@ class EventsFilter extends Component {
                 />
               )}
               contentContainerStyle={{ marginTop: 10 }}
-              ItemSeparatorComponent={() => (
-                <View style={{ borderWidth: 0.3, borderColor: 'silver' }} />
-              )}
+              ItemSeparatorComponent={() => <Divider />}
             />
           </View>
 
