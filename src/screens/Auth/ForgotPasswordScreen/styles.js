@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { globalStyles } from '../../../constants';
 import { colors } from '../../../constants';
 
 export default StyleSheet.create({
@@ -11,6 +12,7 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
   },
   fontHint: {
+    ...globalStyles.gothamBook,
     fontSize: 14,
     marginTop: 20,
     color: '#626773',
@@ -26,5 +28,13 @@ export default StyleSheet.create({
   btnStyles: {
     height: 50,
     backgroundColor: colors.HEADER,
+  },
+  headerText: {
+    ...globalStyles.gothamBook,
+    fontSize: 24,
+  },
+  inputStyle: {
+    ...globalStyles.gothamBook,
+    fontSize: 17,
   },
 });

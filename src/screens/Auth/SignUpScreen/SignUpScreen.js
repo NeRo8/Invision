@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Alert } from 'react-native';
+import { View, Text } from 'react-native';
 import { Button, CheckBox } from 'react-native-elements';
 import DropdownAlert from 'react-native-dropdownalert';
 import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';

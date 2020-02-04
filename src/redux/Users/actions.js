@@ -95,7 +95,7 @@ export const updateAvatar = avatar => dispatch => {
         : avatar.uri.replace('file://', ''),
   });
 
-  API.post('users/change-avatar/', data, {
+  API.post('/users/change-avatar/', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
     .then(response => dispatch(setAvatar(response.data.avatar)))

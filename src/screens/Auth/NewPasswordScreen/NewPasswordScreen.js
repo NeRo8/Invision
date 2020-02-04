@@ -6,11 +6,10 @@ import {
   SafeAreaView,
   Platform,
 } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import { Input } from 'react-native-elements';
 
 import { DefaultButton } from '../../../components/Buttons';
 
-import globalStyles from '../../../constants/globalStyles';
 import styles from './styles';
 
 class NewPasswordScreen extends Component {

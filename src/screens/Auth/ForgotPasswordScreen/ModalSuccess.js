@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, Modal, StyleSheet } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
+
+import { DefaultButton } from '../../../components/Buttons';
 
 import { colors, globalStyles } from '../../../constants';
 
-const ModalSuccess = ({ show, onPressSubmit }) => (
+const ModalSuccess = ({ show, email, onPressSubmit }) => (
   <Modal transparent visible={show}>
     <View style={styles.container}>
-      <View
-        style={{
-          marginHorizontal: 15,
-          paddingVertical: 25,
-          paddingHorizontal: 40,
-          backgroundColor: 'white',
-          borderRadius: 5,
-        }}>
+      <View style={styles.containerBox}>
         <View style={{ alignItems: 'center' }}>
-          <View
-            style={{
-              width: 82,
-              height: 82,
-              borderRadius: 41,
-              borderWidth: 1,
-              borderColor: colors.HEADER,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
+          <View style={styles.iconContainer}>
             <Icon
               name="ios-checkmark"
               type="ionicon"
@@ -35,36 +21,14 @@ const ModalSuccess = ({ show, onPressSubmit }) => (
             />
           </View>
         </View>
-        <Text
-          style={[
-            globalStyles.gothamBold,
-            { fontSize: 22, textAlign: 'center', marginTop: 25 },
-          ]}>
-          Success
+        <Text style={styles.headerText}>Success</Text>
+        <Text style={styles.textAlert}>
+          {`We’ve sent you access for access on your email - ${email}. Please,
+          check your email and create new password.`}
         </Text>
-        <Text
-          style={[
-            globalStyles.gothamBook,
-            {
-              fontSize: 14,
-              marginBottom: 25,
-              marginTop: 15,
-              lineHeight: 24,
-              textAlign: 'center',
-              color: '#2C3440',
-            },
-          ]}>
-          We’ve sent you access for access on your email - kris@gmail.com.
-          Please, check your email and create new password.
-        </Text>
-        <Button
+        <DefaultButton
           title="Ok, thanks"
-          titleStyle={[
-            globalStyles.gothamBold,
-            { fontSize: 15, color: 'white' },
-          ]}
-          buttonStyle={{ height: 55, backgroundColor: colors.HEADER }}
-          onPress={() => onPressSubmit(false)}
+          onPressButton={() => onPressSubmit()}
         />
       </View>
     </View>
@@ -77,6 +41,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(127,127,127,0.8)',
+  },
+  containerBox: {
+    marginHorizontal: 15,
+    paddingVertical: 25,
+    paddingHorizontal: 40,
+    backgroundColor: 'white',
+    borderRadius: 5,
+  },
+  iconContainer: {
+    width: 82,
+    height: 82,
+    borderRadius: 41,
+    borderWidth: 1,
+    borderColor: colors.HEADER,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerText: {
+    ...globalStyles.gothamBold,
+    fontSize: 22,
+    textAlign: 'center',
+    marginTop: 25,
+  },
+  textAlert: {
+    ...globalStyles.gothamBook,
+    fontSize: 14,
+    marginBottom: 25,
+    marginTop: 15,
+    lineHeight: 24,
+    textAlign: 'center',
+    color: '#2C3440',
   },
 });
 

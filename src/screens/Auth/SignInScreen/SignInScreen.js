@@ -78,6 +78,7 @@ class SignInScreen extends Component {
               onChangeText={text => this.onChangeState('email', text)}
             />
             <DefaultInput
+              secureTextEntry
               value={data.password}
               placeholder={translate('passwordReq')}
               rightIcon={

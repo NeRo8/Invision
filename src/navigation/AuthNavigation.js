@@ -6,7 +6,7 @@ import AuthScreen from '../screens/Auth';
 import SignInScreen from '../screens/Auth/SignInScreen';
 import SignUpScreen from '../screens/Auth/SignUpScreen';
 import ForgotPasswordScreen from '../screens/Auth/ForgotPasswordScreen';
-import NewPasswordScreen from '../screens/Auth/NewPasswordScreen';
+//import NewPasswordScreen from '../screens/Auth/NewPasswordScreen';
 import AuthHeader from '../components/Headers/AuthHeader';
 
 import { DefaultHeader } from '../components/Headers';
@@ -58,6 +58,7 @@ const AuthNavigation = createStackNavigator(
         };
       },
     },
+    /** Delete this screen, don't yoused now.
     NewPassword: {
       screen: NewPasswordScreen,
       navigationOptions: ({ navigation }) => {
@@ -70,6 +71,7 @@ const AuthNavigation = createStackNavigator(
         };
       },
     },
+     */
   },
   {
     defaultNavigationOptions: {

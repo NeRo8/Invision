@@ -66,3 +66,9 @@ export const loginWithFacebook = token => dispatch => {
       dispatch(errorActions.setError(error));
     });
 };
+
+export const restorePassword = emailIncome => dispatch => {
+  API.post('/users/forgot-password/', { email: emailIncome })
+    .then(response => console.warn('Response', response))
+    .catch(error => errorActions.setError(error));
+};
