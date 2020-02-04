@@ -29,24 +29,24 @@ export const createAd = () => dispatch => {
   const { ad } = store.getState().adCreate;
   const adData = new FormData();
 
-  adData.append('title', 'Test ads');
-  adData.append('description', 'Test ads');
-  adData.append('price', 300);
-  adData.append('currency', 'usd');
-  adData.append('is_seller_private', true);
-  adData.append('state', 'new');
-  adData.append('city', { pk: 2, name: 'Kuwait' });
-  adData.append('category', {
-    pk: 6,
-    name: 'Pets',
-    icon_image:
-      'https://masaha-staging.s3.amazonaws.com/images/classifieds/category/c2350697-5dfb-44a5-86ee-20b0192cd105.png',
-  });
-  //adData.append('image', ad.image);
-  adData.append('email', 'nero@gmail.com');
-  adData.append('phone_number', '928-2323-232');
-  adData.append('full_name', 'Nero');
+  adData.append('title', ad.title);
+  adData.append('description', ad.description);
+  adData.append('price', ad.price);
+  adData.append('currency', ad.currency);
+  adData.append('is_seller_private', ad.is_seller_private ? 'True' : 'False');
+  adData.append('state', ad.state);
+  adData.append('city', ad.city.pk);
+  adData.append('category', ad.category.pk);
 
+  adData.append('email', ad.email);
+  adData.append('phone_number', ad.phone_number);
+  adData.append('full_name', ad.full_name);
+
+  for (let index in ad.images) {
+    adData.append(`image${index}`, ad.images[index]);
+  }
+
+  console.log('FormData', adData);
   API.post('/ads/add-an-ad/', adData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }).then(response => console.log('Resporse add an ad', response.data));

@@ -6,7 +6,7 @@ import { adCreateActions } from '../../../../redux/AdCreate';
 
 const mapStateToProps = state => {
   return {
-    image: state.adCreate.ad.image,
+    images: state.adCreate.ad.images,
   };
 };
 

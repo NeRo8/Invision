@@ -6,11 +6,12 @@ const initState = {
     price: 0,
     is_seller_private: true,
     state: 'new',
+    currency: 'kwd',
     //Step2
     title: null,
     description: null,
     //Step3
-    image: [],
+    images: [],
     full_name: null,
     city: { id: 0, name: null },
     email: null,
@@ -44,7 +45,7 @@ const adCreateReducer = (state = initState, action) => {
         ...state,
         ad: {
           ...state.ad,
-          image: state.ad.image.concat(action.payload),
+          images: state.ad.images.concat(action.payload),
         },
       };
     }

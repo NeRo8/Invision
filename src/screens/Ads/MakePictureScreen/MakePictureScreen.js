@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { RNCamera } from 'react-native-camera';
 
@@ -33,7 +33,10 @@ class MakePictureScreen extends Component {
       const data = await this.camera.takePictureAsync(options);
 
       const photo = {
-        uri: data.uri,
+        uri:
+          Platform.OS === 'android'
+            ? data.uri
+            : data.uri.replace('file://', ''),
         type: 'image/jpeg',
         name: moment(new Date()).format('YYYYMMDDHHMMSS'),
       };
