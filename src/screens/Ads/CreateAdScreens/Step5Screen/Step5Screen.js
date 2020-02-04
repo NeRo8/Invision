@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
-import { Icon, Button } from 'react-native-elements';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { Button } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalComplite from './ModalComplite';
 
-import globalStyles from '../../../../constants/globalStyles';
+import { icons } from '../../../../constants';
 import styles from './styles';
 
 class Step5Screen extends Component {
@@ -30,9 +30,7 @@ class Step5Screen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.containerBlock}>
-          <Text style={[globalStyles.gothamBold, styles.headerTitle]}>
-            CHOOSE PACKAGE OF YOUR AD
-          </Text>
+          <Text style={styles.headerTitle}>CHOOSE PACKAGE OF YOUR AD</Text>
           <View style={{ flex: 1 }}>
             <TouchableOpacity onPress={() => createNewAd()}>
               <View style={styles.card}>
@@ -43,28 +41,17 @@ class Step5Screen extends Component {
                   style={{ flex: 1, flexDirection: 'row' }}>
                   <View style={styles.iconSpeakerContainer}>
                     <Image
-                      source={require('../../../../assets/icons/speaker.png')}
+                      source={icons.speaker}
                       style={styles.iconContainer}
                       resizeMode={'contain'}
                     />
                   </View>
                   <View style={{ flex: 1, marginLeft: 15 }}>
-                    <Text style={[globalStyles.gothamBold, styles.cardText]}>
-                      FREE AD
-                    </Text>
+                    <Text style={styles.cardText}>FREE AD</Text>
 
                     <View style={styles.bottomView}>
-                      <Text
-                        style={[globalStyles.gothamBook, styles.smallTextCard]}>
-                        0 days
-                      </Text>
-                      <Text
-                        style={[
-                          globalStyles.gothamBold,
-                          styles.smallTextCardBold,
-                        ]}>
-                        0 KWD
-                      </Text>
+                      <Text style={styles.smallTextCard}>0 days</Text>
+                      <Text style={styles.smallTextCardBold}>0 KWD</Text>
                     </View>
                   </View>
                 </LinearGradient>
@@ -81,32 +68,21 @@ class Step5Screen extends Component {
                   end={{ x: 0.8, y: 0.5 }}
                   style={{ flex: 1, flexDirection: 'row' }}>
                   <Image
-                    source={require('../../../../assets/icons/advertising.png')}
+                    source={icons.advertising}
                     style={{ marginTop: 20, marginLeft: 25 }}
                   />
                   <View style={{ flex: 1, marginLeft: 15 }}>
-                    <Text style={[globalStyles.gothamBold, styles.cardText]}>
-                      PREMIUM PAID
-                    </Text>
+                    <Text style={styles.cardText}>PREMIUM PAID</Text>
 
                     <View style={styles.bottomView}>
-                      <Text
-                        style={[globalStyles.gothamBook, styles.smallTextCard]}>
-                        7 days
-                      </Text>
-                      <Text
-                        style={[
-                          globalStyles.gothamBold,
-                          styles.smallTextCardBold,
-                        ]}>
-                        100 KWD
-                      </Text>
+                      <Text style={styles.smallTextCard}>7 days</Text>
+                      <Text style={styles.smallTextCardBold}>100 KWD</Text>
                     </View>
                   </View>
                 </LinearGradient>
               </View>
             </TouchableOpacity>
-            <Text style={[globalStyles.gothamBook, styles.hint]}>
+            <Text style={styles.hint}>
               By selecting Post My Ad you agree you've read and accepted our
               Terms of Use and Posting Rules. Please see our Privacy Notice for
               information regarding the processing of your data.
@@ -116,7 +92,7 @@ class Step5Screen extends Component {
 
         <Button
           title="Public my ad"
-          titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
+          titleStyle={styles.btnTitle}
           buttonStyle={styles.btnStyles}
           onPress={() => this.showModalComplite()}
         />

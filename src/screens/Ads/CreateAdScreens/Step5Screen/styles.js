@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '../../../../constants';
+import { colors, globalStyles } from '../../../../constants';
 
 export default StyleSheet.create({
   container: {
@@ -13,6 +13,7 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
   },
   headerTitle: {
+    ...globalStyles.gothamBold,
     fontSize: 15,
     lineHeight: 25,
     color: colors.HEADER,
@@ -25,16 +26,19 @@ export default StyleSheet.create({
     overflow: 'hidden',
   },
   hint: {
+    ...globalStyles.gothamBook,
     fontSize: 13,
     lineHeight: 26,
     color: colors.HINT,
   },
   cardText: {
+    ...globalStyles.gothamBold,
     fontSize: 17,
     color: 'white',
     marginTop: 25,
   },
   btnTitle: {
+    ...globalStyles.gothamBold,
     fontSize: 15,
     color: 'white',
   },
@@ -48,8 +52,13 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 20,
   },
-  smallTextCard: { color: 'white', fontSize: 15 },
+  smallTextCard: {
+    ...globalStyles.gothamBook,
+    color: 'white',
+    fontSize: 15,
+  },
   smallTextCardBold: {
+    ...globalStyles.gothamBold,
     color: 'white',
     fontSize: 15,
     marginRight: 25,

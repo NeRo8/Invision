@@ -17,7 +17,6 @@ export default StyleSheet.create({
     fontSize: 17,
   },
   divider: {
-    color: 'silver',
     width: '100%',
     marginVertical: 10,
   },
