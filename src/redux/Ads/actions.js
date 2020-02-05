@@ -14,6 +14,11 @@ const setAdsLoadMore = ads => ({
   payload: ads,
 });
 
+const setCategoriesLoadMore = categories => ({
+  type: types.SET_CATEGORIES_LOAD_MORE,
+  payload: categories,
+});
+
 const setCategories = categories => ({
   type: types.SET_CATEGORIES,
   payload: categories,
@@ -75,10 +80,16 @@ export const getCategories = () => dispatch => {
     .catch(error => dispatch(errorActions.setError(error)));
 };
 
+export const getCategoriesLoadMore = next => dispatch => {
+  if (next !== null) {
+    API.get(next)
+      .then(response => dispatch(setCategoriesLoadMore(response.data)))
+      .catch(error => dispatch(errorActions.setError(error)));
+  }
+};
+
 export const getAdsLoadMore = url => dispatch => {
-  if (url === null) {
-    dispatch(errorActions.setError('Next not exist'));
-  } else {
+  if (url !== null) {
     fetch(url, {
       method: 'GET',
     })

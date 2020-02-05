@@ -71,6 +71,18 @@ const adsReducer = (state = initState, action) => {
       };
     }
 
+    case types.SET_CATEGORIES_LOAD_MORE: {
+      return {
+        ...state,
+        categories: {
+          count: state.categories.count + action.payload.count,
+          next: action.payload.next,
+          previous: action.payload.previous,
+          results: state.categories.results.concat(action.payload.results),
+        },
+      };
+    }
+
     default:
       return state;
   }

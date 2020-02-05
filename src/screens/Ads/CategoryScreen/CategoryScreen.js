@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 import { Divider } from 'react-native-elements';
 
 import styles from './styles';
@@ -26,10 +26,19 @@ class CategoryScreen extends Component {
     navigation.goBack();
   };
 
+  onLoadMoreCategories = () => {
+    const { next, loadMoreCategories } = this.props;
+
+    if (next !== null) {
+      loadMoreCategories(next);
+    }
+  };
+
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={this.props.data}
           renderItem={({ item }) => (
             <ElementListCategory
@@ -41,8 +50,11 @@ class CategoryScreen extends Component {
           ItemSeparatorComponent={() => (
             <Divider style={styles.elementDivider} />
           )}
+          onEndReachedThreshold={0.3}
+          onEndReached={this.onLoadMoreCategories}
+          contentContainerStyle={{ flexGrow: 1 }}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

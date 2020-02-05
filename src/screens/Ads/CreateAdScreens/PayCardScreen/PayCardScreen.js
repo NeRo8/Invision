@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Icon, Input, Button } from 'react-native-elements';
 
-import { globalStyles } from '../../../../constants';
 import styles from './styles';
 import ModalComplite from './ModalComplite';
 
