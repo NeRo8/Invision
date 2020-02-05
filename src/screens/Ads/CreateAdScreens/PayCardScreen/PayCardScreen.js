@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Icon, Input, Button } from 'react-native-elements';
 
-import globalStyles from '../../../constants/globalStyles';
+import { globalStyles } from '../../../../constants';
 import styles from './styles';
 import ModalComplite from './ModalComplite';
 
@@ -40,41 +40,38 @@ class PayCardScreen extends Component {
                 });
               }}
             />
-
-            <Text style={[globalStyles.gothamBook, styles.textHint]}>
-              Take a photo of your card
-            </Text>
+            <Text style={styles.textHint}>Take a photo of your card</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Input
               placeholder="Credit card number"
-              inputStyle={[globalStyles.gothamBook, styles.inputRowStyle]}
+              inputStyle={styles.inputRowStyle}
               inputContainerStyle={styles.inputRowCStyle}
               containerStyle={styles.inputContainer}
             />
             <View style={{ flexDirection: 'row' }}>
               <Input
                 placeholder="4584"
-                inputStyle={[globalStyles.gothamBook, styles.inputRowStyle]}
+                inputStyle={styles.inputRowStyle}
                 inputContainerStyle={styles.inputRowCStyle}
                 containerStyle={styles.inputRowContainer}
               />
               <Input
                 placeholder="09/20"
                 inputContainerStyle={styles.inputRowCStyle}
-                inputStyle={[globalStyles.gothamBook, styles.inputRowStyle]}
+                inputStyle={styles.inputRowStyle}
                 containerStyle={styles.inputRowContainer}
               />
               <Input
                 placeholder="2021"
-                inputStyle={[globalStyles.gothamBook, styles.inputRowStyle]}
+                inputStyle={styles.inputRowStyle}
                 inputContainerStyle={styles.inputRowCStyle}
                 containerStyle={styles.inputRowContainer}
               />
             </View>
             <Input
               placeholder="CVC/CVV"
-              inputStyle={[globalStyles.gothamBook, styles.inputRowStyle]}
+              inputStyle={styles.inputRowStyle}
               inputContainerStyle={styles.inputRowCStyle}
               containerStyle={styles.inputContainer}
             />
@@ -82,7 +79,7 @@ class PayCardScreen extends Component {
         </View>
         <Button
           title="BUY AD (150 KWD)"
-          titleStyle={[globalStyles.gothamBold, styles.btnTitle]}
+          titleStyle={styles.btnTitle}
           buttonStyle={styles.btnStyle}
           onPress={() => this.onShowModal()}
         />

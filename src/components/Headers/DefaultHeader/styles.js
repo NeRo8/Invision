@@ -1,5 +1,7 @@
 import { StyleSheet, Platform } from 'react-native';
 
+import { globalStyles } from '../../../constants';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -10,7 +12,7 @@ export default StyleSheet.create({
     marginTop: Platform.OS === 'ios' ? 0 : 10,
   },
   title: {
-    fontFamily: 'Gotham-Bold',
+    ...globalStyles.gothamBold,
     color: 'white',
     fontSize: 17,
     marginTop: 10,

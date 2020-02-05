@@ -1,9 +1,10 @@
 import { StyleSheet, Platform } from 'react-native';
+
 import { colors, globalStyles } from '../../../constants';
 
 export default StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === 'ios' ? 0 : 20,
+    paddingTop: Platform.OS === 'ios' ? 40 : 20,
     backgroundColor: colors.HEADER,
   },
   headerBlock: {
@@ -12,10 +13,13 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
+    ...globalStyles.gothamBold,
+    color: 'white',
+    fontSize: 17,
     flex: 1,
-    fontSize: 20,
     lineHeight: 30,
     marginRight: 40,
+    marginTop: 5,
     padding: 0,
     textAlign: 'center',
     color: 'white',
@@ -36,7 +40,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedElementText: {
-    fontFamily: globalStyles.gothamBold.fontFamily,
+    ...globalStyles.gothamBold,
     color: 'white',
     lineHeight: 30,
   },
@@ -51,7 +55,7 @@ export default StyleSheet.create({
   },
   selectedElementTextActive: {
     lineHeight: 30,
-    fontFamily: globalStyles.gothamBold.fontFamily,
+    ...globalStyles.gothamBold,
     color: colors.HEADER,
   },
   simpleContainer: {

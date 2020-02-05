@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
-import { colors, globalStyles } from '../../../constants';
+
+import { colors } from '../../../constants';
 
 import styles from './styles';
 
@@ -24,9 +25,7 @@ class HeaderPay extends Component {
             size={32}
             onPress={() => onPressLeftIcon()}
           />
-          <Text style={[globalStyles.gothamBold, styles.headerText]}>
-            Add ad
-          </Text>
+          <Text style={styles.headerText}>Add ad</Text>
         </View>
         <View style={styles.selectedBlock}>
           <View style={styles.simpleContainer}>

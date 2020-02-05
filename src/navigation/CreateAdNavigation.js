@@ -7,11 +7,10 @@ import Step3Screen from '../screens/Ads/CreateAdScreens/Step3Screen';
 import Step4Screen from '../screens/Ads/CreateAdScreens/Step4Screen';
 import Step5Screen from '../screens/Ads/CreateAdScreens/Step5Screen';
 
+import PayCardScreen from '../screens/Ads/CreateAdScreens/PayCardScreen';
+
 import ChooseCategoryScreen from '../screens/Ads/CreateAdScreens/ChooseCategoryScreen';
-
 import MakePictureScreen from '../screens/Ads/MakePictureScreen';
-
-import PayCardScreen from '../screens/Ads/PayCardScreen';
 
 import { CreateAdHeader } from '../components/Headers';
 import HeaderPay from '../components/Headers/HeaderPay';

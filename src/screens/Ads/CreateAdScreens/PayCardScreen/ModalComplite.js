@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, View, Text, StyleSheet, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { colors, globalStyles } from '../../../constants';
+import { colors, globalStyles } from '../../../../constants';
 
 const ModalComplite = ({ show, onClose }) => (
   <Modal visible={show}>
@@ -11,7 +11,7 @@ const ModalComplite = ({ show, onClose }) => (
         <View style={{ alignItems: 'center' }}>
           <View style={styles.iconContainer}>
             <Image
-              source={require('../../../assets/icons/like_round.png')}
+              source={require('../../../../assets/icons/like_round.png')}
               style={styles.iconLike}
               resizeMode="contain"
             />

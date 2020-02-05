@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../constants';
+import { colors, globalStyles } from '../../../../constants';
 
 export default StyleSheet.create({
   container: {
@@ -26,6 +26,7 @@ export default StyleSheet.create({
     marginBottom: 15,
   },
   textHint: {
+    ...globalStyles.gothamBook,
     fontSize: 17,
     lineHeight: 25,
   },
@@ -36,6 +37,7 @@ export default StyleSheet.create({
     marginVertical: 15,
   },
   inputRowStyle: {
+    ...globalStyles.gothamBook,
     textAlign: 'center',
     fontSize: 17,
   },
@@ -51,6 +53,7 @@ export default StyleSheet.create({
     borderRadius: 0,
   },
   btnTitle: {
+    ...globalStyles.gothamBold,
     fontSize: 13,
     color: 'white',
   },
