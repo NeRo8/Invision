@@ -81,25 +81,16 @@ export const getCategories = () => dispatch => {
 };
 
 export const getCategoriesLoadMore = next => dispatch => {
-  if (next !== null) {
-    API.get(next)
-      .then(response => dispatch(setCategoriesLoadMore(response.data)))
-      .catch(error => dispatch(errorActions.setError(error)));
-  }
+  API.get(next)
+    .then(response => dispatch(setCategoriesLoadMore(response.data)))
+    .catch(error => dispatch(errorActions.setError(error)));
 };
 
 export const getAdsLoadMore = url => dispatch => {
   if (url !== null) {
-    fetch(url, {
-      method: 'GET',
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        dispatch(setAdsLoadMore(responseJson));
-      })
-      .catch(error => {
-        dispatch(errorActions.setError(error));
-      });
+    API.get(url)
+      .then(response => dispatch(setAdsLoadMore(response.data)))
+      .catch(error => dispatch(errorActions.setError(error)));
   }
 };
 
