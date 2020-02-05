@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, Platform } from 'react-native';
+import { View, Text, FlatList, Image, Platform, Alert } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
 import styles from './styles';
@@ -9,6 +9,16 @@ class Step3Screen extends Component {
     super(props);
     this.state = {};
   }
+
+  handlePressContinue = () => {
+    const { images, navigation } = this.props;
+    if (images.length === 0) {
+      Alert.alert('Please add some images, before continue.');
+    } else {
+      navigation.navigate('StepFive');
+    }
+  };
+
   render() {
     const { images, navigation } = this.props;
     return (
@@ -51,7 +61,7 @@ class Step3Screen extends Component {
             title="Continue"
             titleStyle={styles.btnTitle}
             buttonStyle={styles.btnStyles}
-            onPress={() => navigation.navigate('StepFour')}
+            onPress={this.handlePressContinue}
           />
         </View>
       </View>

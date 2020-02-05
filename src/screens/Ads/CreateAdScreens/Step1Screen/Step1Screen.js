@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Icon, CheckBox, Input, Button } from 'react-native-elements';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
@@ -19,11 +19,30 @@ class Step1Screen extends Component {
     navigation.navigate('Home');
   };
 
+  handlePressCurrency = () => {
+    const { currency, setValue } = this.props;
+
+    currency === 'kwd'
+      ? setValue('currency', 'usd')
+      : setValue('currency', 'kwd');
+  };
+
+  handlePressContinue = () => {
+    const { price, category, navigation } = this.props;
+
+    if (price === null || category === null) {
+      Alert.alert('Please fill required fields, before continue.');
+    } else {
+      navigation.navigate('StepTwo');
+    }
+  };
+
   render() {
     const {
       navigation,
       category,
       price,
+      currency,
       setValue,
       isSellerPrivate,
       stateProduct,
@@ -56,7 +75,9 @@ class Step1Screen extends Component {
                   name: 'cash-multiple',
                   type: 'material-community',
                   color: colors.HEADER,
-                  containerStyle: { marginRight: 10 },
+                  containerStyle: {
+                    marginRight: 10,
+                  },
                 }}
                 placeholder="Price"
                 inputStyle={styles.elementPickerText}
@@ -68,14 +89,16 @@ class Step1Screen extends Component {
                   flex: 1,
                   paddingHorizontal: 0,
                 }}
-                //value={price.toString()}
+                value={price}
                 onChangeText={value => {
                   setValue('price', value);
                 }}
               />
 
-              <Text style={[styles.elementPickerText, { color: colors.TITLE }]}>
-                KWD
+              <Text
+                style={[styles.elementPickerText, { color: colors.TITLE }]}
+                onPress={this.handlePressCurrency}>
+                {currency.toUpperCase()}
               </Text>
             </View>
           </View>
@@ -143,7 +166,7 @@ class Step1Screen extends Component {
           title="Continue"
           titleStyle={styles.btnTitle}
           buttonStyle={styles.btnStyles}
-          onPress={() => navigation.navigate('StepTwo')}
+          onPress={this.handlePressContinue}
         />
       </GestureRecognizer>
     );

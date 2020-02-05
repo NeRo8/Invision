@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 
@@ -12,6 +12,17 @@ class Step2Screen extends Component {
     super(props);
     this.state = {};
   }
+
+  handlePressContinue = () => {
+    const { navigation, title, description } = this.props;
+
+    if (title === null || description === null) {
+      Alert.alert('Please fill required fields, before continue.');
+    } else {
+      navigation.navigate('StepThree');
+    }
+  };
+
   render() {
     const { title, description, setValue } = this.props;
     return (
@@ -23,7 +34,7 @@ class Step2Screen extends Component {
             title="Continue"
             titleStyle={styles.btnTitle}
             buttonStyle={styles.btnStyles}
-            onPress={() => this.props.navigation.navigate('StepThree')}
+            onPress={this.handlePressContinue}
           />
         }>
         <Text style={styles.headerTitle}>TELL ABOUT YOUR AD</Text>

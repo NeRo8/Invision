@@ -3,7 +3,7 @@ import * as types from './types';
 const initState = {
   ad: {
     category: null,
-    price: 0,
+    price: null,
     is_seller_private: true,
     state: 'new',
     currency: 'kwd',

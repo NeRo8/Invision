@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
 import { Icon, Button, Divider } from 'react-native-elements';
 import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 
 import { CreateAdInput } from '../../../../components/Inputs';
+
 import { getCities } from '../../../../api/users';
 
 import styles from './styles';
-import { FlatList } from 'react-native-gesture-handler';
 
 class Step4Screen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showCitiesList: false,
-      cities: [
-        { id: 0, name: '1' },
-        { id: 0, name: '2' },
-        { id: 0, name: '3' },
-        { id: 0, name: '4' },
-        { id: 0, name: '5' },
-        { id: 0, name: '6' },
-      ],
     };
   }
 
   handlePressContinue = () => {
-    const { navigation } = this.props;
-
-    navigation.navigate('StepFive');
+    const { full_name, city, email, phone_number, navigation } = this.props;
+    if (
+      full_name === null ||
+      city.name === null ||
+      email === null ||
+      phone_number === null
+    ) {
+      Alert.alert('Please fill required fields, before continue.');
+    } else {
+      navigation.navigate('StepFive');
+    }
   };
 
   handlePressCities = async () => {
@@ -47,6 +47,7 @@ class Step4Screen extends Component {
   render() {
     const { full_name, city, email, phone_number, setValue } = this.props;
     const { cities, showCitiesList } = this.state;
+
     return (
       <KeyboardAvoidingScrollView
         stickyFooter={

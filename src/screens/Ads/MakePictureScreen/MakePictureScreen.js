@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Image, Platform } from 'react-native';
+import { View, TouchableOpacity, Image, Platform, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { RNCamera } from 'react-native-camera';
 
@@ -27,20 +27,24 @@ class MakePictureScreen extends Component {
   }
 
   takePicture = async () => {
-    const { setImageValue } = this.props;
-    if (this.camera) {
-      const options = { quality: 0.5 };
-      const data = await this.camera.takePictureAsync(options);
+    const { setImageValue, images } = this.props;
+    if (images.length <= 9) {
+      if (this.camera) {
+        const options = { quality: 0.5 };
+        const data = await this.camera.takePictureAsync(options);
 
-      const photo = {
-        uri:
-          Platform.OS === 'android'
-            ? data.uri
-            : data.uri.replace('file://', ''),
-        type: 'image/jpeg',
-        name: moment(new Date()).format('YYYYMMDDHHMMSS'),
-      };
-      setImageValue(photo);
+        const photo = {
+          uri:
+            Platform.OS === 'android'
+              ? data.uri
+              : data.uri.replace('file://', ''),
+          type: 'image/jpeg',
+          name: moment(new Date()).format('YYYYMMDDHHMMSS'),
+        };
+        setImageValue(photo);
+      }
+    } else {
+      Alert.alert("Sorry!!! But you can't add more than 10 picture.");
     }
   };
 

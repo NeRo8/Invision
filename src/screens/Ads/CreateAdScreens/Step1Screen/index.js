@@ -8,6 +8,7 @@ const mapStateToProps = state => {
   return {
     category: state.adCreate.ad.category,
     price: state.adCreate.ad.price,
+    currency: state.adCreate.ad.currency,
     isSellerPrivate: state.adCreate.ad.is_seller_private,
     stateProduct: state.adCreate.ad.state,
   };
