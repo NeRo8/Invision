@@ -46,7 +46,7 @@ class CategoryScreen extends Component {
               onPressElement={this.setFilterByCategory}
             />
           )}
-          keyExtractor={item => item.pk.toString()}
+          keyExtractor={(item, index) => index.toString()}
           ItemSeparatorComponent={() => (
             <Divider style={styles.elementDivider} />
           )}
